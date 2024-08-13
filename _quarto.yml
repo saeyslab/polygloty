@@ -8,13 +8,14 @@ book:
     - "Benjamin Rombaut"
     - "Robrecht Cannoodt"
   date: "9/12/2024"
-  cover-image: book/cover.svg
+  cover-image: assets/cover.svg
   chapters:
     - index.qmd
     - book/intro.qmd
     - notebooks/file_formats.qmd
     - notebooks/anndataR.qmd
     - notebooks/workflows.qmd
+    - book/book_slides.qmd
     - book/references.qmd
 
 bibliography: book/references.bib
@@ -22,5 +23,4 @@ bibliography: book/references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    toc: true

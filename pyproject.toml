@@ -21,7 +21,15 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest"]
-dev = ["cruft", "pre-commit", "quarto"]
+dev = [
+    # For package development
+    "cruft",
+    "pre-commit",
+    # For notebooks
+    "quarto",
+    "ipykernel",
+    "pip",
+]
 
 [build-system]
 requires = ["setuptools"]
@@ -29,7 +37,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.pixi.project]
 channels = ["conda-forge"]
-platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+platforms = ["linux-64", "osx-arm64", "win-64"]
 
 # Environments
 [tool.pixi.environments]
@@ -37,18 +45,26 @@ default = { solve-group = "default" }
 dev = { features = ["dev"], solve-group = "default" }
 test = { features = ["test"], solve-group = "default" }
 
-[tool.pixi.pypi-dependencies]
-polygloty = { path = ".", editable = true }
+# [tool.pixi.pypi-dependencies]
+# polygloty = { path = "pyproject.toml", editable = true }
 
-# These are Conda dependencies and will be installed with by Pixi
+# These are Conda dependencies and will be installed by Pixi
 [tool.pixi.dependencies]
 r = ">=4.3,<5"
 r-ggplot2 = ">=3.5.0,<3.6"
 
 [tool.pixi.tasks]
+# this creates a new "Rplots.pdf" file in the root of the project
+create-plot = "Rscript example-plot.R"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest"
+
+[tool.pixi.feature.dev.tasks]
+preview = "quarto preview"
+render_slides = { cmd = "bash slides/convert_slides.sh; cp _site/slides/slides.html.pdf assets/slides.pdf", depends-on = ["render_html"] }
+render_html = "quarto render --profile slides slides/slides.qmd; cp _site/slides/slides.html assets/slides.html"
+
 
 # https://pixi.sh/latest/ide_integration/r_studio/#using-r-packages-in-rstudio
 [tool.pixi.target.linux.tasks]

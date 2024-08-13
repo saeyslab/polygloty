@@ -1,0 +1,31 @@
+---
+title: "Polyglot programming for single-cell analysis"
+author: 
+- "Louise Deconinck"
+- "Benjamin Rombaut"
+- "Robrecht Cannoodt"
+date: "9/12/2024"
+format: 
+  revealjs:
+    css: slides.css
+    toc-depth: 1
+    smaller: true
+    slide-number: true
+    show-slide-number: all
+    embed-resources: true
+    preview-links: auto
+    progress: true
+    history: true
+    link-external-newwindow: true
+jupyter: python3
+exectute:
+    echo: true
+---
+
+# Introduction
+
+# File formats
+
+# anndataR
+
+# Workflows

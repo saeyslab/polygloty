@@ -1,3 +1,7 @@
+---
+title: File formats
+---
+
 # File formats
 
 Data format based interoperability
@@ -5,3 +9,14 @@ Data format based interoperability
 1. h5ad / zarr / Apache Arrow
 2. Reading and writing these formats
 
+## Setup
+
+```{python}
+import anndata
+import numpy
+import scanpy
+```
+
+```{python}
+anndata.__version__
+```

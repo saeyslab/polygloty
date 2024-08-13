@@ -1,0 +1,7 @@
+# Slides {.unnumbered}
+
+Here are the slides used during the workshop:
+
+{{< revealjs "../assets/slides.html" >}}
+
+{{< pdf "../assets/slides.pdf" >}}

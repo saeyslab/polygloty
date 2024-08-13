@@ -1,0 +1,25 @@
+/* Spread top-level bullets over available slide space  */
+.slide > ul, ol {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5em;
+}
+
+.slide > pre, div {
+    margin-top: .2em !important;
+    margin-bottom: .2em !important;
+}
+
+/* Remove unneeded top-level bullets */
+.slide > ul > li {
+    list-style-type: none !important;
+}
+
+/* Make titles smaller */
+.slide > h1 {
+    font-size: 2.5rem !important;
+}
+
+.slide > h2 {
+    font-size: 2rem !important;
+}
