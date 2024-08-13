@@ -1,0 +1,60 @@
+# See https://pixi.sh/latest/ on how to get started with Pixi to create your enviroment
+
+[project]
+name = "polygloty"
+version = "0.1.0"
+description = "Workshop code for Polyglot programming for single-cell analysis"
+authors = [
+    { name = "Benjamin Rombaut", email = "benjamin.rombaut@gmail.com" },
+    { name = "Louise Deconinck", email = "louise.deconinck@gmail.com" },
+    { name = "Robrecht Cannoodt", email = "robrecht@cannoodt.dev" }
+]
+requires-python = ">= 3.11"
+# These are PyPI dependencies and will be installed with pip
+dependencies = [
+    "rich>=13.7.1,<13.8",
+    "anndata>=0.10.8,<0.11",
+    "numpy>=1.24.3,<2",
+    "scanpy>=1.10.2,<2",
+    "mudata>=0.3.0,<0.4"
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+dev = ["cruft", "pre-commit", "quarto"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+# Environments
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+
+[tool.pixi.pypi-dependencies]
+polygloty = { path = ".", editable = true }
+
+# These are Conda dependencies and will be installed with by Pixi
+[tool.pixi.dependencies]
+r = ">=4.3,<5"
+r-ggplot2 = ">=3.5.0,<3.6"
+
+[tool.pixi.tasks]
+
+[tool.pixi.feature.test.tasks]
+test = "pytest"
+
+# https://pixi.sh/latest/ide_integration/r_studio/#using-r-packages-in-rstudio
+[tool.pixi.target.linux.tasks]
+rstudio = "rstudio"
+
+[tool.pixi.target.osx.tasks]
+rstudio = "open -a rstudio"
+# or alternatively with the full path:
+# rstudio = "/Applications/RStudio.app/Contents/MacOS/RStudio"
