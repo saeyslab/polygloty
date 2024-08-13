@@ -10,9 +10,17 @@ For the best polyglot experience, we recommend using [Pixi](https://pixi.sh/late
 pixi i -e dev
 ```
 
+Installation of the R dependencies in Pixi is more difficult, because Pixi does not support [post-link scripts](https://github.com/prefix-dev/pixi/issues/1573) and the bioconda channel for bioconductor packages does not yet support [osx-arm64](https://github.com/bioconda/bioconda-recipes/issues/33333).
+
+To fully install the R dependencies used in the notebooks, use a script via the following command:
+
+```bash
+pixi r setup_R
+```
+
 ## Usage
 
-To run the notebooks in this notebooks yourself, you can use VSCode or RStudio. For VSCode, install the [Quarto extension in VSCode](https://quarto.org/docs/tools/vscode.html) to render the notebooks correctly. Click Run Cell and select the kernel `dev` located at the path `.pixi/envs/dev/bin/python`.
+To run the notebooks in this notebooks yourself, you can use VSCode or RStudio. For VSCode, install the [Quarto extension in VSCode](https://quarto.org/docs/tools/vscode.html) to render the notebooks correctly. Click Run Cell and select the kernel `dev` located at the path `.pixi/envs/dev/bin/python`. For more information, see [this issue](https://github.com/prefix-dev/pixi/issues/411). For R, be sure to install the R extension and set the Rpath and Rterm in VSCode Settings to the correct path e.g. `${workspaceFolder}/.pixi/envs/default/bin/R`.
 
 For RStudio, you have to [install RStudio globally](https://quarto.org/docs/tools/rstudio.html) and start using the Pixi task runner or make sure that `dev` environment installed in this project folder is used within RStudio.:
 

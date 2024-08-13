@@ -52,10 +52,16 @@ polygloty = { path = ".", editable = true }
 [tool.pixi.dependencies]
 r = ">=4.3,<5"
 r-ggplot2 = ">=3.5.0,<3.6"
+r-devtools = ">=2.4.5,<3"
+r-languageserver = ">=0.3.16,<0.4"
+hdf5 = ">=1.14.3,<2"
+
 
 [tool.pixi.tasks]
 # this creates a new "Rplots.pdf" file in the root of the project
-create-plot = "Rscript example-plot.R"
+create_plot = "Rscript example-plot.R"
+setup_R = "Rscript setup.R"
+start_R = "R"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest"
@@ -64,7 +70,6 @@ test = "pytest"
 preview = "quarto preview"
 render_slides = { cmd = "bash slides/convert_slides.sh; cp _site/slides/slides.html.pdf assets/slides.pdf", depends-on = ["render_html"] }
 render_html = "quarto render --profile slides slides/slides.qmd; cp _site/slides/slides.html assets/slides.html"
-
 
 # https://pixi.sh/latest/ide_integration/r_studio/#using-r-packages-in-rstudio
 [tool.pixi.target.linux.tasks]

@@ -4,3 +4,19 @@ Calling python from R and vice versa
 
 1. rpy2 & reticulate
 2. How to do this in jupyter notebooks and rmarkdown scripts
+
+```{r}
+library(anndataR)
+
+h5ad_path <- system.file("extdata", "example.h5ad", package = "anndataR")
+adata <- read_h5ad(h5ad_path, to = "InMemoryAnnData")
+adata
+```
+```{r}
+sce <- adata$to_SingleCellExperiment()
+sce
+```
+```{r}
+obj <- adata$to_Seurat()
+obj
+```
