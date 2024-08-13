@@ -1,11 +1,11 @@
 ---
 title: "Polyglot programming for single-cell analysis"
-author: 
+author:
 - "Louise Deconinck"
 - "Benjamin Rombaut"
 - "Robrecht Cannoodt"
 date: "9/12/2024"
-format: 
+format:
   revealjs:
     css: slides.css
     toc-depth: 1

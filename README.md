@@ -25,6 +25,7 @@ pixi r rstudio
 For development, some common tasks are available via the Pixi task runner. If you want more control, you can start a development shell using `pixi shell -e dev`.
 
 To run the tests in the test environment, you can use the following command:
+
 ```bash
 pixi r pytest
 ```

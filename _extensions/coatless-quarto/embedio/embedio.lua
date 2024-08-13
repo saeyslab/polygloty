@@ -51,7 +51,7 @@ local function ensureSlideCSSPresent()
   initializedSlideCSS = true
 
   -- Default CSS class
-  local slideCSS = [[ 
+  local slideCSS = [[
   <style>
   .slide-deck {
       border: 3px solid #dee2e6;
@@ -82,13 +82,13 @@ local function iframe_helper(file_name, height, full_screen_link, class, templat
 
   -- Combine the template with file name and height to generate HTML code
   local combined_str = string.format(
-    [[%s %s]], 
+    [[%s %s]],
     -- Include full-screen link if specified
-    (full_screen_link == "true" and string.format(template_full_screen, file_name, type) or ""), 
+    (full_screen_link == "true" and string.format(template_full_screen, file_name, type) or ""),
     -- Insert the iframe template with file name and height
     string.format(template, class, file_name, height)
   )
-  
+
   -- Return the combined HTML as a pandoc RawBlock
   return pandoc.RawBlock('html', combined_str)
 end
@@ -97,7 +97,7 @@ end
 local function html(args, kwargs, meta, raw_args)
   -- Check if the output format is HTML
   if not quarto.doc.is_format("html") then return end
-  
+
   -- Get the HTML file name, height, and full-screen link option
   local file_name = pandoc.utils.stringify(args[1] or kwargs["file"])
   local height = getOption(kwargs, "height", "475px")
@@ -145,7 +145,7 @@ local function audio(args, kwargs, meta)
   if not quarto.doc.is_format("html") then return end
 
   -- Start of HTML tag
-  local htmlTable = {"<figure "} 
+  local htmlTable = {"<figure "}
 
   -- Extracting caption, class, and download from kwargs
   local caption = pandoc.utils.stringify(kwargs.caption)
@@ -174,7 +174,7 @@ local function audio(args, kwargs, meta)
 
   -- Automatically detect file type from the file extension
   local fileType = string.match(input, "%.([^%.]+)$")
-  
+
   if fileType then
       table.insert(htmlTable, ' type="audio/' .. fileType .. '">')
   else
@@ -207,7 +207,7 @@ local function pdf(args, kwargs, meta)
   -- Supported options for now
   local pdf_file_name = pandoc.utils.stringify(args[1] or kwargs["file"])
   checkFile(pdf_file_name)
-  
+
   local height = getOption(kwargs, "height", "600px")
   local width = getOption(kwargs, "width", "100%")
   local download_link = getOption(kwargs, "download-link", "true")
@@ -225,8 +225,8 @@ local function pdf(args, kwargs, meta)
 
   -- Obtain the combined template
   local combined_str = string.format(
-    [[%s %s]], 
-    (download_link == "true" and string.format(template_pdf_download_link, pdf_file_name) or ""), 
+    [[%s %s]],
+    (download_link == "true" and string.format(template_pdf_download_link, pdf_file_name) or ""),
     string.format(template_pdf, pdf_file_name, width, height, pdf_file_name)
   )
 
