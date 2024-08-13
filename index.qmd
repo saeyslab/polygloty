@@ -1,5 +1,9 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This book is a collection of notebooks and explanations for the workshop on **Polyglot programming for single-cell analysis** given at the [scverse Conference 2024](https://scverse.org/conference2024). For more information, please visit the [workshop page](https://cfp.scverse.org/2024/talk/AWKXCB/).
+
+In order to use the best performing methods for each step of the single-cell analysis process, bioinformaticians need to use multiple ecosystems and programming languages. This is unfortunately not that straightforward. This workshop gives an overview of the different levels of interoperability, and how it is possible to integrate them in a single workflow.
+
+To get started, read the [Introduction](intro.qmd) chapter.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

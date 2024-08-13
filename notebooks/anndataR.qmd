@@ -1,0 +1,6 @@
+# anndataR
+
+Calling python from R and vice versa
+
+1. rpy2 & reticulate
+2. How to do this in jupyter notebooks and rmarkdown scripts

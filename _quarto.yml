@@ -3,15 +3,21 @@ project:
 
 book:
   title: "Polyglot programming for single-cell analysis"
-  author: "Norah Jones"
-  date: "8/13/2024"
+  author: 
+    - "Louise Deconinck"
+    - "Benjamin Rombaut"
+    - "Robrecht Cannoodt"
+  date: "9/12/2024"
+  cover-image: book/cover.svg
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - book/intro.qmd
+    - notebooks/file_formats.qmd
+    - notebooks/anndataR.qmd
+    - notebooks/workflows.qmd
+    - book/references.qmd
 
-bibliography: references.bib
+bibliography: book/references.bib
 
 format:
   html:

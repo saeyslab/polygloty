@@ -1,0 +1,7 @@
+# File formats
+
+Data format based interoperability
+
+1. h5ad / zarr / Apache Arrow
+2. Reading and writing these formats
+
