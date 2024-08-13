@@ -32,8 +32,8 @@ dev = [
 ]
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+build-backend = "hatchling.build"
+requires = ["hatchling"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
@@ -45,8 +45,8 @@ default = { solve-group = "default" }
 dev = { features = ["dev"], solve-group = "default" }
 test = { features = ["test"], solve-group = "default" }
 
-# [tool.pixi.pypi-dependencies]
-# polygloty = { path = "pyproject.toml", editable = true }
+[tool.pixi.pypi-dependencies]
+polygloty = { path = ".", editable = true }
 
 # These are Conda dependencies and will be installed by Pixi
 [tool.pixi.dependencies]
