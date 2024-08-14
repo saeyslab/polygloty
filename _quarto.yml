@@ -17,6 +17,7 @@ book:
     - notebooks/workflows.qmd
     - book/book_slides.qmd
     - book/references.qmd
+    - notebooks/usecase.qmd
 
 bibliography: book/references.bib
 

@@ -1,0 +1,39 @@
+---
+title: "WIP: Use-case"
+engine: knitr
+---
+
+```{bash}
+if [[ ! -f usecase_data/sc_counts_reannotated_with_counts.h5ad ]]; then
+  aws s3 cp \
+    s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
+    usecase_data/sc_counts_reannotated_with_counts.h5ad
+fi
+```
+
+```{python}
+import anndata as ad
+
+adata_path = "usecase_data/sc_counts_reannotated_with_counts.h5ad"
+
+adata = ad.read_h5ad(adata_path)
+```
+
+```{r}
+library(anndata)
+
+adata_path <- "usecase_data/sc_counts_reannotated_with_counts.h5ad"
+
+adata <- read_h5ad(adata_path)
+```
+
+## Steps
+
+### 1. Pseudobulk
+
+### 2. Compute DE
+
+### 3. ???
+
+### 4. Profit
+
