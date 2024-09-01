@@ -1,0 +1,30 @@
+---
+title: In memory interoperability (from Python)
+engine: jupyter
+---
+
+In this notebook, we will showcase how to call R code from Python.
+We will make use of rpy2 and anndata2ri.
+
+Read in anndata object
+```{python}
+import anndata as ad
+
+adata_path = "usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata = ad.read_h5ad(adata_path)
+```
+
+```{python}
+import rpy2
+import rpy2.robjects.packages as rpackages
+utils = rpackages.importr('utils')
+utils.chooseCRANmirror(ind=1)
+utils.install_packages('Matrix')
+
+import anndata2ri
+
+anndata2ri.scipy2ri.activate()
+
+counts_mat = adata.X.T
+rpy2.robjects.globalenv["counts_mat"] = counts_mat
+```

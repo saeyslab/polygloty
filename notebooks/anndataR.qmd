@@ -1,3 +1,9 @@
+---
+title: "WIP: In memory interoperability (Python side)"
+engine: jupyter
+---
+
+
 # anndataR
 
 Calling python from R and vice versa
