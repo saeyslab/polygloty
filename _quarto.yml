@@ -13,7 +13,7 @@ book:
     - index.qmd
     - book/intro.qmd
     - notebooks/file_formats.qmd
-    - notebooks/anndataR.qmd
+    - notebooks/in_memory.qmd
     - notebooks/workflows.qmd
     - book/book_slides.qmd
     - book/references.qmd
