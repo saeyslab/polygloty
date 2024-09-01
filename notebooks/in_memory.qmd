@@ -6,7 +6,10 @@ engine: jupyter
 In this notebook, we will showcase how to call R code from Python.
 We will make use of rpy2 and anndata2ri.
 
-Read in anndata object
+Make sure you have downloaded the data.
+
+
+Read in the anndata object
 ```{python}
 import anndata as ad
 
@@ -14,17 +17,33 @@ adata_path = "usecase_data/sc_counts_reannotated_with_counts.h5ad"
 adata = ad.read_h5ad(adata_path)
 ```
 
+
+We can use rpy2 to run R code within a Python process.
+If you wish to convert numpy matrices, you need to use the right convertor.
+
+This is an example of how you import rpy2, and convert a matrix for use in R functions.
+
+```{python}
+counts = adata.X # matrices are columnn major in R, and row-major in Python
+counts = counts[:100, :1000] # subset for speed of example
+counts_dense = counts.todense() # sparse matrices are not supported in rpy2
+```
+
+
 ```{python}
 import rpy2
-import rpy2.robjects.packages as rpackages
-utils = rpackages.importr('utils')
-utils.chooseCRANmirror(ind=1)
-utils.install_packages('Matrix')
+import rpy2.robjects as robjects
 
-import anndata2ri
+from rpy2.robjects import numpy2ri
+from rpy2.robjects import default_converter
 
-anndata2ri.scipy2ri.activate()
+np_cv_rules = default_converter + numpy2ri.converter
 
-counts_mat = adata.X.T
-rpy2.robjects.globalenv["counts_mat"] = counts_mat
+with np_cv_rules.context() as cv:
+    robjects.globalenv["counts_matrix"] = counts_dense
+
+    dim = robjects.r["dim"]
+    print(dim(robjects.globalenv["counts_matrix"]))
 ```
+
+
