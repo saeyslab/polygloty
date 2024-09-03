@@ -98,72 +98,56 @@ pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
 
 ## 4. Compute DE
 
-:::{.callout-note}
-Currently not running the R code blocks because of compute time, will be fixed soon.
-:::
-
-```r
+```{r}
 library(anndata)
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
 pb_adata <- read_h5ad("usecase_data/pseudobulk.h5ad")
+```
 
-# add limma compatible columns
-limma_trafo <- function(value) {
-  gsub("[^[:alnum:]]", "_", value)
-}
-pb_adata$obs <- pb_adata$obs |>
-  mutate(
-    sm_name_cell_type = limma_trafo(paste0(sm_name, "_", cell_type)),
-    plate_name_ = limma_trafo(plate_name)
-  )
+Select small molecule and control:
+```{r}
+sm_name <- "Belinostat"
+control_name <- "Dimethyl Sulfoxide"
+```
 
-control_compound <- limma_trafo("Dimethyl Sulfoxide")
+Create DESeq dataset:
+```{r}
+# transform counts matrix
+count_data <- t(pb_adata$X)
+storage.mode(count_data) <- "integer"
 
-new_obs <- pb_adata$obs |>
-  filter(sm_name != control_compound)
+# subset to small molecule and control
+ix <- pb_adata$obs$sm_name %in% c(sm_name, control_name)
 
-# Compute DE for each cell type
-d0 <- Matrix::t(pb_adata$X) %>%
-  edgeR::DGEList() %>%
-  edgeR::calcNormFactors()
-
-# create design matrix
-design_matrix <- model.matrix(~ 0 + sm_name_cell_type + plate_name_, pb_adata$obs)
-
-# Voom transformation and lmFit
-v <- limma::voom(d0, design = design_matrix)
-fit <- limma::lmFit(v, design_matrix)
-
-# compute contrasts for each cell type and small molecule
-# NOTE: normally you'd compute this for each row in `new_obs`,
-# but for demonstration purposes we'll only compute it for the first row
-
-row_i <- 1
-
-cat("Computing DE contrasts (", row_i, "/", nrow(new_obs), ")\n", sep = "")
-control_name <- paste0(
-  limma_trafo(control_compound), "_", limma_trafo(new_obs$cell_type[[row_i]])
+# create dataset
+dds <- DESeq2::DESeqDataSetFromMatrix(
+  countData = count_data[, ix],
+  colData = pb_adata$obs[ix, ],
+  design = ~ sm_name + cell_type + plate_name,
 )
+```
 
-contrast_formula <- paste0(
-  "sm_name_cell_type", new_obs$sm_name_cell_type[[row_i]], " - ",
-  " - ",
-  "sm_name_cell_type", control_name
-)
+Run DESeq2:
+```{r}
+dds <- DESeq2::DESeq(dds)
+```
 
-contr <- limma::makeContrasts(
-  contrasts = contrast_formula,
-  levels = colnames(coef(fit))
-)
+Get results:
+```{r}
+res <- DESeq2::results(dds, contrast=c("sm_name", sm_name, control_name)) |>
+  as.data.frame()
+```
 
-# compute DE
-out <- limma::contrasts.fit(fit, contr) %>%
-  limma::eBayes(robust = TRUE) %>%
-  limma::topTable(n = Inf, sort = "none") %>%
-  rownames_to_column("gene") %>%
-  mutate(row_i = row_i)
+Preview results:
+```{r}
+res |>
+  arrange(padj) |>
+  head(10)
+```
 
+Write to disk:
+```{r}
 write_csv(out, "usecase_data/de_contrasts.csv")
 ```
 
@@ -174,6 +158,6 @@ write_csv(out, "usecase_data/de_contrasts.csv")
 
 [^op]: OpenProblems - Perturbation Prediction - https://openproblems.bio/results/perturbation_prediction/
 
-[^sra]: SRA - PRJNA1149320 XXX YYY - https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320
+[^sra]: SRA PRJNA1149320 - Open Problems Perurbation Prediction dataset - https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320
 
 [^s3]: H5AD dataset on AWS S3 - https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad
