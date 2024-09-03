@@ -23,7 +23,7 @@ The dataset has since been uploaded to SRA [^sra], will be uploaded to GEO, and 
 
 If you haven't already, you can download the dataset from S3 using the following command:
 
-```{bash}
+```{bash s3_sync}
 if [[ ! -f usecase_data/sc_counts_reannotated_with_counts.h5ad ]]; then
   aws s3 cp \
     --no-sign-request \
@@ -36,7 +36,7 @@ fi
 
 The dataset is stored in an AnnData object, which can be loaded in Python as follows:
 
-```{python}
+```{python load_anndata}
 import anndata as ad
 
 adata = ad.read_h5ad("usecase_data/sc_counts_reannotated_with_counts.h5ad")
@@ -57,13 +57,13 @@ adata
 
 ## 3. Compute pseudobulk
 
-```{python}
+```{python import_pandas}
 import pandas as pd
 ```
 
 Combine data in a single data frame and compute pseudobulk
 
-```{python}
+```{python compute_pseudobulk}
 combined = pd.DataFrame(
   adata.X.toarray(),
   index=adata.obs["plate_well_celltype_reannotated"],
@@ -74,7 +74,7 @@ pb_X = combined.groupby(level=0).sum()
 
 Construct obs for pseudobulk. Use 'plate_well_celltype_reannotated' as index and make sure to retain the columns 'sm_name', 'cell_type', and 'plate_name':
 
-```{python}
+```{python pb_obs}
 pb_obs = adata.obs[["sm_name", "cell_type", "plate_name", "well"]].copy()
 pb_obs.index = adata.obs["plate_well_celltype_reannotated"]
 pb_obs = pb_obs.drop_duplicates()
@@ -82,7 +82,7 @@ pb_obs = pb_obs.drop_duplicates()
 
 Create AnnData object:
 
-```{python}
+```{python pb_adata}
 pb_adata = ad.AnnData(
   X=pb_X.loc[pb_obs.index].values,
   obs=pb_obs,
@@ -92,13 +92,13 @@ pb_adata = ad.AnnData(
 
 Store to disk:
 
-```{python}
+```{python store_pseudobulk}
 pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
 ```
 
 ## 4. Compute DE
 
-```{r}
+```{r load_pbdata}
 library(anndata)
 library(dplyr, warn.conflicts = FALSE)
 
@@ -106,13 +106,13 @@ pb_adata <- read_h5ad("usecase_data/pseudobulk.h5ad")
 ```
 
 Select small molecule and control:
-```{r}
+```{r select_sm_control}
 sm_name <- "Belinostat"
 control_name <- "Dimethyl Sulfoxide"
 ```
 
 Create DESeq dataset:
-```{r}
+```{r create_deseq_dataset}
 # transform counts matrix
 count_data <- t(pb_adata$X)
 storage.mode(count_data) <- "integer"
@@ -129,26 +129,26 @@ dds <- DESeq2::DESeqDataSetFromMatrix(
 ```
 
 Run DESeq2:
-```{r}
+```{r run_deseq}
 dds <- DESeq2::DESeq(dds)
 ```
 
 Get results:
-```{r}
+```{r get_results}
 res <- DESeq2::results(dds, contrast=c("sm_name", sm_name, control_name)) |>
   as.data.frame()
 ```
 
 Preview results:
-```{r}
+```{r preview_results}
 res |>
   arrange(padj) |>
   head(10)
 ```
 
 Write to disk:
-```{r}
-write.csv(out, "usecase_data/de_contrasts.csv")
+```{r write_results}
+write.csv(res, "usecase_data/de_contrasts.csv")
 ```
 
 
