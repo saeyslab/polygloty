@@ -25,3 +25,7 @@ format:
   html:
     theme: cosmo
     toc: true
+
+# cache computations
+execute:
+  freeze: auto
