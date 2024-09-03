@@ -65,7 +65,7 @@ control_name = "Dimethyl Sulfoxide"
 
 adata = adata[
   adata.obs["sm_name"].isin([sm_name, control_name])
-]
+].copy()
 ```
 
 
