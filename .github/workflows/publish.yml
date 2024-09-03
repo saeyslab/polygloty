@@ -39,14 +39,11 @@ jobs:
         
       - name: Make sure data is available
         run: |
-          if [[ ! -f notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad ]]; then
-            wget https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
-              -O notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad
-          fi
-          # aws s3 cp \
-          #   --no-sign-request \
-          #   s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
-          #   notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad
+          AWS_EC2_METADATA_DISABLED=true \
+            aws s3 cp \
+            --no-sign-request \
+            s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
+            notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad
 
       # attempt with pixi:
       
