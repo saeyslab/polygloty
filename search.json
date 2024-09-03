@@ -1,0 +1,132 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Polyglot programming for single-cell analysis",
+    "section": "",
+    "text": "Preface\nThis book is a collection of notebooks and explanations for the workshop on Polyglot programming for single-cell analysis given at the scverse Conference 2024. For more information, please visit the workshop page.\nIn order to use the best performing methods for each step of the single-cell analysis process, bioinformaticians need to use multiple ecosystems and programming languages. This is unfortunately not that straightforward. This workshop gives an overview of the different levels of interoperability, and how it is possible to integrate them in a single workflow.\nTo get started, read the Introduction chapter.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "book/intro.html",
+    "href": "book/intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Any bioinformatician that has analysed a single-cell dataset knows that using methods developed for different ecosystems or programming languages is necessary but painful. Any package developer has asked themselves the question on how to best provide access to their tool or method.\nWe will give an overview of the interoperability tools you can use when analysing a single-cell dataset: do you want to convert your data to a different data format, or is just calling one R function in your Jupyter notebook sufficient? Do you want fine-grained control over each step in the analysis pipeline or do you run a series of scripts that you really should convert to a workflow system?\nWe will give information on different options for package developers to provide better interoperability. Should you reimplement your package in a new language? How do you ensure that the results are the same?\nIn order to follow this workshop, we expect the participants to have some Python or R programming knowledge.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/usecase.html",
+    "href": "notebooks/usecase.html",
+    "title": "2  Use-case",
+    "section": "",
+    "text": "2.1 1. Retrieving the data\nThe dataset has since been uploaded to SRA (“SRA PRJNA1149320 - Open Problems Perurbation Prediction Dataset” 2024), will be uploaded to GEO, and is currently available from S3 (“OP3 H5AD Dataset on AWS S3” 2024).\nIf you haven’t already, you can download the dataset from S3 using the following command:\nif [[ ! -f usecase_data/sc_counts_reannotated_with_counts.h5ad ]]; then\n  aws s3 cp \\\n    --no-sign-request \\\n    s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \\\n    usecase_data/sc_counts_reannotated_with_counts.h5ad\nfi",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Use-case</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/usecase.html#loading-the-data",
+    "href": "notebooks/usecase.html#loading-the-data",
+    "title": "2  Use-case",
+    "section": "2.2 2. Loading the data",
+    "text": "2.2 2. Loading the data\nThe dataset is stored in an AnnData object, which can be loaded in Python as follows:\n\nimport anndata as ad\n\nadata = ad.read_h5ad(\"usecase_data/sc_counts_reannotated_with_counts.h5ad\")\n\nadata\n\nAnnData object with n_obs × n_vars = 298087 × 21265\n    obs: 'dose_uM', 'timepoint_hr', 'well', 'row', 'col', 'plate_name', 'cell_id', 'cell_type', 'split', 'donor_id', 'sm_name', 'control', 'SMILES', 'sm_lincs_id', 'library_id', 'leiden_res1', 'group', 'cell_type_orig', 'plate_well_celltype_reannotated', 'cell_count_by_well_celltype', 'cell_count_by_plate_well'\n    var: 'highly_variable', 'means', 'dispersions', 'dispersions_norm'\n    uns: 'cell_type_colors', 'celltypist_celltype_colors', 'donor_id_colors', 'hvg', 'leiden_res1_colors', 'log1p', 'neighbors', 'over_clustering', 'rank_genes_groups'\n    obsm: 'HTO_clr', 'X_pca', 'X_umap', 'protein_counts'\n    obsp: 'connectivities', 'distances'\n\n\nThe same code can be run in R using the anndata package (not run):\nlibrary(anndata)\n\nadata &lt;- read_h5ad(\"usecase_data/sc_counts_reannotated_with_counts.h5ad\")\n\nadata",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Use-case</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/usecase.html#subset-data",
+    "href": "notebooks/usecase.html#subset-data",
+    "title": "2  Use-case",
+    "section": "2.3 3. Subset data",
+    "text": "2.3 3. Subset data\nSubset to a single small molecule and control for computational efficiency:\n\nsm_name = \"Belinostat\"\ncontrol_name = \"Dimethyl Sulfoxide\"\n\nadata = adata[\n  adata.obs[\"sm_name\"].isin([sm_name, control_name])\n].copy()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Use-case</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/usecase.html#compute-pseudobulk",
+    "href": "notebooks/usecase.html#compute-pseudobulk",
+    "title": "2  Use-case",
+    "section": "2.4 4. Compute pseudobulk",
+    "text": "2.4 4. Compute pseudobulk\n\nimport pandas as pd\n\nCombine data in a single data frame and compute pseudobulk\n\ncombined = pd.DataFrame(\n  adata.X.toarray(),\n  index=adata.obs[\"plate_well_celltype_reannotated\"],\n)\ncombined.columns = adata.var_names\npb_X = combined.groupby(level=0).sum()\n\n&lt;string&gt;:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.\n\n\nConstruct obs for pseudobulk. Use ‘plate_well_celltype_reannotated’ as index and make sure to retain the columns ‘sm_name’, ‘cell_type’, and ‘plate_name’:\n\npb_obs = adata.obs[[\"sm_name\", \"cell_type\", \"plate_name\", \"well\"]].copy()\npb_obs.index = adata.obs[\"plate_well_celltype_reannotated\"]\npb_obs = pb_obs.drop_duplicates()\n\nCreate AnnData object:\n\npb_adata = ad.AnnData(\n  X=pb_X.loc[pb_obs.index].values,\n  obs=pb_obs,\n  var=adata.var,\n)\n\nStore to disk:\n\npb_adata.write_h5ad(\"usecase_data/pseudobulk.h5ad\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Use-case</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/usecase.html#compute-de",
+    "href": "notebooks/usecase.html#compute-de",
+    "title": "2  Use-case",
+    "section": "2.5 5. Compute DE",
+    "text": "2.5 5. Compute DE\n\nlibrary(anndata)\nlibrary(dplyr, warn.conflicts = FALSE)\n\npb_adata &lt;- read_h5ad(\"usecase_data/pseudobulk.h5ad\")\n\nSelect small molecule and control:\n\nsm_name &lt;- \"Belinostat\"\ncontrol_name &lt;- \"Dimethyl Sulfoxide\"\n\nCreate DESeq dataset:\n\n# transform counts matrix\ncount_data &lt;- t(pb_adata$X)\nstorage.mode(count_data) &lt;- \"integer\"\n\n# create dataset\ndds &lt;- DESeq2::DESeqDataSetFromMatrix(\n  countData = count_data,\n  colData = pb_adata$obs,\n  design = ~ sm_name + cell_type + plate_name,\n)\n\n  Note: levels of factors in the design contain characters other than\n  letters, numbers, '_' and '.'. It is recommended (but not required) to use\n  only letters, numbers, and delimiters '_' or '.', as these are safe characters\n  for column names in R. [This is a message, not a warning or an error]\n\n\nRun DESeq2:\n\ndds &lt;- DESeq2::DESeq(dds)\n\nestimating size factors\n\n\n  Note: levels of factors in the design contain characters other than\n  letters, numbers, '_' and '.'. It is recommended (but not required) to use\n  only letters, numbers, and delimiters '_' or '.', as these are safe characters\n  for column names in R. [This is a message, not a warning or an error]\n\n\nestimating dispersions\n\n\ngene-wise dispersion estimates\n\n\nmean-dispersion relationship\n\n\n-- note: fitType='parametric', but the dispersion trend was not well captured by the\n   function: y = a/x + b, and a local regression fit was automatically substituted.\n   specify fitType='local' or 'mean' to avoid this message next time.\n\n\n  Note: levels of factors in the design contain characters other than\n  letters, numbers, '_' and '.'. It is recommended (but not required) to use\n  only letters, numbers, and delimiters '_' or '.', as these are safe characters\n  for column names in R. [This is a message, not a warning or an error]\n\n\nfinal dispersion estimates\n\n\nfitting model and testing\n\n\n  Note: levels of factors in the design contain characters other than\n  letters, numbers, '_' and '.'. It is recommended (but not required) to use\n  only letters, numbers, and delimiters '_' or '.', as these are safe characters\n  for column names in R. [This is a message, not a warning or an error]\n\n\nGet results:\n\nres &lt;- DESeq2::results(dds, contrast=c(\"sm_name\", sm_name, control_name)) |&gt;\n  as.data.frame()\n\nPreview results:\n\nres |&gt;\n  arrange(padj) |&gt;\n  head(10)\n\n        baseMean log2FoldChange      lfcSE      stat pvalue padj\nADI1    15.81436     -2.5203928 0.06336398 -39.77643      0    0\nARL3    19.22995      1.2794219 0.03341170  38.29263      0    0\nBORCS7  12.48190     -1.8446604 0.04584543 -40.23652      0    0\nCDC37   57.30407      0.7659572 0.01721213  44.50101      0    0\nCUTA    74.06898      0.5931776 0.01542341  38.45957      0    0\nDAZAP2  53.17939     -0.8113398 0.02093957 -38.74672      0    0\nDDX5   153.46503     -0.4983207 0.01244641 -40.03730      0    0\nEPC1    33.16997     -1.2149805 0.02839424 -42.78968      0    0\nGPSM3   63.40437     -0.9643517 0.02279573 -42.30405      0    0\nGTF3C6  27.74296     -1.6292620 0.03655061 -44.57551      0    0\n\n\nWrite to disk:\n\nwrite.csv(res, \"usecase_data/de_contrasts.csv\")\n\n\n\n\n\n“OP3 H5AD Dataset on AWS S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell Perturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“SRA PRJNA1149320 - Open Problems Perurbation Prediction Dataset.” 2024. https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Use-case</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/file_formats.html",
+    "href": "notebooks/file_formats.html",
+    "title": "3  File formats",
+    "section": "",
+    "text": "4 File formats\nData format based interoperability",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>File formats</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/file_formats.html#setup",
+    "href": "notebooks/file_formats.html#setup",
+    "title": "3  File formats",
+    "section": "4.1 Setup",
+    "text": "4.1 Setup\n\nimport anndata\nimport numpy\nimport scanpy\n\n\nanndata.__version__\n\n'0.10.9'",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>File formats</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/in_memory.html",
+    "href": "notebooks/in_memory.html",
+    "title": "4  In memory interoperability (from Python)",
+    "section": "",
+    "text": "In this notebook, we will showcase how to call R code from Python. We will make use of rpy2 and anndata2ri.\nMake sure you have downloaded the data.\nRead in the anndata object\n\nimport anndata as ad\n\nadata_path = \"usecase_data/sc_counts_reannotated_with_counts.h5ad\"\nadata = ad.read_h5ad(adata_path)\n\nWe can use rpy2 to run R code within a Python process. If you wish to convert numpy matrices, you need to use the right convertor.\nThis is an example of how you import rpy2, and convert a matrix for use in R functions.\n\ncounts = adata.X # matrices are columnn major in R, and row-major in Python\ncounts = counts[:100, :1000] # subset for speed of example\ncounts_dense = counts.todense() # sparse matrices are not supported in rpy2\n\n\nimport rpy2\nimport rpy2.robjects as robjects\n\nfrom rpy2.robjects import numpy2ri\nfrom rpy2.robjects import default_converter\n\nnp_cv_rules = default_converter + numpy2ri.converter\n\nwith np_cv_rules.context() as cv:\n    robjects.globalenv[\"counts_matrix\"] = counts_dense\n\n    dim = robjects.r[\"dim\"]\n    print(dim(robjects.globalenv[\"counts_matrix\"]))\n\n[ 100 1000]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>In memory interoperability (from Python)</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows.html",
+    "href": "notebooks/workflows.html",
+    "title": "5  Workflows",
+    "section": "",
+    "text": "Shell scripts, environment, containers, workflow managers etc\n\nDocker vs Singularity vs Podman vs Conda\nNextflow vs Snakemake vs Viash",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "book/book_slides.html",
+    "href": "book/book_slides.html",
+    "title": "Slides",
+    "section": "",
+    "text": "Here are the slides used during the workshop:\n    View slides in full screen\n       \n      \n    \n  \n  Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "book/references.html",
+    "href": "book/references.html",
+    "title": "References",
+    "section": "",
+    "text": "“OP3 H5AD Dataset on AWS S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell\nPerturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“SRA PRJNA1149320 - Open Problems Perurbation Prediction\nDataset.” 2024. https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
