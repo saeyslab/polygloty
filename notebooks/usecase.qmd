@@ -148,7 +148,7 @@ res |>
 
 Write to disk:
 ```{r}
-write_csv(out, "usecase_data/de_contrasts.csv")
+write.csv(out, "usecase_data/de_contrasts.csv")
 ```
 
 
