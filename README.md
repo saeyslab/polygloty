@@ -51,3 +51,52 @@ To render the slides correctly in the workshop book site using [embedio](https:/
 ```bash
 pixi r render_slides
 ```
+
+## renv
+
+I'm currently experiencing issues with getting `pixi` to install `rpy2`. As a temporary workaround, I'm using `renv` to manage the R dependencies. 
+
+### First time setup
+
+To install the R and Python dependencies, use the following command:
+
+```R
+install.packages("renv")
+renv::restore()
+```
+
+### Adding new packages
+If you want to install a new R package, use the following command:
+
+```R
+renv::install("anndata")
+```
+
+If you want to install a new Python package, use the following command:
+
+```bash
+reticulate::py_install(c("rich>=13.7,<13.8", "anndata>=0.10.8,<0.11", "numpy>=1.24,<2", "scanpy>=1.10,<2", "mudata>=0.3,<0.4", "rpy2>=3.4,<4", "jupyter"))
+```
+
+After installing a new package, use the following command to update the `renv.lock` file:
+
+```R
+renv::snapshot()
+```
+
+### Using the environment
+
+To use the environment, use the following command:
+
+```bash
+# ensure that jupyter can also use the renv environment
+source renv/python/virtualenvs/renv-python-3.12/bin/activate
+quarto preview
+```
+
+Or to render the slides:
+
+```bash
+source renv/python/virtualenvs/renv-python-3.12/bin/activate
+quarto render
+```
