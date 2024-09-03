@@ -29,4 +29,3 @@ format:
 # cache computations
 execute:
   freeze: auto
-  cache: true
