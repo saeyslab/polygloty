@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - id: install-aws-cli
+      - name: Install AWS CLI
         uses: unfor19/install-aws-cli-action@v1
 
       - name: Set up specific version of Python
@@ -59,6 +59,20 @@ jobs:
           path: |
             _freeze
           key: renv_${{ runner.os }}
+
+      - name: Cache usecase_data
+        uses: actions/cache@v2
+        with:
+          path: |
+            notebooks/usecase_data
+          key: usecase_data_${{ runner.os }}
+        
+      - name: Make sure data is available
+        run: |
+          aws s3 cp \
+            --no-sign-request \
+            s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
+            notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad
       
       - name: Render slides
         run: |
