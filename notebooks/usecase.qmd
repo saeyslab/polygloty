@@ -1,9 +1,10 @@
 ---
 title: "Use-case"
 engine: knitr
+bibliography: ../book/references.bib
 ---
 
-The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types [^kaggle]. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task [^op].
+The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types [@kaggle-op3]. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task [@openproblems-op].
 
 As part of the competition, competitors received the differential gene expression (DGE) of genes in cell types treated with different small molecules, and had to predict the DGE of genes in cell types of which some small molecules were withheld. The task is illustrated in the figure below [@fig-dge].
 
@@ -19,7 +20,7 @@ We will use the dataset to illustrate how to perform the following steps.
 
 ## 1. Retrieving the data
 
-The dataset has since been uploaded to SRA [^sra], will be uploaded to GEO, and is currently available from S3 [^s3].
+The dataset has since been uploaded to SRA [@sra-op3], will be uploaded to GEO, and is currently available from S3 [@s3-op3].
 
 If you haven't already, you can download the dataset from S3 using the following command:
 
@@ -151,13 +152,3 @@ Write to disk:
 write.csv(res, "usecase_data/de_contrasts.csv")
 ```
 
-
-## Footnotes
-
-[^kaggle]: Kaggle: Open Problems - Single Cell Perturbations - https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview
-
-[^op]: OpenProblems - Perturbation Prediction - https://openproblems.bio/results/perturbation_prediction/
-
-[^sra]: SRA PRJNA1149320 - Open Problems Perurbation Prediction dataset - https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320
-
-[^s3]: H5AD dataset on AWS S3 - https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad
