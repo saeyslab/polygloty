@@ -116,6 +116,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-diffobj-0.3.5-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-digest-0.6.36-r44ha18555a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.1.4-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-ellipsis-0.3.2-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fansi-1.0.6-r44hb1dbf0f_1.conda
@@ -124,6 +125,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-foreign-0.8_87-r44hb1dbf0f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fs-1.6.4-r44ha18555a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-gert-2.1.0-r44h83af2bd_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -208,6 +210,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-testthat-3.2.1.1-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-textshaping-0.4.0-r44ha47bcaa_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-tibble-3.2.1-r44hdb488b9_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -402,6 +405,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-diffobj-0.3.5-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-digest-0.6.36-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-dplyr-1.1.4-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-ellipsis-0.3.2-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fansi-1.0.6-r44h07cda29_1.conda
@@ -410,6 +414,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-foreign-0.8_87-r44h07cda29_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fs-1.6.4-r44hd76f289_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-gert-2.1.0-r44h91c098b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -494,6 +499,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-testthat-3.2.1.1-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-textshaping-0.4.0-r44h47c221f_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-tibble-3.2.1-r44h07cda29_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -661,6 +667,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-diffobj-0.3.5-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-digest-0.6.36-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/r-dplyr-1.1.4-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-ellipsis-0.3.2-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fansi-1.0.6-r44h11b023d_1.conda
@@ -669,6 +676,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-foreign-0.8_87-r44h11b023d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fs-1.6.4-r44hd9cd2f5_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-gert-2.1.0-r44hc223fc2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -753,6 +761,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-testthat-3.2.1.1-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-textshaping-0.4.0-r44h5da55db_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-tibble-3.2.1-r44h11b023d_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -938,6 +947,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-diffobj-0.3.5-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-digest-0.6.36-r44ha18555a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.1.4-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-ellipsis-0.3.2-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fansi-1.0.6-r44hb1dbf0f_1.conda
@@ -946,6 +956,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-foreign-0.8_87-r44hb1dbf0f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fs-1.6.4-r44ha18555a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-gert-2.1.0-r44h83af2bd_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -1030,6 +1041,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-testthat-3.2.1.1-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-textshaping-0.4.0-r44ha47bcaa_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-tibble-3.2.1-r44hdb488b9_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -1288,6 +1300,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-diffobj-0.3.5-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-digest-0.6.36-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-dplyr-1.1.4-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-ellipsis-0.3.2-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fansi-1.0.6-r44h07cda29_1.conda
@@ -1296,6 +1309,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-foreign-0.8_87-r44h07cda29_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fs-1.6.4-r44hd76f289_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-gert-2.1.0-r44h91c098b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -1380,6 +1394,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-testthat-3.2.1.1-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-textshaping-0.4.0-r44h47c221f_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-tibble-3.2.1-r44h07cda29_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -1612,6 +1627,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-diffobj-0.3.5-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-digest-0.6.36-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/r-dplyr-1.1.4-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-ellipsis-0.3.2-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fansi-1.0.6-r44h11b023d_1.conda
@@ -1620,6 +1636,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-foreign-0.8_87-r44h11b023d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fs-1.6.4-r44hd9cd2f5_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-gert-2.1.0-r44hc223fc2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -1704,6 +1721,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-testthat-3.2.1.1-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-textshaping-0.4.0-r44h5da55db_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-tibble-3.2.1-r44h11b023d_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -1952,6 +1970,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-diffobj-0.3.5-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-digest-0.6.36-r44ha18555a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.1.4-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-ellipsis-0.3.2-r44hb1dbf0f_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fansi-1.0.6-r44hb1dbf0f_1.conda
@@ -1960,6 +1979,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-foreign-0.8_87-r44hb1dbf0f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-fs-1.6.4-r44ha18555a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-gert-2.1.0-r44h83af2bd_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -2044,6 +2064,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-testthat-3.2.1.1-r44h0d4f4ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-textshaping-0.4.0-r44ha47bcaa_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-tibble-3.2.1-r44hdb488b9_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -2241,6 +2262,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-diffobj-0.3.5-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-digest-0.6.36-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-dplyr-1.1.4-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-ellipsis-0.3.2-r44h07cda29_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fansi-1.0.6-r44h07cda29_1.conda
@@ -2249,6 +2271,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-foreign-0.8_87-r44h07cda29_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-fs-1.6.4-r44hd76f289_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-gert-2.1.0-r44h91c098b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -2333,6 +2356,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-testthat-3.2.1.1-r44hd76f289_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-textshaping-0.4.0-r44h47c221f_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-tibble-3.2.1-r44h07cda29_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -2503,6 +2527,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-diffobj-0.3.5-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-digest-0.6.36-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-downlit-0.4.4-r44hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/r-dplyr-1.1.4-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-ellipsis-0.3.2-r44h11b023d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.24.0-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fansi-1.0.6-r44h11b023d_1.conda
@@ -2511,6 +2536,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.5.2-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-foreign-0.8_87-r44h11b023d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-fs-1.6.4-r44hd9cd2f5_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-gert-2.1.0-r44hc223fc2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-3.5.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gh-1.4.1-r44hc72bb7e_1.conda
@@ -2595,6 +2621,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-testthat-3.2.1.1-r44h8ae3a7c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-textshaping-0.4.0-r44h5da55db_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/r-tibble-3.2.1-r44h11b023d_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.52-r44hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-urlchecker-1.0.1-r44hc72bb7e_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-usethis-3.0.0-r44hc72bb7e_0.conda
@@ -2755,7 +2782,7 @@ packages:
   sha256: 1b24934dc2674eaf3072cb7010e187aa2b2f4f0e4cf0a32ffeab5ffebe3b1415
   requires_dist:
   - array-api-compat!=1.5,>1.4
-  - exceptiongroup ; python_version < '3.11'
+  - exceptiongroup ; python_full_version < '3.11'
   - h5py>=3.1
   - natsort
   - numpy>=1.23
@@ -2842,41 +2869,41 @@ packages:
   sha256: 051ed49c3dcae8913ea7cd08e46a606dba30b79993209636c4875bc1d637bc24
   requires_dist:
   - six>=1.12.0
-  - typing ; python_version < '3.5'
-  - astroid<2,>=1 ; python_version < '3' and extra == 'astroid'
-  - astroid<4,>=2 ; python_version >= '3' and extra == 'astroid'
+  - typing ; python_full_version < '3.5'
+  - astroid<2,>=1 ; python_full_version < '3' and extra == 'astroid'
+  - astroid<4,>=2 ; python_full_version >= '3' and extra == 'astroid'
   - pytest ; extra == 'test'
-  - astroid<2,>=1 ; python_version < '3' and extra == 'test'
-  - astroid<4,>=2 ; python_version >= '3' and extra == 'test'
+  - astroid<2,>=1 ; python_full_version < '3' and extra == 'test'
+  - astroid<4,>=2 ; python_full_version >= '3' and extra == 'test'
 - kind: pypi
   name: attrs
   version: 24.2.0
   url: https://files.pythonhosted.org/packages/6a/21/5b6702a7f963e95456c0de2d495f67bf5fd62840ac655dc451586d23d39a/attrs-24.2.0-py3-none-any.whl
   sha256: 81921eb96de3191c8258c199618104dd27ac608d9366f5e35d011eae1867ede2
   requires_dist:
-  - importlib-metadata ; python_version < '3.8'
+  - importlib-metadata ; python_full_version < '3.8'
   - cloudpickle ; platform_python_implementation == 'CPython' and extra == 'benchmark'
   - hypothesis ; extra == 'benchmark'
-  - mypy>=1.11.1 ; (platform_python_implementation == 'CPython' and python_version >= '3.9') and extra == 'benchmark'
+  - mypy>=1.11.1 ; python_full_version >= '3.9' and platform_python_implementation == 'CPython' and extra == 'benchmark'
   - pympler ; extra == 'benchmark'
   - pytest-codspeed ; extra == 'benchmark'
-  - pytest-mypy-plugins ; (platform_python_implementation == 'CPython' and python_version >= '3.9' and python_version < '3.13') and extra == 'benchmark'
+  - pytest-mypy-plugins ; python_full_version >= '3.9' and python_full_version < '3.13' and platform_python_implementation == 'CPython' and extra == 'benchmark'
   - pytest-xdist[psutil] ; extra == 'benchmark'
   - pytest>=4.3.0 ; extra == 'benchmark'
   - cloudpickle ; platform_python_implementation == 'CPython' and extra == 'cov'
   - coverage[toml]>=5.3 ; extra == 'cov'
   - hypothesis ; extra == 'cov'
-  - mypy>=1.11.1 ; (platform_python_implementation == 'CPython' and python_version >= '3.9') and extra == 'cov'
+  - mypy>=1.11.1 ; python_full_version >= '3.9' and platform_python_implementation == 'CPython' and extra == 'cov'
   - pympler ; extra == 'cov'
-  - pytest-mypy-plugins ; (platform_python_implementation == 'CPython' and python_version >= '3.9' and python_version < '3.13') and extra == 'cov'
+  - pytest-mypy-plugins ; python_full_version >= '3.9' and python_full_version < '3.13' and platform_python_implementation == 'CPython' and extra == 'cov'
   - pytest-xdist[psutil] ; extra == 'cov'
   - pytest>=4.3.0 ; extra == 'cov'
   - cloudpickle ; platform_python_implementation == 'CPython' and extra == 'dev'
   - hypothesis ; extra == 'dev'
-  - mypy>=1.11.1 ; (platform_python_implementation == 'CPython' and python_version >= '3.9') and extra == 'dev'
+  - mypy>=1.11.1 ; python_full_version >= '3.9' and platform_python_implementation == 'CPython' and extra == 'dev'
   - pre-commit ; extra == 'dev'
   - pympler ; extra == 'dev'
-  - pytest-mypy-plugins ; (platform_python_implementation == 'CPython' and python_version >= '3.9' and python_version < '3.13') and extra == 'dev'
+  - pytest-mypy-plugins ; python_full_version >= '3.9' and python_full_version < '3.13' and platform_python_implementation == 'CPython' and extra == 'dev'
   - pytest-xdist[psutil] ; extra == 'dev'
   - pytest>=4.3.0 ; extra == 'dev'
   - cogapp ; extra == 'docs'
@@ -2888,13 +2915,13 @@ packages:
   - towncrier<24.7 ; extra == 'docs'
   - cloudpickle ; platform_python_implementation == 'CPython' and extra == 'tests'
   - hypothesis ; extra == 'tests'
-  - mypy>=1.11.1 ; (platform_python_implementation == 'CPython' and python_version >= '3.9') and extra == 'tests'
+  - mypy>=1.11.1 ; python_full_version >= '3.9' and platform_python_implementation == 'CPython' and extra == 'tests'
   - pympler ; extra == 'tests'
-  - pytest-mypy-plugins ; (platform_python_implementation == 'CPython' and python_version >= '3.9' and python_version < '3.13') and extra == 'tests'
+  - pytest-mypy-plugins ; python_full_version >= '3.9' and python_full_version < '3.13' and platform_python_implementation == 'CPython' and extra == 'tests'
   - pytest-xdist[psutil] ; extra == 'tests'
   - pytest>=4.3.0 ; extra == 'tests'
-  - mypy>=1.11.1 ; (platform_python_implementation == 'CPython' and python_version >= '3.9') and extra == 'tests-mypy'
-  - pytest-mypy-plugins ; (platform_python_implementation == 'CPython' and python_version >= '3.9' and python_version < '3.13') and extra == 'tests-mypy'
+  - mypy>=1.11.1 ; python_full_version >= '3.9' and platform_python_implementation == 'CPython' and extra == 'tests-mypy'
+  - pytest-mypy-plugins ; python_full_version >= '3.9' and python_full_version < '3.13' and platform_python_implementation == 'CPython' and extra == 'tests-mypy'
   requires_python: '>=3.7'
 - kind: pypi
   name: binaryornot
@@ -3377,7 +3404,7 @@ packages:
   sha256: ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28
   requires_dist:
   - colorama ; platform_system == 'Windows'
-  - importlib-metadata ; python_version < '3.8'
+  - importlib-metadata ; python_full_version < '3.8'
   requires_python: '>=3.7'
 - kind: pypi
   name: colorama
@@ -3527,8 +3554,8 @@ packages:
   - click>=7.1.2
   - cookiecutter>=1.7
   - gitpython>=3.0
-  - importlib-metadata>=2.0.0,<5.0.0 ; python_version < '3.8'
-  - toml>=0.10 ; python_version < '3.11' and extra == 'pyproject'
+  - importlib-metadata>=2.0.0,<5.0.0 ; python_full_version < '3.8'
+  - toml>=0.10 ; python_full_version < '3.11' and extra == 'pyproject'
   - typer>=0.4.0
   requires_python: '>=3.7'
 - kind: conda
@@ -3650,7 +3677,7 @@ packages:
   - coverage ; extra == 'tests'
   - coverage-enable-subprocess ; extra == 'tests'
   - littleutils ; extra == 'tests'
-  - rich ; python_version >= '3.11' and extra == 'tests'
+  - rich ; python_full_version >= '3.11' and extra == 'tests'
   requires_python: '>=3.5'
 - kind: conda
   name: expat
@@ -3730,7 +3757,7 @@ packages:
   - pytest-timeout>=2.2 ; extra == 'testing'
   - pytest>=7.4.3 ; extra == 'testing'
   - virtualenv>=20.26.2 ; extra == 'testing'
-  - typing-extensions>=4.8 ; python_version < '3.11' and extra == 'typing'
+  - typing-extensions>=4.8 ; python_full_version < '3.11' and extra == 'typing'
   requires_python: '>=3.8'
 - kind: conda
   name: font-ttf-dejavu-sans-mono
@@ -3900,7 +3927,7 @@ packages:
   - scipy ; platform_python_implementation != 'PyPy' and extra == 'all'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'all'
   - munkres ; platform_python_implementation == 'PyPy' and extra == 'all'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'all'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'all'
   - xattr ; sys_platform == 'darwin' and extra == 'all'
   - lz4>=1.7.4.2 ; extra == 'graphite'
   - pycairo ; extra == 'interpolatable'
@@ -3913,7 +3940,7 @@ packages:
   - sympy ; extra == 'symfont'
   - xattr ; sys_platform == 'darwin' and extra == 'type1'
   - fs<3,>=2.2.0 ; extra == 'ufo'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'unicode'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'unicode'
   - zopfli>=0.1.4 ; extra == 'woff'
   - brotlicffi>=0.8.0 ; platform_python_implementation != 'CPython' and extra == 'woff'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'woff'
@@ -3937,7 +3964,7 @@ packages:
   - scipy ; platform_python_implementation != 'PyPy' and extra == 'all'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'all'
   - munkres ; platform_python_implementation == 'PyPy' and extra == 'all'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'all'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'all'
   - xattr ; sys_platform == 'darwin' and extra == 'all'
   - lz4>=1.7.4.2 ; extra == 'graphite'
   - pycairo ; extra == 'interpolatable'
@@ -3950,7 +3977,7 @@ packages:
   - sympy ; extra == 'symfont'
   - xattr ; sys_platform == 'darwin' and extra == 'type1'
   - fs<3,>=2.2.0 ; extra == 'ufo'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'unicode'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'unicode'
   - zopfli>=0.1.4 ; extra == 'woff'
   - brotlicffi>=0.8.0 ; platform_python_implementation != 'CPython' and extra == 'woff'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'woff'
@@ -3974,7 +4001,7 @@ packages:
   - scipy ; platform_python_implementation != 'PyPy' and extra == 'all'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'all'
   - munkres ; platform_python_implementation == 'PyPy' and extra == 'all'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'all'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'all'
   - xattr ; sys_platform == 'darwin' and extra == 'all'
   - lz4>=1.7.4.2 ; extra == 'graphite'
   - pycairo ; extra == 'interpolatable'
@@ -3987,7 +4014,7 @@ packages:
   - sympy ; extra == 'symfont'
   - xattr ; sys_platform == 'darwin' and extra == 'type1'
   - fs<3,>=2.2.0 ; extra == 'ufo'
-  - unicodedata2>=15.1.0 ; python_version <= '3.12' and extra == 'unicode'
+  - unicodedata2>=15.1.0 ; python_full_version < '3.13' and extra == 'unicode'
   - zopfli>=0.1.4 ; extra == 'woff'
   - brotlicffi>=0.8.0 ; platform_python_implementation != 'CPython' and extra == 'woff'
   - brotli>=1.0.1 ; platform_python_implementation == 'CPython' and extra == 'woff'
@@ -4227,7 +4254,7 @@ packages:
   sha256: eec7ec56b92aad751f9912a73404bc02ba212a23adb2c7098ee668417051a1ff
   requires_dist:
   - gitdb<5,>=4.0.1
-  - typing-extensions>=3.7.4.3 ; python_version < '3.8'
+  - typing-extensions>=3.7.4.3 ; python_full_version < '3.8'
   - sphinx==4.3.2 ; extra == 'doc'
   - sphinx-rtd-theme ; extra == 'doc'
   - sphinxcontrib-applehelp<=1.0.4,>=1.0.2 ; extra == 'doc'
@@ -4245,8 +4272,8 @@ packages:
   - pytest-instafail ; extra == 'test'
   - pytest-mock ; extra == 'test'
   - pytest-sugar ; extra == 'test'
-  - typing-extensions ; python_version < '3.11' and extra == 'test'
-  - mock ; python_version < '3.8' and extra == 'test'
+  - typing-extensions ; python_full_version < '3.11' and extra == 'test'
+  - mock ; python_full_version < '3.8' and extra == 'test'
   requires_python: '>=3.7'
 - kind: conda
   name: gmp
@@ -4700,9 +4727,9 @@ packages:
   - pygments>=2.4.0
   - stack-data
   - traitlets>=5.13.0
-  - exceptiongroup ; python_version < '3.11'
-  - typing-extensions>=4.6 ; python_version < '3.12'
-  - pexpect>4.3 ; sys_platform != 'win32' and sys_platform != 'emscripten'
+  - exceptiongroup ; python_full_version < '3.11'
+  - typing-extensions>=4.6 ; python_full_version < '3.12'
+  - pexpect>4.3 ; sys_platform != 'emscripten' and sys_platform != 'win32'
   - colorama ; sys_platform == 'win32'
   - ipython[black,doc,kernel,matplotlib,nbconvert,nbformat,notebook,parallel,qtconsole] ; extra == 'all'
   - ipython[test,test-extra] ; extra == 'all'
@@ -4718,7 +4745,7 @@ packages:
   - sphinx>=1.3 ; extra == 'doc'
   - sphinxcontrib-jquery ; extra == 'doc'
   - typing-extensions ; extra == 'doc'
-  - tomli ; python_version < '3.11' and extra == 'doc'
+  - tomli ; python_full_version < '3.11' and extra == 'doc'
   - ipykernel ; extra == 'kernel'
   - matplotlib ; extra == 'matplotlib'
   - nbconvert ; extra == 'nbconvert'
@@ -4821,9 +4848,9 @@ packages:
   sha256: fbadb6f8b144a8f8cf9f0b89ba94501d143e50411a1278633f56a7acf7fd5566
   requires_dist:
   - attrs>=22.2.0
-  - importlib-resources>=1.4.0 ; python_version < '3.9'
+  - importlib-resources>=1.4.0 ; python_full_version < '3.9'
   - jsonschema-specifications>=2023.3.6
-  - pkgutil-resolve-name>=1.3.10 ; python_version < '3.9'
+  - pkgutil-resolve-name>=1.3.10 ; python_full_version < '3.9'
   - referencing>=0.28.4
   - rpds-py>=0.7.1
   - fqdn ; extra == 'format'
@@ -4849,7 +4876,7 @@ packages:
   url: https://files.pythonhosted.org/packages/ee/07/44bd408781594c4d0a027666ef27fab1e441b109dc3b76b4f836f8fd04fe/jsonschema_specifications-2023.12.1-py3-none-any.whl
   sha256: 87e4fdf3a94858b8a2ba2778d9ba57d8a9cafca7c7489c46ba0d30a8bc6a9c3c
   requires_dist:
-  - importlib-resources>=1.4.0 ; python_version < '3.9'
+  - importlib-resources>=1.4.0 ; python_full_version < '3.9'
   - referencing>=0.31.0
   requires_python: '>=3.8'
 - kind: pypi
@@ -4858,7 +4885,7 @@ packages:
   url: https://files.pythonhosted.org/packages/cf/d3/c4bb02580bc0db807edb9a29b2d0c56031be1ef0d804336deb2699a470f6/jupyter_client-8.6.2-py3-none-any.whl
   sha256: 50cbc5c66fd1b8f65ecb66bc490ab73217993632809b6e505687de18e9dea39f
   requires_dist:
-  - importlib-metadata>=4.8.3 ; python_version < '3.10'
+  - importlib-metadata>=4.8.3 ; python_full_version < '3.10'
   - jupyter-core!=5.0.*,>=4.12
   - python-dateutil>=2.8.2
   - pyzmq>=23.0
@@ -4888,7 +4915,7 @@ packages:
   sha256: 4f7315d2f6b4bcf2e3e7cb6e46772eba760ae459cd1f59d29eb57b0a01bd7409
   requires_dist:
   - platformdirs>=2.5
-  - pywin32>=300 ; sys_platform == 'win32' and platform_python_implementation != 'PyPy'
+  - pywin32>=300 ; platform_python_implementation != 'PyPy' and sys_platform == 'win32'
   - traitlets>=5.3
   - myst-parser ; extra == 'docs'
   - pydata-sphinx-theme ; extra == 'docs'
@@ -4941,7 +4968,7 @@ packages:
   url: https://files.pythonhosted.org/packages/26/61/58bb691f6880588be3a4801d199bd776032ece07203faf3e4a8b377f7d9b/kiwisolver-1.4.5-cp312-cp312-macosx_11_0_arm64.whl
   sha256: 5ff5cf3571589b6d13bfbfd6bcd7a3f659e42f96b5fd1c4830c4cf21d4f5ef45
   requires_dist:
-  - typing-extensions ; python_version < '3.8'
+  - typing-extensions ; python_full_version < '3.8'
   requires_python: '>=3.7'
 - kind: pypi
   name: kiwisolver
@@ -4949,7 +4976,7 @@ packages:
   url: https://files.pythonhosted.org/packages/63/50/2746566bdf4a6a842d117367d05c90cfb87ac04e9e2845aa1fa21f071362/kiwisolver-1.4.5-cp312-cp312-win_amd64.whl
   sha256: 2c5674c4e74d939b9d91dda0fae10597ac7521768fec9e399c70a1f27e2ea2d9
   requires_dist:
-  - typing-extensions ; python_version < '3.8'
+  - typing-extensions ; python_full_version < '3.8'
   requires_python: '>=3.7'
 - kind: pypi
   name: kiwisolver
@@ -4957,7 +4984,7 @@ packages:
   url: https://files.pythonhosted.org/packages/e3/d5/bc0f22ac108743062ab703f8d6d71c9c7b077b8839fa358700bfb81770b8/kiwisolver-1.4.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   sha256: 2270953c0d8cdab5d422bee7d2007f043473f9d2999631c86a223c9db56cbd16
   requires_dist:
-  - typing-extensions ; python_version < '3.8'
+  - typing-extensions ; python_full_version < '3.8'
   requires_python: '>=3.7'
 - kind: conda
   name: krb5
@@ -7059,7 +7086,7 @@ packages:
   - pillow>=8
   - pyparsing>=2.3.1
   - python-dateutil>=2.7
-  - importlib-resources>=3.2.0 ; python_version < '3.10'
+  - importlib-resources>=3.2.0 ; python_full_version < '3.10'
   - meson-python>=0.13.1 ; extra == 'dev'
   - numpy>=1.25 ; extra == 'dev'
   - pybind11>=2.6 ; extra == 'dev'
@@ -7081,7 +7108,7 @@ packages:
   - pillow>=8
   - pyparsing>=2.3.1
   - python-dateutil>=2.7
-  - importlib-resources>=3.2.0 ; python_version < '3.10'
+  - importlib-resources>=3.2.0 ; python_full_version < '3.10'
   - meson-python>=0.13.1 ; extra == 'dev'
   - numpy>=1.25 ; extra == 'dev'
   - pybind11>=2.6 ; extra == 'dev'
@@ -7103,7 +7130,7 @@ packages:
   - pillow>=8
   - pyparsing>=2.3.1
   - python-dateutil>=2.7
-  - importlib-resources>=3.2.0 ; python_version < '3.10'
+  - importlib-resources>=3.2.0 ; python_full_version < '3.10'
   - meson-python>=0.13.1 ; extra == 'dev'
   - numpy>=1.25 ; extra == 'dev'
   - pybind11>=2.6 ; extra == 'dev'
@@ -7508,9 +7535,9 @@ packages:
   url: https://files.pythonhosted.org/packages/22/a5/a0b255295406ed54269814bc93723cfd1a0da63fb9aaf99e1364f07923e5/pandas-2.2.2-cp312-cp312-win_amd64.whl
   sha256: d187d355ecec3629624fccb01d104da7d7f391db0311145817525281e2804d23
   requires_dist:
-  - numpy>=1.22.4 ; python_version < '3.11'
-  - numpy>=1.23.2 ; python_version == '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
+  - numpy>=1.22.4 ; python_full_version < '3.11'
+  - numpy>=1.23.2 ; python_full_version == '3.11.*'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
   - python-dateutil>=2.8.2
   - pytz>=2020.1
   - tzdata>=2022.7
@@ -7600,9 +7627,9 @@ packages:
   url: https://files.pythonhosted.org/packages/40/10/79e52ef01dfeb1c1ca47a109a01a248754ebe990e159a844ece12914de83/pandas-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   sha256: eee3a87076c0756de40b05c5e9a6069c035ba43e8dd71c379e68cab2c20f16ad
   requires_dist:
-  - numpy>=1.22.4 ; python_version < '3.11'
-  - numpy>=1.23.2 ; python_version == '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
+  - numpy>=1.22.4 ; python_full_version < '3.11'
+  - numpy>=1.23.2 ; python_full_version == '3.11.*'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
   - python-dateutil>=2.8.2
   - pytz>=2020.1
   - tzdata>=2022.7
@@ -7692,9 +7719,9 @@ packages:
   url: https://files.pythonhosted.org/packages/db/7c/9a60add21b96140e22465d9adf09832feade45235cd22f4cb1668a25e443/pandas-2.2.2-cp312-cp312-macosx_11_0_arm64.whl
   sha256: e9b79011ff7a0f4b1d6da6a61aa1aa604fb312d6647de5bad20013682d1429ce
   requires_dist:
-  - numpy>=1.22.4 ; python_version < '3.11'
-  - numpy>=1.23.2 ; python_version == '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
+  - numpy>=1.22.4 ; python_full_version < '3.11'
+  - numpy>=1.23.2 ; python_full_version == '3.11.*'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
   - python-dateutil>=2.8.2
   - pytz>=2020.1
   - tzdata>=2022.7
@@ -7974,7 +8001,7 @@ packages:
   - pytest ; extra == 'tests'
   - pytest-cov ; extra == 'tests'
   - pytest-timeout ; extra == 'tests'
-  - typing-extensions ; python_version < '3.10' and extra == 'typing'
+  - typing-extensions ; python_full_version < '3.10' and extra == 'typing'
   - defusedxml ; extra == 'xmp'
   requires_python: '>=3.8'
 - kind: pypi
@@ -8001,7 +8028,7 @@ packages:
   - pytest ; extra == 'tests'
   - pytest-cov ; extra == 'tests'
   - pytest-timeout ; extra == 'tests'
-  - typing-extensions ; python_version < '3.10' and extra == 'typing'
+  - typing-extensions ; python_full_version < '3.10' and extra == 'typing'
   - defusedxml ; extra == 'xmp'
   requires_python: '>=3.8'
 - kind: pypi
@@ -8028,7 +8055,7 @@ packages:
   - pytest ; extra == 'tests'
   - pytest-cov ; extra == 'tests'
   - pytest-timeout ; extra == 'tests'
-  - typing-extensions ; python_version < '3.10' and extra == 'typing'
+  - typing-extensions ; python_full_version < '3.10' and extra == 'typing'
   - defusedxml ; extra == 'xmp'
   requires_python: '>=3.8'
 - kind: pypi
@@ -8117,7 +8144,7 @@ packages:
   name: polygloty
   version: 0.1.0
   path: .
-  sha256: 00f20a03733cf6ba5b8c298b9d7043be0824c64e43cc8893b071f71ad997aabe
+  sha256: 34b7ee0501a805f39d25f9616562f2c588afb0cbaacce0b03d002109c2193639
   requires_dist:
   - rich>=13.7.1,<13.8
   - anndata>=0.10.8,<0.11
@@ -8158,9 +8185,9 @@ packages:
   url: https://files.pythonhosted.org/packages/19/74/f59e7e0d392bc1070e9a70e2f9190d652487ac115bb16e2eff6b22ad1d24/psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   sha256: 5fd9a97c8e94059b0ef54a7d4baf13b405011176c3b6ff257c247cae0d560ecd
   requires_dist:
-  - ipaddress ; python_version < '3.0' and extra == 'test'
-  - mock ; python_version < '3.0' and extra == 'test'
-  - enum34 ; python_version <= '3.4' and extra == 'test'
+  - ipaddress ; python_full_version < '3' and extra == 'test'
+  - mock ; python_full_version < '3' and extra == 'test'
+  - enum34 ; python_full_version < '3.5' and extra == 'test'
   - pywin32 ; sys_platform == 'win32' and extra == 'test'
   - wmi ; sys_platform == 'win32' and extra == 'test'
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*'
@@ -8170,9 +8197,9 @@ packages:
   url: https://files.pythonhosted.org/packages/73/44/561092313ae925f3acfaace6f9ddc4f6a9c748704317bad9c8c8f8a36a79/psutil-6.0.0-cp37-abi3-win_amd64.whl
   sha256: 33ea5e1c975250a720b3a6609c490db40dae5d83a4eb315170c4fe0d8b1f34b3
   requires_dist:
-  - ipaddress ; python_version < '3.0' and extra == 'test'
-  - mock ; python_version < '3.0' and extra == 'test'
-  - enum34 ; python_version <= '3.4' and extra == 'test'
+  - ipaddress ; python_full_version < '3' and extra == 'test'
+  - mock ; python_full_version < '3' and extra == 'test'
+  - enum34 ; python_full_version < '3.5' and extra == 'test'
   - pywin32 ; sys_platform == 'win32' and extra == 'test'
   - wmi ; sys_platform == 'win32' and extra == 'test'
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*'
@@ -8182,9 +8209,9 @@ packages:
   url: https://files.pythonhosted.org/packages/7c/06/63872a64c312a24fb9b4af123ee7007a306617da63ff13bcc1432386ead7/psutil-6.0.0-cp38-abi3-macosx_11_0_arm64.whl
   sha256: ffe7fc9b6b36beadc8c322f84e1caff51e8703b88eee1da46d1e3a6ae11b4fd0
   requires_dist:
-  - ipaddress ; python_version < '3.0' and extra == 'test'
-  - mock ; python_version < '3.0' and extra == 'test'
-  - enum34 ; python_version <= '3.4' and extra == 'test'
+  - ipaddress ; python_full_version < '3' and extra == 'test'
+  - mock ; python_full_version < '3' and extra == 'test'
+  - enum34 ; python_full_version < '3.5' and extra == 'test'
   - pywin32 ; sys_platform == 'win32' and extra == 'test'
   - wmi ; sys_platform == 'win32' and extra == 'test'
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*'
@@ -8235,7 +8262,7 @@ packages:
   - numba>=0.51.2
   - llvmlite>=0.30
   - joblib>=0.11
-  - importlib-metadata>=4.8.1 ; python_version < '3.8'
+  - importlib-metadata>=4.8.1 ; python_full_version < '3.8'
 - kind: pypi
   name: pyparsing
   version: 3.1.2
@@ -8254,8 +8281,8 @@ packages:
   - iniconfig
   - packaging
   - pluggy<2,>=1.5
-  - exceptiongroup>=1.0.0rc8 ; python_version < '3.11'
-  - tomli>=1 ; python_version < '3.11'
+  - exceptiongroup>=1.0.0rc8 ; python_full_version < '3.11'
+  - tomli>=1 ; python_full_version < '3.11'
   - colorama ; sys_platform == 'win32'
   - argcomplete ; extra == 'dev'
   - attrs>=19.2 ; extra == 'dev'
@@ -9673,6 +9700,96 @@ packages:
   size: 121502
   timestamp: 1721258784434
 - kind: conda
+  name: r-dplyr
+  version: 1.1.4
+  build: r44h0d4f4ea_1
+  build_number: 1
+  subdir: linux-64
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.1.4-r44h0d4f4ea_1.conda
+  sha256: cafe0bb0977953706c6097052e35af07abbb477769f2cc38d79bccfcc206fcaf
+  md5: 1c060647efac55dce8530efc27b39825
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - libgcc-ng >=12
+  - libstdcxx-ng >=12
+  - r-base >=4.4,<4.5.0a0
+  - r-ellipsis
+  - r-generics
+  - r-glue >=1.3.2
+  - r-lifecycle >=1.0.0
+  - r-magrittr >=1.5
+  - r-pillar >=1.5.1
+  - r-r6
+  - r-rlang >=0.4.10
+  - r-tibble >=2.1.3
+  - r-tidyselect >=1.1.0
+  - r-vctrs >=0.3.5
+  license: MIT
+  license_family: MIT
+  purls: []
+  size: 1424722
+  timestamp: 1721288675603
+- kind: conda
+  name: r-dplyr
+  version: 1.1.4
+  build: r44h8ae3a7c_1
+  build_number: 1
+  subdir: win-64
+  url: https://conda.anaconda.org/conda-forge/win-64/r-dplyr-1.1.4-r44h8ae3a7c_1.conda
+  sha256: f3c3aea9e07af4a02ed94f93c0bc977110311879d80f9e49d4877b9ae8fd351c
+  md5: 36ee962b8dc763708e151987b2e91667
+  depends:
+  - libgcc >=13
+  - libstdcxx >=13
+  - libwinpthread >=12.0.0.r2.ggc561118da
+  - r-base >=4.4,<4.5.0a0
+  - r-ellipsis
+  - r-generics
+  - r-glue >=1.3.2
+  - r-lifecycle >=1.0.0
+  - r-magrittr >=1.5
+  - r-pillar >=1.5.1
+  - r-r6
+  - r-rlang >=0.4.10
+  - r-tibble >=2.1.3
+  - r-tidyselect >=1.1.0
+  - r-vctrs >=0.3.5
+  - ucrt >=10.0.20348.0
+  license: MIT
+  license_family: MIT
+  purls: []
+  size: 1425581
+  timestamp: 1721289201939
+- kind: conda
+  name: r-dplyr
+  version: 1.1.4
+  build: r44hd76f289_1
+  build_number: 1
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/r-dplyr-1.1.4-r44hd76f289_1.conda
+  sha256: e284dc6421b2108fa9e6072aa9af7b5bf7d5c768560f6fd1836be15ab9789ff0
+  md5: 60ae57ff7b60a9d80d398dd8cacc55c7
+  depends:
+  - __osx >=11.0
+  - libcxx >=16
+  - r-base >=4.4,<4.5.0a0
+  - r-ellipsis
+  - r-generics
+  - r-glue >=1.3.2
+  - r-lifecycle >=1.0.0
+  - r-magrittr >=1.5
+  - r-pillar >=1.5.1
+  - r-r6
+  - r-rlang >=0.4.10
+  - r-tibble >=2.1.3
+  - r-tidyselect >=1.1.0
+  - r-vctrs >=0.3.5
+  license: MIT
+  license_family: MIT
+  purls: []
+  size: 1426912
+  timestamp: 1721288801005
+- kind: conda
   name: r-ellipsis
   version: 0.3.2
   build: r44h07cda29_3
@@ -10039,6 +10156,23 @@ packages:
   purls: []
   size: 338981
   timestamp: 1719732837553
+- kind: conda
+  name: r-generics
+  version: 0.1.3
+  build: r44hc72bb7e_3
+  build_number: 3
+  subdir: noarch
+  noarch: generic
+  url: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.3-r44hc72bb7e_3.conda
+  sha256: 748593b0fb847f4cc5cc4b284e7b77059162ab0abb672d7d9166f1ac9a0484cb
+  md5: fe4f39eb49a00d7697f9700ceb2c299e
+  depends:
+  - r-base >=4.4,<4.5.0a0
+  license: MIT
+  license_family: MIT
+  purls: []
+  size: 88571
+  timestamp: 1719745567356
 - kind: conda
   name: r-gert
   version: 2.1.0
@@ -13555,6 +13689,29 @@ packages:
   size: 617446
   timestamp: 1721259179235
 - kind: conda
+  name: r-tidyselect
+  version: 1.2.1
+  build: r44hc72bb7e_1
+  build_number: 1
+  subdir: noarch
+  noarch: generic
+  url: https://conda.anaconda.org/conda-forge/noarch/r-tidyselect-1.2.1-r44hc72bb7e_1.conda
+  sha256: 0aa7514981e465263aa6a006b554034d05be2ddc497ea68b74860d78b363eeaa
+  md5: aa5f953d9b0709ee347bb4e4dd5acfea
+  depends:
+  - r-base >=4.4,<4.5.0a0
+  - r-cli >=3.3.0
+  - r-glue >=1.3.0
+  - r-lifecycle >=1.0.3
+  - r-rlang >=1.0.4
+  - r-vctrs >=0.5.2
+  - r-withr
+  license: MIT
+  license_family: MIT
+  purls: []
+  size: 219239
+  timestamp: 1721228855029
+- kind: conda
   name: r-tinytex
   version: '0.52'
   build: r44hc72bb7e_0
@@ -14163,7 +14320,7 @@ packages:
   - ipywidgets>=7.5.1,<9 ; extra == 'jupyter'
   - markdown-it-py>=2.2.0
   - pygments>=2.13.0,<3.0.0
-  - typing-extensions>=4.0.0,<5.0 ; python_version < '3.9'
+  - typing-extensions>=4.0.0,<5.0 ; python_full_version < '3.9'
   requires_python: '>=3.7.0'
 - kind: pypi
   name: rpds-py
@@ -14190,7 +14347,7 @@ packages:
   sha256: 2ad4348e214b1dd0db5a4cf21d73695be11b8f5f0ef47508d3075525d9d1c7c6
   requires_dist:
   - anndata>=0.8
-  - get-annotations ; python_version < '3.10'
+  - get-annotations ; python_full_version < '3.10'
   - h5py>=3.1
   - joblib
   - legacy-api-wrap>=1.4
@@ -15155,7 +15312,7 @@ packages:
   requires_dist:
   - distlib<1,>=0.3.7
   - filelock<4,>=3.12.2
-  - importlib-metadata>=6.6 ; python_version < '3.8'
+  - importlib-metadata>=6.6 ; python_full_version < '3.8'
   - platformdirs<5,>=3.9.1
   - furo>=2023.7.26 ; extra == 'docs'
   - proselint>=0.13 ; extra == 'docs'
@@ -15169,7 +15326,7 @@ packages:
   - flaky>=3.7 ; extra == 'test'
   - packaging>=23.1 ; extra == 'test'
   - pytest-env>=0.8.2 ; extra == 'test'
-  - pytest-freezer>=0.4.8 ; (platform_python_implementation == 'PyPy' or (platform_python_implementation == 'CPython' and sys_platform == 'win32' and python_version >= '3.13')) and extra == 'test'
+  - pytest-freezer>=0.4.8 ; (python_full_version >= '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'win32' and extra == 'test') or (platform_python_implementation == 'PyPy' and extra == 'test')
   - pytest-mock>=3.11.1 ; extra == 'test'
   - pytest-randomly>=3.12 ; extra == 'test'
   - pytest-timeout>=2.1 ; extra == 'test'
@@ -15199,7 +15356,7 @@ packages:
   url: https://files.pythonhosted.org/packages/fd/84/fd2ba7aafacbad3c4201d395674fc6348826569da3c0937e75505ead3528/wcwidth-0.2.13-py2.py3-none-any.whl
   sha256: 3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859
   requires_dist:
-  - backports-functools-lru-cache>=1.2.1 ; python_version < '3.2'
+  - backports-functools-lru-cache>=1.2.1 ; python_full_version < '3.2'
 - kind: conda
   name: xorg-kbproto
   version: 1.0.7

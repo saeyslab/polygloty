@@ -6,4 +6,6 @@
 # https://github.com/scverse/anndataR
 install.packages("hdf5r", repos = "https://cloud.r-project.org/")
 devtools::install_github("scverse/anndataR", dependencies = TRUE)
-BiocManager::install(c("SingleCellExperiment", "SeuratObject"))
+
+# for 'notebooks/usecase.qmd'
+BiocManager::install("DESeq2")
