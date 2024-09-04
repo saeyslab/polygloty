@@ -1,6 +1,9 @@
-# Workflows
+---
+title: Workflows
+author: Robrecht Cannoodt
+---
 
-Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools [@Heumos2023]. This polyglot approach, while powerful, introduces significant technical challenges in terms of interopability, usability, and reproducibility.
+Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools [@Heumos2023]. This polyglot approach, while powerful, introduces significant technical challenges in terms of interoperability, usability, and reproducibility.
 
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
 
@@ -10,3 +13,32 @@ In the previous chapters, we've explored strategies for supporting data operabil
 
 In this chapter, we'll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We'll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you'll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).
 
+:::{.callout-note title="Disclaimer"}
+The author is affiliated with Data Intuitive, the creators of the open-source Viash tool. While striving for objectivity, potential bias may exist due to this connection.
+:::
+
+## Essential Elements of a Production-Ready Workflow
+
+Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let's explore the key components that are essential for creating robust and scalable workflows in this domain.
+
+* **Scripting languages**: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.
+* **Component interfaces**: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.
+* **Data interoperability**: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.
+* **Data storage**: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.
+* **Portability**: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.
+* **Compute environment**: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).
+* **Workflow framework**: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.
+
+<!-- todo: add figure with components -->
+
+## Data Storage
+
+## Compute Environments
+
+## Containerization
+
+## Workflow Management Systems
+
+## Best Practices for Reproducibility
+
+## Conclusion
