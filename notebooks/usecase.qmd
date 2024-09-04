@@ -4,7 +4,7 @@ engine: knitr
 bibliography: ../book/references.bib
 ---
 
-The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types [@kaggle-op3]. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task [@openproblems-op].
+The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types [@kaggle-op3]. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task [@openproblems-pp].
 
 As part of the competition, competitors received the differential gene expression (DGE) of genes in cell types treated with different small molecules, and had to predict the DGE of genes in cell types of which some small molecules were withheld. The task is illustrated in the figure below [@fig-dge].
 
