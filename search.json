@@ -104,7 +104,77 @@
     "href": "notebooks/workflows/index.html",
     "title": "5  Workflows",
     "section": "",
-    "text": "Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools (Heumos et al. 2023). This polyglot approach, while powerful, introduces significant technical challenges in terms of interopability, usability, and reproducibility.\nIn the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.\nProductionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment Figure 5.1. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.\n\n\n\n\n\n\nFigure 5.1: Productionization of multi-language single-cell analysis workflows involves transforming A) a complex research environment with scattered data and manual steps B) into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.\n\n\n\nIn this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.",
+    "text": "5.1 Essential Elements of a Production-Ready Workflow\nBuilding production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let’s explore the key components that are essential for creating robust and scalable workflows in this domain.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#essential-elements-of-a-production-ready-workflow",
+    "href": "notebooks/workflows/index.html#essential-elements-of-a-production-ready-workflow",
+    "title": "5  Workflows",
+    "section": "",
+    "text": "Scripting languages: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.\nComponent interfaces: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.\nData interoperability: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.\nData storage: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.\nPortability: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.\nCompute environment: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).\nWorkflow framework: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#data-storage",
+    "href": "notebooks/workflows/index.html#data-storage",
+    "title": "5  Workflows",
+    "section": "5.2 Data Storage",
+    "text": "5.2 Data Storage",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#compute-environments",
+    "href": "notebooks/workflows/index.html#compute-environments",
+    "title": "5  Workflows",
+    "section": "5.3 Compute Environments",
+    "text": "5.3 Compute Environments",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#containerization",
+    "href": "notebooks/workflows/index.html#containerization",
+    "title": "5  Workflows",
+    "section": "5.4 Containerization",
+    "text": "5.4 Containerization",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#workflow-management-systems",
+    "href": "notebooks/workflows/index.html#workflow-management-systems",
+    "title": "5  Workflows",
+    "section": "5.5 Workflow Management Systems",
+    "text": "5.5 Workflow Management Systems",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#best-practices-for-reproducibility",
+    "href": "notebooks/workflows/index.html#best-practices-for-reproducibility",
+    "title": "5  Workflows",
+    "section": "5.6 Best Practices for Reproducibility",
+    "text": "5.6 Best Practices for Reproducibility",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#conclusion",
+    "href": "notebooks/workflows/index.html#conclusion",
+    "title": "5  Workflows",
+    "section": "5.7 Conclusion",
+    "text": "5.7 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]

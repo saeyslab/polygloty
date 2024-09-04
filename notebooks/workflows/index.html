@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Robrecht Cannoodt">
 
 <title>5&nbsp; Workflows – Polyglot programming for single-cell analysis</title>
 <style>
@@ -179,8 +180,20 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#essential-elements-of-a-production-ready-workflow" id="toc-essential-elements-of-a-production-ready-workflow" class="nav-link active" data-scroll-target="#essential-elements-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Essential Elements of a Production-Ready Workflow</a></li>
+  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.2</span> Data Storage</a></li>
+  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.3</span> Compute Environments</a></li>
+  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.4</span> Containerization</a></li>
+  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.5</span> Workflow Management Systems</a></li>
+  <li><a href="#best-practices-for-reproducibility" id="toc-best-practices-for-reproducibility" class="nav-link" data-scroll-target="#best-practices-for-reproducibility"><span class="header-section-number">5.6</span> Best Practices for Reproducibility</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.7</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -194,6 +207,12 @@ div.csl-indent {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robrecht Cannoodt </p>
+          </div>
+  </div>
     
   
     
@@ -204,7 +223,7 @@ div.csl-indent {
 </header>
 
 
-<p>Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools <span class="citation" data-cites="Heumos2023">(<a href="../../book/references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>. This polyglot approach, while powerful, introduces significant technical challenges in terms of interopability, usability, and reproducibility.</p>
+<p>Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools <span class="citation" data-cites="Heumos2023">(<a href="../../book/references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>. This polyglot approach, while powerful, introduces significant technical challenges in terms of interoperability, usability, and reproducibility.</p>
 <p>In the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.</p>
 <p><strong>Productionization</strong> is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment <a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
 <div id="fig-productionization" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -218,6 +237,50 @@ Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workfl
 </figure>
 </div>
 <p>In this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Disclaimer">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Disclaimer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The author is affiliated with Data Intuitive, the creators of the open-source Viash tool. While striving for objectivity, potential bias may exist due to this connection.</p>
+</div>
+</div>
+<section id="essential-elements-of-a-production-ready-workflow" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="essential-elements-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Essential Elements of a Production-Ready Workflow</h2>
+<p>Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let’s explore the key components that are essential for creating robust and scalable workflows in this domain.</p>
+<ul>
+<li><strong>Scripting languages</strong>: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.</li>
+<li><strong>Component interfaces</strong>: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.</li>
+<li><strong>Data interoperability</strong>: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.</li>
+<li><strong>Data storage</strong>: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.</li>
+<li><strong>Portability</strong>: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.</li>
+<li><strong>Compute environment</strong>: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).</li>
+<li><strong>Workflow framework</strong>: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.</li>
+</ul>
+<!-- todo: add figure with components -->
+</section>
+<section id="data-storage" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.2</span> Data Storage</h2>
+</section>
+<section id="compute-environments" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.3</span> Compute Environments</h2>
+</section>
+<section id="containerization" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.4</span> Containerization</h2>
+</section>
+<section id="workflow-management-systems" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.5</span> Workflow Management Systems</h2>
+</section>
+<section id="best-practices-for-reproducibility" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="best-practices-for-reproducibility"><span class="header-section-number">5.6</span> Best Practices for Reproducibility</h2>
+</section>
+<section id="conclusion" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.7</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -225,6 +288,7 @@ Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workfl
 Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
