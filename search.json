@@ -100,11 +100,11 @@
     ]
   },
   {
-    "objectID": "notebooks/workflows.html",
-    "href": "notebooks/workflows.html",
+    "objectID": "notebooks/workflows/index.html",
+    "href": "notebooks/workflows/index.html",
     "title": "5  Workflows",
     "section": "",
-    "text": "Shell scripts, environment, containers, workflow managers etc\n\nDocker vs Singularity vs Podman vs Conda\nNextflow vs Snakemake vs Viash",
+    "text": "Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools (Heumos et al. 2023). This polyglot approach, while powerful, introduces significant technical challenges in terms of interopability, usability, and reproducibility.\nIn the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.\nProductionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment Figure 5.1. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.\n\n\n\n\n\n\nFigure 5.1: Productionization of multi-language single-cell analysis workflows involves transforming A) a complex research environment with scattered data and manual steps B) into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.\n\n\n\nIn this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "book/references.html",
     "title": "References",
     "section": "",
-    "text": "“OP3 H5AD on S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell\nPerturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“OpenProblems Perturbation Prediction Benchmark.” 2024. https://openproblems.bio/results/perturbation_prediction/.\n\n\n“SRA SRP527159.” 2024. https://trace.ncbi.nlm.nih.gov/Traces/?view=study&acc=SRP527159.",
+    "text": "Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia\nLitinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023.\n“Best Practices for Single-Cell Analysis Across\nModalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\n“OP3 H5AD on S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell\nPerturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“OpenProblems Perturbation Prediction Benchmark.” 2024. https://openproblems.bio/results/perturbation_prediction/.\n\n\n“SRA SRP527159.” 2024. https://trace.ncbi.nlm.nih.gov/Traces/?view=study&acc=SRP527159.",
     "crumbs": [
       "References"
     ]

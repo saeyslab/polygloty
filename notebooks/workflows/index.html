@@ -20,27 +20,47 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../book/book_slides.html" rel="next">
-<link href="../notebooks/in_memory.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../book/book_slides.html" rel="next">
+<link href="../../notebooks/in_memory.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/workflows.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflows</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../notebooks/workflows/index.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflows</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -96,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Polyglot programming for single-cell analysis</a> 
+      <a href="../../">Polyglot programming for single-cell analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -108,49 +128,49 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/usecase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../notebooks/usecase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/file_formats.html" class="sidebar-item-text sidebar-link">
+  <a href="../../notebooks/file_formats.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">File formats</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/in_memory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../notebooks/in_memory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">In memory interoperability (from Python)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/workflows.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../notebooks/workflows/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflows</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/book_slides.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/book_slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -184,13 +204,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Shell scripts, environment, containers, workflow managers etc</p>
-<ol type="1">
-<li>Docker vs Singularity vs Podman vs Conda</li>
-<li>Nextflow vs Snakemake vs Viash</li>
-</ol>
+<p>Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools <span class="citation" data-cites="Heumos2023">(<a href="../../book/references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>. This polyglot approach, while powerful, introduces significant technical challenges in terms of interopability, usability, and reproducibility.</p>
+<p>In the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.</p>
+<p><strong>Productionization</strong> is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment <a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
+<div id="fig-productionization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig_productionization.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workflows involves transforming <strong>A)</strong> a complex research environment with scattered data and manual steps <strong>B)</strong> into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.
+</figcaption>
+</figure>
+</div>
+<p>In this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Heumos2023" class="csl-entry" role="listitem">
+Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -615,12 +649,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notebooks/in_memory.html" class="pagination-link" aria-label="In memory interoperability (from Python)">
+      <a href="../../notebooks/in_memory.html" class="pagination-link" aria-label="In memory interoperability (from Python)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">In memory interoperability (from Python)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../book/book_slides.html" class="pagination-link" aria-label="Slides">
+      <a href="../../book/book_slides.html" class="pagination-link" aria-label="Slides">
         <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
