@@ -22,6 +22,9 @@ exectute:
     echo: true
 ---
 
+Todo: refer to sc best practices
+Todo: paper Lior Pachter differences R & Python
+
 # Introduction
 
 1. How do you interact with a package in another language?
@@ -60,24 +63,26 @@ Consider the cons:
 
 # File format based interoperability
 
+# In-memory interoperability
+Calling Python in an R environment and vice versa.
+- No need to write out datasets.
+- Best suited to calling functions
 
-# Calling Python from R and vice versa
-or: in-memory interoperability
+rpy2 and reticulate
 
 ## Overview
 
+advantages & disadvantaes
+
+rpy2
+1. overview
+2. usage
+3. pitfalls
 
 reticulate:
-
-1. Call Python in R
-2. embed a Python session within your R session
-
-basilisk allows managing Python environments within the BioConductor ecosystem
-
-rpy2:
-
-1. Call R in Python
-2. run R in a Python process
+1. overview
+2. usage
+3. pitfalls
 
 ## in-memory interoperability advantages
 - no need to write & read results
@@ -91,28 +96,43 @@ rpy2:
 - data duplication
 - you need to manage the environments
 
-## accessing R from Python
+## rpy2
+Accessing R from Python
 
-rpy2: an interface to R running embedded in a Python process
+Example: code block
 
+`rpy2.rinterface`, the low-level interface
+`rpy2.robjects`, the high-level interface
 
+Example for calling R functions
 
+Example for conversion of arrays
 
-Jupyter notebooks:
-- Use IPython magic interface
-- most useful for matrices & arrays
+## rpy2
+Conversion:
+numpy & pandas
 
-e.g. `%%R -i input -o output` as the first line of the cell
+Example: code block
 
-## accessing R from Python
-rpy2
+sparse matrices: anndata2ri
 
-- use anndata2ri: converts anndata objects to SingleCellExperiment
+## rpy2
 
-## accessing Python from R
-reticulate
-basilisk
+Jupyter(like) notebooks:
+make use of the Magic command interface
 
+`%load_ext rmagic`
+`%R -i input -o output`
+
+example
+
+## rpy2
+
+1. let your method be run with matrices and arrays as input
+2. anndata2ri
+?
+
+## reticulate
 
 
 # Workflows
