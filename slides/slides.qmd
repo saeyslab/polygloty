@@ -24,19 +24,55 @@ exectute:
 
 # Introduction
 
-# File formats
+1. How do you interact with a package in another language?
+2. How do you make you package useable for developers in other languages?
+
+We will be focusing on R & Python
+
+# How do you interact with a package in another language?
+
+1. File format based interoperability
+2. In-memory interoperability
+
+# How do you make your package useable for developers in other languages?
+
+1. Package-based interoperability
+2. Best practices
+
+## Package-based interoperability
+or: the question of reimplementation.
+
+Consider the pros:
+- Discoverability
+- Can your package be useful in other domains?
+- Very user friendly
+
+Consider the cons:
+- Think twice: is it worth it?
+- It's a lot of work
+- How will you keep it up to date?
+- How will you ensure parity?
+
+## Best practices
+1. Work with the standards
+2. Work with matrices, arrays and dataframes
+3. Provide vignettes on interoperability
+
+# File format based interoperability
+
 
 # Calling Python from R and vice versa
 or: in-memory interoperability
 
 ## Overview
+
+
 reticulate:
 
 1. Call Python in R
 2. embed a Python session within your R session
 
 basilisk allows managing Python environments within the BioConductor ecosystem
-
 
 rpy2:
 
@@ -53,16 +89,23 @@ rpy2:
 - ensure that the method accepts this
 - you need to be familiar with using & managing both environments
 - data duplication
+- you need to manage the environments
 
 ## accessing R from Python
 
-rpy2
+rpy2: an interface to R running embedded in a Python process
+
+
+
 
 Jupyter notebooks:
 - Use IPython magic interface
 - most useful for matrices & arrays
 
-e.g. `%%R -i input -o output`
+e.g. `%%R -i input -o output` as the first line of the cell
+
+## accessing R from Python
+rpy2
 
 - use anndata2ri: converts anndata objects to SingleCellExperiment
 
@@ -70,8 +113,7 @@ e.g. `%%R -i input -o output`
 reticulate
 basilisk
 
-# Package-based interoperability
-or: the question of reimplementation
+
 
 # Workflows
 
