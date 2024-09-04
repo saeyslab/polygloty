@@ -15,7 +15,7 @@ book:
     - notebooks/usecase.qmd
     - notebooks/file_formats.qmd
     - notebooks/in_memory.qmd
-    - notebooks/workflows.qmd
+    - notebooks/workflows/index.qmd
     - book/book_slides.qmd
     - book/references.qmd
 

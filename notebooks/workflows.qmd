@@ -1,6 +1,0 @@
-# Workflows
-
-Shell scripts, environment, containers, workflow managers etc
-
-1. Docker vs Singularity vs Podman vs Conda
-2. Nextflow vs Snakemake vs Viash
