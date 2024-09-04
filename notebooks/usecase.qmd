@@ -57,15 +57,23 @@ adata
 
 ## 3. Subset data
 
-Subset to a single small molecule and control for computational efficiency:
+Since the dataset is large, we will subset the data to a single small molecule, control, and cell type.
 
 ```{python select_sm_celltype}
 sm_name = "Belinostat"
 control_name = "Dimethyl Sulfoxide"
+cell_type = "T cells"
 
 adata = adata[
-  adata.obs["sm_name"].isin([sm_name, control_name])
+  adata.obs["sm_name"].isin([sm_name, control_name]) &
+  adata.obs["cell_type"].isin([cell_type]),
 ].copy()
+```
+
+We will also subset the genes to the top 2000 most variable genes.
+
+```{python select_top_genes}
+adata = adata[:, adata.var["highly_variable"]].copy()
 ```
 
 
@@ -135,7 +143,7 @@ storage.mode(count_data) <- "integer"
 dds <- DESeq2::DESeqDataSetFromMatrix(
   countData = count_data,
   colData = pb_adata$obs,
-  design = ~ sm_name + cell_type + plate_name,
+  design = ~ sm_name + plate_name,
 )
 ```
 
