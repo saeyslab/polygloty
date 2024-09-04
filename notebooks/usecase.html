@@ -248,7 +248,7 @@ div.csl-indent {
 </header>
 
 
-<p>The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types <span class="citation" data-cites="kaggle-op3">(<a href="../book/references.html#ref-kaggle-op3" role="doc-biblioref"><span>“Open Problems Kaggle Competition - Single Cell Perturbations”</span> 2023</a>)</span>. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task <span class="citation" data-cites="openproblems-op">(<a href="../book/references.html#ref-openproblems-op" role="doc-biblioref"><strong>openproblems-op?</strong></a>)</span>.</p>
+<p>The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types <span class="citation" data-cites="kaggle-op3">(<a href="../book/references.html#ref-kaggle-op3" role="doc-biblioref"><span>“Open Problems Kaggle Competition - Single Cell Perturbations”</span> 2023</a>)</span>. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task <span class="citation" data-cites="openproblems-pp">(<a href="../book/references.html#ref-openproblems-pp" role="doc-biblioref"><span>“OpenProblems Perturbation Prediction Benchmark”</span> 2024</a>)</span>.</p>
 <p>As part of the competition, competitors received the differential gene expression (DGE) of genes in cell types treated with different small molecules, and had to predict the DGE of genes in cell types of which some small molecules were withheld. The task is illustrated in the figure below <a href="#fig-dge" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
 <div id="fig-dge" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -269,7 +269,7 @@ Figure&nbsp;2.1: DGE perturbation prediction task
 <p>We will use the dataset to illustrate how to perform the following steps.</p>
 <section id="retrieving-the-data" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="retrieving-the-data"><span class="header-section-number">2.1</span> 1. Retrieving the data</h2>
-<p>The dataset has since been uploaded to SRA <span class="citation" data-cites="sra-op3">(<a href="../book/references.html#ref-sra-op3" role="doc-biblioref"><span>“SRA PRJNA1149320 - Open Problems Perurbation Prediction Dataset”</span> 2024</a>)</span>, will be uploaded to GEO, and is currently available from S3 <span class="citation" data-cites="s3-op3">(<a href="../book/references.html#ref-s3-op3" role="doc-biblioref"><span>“OP3 H5AD Dataset on AWS S3”</span> 2024</a>)</span>.</p>
+<p>The dataset has since been uploaded to SRA <span class="citation" data-cites="sra-op3">(<a href="../book/references.html#ref-sra-op3" role="doc-biblioref"><span>“SRA SRP527159”</span> 2024</a>)</span>, will be uploaded to GEO, and is currently available from S3 <span class="citation" data-cites="s3-op3">(<a href="../book/references.html#ref-s3-op3" role="doc-biblioref"><span>“OP3 H5AD on S3”</span> 2024</a>)</span>.</p>
 <p>If you haven’t already, you can download the dataset from S3 using the following command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-f</span> usecase_data/sc_counts_reannotated_with_counts.h5ad <span class="kw">]];</span> <span class="cf">then</span></span>
@@ -478,13 +478,16 @@ ING2     1.362797e-171</code></pre>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-s3-op3" class="csl-entry" role="listitem">
-<span>“OP3 H5AD Dataset on AWS S3.”</span> 2024. <a href="https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad">https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad</a>.
+<span>“OP3 H5AD on S3.”</span> 2024. <a href="https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad">https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad</a>.
 </div>
 <div id="ref-kaggle-op3" class="csl-entry" role="listitem">
 <span>“Open Problems Kaggle Competition - Single Cell Perturbations.”</span> 2023. <a href="https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview">https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview</a>.
 </div>
+<div id="ref-openproblems-pp" class="csl-entry" role="listitem">
+<span>“OpenProblems Perturbation Prediction Benchmark.”</span> 2024. <a href="https://openproblems.bio/results/perturbation_prediction/">https://openproblems.bio/results/perturbation_prediction/</a>.
+</div>
 <div id="ref-sra-op3" class="csl-entry" role="listitem">
-<span>“SRA PRJNA1149320 - Open Problems Perurbation Prediction Dataset.”</span> 2024. <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320">https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1149320</a>.
+<span>“SRA SRP527159.”</span> 2024. <a href="https://trace.ncbi.nlm.nih.gov/Traces/?view=study&amp;acc=SRP527159">https://trace.ncbi.nlm.nih.gov/Traces/?view=study&amp;acc=SRP527159</a>.
 </div>
 </div>
 </section>
