@@ -104,17 +104,27 @@
     "href": "notebooks/workflows/index.html",
     "title": "5  Workflows",
     "section": "",
-    "text": "5.1 Essential Elements of a Production-Ready Workflow\nBuilding production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let’s explore the key components that are essential for creating robust and scalable workflows in this domain.",
+    "text": "5.1 Qualities of a Production-Ready Workflow\nBuilding production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Here are some key qualities of a production-ready workflow:",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
   },
   {
-    "objectID": "notebooks/workflows/index.html#essential-elements-of-a-production-ready-workflow",
-    "href": "notebooks/workflows/index.html#essential-elements-of-a-production-ready-workflow",
+    "objectID": "notebooks/workflows/index.html#qualities-of-a-production-ready-workflow",
+    "href": "notebooks/workflows/index.html#qualities-of-a-production-ready-workflow",
     "title": "5  Workflows",
     "section": "",
-    "text": "Scripting languages: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.\nComponent interfaces: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.\nData interoperability: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.\nData storage: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.\nPortability: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.\nCompute environment: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).\nWorkflow framework: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.",
+    "text": "Polyglot: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.\nModular: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.\nScalable: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.\nReproducible: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.\nPortable: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.\nAutomated: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.\nMaintainable: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.\n\n\n\n\n\n\n\nFigure 5.2: Qualities",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#key-components",
+    "href": "notebooks/workflows/index.html#key-components",
+    "title": "5  Workflows",
+    "section": "5.2 Key components",
+    "text": "5.2 Key components\n\n\n\nOverview of bioinformatics analysis workflows using an example of transcript expression quantifications (Wratten, Wilm, and Göke 2021).",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -123,8 +133,8 @@
     "objectID": "notebooks/workflows/index.html#data-storage",
     "href": "notebooks/workflows/index.html#data-storage",
     "title": "5  Workflows",
-    "section": "5.2 Data Storage",
-    "text": "5.2 Data Storage",
+    "section": "5.3 Data Storage",
+    "text": "5.3 Data Storage",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -133,8 +143,8 @@
     "objectID": "notebooks/workflows/index.html#compute-environments",
     "href": "notebooks/workflows/index.html#compute-environments",
     "title": "5  Workflows",
-    "section": "5.3 Compute Environments",
-    "text": "5.3 Compute Environments",
+    "section": "5.4 Compute Environments",
+    "text": "5.4 Compute Environments",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -143,8 +153,8 @@
     "objectID": "notebooks/workflows/index.html#containerization",
     "href": "notebooks/workflows/index.html#containerization",
     "title": "5  Workflows",
-    "section": "5.4 Containerization",
-    "text": "5.4 Containerization",
+    "section": "5.5 Containerization",
+    "text": "5.5 Containerization",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -153,18 +163,18 @@
     "objectID": "notebooks/workflows/index.html#workflow-management-systems",
     "href": "notebooks/workflows/index.html#workflow-management-systems",
     "title": "5  Workflows",
-    "section": "5.5 Workflow Management Systems",
-    "text": "5.5 Workflow Management Systems",
+    "section": "5.6 Workflow Management Systems",
+    "text": "5.6 Workflow Management Systems\n\n\n\nTable 5.1: Overview of workflow managers for bioinformatics (Wratten, Wilm, and Göke 2021).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTool\nClass\nEase of use\nExpressiveness\nPortability\nScalability\nLearning resources\nPipeline initiatives\n\n\n\n\nGalaxy\nGraphical\n●●●\n●○○\n●●●\n●●●\n●●●\n●●○\n\n\nKNIME\nGraphical\n●●●\n●○○\n○○○\n●●◐\n●●●\n●●○\n\n\nNextflow\nDSL\n●●○\n●●●\n●●●\n●●●\n●●●\n●●●\n\n\nSnakemake\nDSL\n●●○\n●●●\n●●◐\n●●●\n●●○\n●●●\n\n\nGenPipes\nDSL\n●●○\n●●●\n●●○\n●●○\n●●○\n●●○\n\n\nbPipe\nDSL\n●●○\n●●●\n●●○\n●●◐\n●●○\n●○○\n\n\nPachyderm\nDSL\n●●○\n●●●\n●○○\n●●○\n●●●\n○○○\n\n\nSciPipe\nLibrary\n●●○\n●●●\n○○○\n○○○\n●●○\n○○○\n\n\nLuigi\nLibrary\n●●○\n●●●\n●○○\n●●◐\n●●○\n○○○\n\n\nCromwell + WDL\nExecution + workflow specification\n●○○\n●●○\n●●●\n●●◐\n●●○\n●●○\n\n\ncwltool + CWL\nExecution + workflow specification\n●○○\n●●○\n●●◐\n○○○\n●●●\n●●○\n\n\nToil + CWL/WDL/Python\nExecution + workflow specification\n●○○\n●●●\n●◐○\n●●●\n●●○\n●●○\n\n\n\n\n\n\n\n\n\nTable 5.2: Different approaches to Nextflow programming. Not shown: Portability: ●●●, Scalability: ●●●.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTool(s)\nDialect\nEase of use\nExpressiveness\nModularity\nSeparation of concerns\nLearning resources\nPipeline initiatives\n\n\n\n\nNextflow\nDSL1\n●○○\n●●◐\n●○○\n●○○\n●●●\n●○○\n\n\nNextflow\nDSL2\n●●○\n●●●\n●◐○\n●◐○\n●●○\n●●○\n\n\nNextflow + Groovy\nnf-core\n●●○\n●●●\n●●○\n●◐○\n●○○\n●●●\n\n\nViash + Nextflow\nVDSL3\n●●●\n●●●\n●●●\n●●●\n●○○[^1]\n●●○",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
   },
   {
-    "objectID": "notebooks/workflows/index.html#best-practices-for-reproducibility",
-    "href": "notebooks/workflows/index.html#best-practices-for-reproducibility",
+    "objectID": "notebooks/workflows/index.html#best-practices",
+    "href": "notebooks/workflows/index.html#best-practices",
     "title": "5  Workflows",
-    "section": "5.6 Best Practices for Reproducibility",
-    "text": "5.6 Best Practices for Reproducibility",
+    "section": "5.7 Best Practices",
+    "text": "5.7 Best Practices",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -173,8 +183,8 @@
     "objectID": "notebooks/workflows/index.html#conclusion",
     "href": "notebooks/workflows/index.html#conclusion",
     "title": "5  Workflows",
-    "section": "5.7 Conclusion",
-    "text": "5.7 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.",
+    "section": "5.8 Conclusion",
+    "text": "5.8 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. “Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.” Nature Methods 18 (10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -194,7 +204,7 @@
     "href": "book/references.html",
     "title": "References",
     "section": "",
-    "text": "Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia\nLitinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023.\n“Best Practices for Single-Cell Analysis Across\nModalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\n“OP3 H5AD on S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell\nPerturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“OpenProblems Perturbation Prediction Benchmark.” 2024. https://openproblems.bio/results/perturbation_prediction/.\n\n\n“SRA SRP527159.” 2024. https://trace.ncbi.nlm.nih.gov/Traces/?view=study&acc=SRP527159.",
+    "text": "Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia\nLitinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023.\n“Best Practices for Single-Cell Analysis Across\nModalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\n“OP3 H5AD on S3.” 2024. https://openproblems-bio.s3.amazonaws.com/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad.\n\n\n“Open Problems Kaggle Competition - Single Cell\nPerturbations.” 2023. https://www.kaggle.com/competitions/open-problems-single-cell-perturbations/overview.\n\n\n“OpenProblems Perturbation Prediction Benchmark.” 2024. https://openproblems.bio/results/perturbation_prediction/.\n\n\n“SRA SRP527159.” 2024. https://trace.ncbi.nlm.nih.gov/Traces/?view=study&acc=SRP527159.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021.\n“Reproducible, Scalable, and Shareable Analysis Pipelines with\nBioinformatics Workflow Managers.” Nature Methods 18\n(10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
     "crumbs": [
       "References"
     ]

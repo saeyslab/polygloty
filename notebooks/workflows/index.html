@@ -62,6 +62,9 @@ div.csl-indent {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -185,13 +188,14 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#essential-elements-of-a-production-ready-workflow" id="toc-essential-elements-of-a-production-ready-workflow" class="nav-link active" data-scroll-target="#essential-elements-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Essential Elements of a Production-Ready Workflow</a></li>
-  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.2</span> Data Storage</a></li>
-  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.3</span> Compute Environments</a></li>
-  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.4</span> Containerization</a></li>
-  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.5</span> Workflow Management Systems</a></li>
-  <li><a href="#best-practices-for-reproducibility" id="toc-best-practices-for-reproducibility" class="nav-link" data-scroll-target="#best-practices-for-reproducibility"><span class="header-section-number">5.6</span> Best Practices for Reproducibility</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.7</span> Conclusion</a></li>
+  <li><a href="#qualities-of-a-production-ready-workflow" id="toc-qualities-of-a-production-ready-workflow" class="nav-link active" data-scroll-target="#qualities-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Qualities of a Production-Ready Workflow</a></li>
+  <li><a href="#key-components" id="toc-key-components" class="nav-link" data-scroll-target="#key-components"><span class="header-section-number">5.2</span> Key components</a></li>
+  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.3</span> Data Storage</a></li>
+  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.4</span> Compute Environments</a></li>
+  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.5</span> Containerization</a></li>
+  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.6</span> Workflow Management Systems</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">5.7</span> Best Practices</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.8</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -237,55 +241,293 @@ Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workfl
 </figure>
 </div>
 <p>In this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Disclaimer">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Disclaimer
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The author is affiliated with Data Intuitive, the creators of the open-source Viash tool. While striving for objectivity, potential bias may exist due to this connection.</p>
-</div>
-</div>
-<section id="essential-elements-of-a-production-ready-workflow" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="essential-elements-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Essential Elements of a Production-Ready Workflow</h2>
-<p>Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let’s explore the key components that are essential for creating robust and scalable workflows in this domain.</p>
+<section id="qualities-of-a-production-ready-workflow" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="qualities-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Qualities of a Production-Ready Workflow</h2>
+<p>Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Here are some key qualities of a production-ready workflow:</p>
 <ul>
-<li><strong>Scripting languages</strong>: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.</li>
-<li><strong>Component interfaces</strong>: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.</li>
-<li><strong>Data interoperability</strong>: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.</li>
-<li><strong>Data storage</strong>: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.</li>
-<li><strong>Portability</strong>: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.</li>
-<li><strong>Compute environment</strong>: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).</li>
-<li><strong>Workflow framework</strong>: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.</li>
+<li><strong>Polyglot</strong>: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.</li>
+<li><strong>Modular</strong>: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.</li>
+<li><strong>Scalable</strong>: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.</li>
+<li><strong>Reproducible</strong>: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.</li>
+<li><strong>Portable</strong>: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.</li>
+<li><strong>Automated</strong>: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.</li>
+<li><strong>Maintainable</strong>: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.</li>
 </ul>
-<!-- todo: add figure with components -->
+<div id="fig-qualities" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig_qualities.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Qualities
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="data-storage" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.2</span> Data Storage</h2>
+<section id="key-components" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="key-components"><span class="header-section-number">5.2</span> Key components</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="fig_overview_workflow.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Overview of bioinformatics analysis workflows using an example of transcript expression quantifications [@Wratten2021]."><img src="fig_overview_workflow.webp" class="img-fluid figure-img" alt="Overview of bioinformatics analysis workflows using an example of transcript expression quantifications (Wratten, Wilm, and Göke 2021)."></a></p>
+<figcaption>Overview of bioinformatics analysis workflows using an example of transcript expression quantifications <span class="citation" data-cites="Wratten2021">(<a href="../../book/references.html#ref-Wratten2021" role="doc-biblioref">Wratten, Wilm, and Göke 2021</a>)</span>.</figcaption>
+</figure>
+</div>
 </section>
-<section id="compute-environments" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.3</span> Compute Environments</h2>
+<section id="data-storage" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.3</span> Data Storage</h2>
 </section>
-<section id="containerization" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.4</span> Containerization</h2>
+<section id="compute-environments" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.4</span> Compute Environments</h2>
 </section>
-<section id="workflow-management-systems" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.5</span> Workflow Management Systems</h2>
+<section id="containerization" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.5</span> Containerization</h2>
 </section>
-<section id="best-practices-for-reproducibility" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="best-practices-for-reproducibility"><span class="header-section-number">5.6</span> Best Practices for Reproducibility</h2>
+<section id="workflow-management-systems" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.6</span> Workflow Management Systems</h2>
+<div id="tbl-strengths" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-strengths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Overview of workflow managers for bioinformatics <span class="citation" data-cites="Wratten2021">(<a href="../../book/references.html#ref-Wratten2021" role="doc-biblioref">Wratten, Wilm, and Göke 2021</a>)</span>.
+</figcaption>
+<div aria-describedby="tbl-strengths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 19%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Class</th>
+<th>Ease of use</th>
+<th>Expressiveness</th>
+<th>Portability</th>
+<th>Scalability</th>
+<th>Learning resources</th>
+<th>Pipeline initiatives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Galaxy</td>
+<td>Graphical</td>
+<td>●●●</td>
+<td>●○○</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●○</td>
+</tr>
+<tr class="even">
+<td>KNIME</td>
+<td>Graphical</td>
+<td>●●●</td>
+<td>●○○</td>
+<td>○○○</td>
+<td>●●◐</td>
+<td>●●●</td>
+<td>●●○</td>
+</tr>
+<tr class="odd">
+<td>Nextflow</td>
+<td>DSL</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+</tr>
+<tr class="even">
+<td>Snakemake</td>
+<td>DSL</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●◐</td>
+<td>●●●</td>
+<td>●●○</td>
+<td>●●●</td>
+</tr>
+<tr class="odd">
+<td>GenPipes</td>
+<td>DSL</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●○</td>
+<td>●●○</td>
+<td>●●○</td>
+<td>●●○</td>
+</tr>
+<tr class="even">
+<td>bPipe</td>
+<td>DSL</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●○</td>
+<td>●●◐</td>
+<td>●●○</td>
+<td>●○○</td>
+</tr>
+<tr class="odd">
+<td>Pachyderm</td>
+<td>DSL</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●○○</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>○○○</td>
+</tr>
+<tr class="even">
+<td>SciPipe</td>
+<td>Library</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>○○○</td>
+<td>○○○</td>
+<td>●●○</td>
+<td>○○○</td>
+</tr>
+<tr class="odd">
+<td>Luigi</td>
+<td>Library</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●○○</td>
+<td>●●◐</td>
+<td>●●○</td>
+<td>○○○</td>
+</tr>
+<tr class="even">
+<td>Cromwell + WDL</td>
+<td>Execution + workflow specification</td>
+<td>●○○</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●◐</td>
+<td>●●○</td>
+<td>●●○</td>
+</tr>
+<tr class="odd">
+<td>cwltool + CWL</td>
+<td>Execution + workflow specification</td>
+<td>●○○</td>
+<td>●●○</td>
+<td>●●◐</td>
+<td>○○○</td>
+<td>●●●</td>
+<td>●●○</td>
+</tr>
+<tr class="even">
+<td>Toil + CWL/WDL/Python</td>
+<td>Execution + workflow specification</td>
+<td>●○○</td>
+<td>●●●</td>
+<td>●◐○</td>
+<td>●●●</td>
+<td>●●○</td>
+<td>●●○</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-dialects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dialects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Different approaches to Nextflow programming. Not shown: Portability: ●●●, Scalability: ●●●.
+</figcaption>
+<div aria-describedby="tbl-dialects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool(s)</th>
+<th>Dialect</th>
+<th>Ease of use</th>
+<th>Expressiveness</th>
+<th>Modularity</th>
+<th>Separation of concerns</th>
+<th>Learning resources</th>
+<th>Pipeline initiatives</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nextflow</td>
+<td>DSL1</td>
+<td>●○○</td>
+<td>●●◐</td>
+<td>●○○</td>
+<td>●○○</td>
+<td>●●●</td>
+<td>●○○</td>
+</tr>
+<tr class="even">
+<td>Nextflow</td>
+<td>DSL2</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●◐○</td>
+<td>●◐○</td>
+<td>●●○</td>
+<td>●●○</td>
+</tr>
+<tr class="odd">
+<td>Nextflow + Groovy</td>
+<td>nf-core</td>
+<td>●●○</td>
+<td>●●●</td>
+<td>●●○</td>
+<td>●◐○</td>
+<td>●○○</td>
+<td>●●●</td>
+</tr>
+<tr class="even">
+<td>Viash + Nextflow</td>
+<td>VDSL3</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●●●</td>
+<td>●○○[^1]</td>
+<td>●●○</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
-<section id="conclusion" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.7</span> Conclusion</h2>
+<section id="best-practices" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">5.7</span> Best Practices</h2>
+</section>
+<section id="conclusion" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.8</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Heumos2023" class="csl-entry" role="listitem">
 Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
+</div>
+<div id="ref-Wratten2021" class="csl-entry" role="listitem">
+Wratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. <span>“Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.”</span> <em>Nature Methods</em> 18 (10): 1161–68. <a href="https://doi.org/10.1038/s41592-021-01254-9">https://doi.org/10.1038/s41592-021-01254-9</a>.
 </div>
 </div>
 </section>
@@ -724,6 +966,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
