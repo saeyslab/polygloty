@@ -232,21 +232,31 @@ div.csl-indent {
 
 <p>Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools <span class="citation" data-cites="Heumos2023">(<a href="../../book/references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>. This polyglot approach, while powerful, introduces significant technical challenges in terms of interoperability, usability, and reproducibility.</p>
 <p>In the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.</p>
-<p><strong>Productionization</strong> is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment <a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
+<p><strong>Productionization</strong> is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment (<a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
 <div id="fig-productionization" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="fig_productionization.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workflows involves transforming <strong>A)</strong> a complex research environment with scattered data and manual steps <strong>B)</strong> into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.
+Figure&nbsp;5.1: An example of the productionization process for single-cell analysis workflows. <strong>A)</strong> The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. <strong>B)</strong> The production environment is streamlined, automated, and standardized, with reproducibility engines in place.
 </figcaption>
 </figure>
 </div>
 <p>In this chapter, we’ll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We’ll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you’ll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).</p>
 <section id="qualities-of-a-production-ready-workflow" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="qualities-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Qualities of a Production-Ready Workflow</h2>
-<p>Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Here are some key qualities of a production-ready workflow:</p>
+<p>Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities (<a href="#fig-qualities" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>):</p>
+<div id="fig-qualities" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig_qualities.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Essential qualities of a production-ready workflow.
+</figcaption>
+</figure>
+</div>
 <ul>
 <li><strong>Polyglot</strong>: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.</li>
 <li><strong>Modular</strong>: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.</li>
@@ -256,16 +266,6 @@ Figure&nbsp;5.1: Productionization of multi-language single-cell analysis workfl
 <li><strong>Automated</strong>: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.</li>
 <li><strong>Maintainable</strong>: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.</li>
 </ul>
-<div id="fig-qualities" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="fig_qualities.svg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qualities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: Qualities
-</figcaption>
-</figure>
-</div>
 </section>
 <section id="key-components" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="key-components"><span class="header-section-number">5.2</span> Key components</h2>
@@ -976,7 +976,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
