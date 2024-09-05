@@ -1,6 +1,6 @@
 ---
 title: In memory interoperability (from Python)
-engine: jupyter
+engine: knitr
 ---
 
 In this notebook, we will showcase how to call R code from Python.
@@ -82,9 +82,11 @@ import rpy2.robjects as robjects
 from rpy2.robjects.packages import importr
 
 utils = importr('utils')
-utils.install_packages('DESeq2')
+# utils.install_packages('DESeq2')
 
-DESeq2 = importr("DESeq2", lib_loc="~/Work/polygloty/renv/library/linux-ubuntu-noble/R-4.4/x86_64-pc-linux-gnu")
+## base.source("../renv/activate.R")
+
+DESeq2 = importr("DESeq2")
 
 ```
 
@@ -100,7 +102,7 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects import default_converter
 from rpy2.robjects.packages import importr
 
-DESeq2 = importr("DESeq2", lib_loc="~/Work/polygloty/renv/library/linux-ubuntu-noble/R-4.4/x86_64-pc-linux-gnu")
+DESeq2 = importr("DESeq2")
 
 np_cv_rules = default_converter + numpy2ri.converter + pandas2ri.converter
 
@@ -140,7 +142,7 @@ res = base.as_data_frame(res)
 
 Preview results:
 ```{python preview_results}
-dplyr = importr('dplyr', lib_loc="~/Work/polygloty/renv/library/linux-ubuntu-noble/R-4.4/x86_64-pc-linux-gnu")
+dplyr = importr('dplyr')
 utils = importr('utils')
 
 res = utils.head(dplyr.arrange(res, 'padj'), 10)
