@@ -7,29 +7,36 @@ Single-cell analysis has revolutionized our understanding of cellular heterogene
 
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
 
-**Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment [@fig-productionization]. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
+**Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
 
-![Productionization of multi-language single-cell analysis workflows involves transforming **A)** a complex research environment with scattered data and manual steps **B)** into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.](fig_productionization.svg){#fig-productionization}
+![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](fig_productionization.svg){#fig-productionization}
 
 In this chapter, we'll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We'll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you'll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).
 
-:::{.callout-note title="Disclaimer"}
-The author is affiliated with Data Intuitive, the creators of the open-source Viash tool. While striving for objectivity, potential bias may exist due to this connection.
-:::
 
-## Essential Elements of a Production-Ready Workflow
+## Qualities of a Production-Ready Workflow
 
-Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Let's explore the key components that are essential for creating robust and scalable workflows in this domain.
+Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
 
-* **Scripting languages**: Leveraging multiple scripting languages such as Python, R, and Julia can help take advantage of the strengths of each language for different aspects of the analysis. Examples: Python for data wrangling, R for statistical analysis, Julia for high-performance computing.
-* **Component interfaces**: Defining clear interfaces between different components of the workflow is essential for ensuring modularity and interoperability. Examples: APIs, file formats.
-* **Data interoperability**: Ensuring seamless data exchange between different programming languages and frameworks is essential for building integrated workflows. Examples: AnnData, Parquet, Feather.
-* **Data storage**: Efficiently storing and managing large volumes of single-cell data is crucial for ensuring reproducibility and scalability. Examples: file-based storage, databases, cloud storage.
-* **Portability**: Using containerization technologies can help ensure reproducibility and portability of workflows. Examples: Docker, Singularity, Podman.
-* **Compute environment**: Setting up scalable and reproducible compute environments is essential for executing complex analysis pipelines. Examples: high-performance computing clusters (HPC), cloud computing platforms (AWS, GCP, Azure).
-* **Workflow framework**: Leveraging workflow management systems can help automate and orchestrate complex analysis pipelines. Examples: Nextflow, Snakemake, WDL, CWL.
+![Essential qualities of a production-ready workflow.](fig_qualities.svg){#fig-qualities}
 
-<!-- todo: add figure with components -->
+* **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
+* **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
+* **Scalable**: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.
+* **Reproducible**: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.
+* **Portable**: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.
+* **Automated**: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.
+* **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
+
+
+
+## Key components
+
+
+![Overview of bioinformatics analysis workflows using an example of transcript expression quantifications [@Wratten2021].](fig_overview_workflow.webp){.lightbox}
+
+
+
 
 ## Data Storage
 
@@ -39,6 +46,39 @@ Building production-ready workflows for single-cell analysis involves integratin
 
 ## Workflow Management Systems
 
-## Best Practices for Reproducibility
+
+
+| Tool | Class | Ease of use | Expressiveness | Portability | Scalability | Learning resources | Pipeline initiatives |
+| ---- | ----- | ----------- | -------------- | ----------- | ----------- | ------------------ | -------------------- |
+| Galaxy | Graphical | ●●● | ●○○ | ●●● | ●●● | ●●● | ●●○ |
+| KNIME  | Graphical | ●●● | ●○○ | ○○○ | ●●◐ | ●●● | ●●○ |
+| Nextflow | DSL | ●●○ | ●●● | ●●● | ●●● | ●●● | ●●● |
+| Snakemake | DSL | ●●○ | ●●● | ●●◐ | ●●● | ●●○ | ●●● |
+| GenPipes | DSL | ●●○ | ●●● | ●●○ | ●●○ | ●●○ | ●●○ |
+| bPipe | DSL | ●●○ | ●●● | ●●○ | ●●◐ | ●●○ | ●○○ |
+| Pachyderm | DSL | ●●○ | ●●● | ●○○ | ●●○ | ●●● | ○○○ |
+| SciPipe | Library | ●●○ | ●●● | ○○○ | ○○○ | ●●○ | ○○○ |
+| Luigi | Library | ●●○ | ●●● | ●○○ | ●●◐ | ●●○ | ○○○ |
+| Cromwell + WDL | Execution + workflow specification | ●○○ | ●●○ | ●●● | ●●◐ | ●●○ | ●●○ |
+| cwltool + CWL | Execution + workflow specification | ●○○ | ●●○ | ●●◐ | ○○○ | ●●● | ●●○ |
+| Toil + CWL/WDL/Python | Execution + workflow specification | ●○○ | ●●● | ●◐○ | ●●● | ●●○ | ●●○ |
+
+: Overview of workflow managers for bioinformatics [@Wratten2021]. {#tbl-strengths}
+
+
+
+
+| Tool(s) | Dialect | Ease of use | Expressiveness | Modularity | Separation of concerns | Learning resources | Pipeline initiatives |
+| --- | --- |  --- | --- | --- | --- | --- | --- |
+| Nextflow | DSL1 | ●○○ | ●●◐ | ●○○ | ●○○ | ●●● | ●○○ |
+| Nextflow | DSL2 | ●●○ | ●●● | ●◐○ | ●◐○ | ●●○ | ●●○ |
+| Nextflow + Groovy | nf-core | ●●○ | ●●● | ●●○ | ●◐○ | ●○○ | ●●● |
+| Viash + Nextflow | VDSL3 | ●●● | ●●● | ●●● | ●●● | ●○○[^1] | ●●○ |
+
+: Different approaches to Nextflow programming. Not shown: Portability: ●●●, Scalability: ●●●. {#tbl-dialects}
+
+
+
+## Best Practices
 
 ## Conclusion
