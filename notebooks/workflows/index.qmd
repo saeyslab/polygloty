@@ -7,16 +7,18 @@ Single-cell analysis has revolutionized our understanding of cellular heterogene
 
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
 
-**Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment [@fig-productionization]. This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
+**Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
 
-![Productionization of multi-language single-cell analysis workflows involves transforming **A)** a complex research environment with scattered data and manual steps **B)** into a streamlined production environment characterized by automated processes, standardized data handling, and reproducibility engines. This transition ensures reproducibility, scalability, and maintainability of analysis pipelines.](fig_productionization.svg){#fig-productionization}
+![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](fig_productionization.svg){#fig-productionization}
 
 In this chapter, we'll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We'll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you'll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).
 
 
 ## Qualities of a Production-Ready Workflow
 
-Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. Here are some key qualities of a production-ready workflow:
+Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
+
+![Essential qualities of a production-ready workflow.](fig_qualities.svg){#fig-qualities}
 
 * **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
 * **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
@@ -27,7 +29,6 @@ Building production-ready workflows for single-cell analysis involves integratin
 * **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
 
 
-![Qualities](fig_qualities.svg){#fig-qualities}
 
 ## Key components
 
