@@ -9,6 +9,9 @@ book:
     - "Robrecht Cannoodt"
   date: "9/12/2024"
   cover-image: assets/cover.svg
+  site-url: https://saeyslab.github.io/polygloty
+  repo-url: https://github.com/saeyslab/polygloty
+  repo-actions: [edit, issue, source]
   chapters:
     - index.qmd
     - book/intro.qmd
@@ -25,6 +28,10 @@ format:
   html:
     theme: cosmo
     toc: true
+    link-external-icon: true
+    link-external-newwindow: true
+    copy-code: true
+    code-overflow: scroll
 
 # cache computations
 execute:
