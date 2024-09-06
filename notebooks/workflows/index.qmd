@@ -9,7 +9,7 @@ In the previous chapters, we've explored strategies for supporting data operabil
 
 **Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
 
-![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](fig_productionization.svg){#fig-productionization}
+![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](figures/productionization.svg){#fig-productionization}
 
 In this chapter, we'll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We'll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you'll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).
 
@@ -18,7 +18,7 @@ In this chapter, we'll delve into the key components and considerations involved
 
 Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
 
-![Essential qualities of a production-ready workflow.](fig_qualities.svg){#fig-qualities}
+![Essential qualities of a production-ready workflow.](figures/qualities.svg){#fig-qualities}
 
 * **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
 * **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
@@ -29,23 +29,9 @@ Building production-ready workflows for single-cell analysis involves integratin
 * **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
 
 
-
 ## Key components
 
-
-![Overview of bioinformatics analysis workflows using an example of transcript expression quantifications [@Wratten2021].](fig_overview_workflow.webp){.lightbox}
-
-
-
-
-## Data Storage
-
-## Compute Environments
-
-## Containerization
-
-## Workflow Management Systems
-
+[A lot of different workflow frameworks exist](https://github.com/pditommaso/awesome-pipeline), and there are a lot of factors to consider when choosing the right one for your project. The table below provides an overview of some popular workflow managers for bioinformatics, highlighting some of their strengths and weaknesses  ([@tbl-strengths]).
 
 
 | Tool | Class | Ease of use | Expressiveness | Portability | Scalability | Learning resources | Pipeline initiatives |
@@ -65,17 +51,121 @@ Building production-ready workflows for single-cell analysis involves integratin
 
 : Overview of workflow managers for bioinformatics [@Wratten2021]. {#tbl-strengths}
 
+```{r tibble, echo=FALSE, eval=FALSE}
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(purrr)
+
+googlesheets4::gs4_auth(email = "robrecht@data-intuitive.com")
+wf_qc_sheet <- "https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI/edit?usp=sharing"
+wf_qc <- googlesheets4::read_sheet(wf_qc_sheet, sheet = "qc") |>
+  mutate_each(function(x) {
+    map_chr(x, function(y) {
+      if (is.null(y)) {
+        NA_character_
+      } else {
+        y
+      }
+    })
+  })
+
+# remove incomplete frameworks and unused questions
+wf_qc <- wf_qc |>
+  select(name, aspect, item, Nextflow, Snakemake, Galaxy, `Argo Workflows`) %>%
+  filter(!is.na(Nextflow)) %>%
+  filter(item != "The framework provides clear error messages and debugging tools.")
+
+# fill in NAs due to merged cells
+for (i in seq(2, nrow(wf_qc), by = 1)) {
+  if (is.na(wf_qc$name[[i]])) {
+    wf_qc$name[[i]] <- wf_qc$name[[i - 1]]
+  }
+  if (is.na(wf_qc$aspect[[i]])) {
+    wf_qc$aspect[[i]] <- wf_qc$aspect[[i - 1]]
+  }
+}
+
+# sanitize string
+string_to_colname <- function(x) {
+  x <- tolower(x)
+  x <- gsub(" ", "_", x)
+  x <- gsub("[^[:alnum:]_]", "", x)
+  x <- gsub("__", "_", x)
+  x
+}
+
+# process metadata
+wf_metadata <- wf_qc |>
+  filter(name == "Metadata") |>
+  select(-name, -aspect) |>
+  as.matrix() |>
+  t() |>
+  as.data.frame() %>%
+  rownames_to_column("project")
+colnames(wf_metadata) <- string_to_colname(unname(unlist(wf_metadata[1,])))
+wf_metadata <- wf_metadata[-1,]
+rownames(wf_metadata) <- NULL
+wf_metadata <- wf_metadata |>
+  rename(project = item) |>
+  mutate(id = string_to_colname(project))
+
+# process scores
+scores <- wf_qc |>
+  filter(name != "Metadata") |>
+  gather(key = "framework", value = "data", -item, -name, -aspect) %>%
+  mutate(
+    score = gsub("^([0-9\\.]*).*", "\\1", data) |> as.numeric(),
+    url = gsub(".*(http[^ ]*)$", "\\1", data) %>% ifelse(. == data, NA_character_, .),
+    explanation = gsub("^[0-9\\.]* ", "", data) %>% gsub("http[^ ]*$", "", .)
+  )
+
+wf_aggregated_scores <- scores |>
+  group_by(name, framework) |>
+  summarize(mean_score = mean(score), .groups = "drop")
+
+write.csv(wf_metadata, "notebooks/workflows/data/wf_metadata.csv", row.names = FALSE)
+write.csv(wf_aggregated_scores, "notebooks/workflows/data/wf_aggregated_scores.csv", row.names = FALSE)
+```
+
+
+```{r plot_scores}
+#| fig-cap: Quality scores for different workflow frameworks. 
+#| fig-format: svg
+library(ggplot2)
+
+agg <- read.csv("data/wf_aggregated_scores.csv")
+
+ggplot(agg) +
+  geom_point(aes(mean_score, framework, color = framework)) +
+  geom_segment(aes(x = 0, xend = mean_score, y = framework, yend = framework, color = framework), linewidth = 1) +
+  facet_wrap(~name, ncol = 2) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    legend.position = "none"
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  ) +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+## Data Storage
+
+## Compute Environments
+
+## Containerization
+
+## Workflow Management Systems
 
 
 
-| Tool(s) | Dialect | Ease of use | Expressiveness | Modularity | Separation of concerns | Learning resources | Pipeline initiatives |
-| --- | --- |  --- | --- | --- | --- | --- | --- |
-| Nextflow | DSL1 | ●○○ | ●●◐ | ●○○ | ●○○ | ●●● | ●○○ |
-| Nextflow | DSL2 | ●●○ | ●●● | ●◐○ | ●◐○ | ●●○ | ●●○ |
-| Nextflow + Groovy | nf-core | ●●○ | ●●● | ●●○ | ●◐○ | ●○○ | ●●● |
-| Viash + Nextflow | VDSL3 | ●●● | ●●● | ●●● | ●●● | ●○○[^1] | ●●○ |
 
-: Different approaches to Nextflow programming. Not shown: Portability: ●●●, Scalability: ●●●. {#tbl-dialects}
+
 
 
 

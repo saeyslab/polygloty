@@ -1,0 +1,25 @@
+"name","framework","mean_score"
+"Community","Argo Workflows",0.125
+"Community","Galaxy",0.75
+"Community","Nextflow",1
+"Community","Snakemake",0.75
+"Modularity","Argo Workflows",0.8
+"Modularity","Galaxy",0.9
+"Modularity","Nextflow",0.5
+"Modularity","Snakemake",1
+"Polyglot","Argo Workflows",0.666666666666667
+"Polyglot","Galaxy",0.333333333333333
+"Polyglot","Nextflow",0.666666666666667
+"Polyglot","Snakemake",0.666666666666667
+"Portability","Argo Workflows",0.5
+"Portability","Galaxy",0.652173913043478
+"Portability","Nextflow",0.826086956521739
+"Portability","Snakemake",0.869565217391304
+"Reproducibility","Argo Workflows",0.7
+"Reproducibility","Galaxy",0.8
+"Reproducibility","Nextflow",0.5
+"Reproducibility","Snakemake",0.9
+"Scalability","Argo Workflows",0.5
+"Scalability","Galaxy",0.333333333333333
+"Scalability","Nextflow",0.833333333333333
+"Scalability","Snakemake",0.833333333333333

@@ -1,0 +1,6 @@
+"project","reviewer","project_website","repository","documentation","doi","community","community_repository","id"
+"Nextflow","R","https://www.nextflow.io/","https://github.com/nextflow-io/nextflow","https://www.nextflow.io/docs/latest/index.html","https://doi.org/10.1038/nbt.3820","https://nf-co.re/","https://github.com/nf-core/","nextflow"
+"Snakemake","J/M","https://snakemake.github.io/","https://github.com/snakemake/snakemake","https://snakemake.readthedocs.io/en/stable/","https://doi.org/10.12688/f1000research.29032.2","https://snakemake-wrappers.readthedocs.io/en/stable/","https://github.com/snakemake-workflows
+https://github.com/snakemake/snakemake-wrappers","snakemake"
+"Galaxy","R","https://galaxyproject.org/","https://github.com/galaxyproject/galaxy","https://docs.galaxyproject.org/en/master/","https://doi.org/10.1093/nar/gkae410","https://galaxyproject.org/iuc/","https://github.com/galaxyproject/tools-iuc","galaxy"
+"Argo Workflows","T","https://argoproj.github.io/workflows/","https://github.com/argoproj/argo-workflows","https://argo-workflows.readthedocs.io",NA,NA,NA,"argo_workflows"
