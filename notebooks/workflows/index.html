@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -223,13 +189,14 @@ div.csl-indent {
    
   <ul>
   <li><a href="#qualities-of-a-production-ready-workflow" id="toc-qualities-of-a-production-ready-workflow" class="nav-link active" data-scroll-target="#qualities-of-a-production-ready-workflow"><span class="header-section-number">5.1</span> Qualities of a Production-Ready Workflow</a></li>
-  <li><a href="#key-components" id="toc-key-components" class="nav-link" data-scroll-target="#key-components"><span class="header-section-number">5.2</span> Key components</a></li>
-  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.3</span> Data Storage</a></li>
-  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.4</span> Compute Environments</a></li>
-  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.5</span> Containerization</a></li>
-  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.6</span> Workflow Management Systems</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">5.7</span> Best Practices</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.8</span> Conclusion</a></li>
+  <li><a href="#review-of-workflow-frameworks" id="toc-review-of-workflow-frameworks" class="nav-link" data-scroll-target="#review-of-workflow-frameworks"><span class="header-section-number">5.2</span> Review of Workflow Frameworks</a></li>
+  <li><a href="#quality-assessment-of-workflow-frameworks" id="toc-quality-assessment-of-workflow-frameworks" class="nav-link" data-scroll-target="#quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.3</span> Quality Assessment of Workflow Frameworks</a></li>
+  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.4</span> Data Storage</a></li>
+  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.5</span> Compute Environments</a></li>
+  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.6</span> Containerization</a></li>
+  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.7</span> Workflow Management Systems</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">5.8</span> Best Practices</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.9</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -294,13 +261,13 @@ Figure&nbsp;5.2: Essential qualities of a production-ready workflow.
 <li><strong>Scalable</strong>: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.</li>
 <li><strong>Reproducible</strong>: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.</li>
 <li><strong>Portable</strong>: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.</li>
-<li><strong>Automated</strong>: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.</li>
 <li><strong>Maintainable</strong>: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.</li>
+<li><strong>Community</strong>: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. Engaging with the scientific community, contributing to open-source projects, and adopting community-driven standards can enhance the quality and impact of your workflow.</li>
 </ul>
 </section>
-<section id="key-components" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="key-components"><span class="header-section-number">5.2</span> Key components</h2>
-<p><a href="https://github.com/pditommaso/awesome-pipeline">A lot of different workflow frameworks exist</a>, and there are a lot of factors to consider when choosing the right one for your project. The table below provides an overview of some popular workflow managers for bioinformatics, highlighting some of their strengths and weaknesses (<a href="#tbl-strengths" class="quarto-xref">Table&nbsp;<span>5.1</span></a>).</p>
+<section id="review-of-workflow-frameworks" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="review-of-workflow-frameworks"><span class="header-section-number">5.2</span> Review of Workflow Frameworks</h2>
+<p><a href="https://github.com/pditommaso/awesome-pipeline">A lot of different workflow frameworks exist</a>, and there are a lot of factors to consider when choosing the right one for your project. <span class="citation" data-cites="Wratten2021">Wratten, Wilm, and Göke (<a href="../../book/references.html#ref-Wratten2021" role="doc-biblioref">2021</a>)</span> conducted a review of popular workflow managers for bioinformatics, evaluating them based on several key aspects, including ease of use, expressiveness, portability, scalability, and learning resources (<a href="#tbl-strengths" class="quarto-xref">Table&nbsp;<span>5.1</span></a>). The accompanying <a href="https://github.com/GoekeLab/bioinformatics-workflows">GitHub repository</a> is especially interesting, which contains proof-of-concept implementations of the same RNA-seq workflow in different workflow frameworks, allowing for a direct comparison of their expressiveness and ease of use.</p>
 <div id="tbl-strengths" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-strengths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -456,26 +423,22 @@ Table&nbsp;5.1: Overview of workflow managers for bioinformatics <span class="ci
 </div>
 </figure>
 </div>
+<p>However, the <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41592-021-01254-9/MediaObjects/41592_2021_1254_MOESM2_ESM.xlsx">Supplementary Table</a> shows that the comparison in <a href="#tbl-strengths" class="quarto-xref">Table&nbsp;<span>5.1</span></a> was rather limited, since the score of each category was only based on a single criterion. The criteria were defined as follows:</p>
+<ul>
+<li><strong>Ease of Use</strong>: Graphical interface with execution environment (score of 3), programming interface with in-built execution environment (score of 2), separated development and execution environment (score of 1).</li>
+<li><strong>Expressiveness</strong>: Based on an existing programming language (3) or a new language or restricted vocabulary (2), primary interaction with graphical user interface (1).</li>
+<li><strong>Portability</strong>: Integration with three or more container and package manager platforms (3), two platforms are supported (2), one platform is supported (1).</li>
+<li><strong>Scalability</strong>: Considers cloud support, scheduler and orchestration tool integration, and executor support. Please refer to Supplementary Table 1 - Sheet 2 (Scalability).</li>
+<li><strong>Learning resources</strong>: Official tutorials, forums and events (3), tutorials and forums (2), tutorials or forums (1).</li>
+<li><strong>Pipelines Initiatives</strong>: Community and curated (3), community or curated (2), not community or curated (1).</li>
+</ul>
+<p>Only the “Scalability” score was determined by more than one criterion.</p>
+</section>
+<section id="quality-assessment-of-workflow-frameworks" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.3</span> Quality Assessment of Workflow Frameworks</h2>
+<p>Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’ve already collected some data on the quality of different workflow frameworks.</p>
+<p>The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (<a href="#fig-qualities" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>agg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/wf_aggregated_scores.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(agg) <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(mean_score, framework, <span class="at">color =</span> framework)) <span class="sc">+</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> mean_score, <span class="at">y =</span> framework, <span class="at">yend =</span> framework, <span class="at">color =</span> framework), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -486,23 +449,23 @@ Table&nbsp;5.1: Overview of workflow managers for bioinformatics <span class="ci
 </div>
 </div>
 </section>
-<section id="data-storage" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.3</span> Data Storage</h2>
+<section id="data-storage" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.4</span> Data Storage</h2>
 </section>
-<section id="compute-environments" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.4</span> Compute Environments</h2>
+<section id="compute-environments" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.5</span> Compute Environments</h2>
 </section>
-<section id="containerization" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.5</span> Containerization</h2>
+<section id="containerization" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.6</span> Containerization</h2>
 </section>
-<section id="workflow-management-systems" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.6</span> Workflow Management Systems</h2>
+<section id="workflow-management-systems" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.7</span> Workflow Management Systems</h2>
 </section>
-<section id="best-practices" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">5.7</span> Best Practices</h2>
+<section id="best-practices" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">5.8</span> Best Practices</h2>
 </section>
-<section id="conclusion" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.8</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.9</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

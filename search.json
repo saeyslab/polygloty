@@ -114,17 +114,27 @@
     "href": "notebooks/workflows/index.html#qualities-of-a-production-ready-workflow",
     "title": "5  Workflows",
     "section": "",
-    "text": "Figure 5.2: Essential qualities of a production-ready workflow.\n\n\n\n\nPolyglot: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.\nModular: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.\nScalable: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.\nReproducible: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.\nPortable: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.\nAutomated: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.\nMaintainable: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.",
+    "text": "Figure 5.2: Essential qualities of a production-ready workflow.\n\n\n\n\nPolyglot: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.\nModular: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.\nScalable: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.\nReproducible: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.\nPortable: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.\nMaintainable: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.\nCommunity: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. Engaging with the scientific community, contributing to open-source projects, and adopting community-driven standards can enhance the quality and impact of your workflow.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
   },
   {
-    "objectID": "notebooks/workflows/index.html#key-components",
-    "href": "notebooks/workflows/index.html#key-components",
+    "objectID": "notebooks/workflows/index.html#review-of-workflow-frameworks",
+    "href": "notebooks/workflows/index.html#review-of-workflow-frameworks",
     "title": "5  Workflows",
-    "section": "5.2 Key components",
-    "text": "5.2 Key components\nA lot of different workflow frameworks exist, and there are a lot of factors to consider when choosing the right one for your project. The table below provides an overview of some popular workflow managers for bioinformatics, highlighting some of their strengths and weaknesses (Table 5.1).\n\n\n\nTable 5.1: Overview of workflow managers for bioinformatics (Wratten, Wilm, and Göke 2021).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTool\nClass\nEase of use\nExpressiveness\nPortability\nScalability\nLearning resources\nPipeline initiatives\n\n\n\n\nGalaxy\nGraphical\n●●●\n●○○\n●●●\n●●●\n●●●\n●●○\n\n\nKNIME\nGraphical\n●●●\n●○○\n○○○\n●●◐\n●●●\n●●○\n\n\nNextflow\nDSL\n●●○\n●●●\n●●●\n●●●\n●●●\n●●●\n\n\nSnakemake\nDSL\n●●○\n●●●\n●●◐\n●●●\n●●○\n●●●\n\n\nGenPipes\nDSL\n●●○\n●●●\n●●○\n●●○\n●●○\n●●○\n\n\nbPipe\nDSL\n●●○\n●●●\n●●○\n●●◐\n●●○\n●○○\n\n\nPachyderm\nDSL\n●●○\n●●●\n●○○\n●●○\n●●●\n○○○\n\n\nSciPipe\nLibrary\n●●○\n●●●\n○○○\n○○○\n●●○\n○○○\n\n\nLuigi\nLibrary\n●●○\n●●●\n●○○\n●●◐\n●●○\n○○○\n\n\nCromwell + WDL\nExecution + workflow specification\n●○○\n●●○\n●●●\n●●◐\n●●○\n●●○\n\n\ncwltool + CWL\nExecution + workflow specification\n●○○\n●●○\n●●◐\n○○○\n●●●\n●●○\n\n\nToil + CWL/WDL/Python\nExecution + workflow specification\n●○○\n●●●\n●◐○\n●●●\n●●○\n●●○\n\n\n\n\n\n\n\nlibrary(ggplot2)\n\nagg &lt;- read.csv(\"data/wf_aggregated_scores.csv\")\n\nggplot(agg) +\n  geom_point(aes(mean_score, framework, color = framework)) +\n  geom_segment(aes(x = 0, xend = mean_score, y = framework, yend = framework, color = framework), linewidth = 1) +\n  facet_wrap(~name, ncol = 2) +\n  theme_minimal() +\n  theme(\n    panel.grid.minor = element_blank(),\n    panel.grid.major.y = element_blank(),\n    legend.position = \"none\"\n  ) +\n  labs(\n    x = NULL,\n    y = NULL\n  ) +\n  scale_color_brewer(palette = \"Set1\")\n\n\n\n\nQuality scores for different workflow frameworks.",
+    "section": "5.2 Review of Workflow Frameworks",
+    "text": "5.2 Review of Workflow Frameworks\nA lot of different workflow frameworks exist, and there are a lot of factors to consider when choosing the right one for your project. Wratten, Wilm, and Göke (2021) conducted a review of popular workflow managers for bioinformatics, evaluating them based on several key aspects, including ease of use, expressiveness, portability, scalability, and learning resources (Table 5.1). The accompanying GitHub repository is especially interesting, which contains proof-of-concept implementations of the same RNA-seq workflow in different workflow frameworks, allowing for a direct comparison of their expressiveness and ease of use.\n\n\n\nTable 5.1: Overview of workflow managers for bioinformatics (Wratten, Wilm, and Göke 2021).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTool\nClass\nEase of use\nExpressiveness\nPortability\nScalability\nLearning resources\nPipeline initiatives\n\n\n\n\nGalaxy\nGraphical\n●●●\n●○○\n●●●\n●●●\n●●●\n●●○\n\n\nKNIME\nGraphical\n●●●\n●○○\n○○○\n●●◐\n●●●\n●●○\n\n\nNextflow\nDSL\n●●○\n●●●\n●●●\n●●●\n●●●\n●●●\n\n\nSnakemake\nDSL\n●●○\n●●●\n●●◐\n●●●\n●●○\n●●●\n\n\nGenPipes\nDSL\n●●○\n●●●\n●●○\n●●○\n●●○\n●●○\n\n\nbPipe\nDSL\n●●○\n●●●\n●●○\n●●◐\n●●○\n●○○\n\n\nPachyderm\nDSL\n●●○\n●●●\n●○○\n●●○\n●●●\n○○○\n\n\nSciPipe\nLibrary\n●●○\n●●●\n○○○\n○○○\n●●○\n○○○\n\n\nLuigi\nLibrary\n●●○\n●●●\n●○○\n●●◐\n●●○\n○○○\n\n\nCromwell + WDL\nExecution + workflow specification\n●○○\n●●○\n●●●\n●●◐\n●●○\n●●○\n\n\ncwltool + CWL\nExecution + workflow specification\n●○○\n●●○\n●●◐\n○○○\n●●●\n●●○\n\n\nToil + CWL/WDL/Python\nExecution + workflow specification\n●○○\n●●●\n●◐○\n●●●\n●●○\n●●○\n\n\n\n\n\n\nHowever, the Supplementary Table shows that the comparison in Table 5.1 was rather limited, since the score of each category was only based on a single criterion. The criteria were defined as follows:\n\nEase of Use: Graphical interface with execution environment (score of 3), programming interface with in-built execution environment (score of 2), separated development and execution environment (score of 1).\nExpressiveness: Based on an existing programming language (3) or a new language or restricted vocabulary (2), primary interaction with graphical user interface (1).\nPortability: Integration with three or more container and package manager platforms (3), two platforms are supported (2), one platform is supported (1).\nScalability: Considers cloud support, scheduler and orchestration tool integration, and executor support. Please refer to Supplementary Table 1 - Sheet 2 (Scalability).\nLearning resources: Official tutorials, forums and events (3), tutorials and forums (2), tutorials or forums (1).\nPipelines Initiatives: Community and curated (3), community or curated (2), not community or curated (1).\n\nOnly the “Scalability” score was determined by more than one criterion.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#quality-assessment-of-workflow-frameworks",
+    "href": "notebooks/workflows/index.html#quality-assessment-of-workflow-frameworks",
+    "title": "5  Workflows",
+    "section": "5.3 Quality Assessment of Workflow Frameworks",
+    "text": "5.3 Quality Assessment of Workflow Frameworks\nGiven the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’ve already collected some data on the quality of different workflow frameworks.\nThe data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (Figure 5.2).\n\n\n\n\n\nQuality scores for different workflow frameworks.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -133,8 +143,8 @@
     "objectID": "notebooks/workflows/index.html#data-storage",
     "href": "notebooks/workflows/index.html#data-storage",
     "title": "5  Workflows",
-    "section": "5.3 Data Storage",
-    "text": "5.3 Data Storage",
+    "section": "5.4 Data Storage",
+    "text": "5.4 Data Storage",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -143,8 +153,8 @@
     "objectID": "notebooks/workflows/index.html#compute-environments",
     "href": "notebooks/workflows/index.html#compute-environments",
     "title": "5  Workflows",
-    "section": "5.4 Compute Environments",
-    "text": "5.4 Compute Environments",
+    "section": "5.5 Compute Environments",
+    "text": "5.5 Compute Environments",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -153,8 +163,8 @@
     "objectID": "notebooks/workflows/index.html#containerization",
     "href": "notebooks/workflows/index.html#containerization",
     "title": "5  Workflows",
-    "section": "5.5 Containerization",
-    "text": "5.5 Containerization",
+    "section": "5.6 Containerization",
+    "text": "5.6 Containerization",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -163,8 +173,8 @@
     "objectID": "notebooks/workflows/index.html#workflow-management-systems",
     "href": "notebooks/workflows/index.html#workflow-management-systems",
     "title": "5  Workflows",
-    "section": "5.6 Workflow Management Systems",
-    "text": "5.6 Workflow Management Systems",
+    "section": "5.7 Workflow Management Systems",
+    "text": "5.7 Workflow Management Systems",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -173,8 +183,8 @@
     "objectID": "notebooks/workflows/index.html#best-practices",
     "href": "notebooks/workflows/index.html#best-practices",
     "title": "5  Workflows",
-    "section": "5.7 Best Practices",
-    "text": "5.7 Best Practices",
+    "section": "5.8 Best Practices",
+    "text": "5.8 Best Practices",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -183,8 +193,8 @@
     "objectID": "notebooks/workflows/index.html#conclusion",
     "href": "notebooks/workflows/index.html#conclusion",
     "title": "5  Workflows",
-    "section": "5.8 Conclusion",
-    "text": "5.8 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. “Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.” Nature Methods 18 (10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
+    "section": "5.9 Conclusion",
+    "text": "5.9 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. “Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.” Nature Methods 18 (10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
