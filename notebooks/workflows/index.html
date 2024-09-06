@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Robrecht Cannoodt">
+<meta name="author" content="Robrecht Cannoodt, Data Intuitive">
 
 <title>5&nbsp; Workflows – Polyglot programming for single-cell analysis</title>
 <style>
@@ -96,6 +96,8 @@ div.csl-indent {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -232,13 +234,14 @@ div.csl-indent {
   <li><a href="#limitations-of-the-study" id="toc-limitations-of-the-study" class="nav-link" data-scroll-target="#limitations-of-the-study"><span class="header-section-number">5.2.2</span> Limitations of the study</a></li>
   </ul></li>
   <li><a href="#qualities-of-a-production-ready-workflow" id="toc-qualities-of-a-production-ready-workflow" class="nav-link" data-scroll-target="#qualities-of-a-production-ready-workflow"><span class="header-section-number">5.3</span> Qualities of a Production-Ready Workflow</a></li>
-  <li><a href="#quality-assessment-of-workflow-frameworks" id="toc-quality-assessment-of-workflow-frameworks" class="nav-link" data-scroll-target="#quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.4</span> Quality Assessment of Workflow Frameworks</a></li>
-  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage"><span class="header-section-number">5.5</span> Data Storage</a></li>
-  <li><a href="#compute-environments" id="toc-compute-environments" class="nav-link" data-scroll-target="#compute-environments"><span class="header-section-number">5.6</span> Compute Environments</a></li>
-  <li><a href="#containerization" id="toc-containerization" class="nav-link" data-scroll-target="#containerization"><span class="header-section-number">5.7</span> Containerization</a></li>
-  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">5.8</span> Workflow Management Systems</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">5.9</span> Best Practices</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.10</span> Conclusion</a></li>
+  <li><a href="#technologies-for-production-ready-workflows" id="toc-technologies-for-production-ready-workflows" class="nav-link" data-scroll-target="#technologies-for-production-ready-workflows"><span class="header-section-number">5.4</span> Technologies for Production-Ready Workflows</a></li>
+  <li><a href="#quality-assessment-of-workflow-frameworks" id="toc-quality-assessment-of-workflow-frameworks" class="nav-link" data-scroll-target="#quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.5</span> Quality Assessment of Workflow Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#included-frameworks" id="toc-included-frameworks" class="nav-link" data-scroll-target="#included-frameworks"><span class="header-section-number">5.5.1</span> Included frameworks</a></li>
+  <li><a href="#quality-assesment-criteria" id="toc-quality-assesment-criteria" class="nav-link" data-scroll-target="#quality-assesment-criteria"><span class="header-section-number">5.5.2</span> Quality Assesment Criteria</a></li>
+  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores"><span class="header-section-number">5.5.3</span> Quality Scores</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.6</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/notebooks/workflows/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -257,7 +260,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Robrecht Cannoodt </p>
+             <p>Robrecht Cannoodt, Data Intuitive </p>
           </div>
   </div>
     
@@ -1126,14 +1129,136 @@ Figure&nbsp;5.2: Essential qualities of a production-ready workflow.
 <li><strong>Scalable</strong>: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.</li>
 <li><strong>Reproducible</strong>: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.</li>
 <li><strong>Portable</strong>: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.</li>
-<li><strong>Maintainable</strong>: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.</li>
 <li><strong>Community</strong>: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. This is because developing high-quality components can at times be time-consuming, and sharing resources can help reduce duplication of effort and promote collaboration.</li>
+<li><strong>Maintainable</strong>: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.</li>
 </ul>
 </section>
-<section id="quality-assessment-of-workflow-frameworks" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.4</span> Quality Assessment of Workflow Frameworks</h2>
+<section id="technologies-for-production-ready-workflows" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="technologies-for-production-ready-workflows"><span class="header-section-number">5.4</span> Technologies for Production-Ready Workflows</h2>
+<p>The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies (<a href="#fig-technologies" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>). These technologies provide the foundation for building scalable, reproducible, and maintainable workflows for single-cell analysis.</p>
+<div id="fig-technologies" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-technologies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/technologies.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-technologies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="quality-assessment-of-workflow-frameworks" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="quality-assessment-of-workflow-frameworks"><span class="header-section-number">5.5</span> Quality Assessment of Workflow Frameworks</h2>
 <p>Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’re happy to share the preliminary results with you.</p>
 <p>The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (<a href="#fig-qualities" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>).</p>
+<section id="included-frameworks" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="included-frameworks"><span class="header-section-number">5.5.1</span> Included frameworks</h3>
+<p>The following workflow frameworks were included in the assessment:</p>
+<ul>
+<li><a href="https://www.nextflow.io/">Nextflow</a>: A domain-specific language for creating scalable and reproducible data analysis pipelines. <a href="https://github.com/nextflow-io/nextflow"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://www.nextflow.io/docs/latest/index.html"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.1038/nbt.3820"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://nf-co.re/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://snakemake.github.io/">Snakemake</a>: A workflow management system that uses Python-based rules to define dependencies and execute tasks. <a href="https://github.com/snakemake/snakemake"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://snakemake.readthedocs.io/en/stable/"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.12688/f1000research.29032.2"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://snakemake-wrappers.readthedocs.io/en/stable/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://galaxyproject.org/">Galaxy</a>: A web-based platform for creating, running, and sharing data analysis workflows without the need for programming expertise. <a href="https://github.com/galaxyproject/galaxy"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://docs.galaxyproject.org/en/master/"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.1093/nar/gkae410"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://galaxyproject.org/iuc/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://viash.io/">Viash + Nextflow</a>: A combination of Viash, a tool for defining bioinformatics workflow components, and Nextflow for scalable and reproducible execution. <a href="https://github.com/viash-io/viash"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://viash.io/guide/%20https://www.nextflow.io/docs/latest/index.html"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://joss.theoj.org/papers/10.21105/joss.06089"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://web.viash-hub.com/packages"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://argoproj.github.io/workflows/">Argo Workflows</a>: A Kubernetes-native workflow engine for orchestrating containerized tasks and automating complex workflows. <a href="https://github.com/argoproj/argo-workflows"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://argo-workflows.readthedocs.io"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a></li>
+</ul>
+</section>
+<section id="quality-assesment-criteria" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="quality-assesment-criteria"><span class="header-section-number">5.5.2</span> Quality Assesment Criteria</h3>
+<p>The quality assessment was based on the following criteria:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Community</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Maintainability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Modularity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false">Polyglot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false">Portability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-6" role="tab" aria-controls="tabset-7-6" aria-selected="false">Reproducibility</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-7" role="tab" aria-controls="tabset-7-7" aria-selected="false">Scalability</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p><strong>Does a library of components exist?</strong>:</p>
+<ul>
+<li>A library of OSS components is available</li>
+<li>Community repository has frequent commits</li>
+<li>Community repository has &gt; 10 frequent non-employee commitors</li>
+<li>Are there repositories of OSS workflows available?</li>
+</ul>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p><strong>How easy is it to update, modify, and troubleshoot workflows?</strong>:</p>
+<ul>
+<li>Workflows are well-structured and easy to understand.</li>
+<li>Framework supports documenting the interfaces of components and workflows</li>
+<li>Version control and collaboration features facilitate team-based development.</li>
+<li>Components can be unit tested</li>
+<li>Documentation specifies how to unit test components</li>
+</ul>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p><strong>How effectively does the framework promote modular design and reusability?</strong>:</p>
+<ul>
+<li>Software can be easily encapsulated as a modular component.</li>
+<li>Components have well-defined inputs and outputs.</li>
+<li>Components can be shared and reused across different workflows.</li>
+<li>The framework supports dependency management</li>
+<li>The framework supports versioning of components.</li>
+</ul>
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
+<p><strong>Is it easy to switch between different programming / scripting language within one workflow?</strong>:</p>
+<ul>
+<li>Calling a script from another language is possible</li>
+<li>Components can be written in multiple languages and communicate via a file-based interface</li>
+<li>Components can be written in multiple languages and communicate via an in-memory data channel</li>
+</ul>
+</div>
+<div id="tabset-7-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-5-tab">
+<p><strong>Support for various compute platforms</strong>:</p>
+<ul>
+<li>Support for AWS Batch</li>
+<li>Support for Azure Batch</li>
+<li>Support for Google Cloud</li>
+<li>Support for Kubernetes</li>
+<li>Support for Local execution</li>
+<li>Support for PBS/Torque</li>
+<li>Support for SLURM</li>
+<li>Support for additional compute platforms</li>
+</ul>
+<p><strong>Support for various containerization technologies</strong>:</p>
+<ul>
+<li>Support for Apptainer</li>
+<li>Support for Docker</li>
+<li>Support for Podman</li>
+<li>Support for additional containerization technologies</li>
+</ul>
+<p><strong>Support for various storage solutions</strong>:</p>
+<ul>
+<li>AWS S3</li>
+<li>Azure Blob Storage / Files</li>
+<li>Google Storage</li>
+<li>HTTPS</li>
+<li>FTP</li>
+<li>Support for additional storage solutions</li>
+</ul>
+</div>
+<div id="tabset-7-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-6-tab">
+<p><strong>How effectively does the framework ensure reproducibility of results?</strong>:</p>
+<ul>
+<li>Individual components can list their software dependencies</li>
+<li>Per-component containerisation is supported</li>
+<li>Extending images with additional dependencies is supported</li>
+<li>Data provenance tracking is built-in or can be easily integrated.</li>
+<li>Framework promotes versioned releases of the workflow software and images to ensure reproducibility</li>
+</ul>
+</div>
+<div id="tabset-7-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-7-tab">
+<p><strong>How well does the framework handle large and complex workflows?</strong>:</p>
+<ul>
+<li>The framework supports asynchronous and distributed execution.</li>
+<li>Resource management and optimization features are available.</li>
+<li>Performance monitoring and profiling tools are provided.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>These criteria and subsequent scores will be further refined and validated as part of our ongoing research.</p>
+</section>
+<section id="quality-scores" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="quality-scores"><span class="header-section-number">5.5.3</span> Quality Scores</h3>
+<p>The aggregated quality scores for each framework are shown below. The scores are based on the evaluation of the essential qualities of a production-ready workflow.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1144,28 +1269,11 @@ Figure&nbsp;5.2: Essential qualities of a production-ready workflow.
 </div>
 </div>
 </div>
+<p>Raw scores and detailed explanations behind the reasoning of the resulting scores can be found in the <a href="https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI">Workflow Quality Assessment Spreadsheet</a>.</p>
 </section>
-<section id="data-storage" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="data-storage"><span class="header-section-number">5.5</span> Data Storage</h2>
 </section>
-<section id="compute-environments" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="compute-environments"><span class="header-section-number">5.6</span> Compute Environments</h2>
-</section>
-<section id="containerization" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="containerization"><span class="header-section-number">5.7</span> Containerization</h2>
-</section>
-<section id="workflow-management-systems" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">5.8</span> Workflow Management Systems</h2>
-</section>
-<section id="best-practices" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">5.9</span> Best Practices</h2>
-<ul>
-<li>Functional programming</li>
-<li></li>
-</ul>
-</section>
-<section id="conclusion" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.10</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.6</span> Conclusion</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

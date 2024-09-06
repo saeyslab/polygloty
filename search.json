@@ -134,7 +134,17 @@
     "href": "notebooks/workflows/index.html#qualities-of-a-production-ready-workflow",
     "title": "5  Workflows",
     "section": "5.3 Qualities of a Production-Ready Workflow",
-    "text": "5.3 Qualities of a Production-Ready Workflow\nBuilding production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities (Figure 5.2):\n\n\n\n\n\n\nFigure 5.2: Essential qualities of a production-ready workflow.\n\n\n\n\nPolyglot: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.\nModular: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.\nScalable: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.\nReproducible: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.\nPortable: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.\nMaintainable: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.\nCommunity: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. This is because developing high-quality components can at times be time-consuming, and sharing resources can help reduce duplication of effort and promote collaboration.",
+    "text": "5.3 Qualities of a Production-Ready Workflow\nBuilding production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities (Figure 5.2):\n\n\n\n\n\n\nFigure 5.2: Essential qualities of a production-ready workflow.\n\n\n\n\nPolyglot: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.\nModular: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.\nScalable: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.\nReproducible: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.\nPortable: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.\nCommunity: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. This is because developing high-quality components can at times be time-consuming, and sharing resources can help reduce duplication of effort and promote collaboration.\nMaintainable: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/workflows/index.html#technologies-for-production-ready-workflows",
+    "href": "notebooks/workflows/index.html#technologies-for-production-ready-workflows",
+    "title": "5  Workflows",
+    "section": "5.4 Technologies for Production-Ready Workflows",
+    "text": "5.4 Technologies for Production-Ready Workflows\nThe essential qualities of a production-ready workflow are achieved through a combination of enabling technologies (Figure 5.3). These technologies provide the foundation for building scalable, reproducible, and maintainable workflows for single-cell analysis.\n\n\n\n\n\n\nFigure 5.3: The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -143,58 +153,8 @@
     "objectID": "notebooks/workflows/index.html#quality-assessment-of-workflow-frameworks",
     "href": "notebooks/workflows/index.html#quality-assessment-of-workflow-frameworks",
     "title": "5  Workflows",
-    "section": "5.4 Quality Assessment of Workflow Frameworks",
-    "text": "5.4 Quality Assessment of Workflow Frameworks\nGiven the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’re happy to share the preliminary results with you.\nThe data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (Figure 5.2).\n\n\n\n\n\nQuality scores for different workflow frameworks.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
-    ]
-  },
-  {
-    "objectID": "notebooks/workflows/index.html#data-storage",
-    "href": "notebooks/workflows/index.html#data-storage",
-    "title": "5  Workflows",
-    "section": "5.5 Data Storage",
-    "text": "5.5 Data Storage",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
-    ]
-  },
-  {
-    "objectID": "notebooks/workflows/index.html#compute-environments",
-    "href": "notebooks/workflows/index.html#compute-environments",
-    "title": "5  Workflows",
-    "section": "5.6 Compute Environments",
-    "text": "5.6 Compute Environments",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
-    ]
-  },
-  {
-    "objectID": "notebooks/workflows/index.html#containerization",
-    "href": "notebooks/workflows/index.html#containerization",
-    "title": "5  Workflows",
-    "section": "5.7 Containerization",
-    "text": "5.7 Containerization",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
-    ]
-  },
-  {
-    "objectID": "notebooks/workflows/index.html#workflow-management-systems",
-    "href": "notebooks/workflows/index.html#workflow-management-systems",
-    "title": "5  Workflows",
-    "section": "5.8 Workflow Management Systems",
-    "text": "5.8 Workflow Management Systems",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
-    ]
-  },
-  {
-    "objectID": "notebooks/workflows/index.html#best-practices",
-    "href": "notebooks/workflows/index.html#best-practices",
-    "title": "5  Workflows",
-    "section": "5.9 Best Practices",
-    "text": "5.9 Best Practices\n\nFunctional programming",
+    "section": "5.5 Quality Assessment of Workflow Frameworks",
+    "text": "5.5 Quality Assessment of Workflow Frameworks\nGiven the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’re happy to share the preliminary results with you.\nThe data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (Figure 5.2).\n\n5.5.1 Included frameworks\nThe following workflow frameworks were included in the assessment:\n\nNextflow: A domain-specific language for creating scalable and reproducible data analysis pipelines.    \nSnakemake: A workflow management system that uses Python-based rules to define dependencies and execute tasks.    \nGalaxy: A web-based platform for creating, running, and sharing data analysis workflows without the need for programming expertise.    \nViash + Nextflow: A combination of Viash, a tool for defining bioinformatics workflow components, and Nextflow for scalable and reproducible execution.    \nArgo Workflows: A Kubernetes-native workflow engine for orchestrating containerized tasks and automating complex workflows.  \n\n\n\n5.5.2 Quality Assesment Criteria\nThe quality assessment was based on the following criteria:\n\nCommunityMaintainabilityModularityPolyglotPortabilityReproducibilityScalability\n\n\nDoes a library of components exist?:\n\nA library of OSS components is available\nCommunity repository has frequent commits\nCommunity repository has &gt; 10 frequent non-employee commitors\nAre there repositories of OSS workflows available?\n\n\n\nHow easy is it to update, modify, and troubleshoot workflows?:\n\nWorkflows are well-structured and easy to understand.\nFramework supports documenting the interfaces of components and workflows\nVersion control and collaboration features facilitate team-based development.\nComponents can be unit tested\nDocumentation specifies how to unit test components\n\n\n\nHow effectively does the framework promote modular design and reusability?:\n\nSoftware can be easily encapsulated as a modular component.\nComponents have well-defined inputs and outputs.\nComponents can be shared and reused across different workflows.\nThe framework supports dependency management\nThe framework supports versioning of components.\n\n\n\nIs it easy to switch between different programming / scripting language within one workflow?:\n\nCalling a script from another language is possible\nComponents can be written in multiple languages and communicate via a file-based interface\nComponents can be written in multiple languages and communicate via an in-memory data channel\n\n\n\nSupport for various compute platforms:\n\nSupport for AWS Batch\nSupport for Azure Batch\nSupport for Google Cloud\nSupport for Kubernetes\nSupport for Local execution\nSupport for PBS/Torque\nSupport for SLURM\nSupport for additional compute platforms\n\nSupport for various containerization technologies:\n\nSupport for Apptainer\nSupport for Docker\nSupport for Podman\nSupport for additional containerization technologies\n\nSupport for various storage solutions:\n\nAWS S3\nAzure Blob Storage / Files\nGoogle Storage\nHTTPS\nFTP\nSupport for additional storage solutions\n\n\n\nHow effectively does the framework ensure reproducibility of results?:\n\nIndividual components can list their software dependencies\nPer-component containerisation is supported\nExtending images with additional dependencies is supported\nData provenance tracking is built-in or can be easily integrated.\nFramework promotes versioned releases of the workflow software and images to ensure reproducibility\n\n\n\nHow well does the framework handle large and complex workflows?:\n\nThe framework supports asynchronous and distributed execution.\nResource management and optimization features are available.\nPerformance monitoring and profiling tools are provided.\n\n\n\n\nThese criteria and subsequent scores will be further refined and validated as part of our ongoing research.\n\n\n5.5.3 Quality Scores\nThe aggregated quality scores for each framework are shown below. The scores are based on the evaluation of the essential qualities of a production-ready workflow.\n\n\n\n\n\nQuality scores for different workflow frameworks.\n\n\n\n\nRaw scores and detailed explanations behind the reasoning of the resulting scores can be found in the Workflow Quality Assessment Spreadsheet.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
@@ -203,8 +163,8 @@
     "objectID": "notebooks/workflows/index.html#conclusion",
     "href": "notebooks/workflows/index.html#conclusion",
     "title": "5  Workflows",
-    "section": "5.10 Conclusion",
-    "text": "5.10 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. “Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.” Nature Methods 18 (10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
+    "section": "5.6 Conclusion",
+    "text": "5.6 Conclusion\n\n\n\n\nHeumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. “Best Practices for Single-Cell Analysis Across Modalities.” Nature Reviews Genetics 24 (8): 550–72. https://doi.org/10.1038/s41576-023-00586-w.\n\n\nWratten, Laura, Andreas Wilm, and Jonathan Göke. 2021. “Reproducible, Scalable, and Shareable Analysis Pipelines with Bioinformatics Workflow Managers.” Nature Methods 18 (10): 1161–68. https://doi.org/10.1038/s41592-021-01254-9.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflows</span>"
     ]
