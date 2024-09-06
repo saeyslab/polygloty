@@ -7,32 +7,25 @@ Single-cell analysis has revolutionized our understanding of cellular heterogene
 
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
 
-**Productionization** is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
+## Productionization
+
+Productionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
 
 ![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](figures/productionization.svg){#fig-productionization}
 
-In this chapter, we'll delve into the key components and considerations involved in building production-ready multi-language single-cell analysis workflows. We'll explore essential elements such as data storage, compute environments, containerization, workflow management systems, and best practices for reproducibility. By the end of this chapter, you'll have an understanding of the tools and strategies needed to create robust and scalable workflows for single-cell analysis (or any other data-intensive domain).
+### But how to ensure that your workflow is production-ready? {.unnumbered}
 
+In this chapter, we will explore:
 
-## Qualities of a Production-Ready Workflow
-
-Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
-
-![Essential qualities of a production-ready workflow.](figures/qualities.svg){#fig-qualities}
-
-* **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
-* **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
-* **Scalable**: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.
-* **Reproducible**: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.
-* **Portable**: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.
-* **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
-* **Community**: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. Engaging with the scientific community, contributing to open-source projects, and adopting community-driven standards can enhance the quality and impact of your workflow.
+* **Key qualities** of workflows built to stand the test of time
+* Which **technologies and workflow frameworks** contribute to these qualities
+* **Best practices** to keep in mind during development
 
 
 ## Review of Workflow Frameworks
 
 [A lot of different workflow frameworks exist](https://github.com/pditommaso/awesome-pipeline), and there are a lot of factors to consider when choosing the right one for your project.
-@Wratten2021 conducted a review of popular workflow managers for bioinformatics, evaluating them based on several key aspects, including ease of use, expressiveness, portability, scalability, and learning resources ([@tbl-strengths]). The accompanying [GitHub repository](https://github.com/GoekeLab/bioinformatics-workflows) is especially interesting, which contains proof-of-concept implementations of the same RNA-seq workflow in different workflow frameworks, allowing for a direct comparison of their expressiveness and ease of use.
+@Wratten2021 conducted a review of popular workflow managers for bioinformatics, evaluating them based on several key aspects, including ease of use, expressiveness, portability, scalability, and learning resources ([@tbl-strengths]).
 
 
 | Tool | Class | Ease of use | Expressiveness | Portability | Scalability | Learning resources | Pipeline initiatives |
@@ -52,7 +45,191 @@ Building production-ready workflows for single-cell analysis involves integratin
 
 : Overview of workflow managers for bioinformatics [@Wratten2021]. {#tbl-strengths}
 
-However, the [Supplementary Table](https://static-content.springer.com/esm/art%3A10.1038%2Fs41592-021-01254-9/MediaObjects/41592_2021_1254_MOESM2_ESM.xlsx) shows that the comparison in [@tbl-strengths] was rather limited, since the score of each category was only based on a single criterion. The criteria were defined as follows:
+Even more interesting is the accompanying GitHub repository ([GoekeLab/bioinformatics-workflows](https://github.com/GoekeLab/bioinformatics-workflows)), which contains a **Proof of Concept (PoC) RNA-seq workflow** implemented in the different workflow frameworks. These implementations were contributed and reviewed by the **developers of the respective frameworks** themselves!
+
+![Wow! ;)](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDZ0bmhuNmx1c3Y4dmUzNDUwZTdrM3dwdHk3MXVjcXVtZnlrYzQ2cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J87jeioCWcipG/giphy.webp){}
+
+Looking at these implementations, at first glance, one would think that the differences between the frameworks are minimal, and that the choice of framework is mostly a matter of personal preference.
+
+### Comparing PoC Workflows to Community-Made Modules
+
+However, comparing the POC workflows (_left_) to community-made modules (_right_), it becomes clear that **creating production-ready components** requires a lot more than **specifying a command's input and output files**.
+
+
+:::{.column-page}
+
+#### Nextflow
+
+:::{.grid}
+
+:::{.g-col-5}
+
+Wratten et al. 2021 PoC ([Source](https://github.com/GoekeLab/bioinformatics-workflows/tree/master/nextflow)):
+
+:::{.panel-tabset}
+
+## `main.nf`
+
+```{embed lang="groovy"}
+examples/nextflow/wratten2021_poc/main.nf
+```
+
+:::
+
+:::
+
+:::{.g-col-7}
+
+nf-core ([Source](https://github.com/nf-core/modules/tree/master/modules/nf-core/fastqc)):
+
+:::{.panel-tabset}
+
+## `environment.yml`
+
+```{embed lang="yaml"}
+examples/nextflow/nf-core/environment.yml
+```
+
+## `main.nf`
+
+```{embed lang="groovy"}
+examples/nextflow/nf-core/main.nf
+```
+
+## `meta.yaml`
+
+```{embed lang="yaml"}
+examples/nextflow/nf-core/meta.yml
+```
+
+## `tests/main.nf.test`
+
+```{embed lang="groovy"}
+examples/nextflow/nf-core/tests/main.nf.test
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+
+:::{.column-page}
+
+#### Snakemake
+
+:::{.grid}
+
+:::{.g-col-5}
+
+Wratten et al. 2021 PoC ([Source](https://github.com/GoekeLab/bioinformatics-workflows/tree/master/snakemake)):
+
+:::{.panel-tabset}
+
+## `fastqc.smk`
+
+```{embed lang="python"}
+examples/snakemake/wratten2021_poc/fastqc.smk
+```
+
+:::
+
+:::
+
+:::{.g-col-7}
+
+snakemake-wrappers ([Source](https://github.com/snakemake/snakemake-wrappers/tree/master/bio/fastqc)):
+
+:::{.panel-tabset}
+
+## `environment.yaml`
+
+```{embed lang="yaml"}
+examples/snakemake/snakemake-wrappers/environment.yaml
+```
+
+## `meta.yaml`
+
+```{embed lang="yaml"}
+examples/snakemake/snakemake-wrappers/meta.yaml
+```
+
+## `wrapper.py`
+
+```{embed lang="python"}
+examples/snakemake/snakemake-wrappers/wrapper.py
+```
+
+## `test/Snakefile`
+
+```{embed lang="python"}
+examples/snakemake/snakemake-wrappers/test/Snakefile
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+:::{.column-page}
+
+#### Toil + WDL
+
+:::{.grid}
+
+:::{.g-col-5}
+
+Wratten et al. 2021 PoC ([Source](https://github.com/GoekeLab/bioinformatics-workflows/tree/master/wdl)):
+
+:::{.panel-tabset}
+
+## `fastqc.wdl`
+
+```{embed lang="bash"}
+examples/wdl/wratten2021_poc/fastqc.wdl
+```
+
+:::
+
+:::
+
+:::{.g-col-7}
+
+BioWDL ([Source](https://github.com/biowdl/tasks/blob/develop/fastqc.wdl)):
+
+:::{.panel-tabset}
+
+## `fastqc.wdl` (Excerpt)
+
+```{embed lang="bash"}
+examples/wdl/biowdl/fastqc.wdl
+```
+
+## `fastqc.wdl` (Full)
+
+```{embed lang="bash"}
+examples/wdl/biowdl/fastqc_full.wdl
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+### Limitations of the study
+
+However, the [Supplementary Table](https://static-content.springer.com/esm/art%3A10.1038%2Fs41592-021-01254-9/MediaObjects/41592_2021_1254_MOESM2_ESM.xlsx) shows that the comparison in [@tbl-strengths] was rather limited, since the score of each category was only based on a single criterion. Of the following categories, only "Scalability" was determined by more than one criterion:
 
 * **Ease of Use**: Graphical interface with execution environment (score of 3), programming interface with in-built execution environment (score of 2), separated development and execution environment (score of 1).
 * **Expressiveness**: Based on an existing programming language (3) or a new language or restricted vocabulary (2), primary interaction with graphical user interface (1).
@@ -61,11 +238,36 @@ However, the [Supplementary Table](https://static-content.springer.com/esm/art%3
 * **Learning resources**: Official tutorials, forums and events (3), tutorials and forums (2), tutorials or forums (1).
 * **Pipelines Initiatives**: Community and curated (3), community or curated (2), not community or curated (1).
 
-Only the "Scalability" score was determined by more than one criterion.
+By comparing the example code of the respective workflow frameworks, it also becomes clear that we need not only look at example code of POC workflows, but actual production-ready workflows and pipelines. Such code often require a lot more functionality, including:
+
+* Error handling
+* Logging
+* Data provenance
+* Parameterization
+* Testing
+* Documentation
+* Containerization
+* Resource management
+
+
+## Qualities of a Production-Ready Workflow
+
+Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
+
+![Essential qualities of a production-ready workflow.](figures/qualities.svg){#fig-qualities}
+
+* **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
+* **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
+* **Scalable**: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.
+* **Reproducible**: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.
+* **Portable**: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.
+* **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
+* **Community**: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. This is because developing high-quality components can at times be time-consuming, and sharing resources can help reduce duplication of effort and promote collaboration.
+
 
 ## Quality Assessment of Workflow Frameworks
 
-Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we've already collected some data on the quality of different workflow frameworks. 
+Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we're happy to share the preliminary results with you.
 
 The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section ([@fig-qualities]).
 
@@ -189,5 +391,8 @@ ggplot(agg) +
 
 
 ## Best Practices
+
+* Functional programming
+*
 
 ## Conclusion
