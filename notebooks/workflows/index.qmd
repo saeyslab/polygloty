@@ -25,13 +25,14 @@ Building production-ready workflows for single-cell analysis involves integratin
 * **Scalable**: Single-cell datasets can be massive, and a production-ready workflow should be able to handle large volumes of data efficiently. This involves utilizing scalable compute environments, optimizing data storage and retrieval, and implementing parallelization strategies to accelerate analysis.
 * **Reproducible**: Ensuring reproducibility is crucial for scientific rigor and validation. A production-ready workflow should capture all the necessary information, including code, data, parameters, and software environments, to enable others to replicate the analysis and obtain consistent results.
 * **Portable**: The workflow should be designed to run seamlessly across different computing platforms and environments, promoting accessibility and collaboration. Containerization technologies like Docker can help achieve portability by encapsulating the workflow and its dependencies into a self-contained unit.
-* **Automated**: Automating routine tasks and data processing steps reduces manual intervention, minimizes errors, and improves efficiency. Workflow management systems can automate the execution of complex pipelines, handling dependencies, parallelization, and error recovery.
 * **Maintainable**: A production-ready workflow should be well-documented, organized, and easy to understand, facilitating updates, modifications, and troubleshooting. Clear documentation of code, data, and parameters ensures that the workflow remains accessible and usable over time.
+* **Community**: Leveraging community resources, tools, and best practices can accelerate the development of production-ready workflows. Engaging with the scientific community, contributing to open-source projects, and adopting community-driven standards can enhance the quality and impact of your workflow.
 
 
-## Key components
+## Review of Workflow Frameworks
 
-[A lot of different workflow frameworks exist](https://github.com/pditommaso/awesome-pipeline), and there are a lot of factors to consider when choosing the right one for your project. The table below provides an overview of some popular workflow managers for bioinformatics, highlighting some of their strengths and weaknesses  ([@tbl-strengths]).
+[A lot of different workflow frameworks exist](https://github.com/pditommaso/awesome-pipeline), and there are a lot of factors to consider when choosing the right one for your project.
+@Wratten2021 conducted a review of popular workflow managers for bioinformatics, evaluating them based on several key aspects, including ease of use, expressiveness, portability, scalability, and learning resources ([@tbl-strengths]). The accompanying [GitHub repository](https://github.com/GoekeLab/bioinformatics-workflows) is especially interesting, which contains proof-of-concept implementations of the same RNA-seq workflow in different workflow frameworks, allowing for a direct comparison of their expressiveness and ease of use.
 
 
 | Tool | Class | Ease of use | Expressiveness | Portability | Scalability | Learning resources | Pipeline initiatives |
@@ -50,6 +51,23 @@ Building production-ready workflows for single-cell analysis involves integratin
 | Toil + CWL/WDL/Python | Execution + workflow specification | ●○○ | ●●● | ●◐○ | ●●● | ●●○ | ●●○ |
 
 : Overview of workflow managers for bioinformatics [@Wratten2021]. {#tbl-strengths}
+
+However, the [Supplementary Table](https://static-content.springer.com/esm/art%3A10.1038%2Fs41592-021-01254-9/MediaObjects/41592_2021_1254_MOESM2_ESM.xlsx) shows that the comparison in [@tbl-strengths] was rather limited, since the score of each category was only based on a single criterion. The criteria were defined as follows:
+
+* **Ease of Use**: Graphical interface with execution environment (score of 3), programming interface with in-built execution environment (score of 2), separated development and execution environment (score of 1).
+* **Expressiveness**: Based on an existing programming language (3) or a new language or restricted vocabulary (2), primary interaction with graphical user interface (1).
+* **Portability**:  Integration with three or more container and package manager platforms (3), two platforms are supported (2), one platform is supported (1).
+* **Scalability**: Considers cloud support, scheduler and orchestration tool integration, and executor support. Please refer to Supplementary Table 1 - Sheet 2 (Scalability).
+* **Learning resources**: Official tutorials, forums and events (3), tutorials and forums (2), tutorials or forums (1).
+* **Pipelines Initiatives**: Community and curated (3), community or curated (2), not community or curated (1).
+
+Only the "Scalability" score was determined by more than one criterion.
+
+## Quality Assessment of Workflow Frameworks
+
+Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we've already collected some data on the quality of different workflow frameworks. 
+
+The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section ([@fig-qualities]).
 
 ```{r tibble, echo=FALSE, eval=FALSE}
 library(tibble)
@@ -129,7 +147,8 @@ write.csv(wf_aggregated_scores, "notebooks/workflows/data/wf_aggregated_scores.c
 ```
 
 
-```{r plot_scores}
+
+```{r plot_scores, echo=FALSE}
 #| fig-cap: Quality scores for different workflow frameworks. 
 #| fig-format: svg
 library(ggplot2)
