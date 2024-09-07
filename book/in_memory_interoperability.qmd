@@ -93,6 +93,7 @@ with anndata2ri.converter.context():
 
 
 ## Reticulate: basic functionality
+Reticulate is a foreign function interface in R to Python.
 
 ## Interactive sessions
 One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
@@ -199,3 +200,76 @@ with (robjects.default_converter + pandas2ri.converter).context():
 
 ### Usecase: ran in R
 
+```{r read_in}
+library(anndata)
+
+adata_path <- "notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata <- anndata::read_h5ad(adata_path)
+```
+
+Subset to a single small molecule and control for computational efficiency:
+
+```{r select_sm_celltype}
+library(dplyr)
+
+sm_name <- "Belinostat"
+control_name <- "Dimethyl Sulfoxide"
+
+# subset obs
+adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), adata$var$highly_variable]
+```
+
+## 4. Compute pseudobulk
+
+```{r import_pandas}
+library(reticulate)
+pd <- import("pandas", convert = FALSE)
+
+counts <- as.matrix(adata$X)
+```
+
+Combine data in a single data frame and compute pseudobulk
+
+```{r compute_pseudobulk}
+
+combined <- pd$DataFrame(
+  counts,
+  index = adata$obs["plate_well_celltype_reannotated"],
+  columns = adata$var_names
+)
+
+cr <- py_to_r(combined)
+
+# we lost the rownames
+rownames(cr) <- adata$obs_names
+cr["celltype"] <- adata$obs["plate_well_celltype_reannotated"]
+
+pb_X <- group_by(cr, celltype) %>% summarise(across(where(is.numeric), sum))
+```
+
+Construct obs for pseudobulk. Use 'plate_well_celltype_reannotated' as index and make sure to retain the columns 'sm_name', 'cell_type', and 'plate_name':
+
+```{r pb_obs}
+pb_obs <- adata$obs[c("sm_name", "cell_type", "plate_name", "well", "plate_well_celltype_reannotated")]
+pb_obs <- pb_obs[!duplicated(pb_obs), ]
+```
+
+Create AnnData object:
+
+```{r pb_anndata}
+select_X <- pb_X[pb_X$celltype %in% pb_obs$plate_well_celltype_reannotated, ]
+select_X <- select_X %>% select(-"celltype")
+
+pb_adata <- anndata::AnnData(
+  X = select_X,
+  obs = pb_obs,
+  var = adata$var
+)
+```
+
+Store to disk:
+
+```{r store_pseudobulk}
+write_h5ad(pb_adata, "notebooks/usecase_data/pseudobulk.h5ad")
+
+```
