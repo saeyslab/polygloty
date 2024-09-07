@@ -54,18 +54,21 @@ pixi r render_slides
 
 ## renv
 
-I'm currently experiencing issues with getting `pixi` to install `rpy2`. As a temporary workaround, I'm using `renv` to manage the R dependencies. 
+I'm currently experiencing issues with getting `pixi` to install `rpy2`. As a temporary workaround, I'm using `renv` to manage the R dependencies.
 
 ### First time setup
 
-To install the R and Python dependencies, use the following command:
+To install the R and Python dependencies, use the following command. Start a new R session with `R` or run within `RStudio`:
 
 ```R
 install.packages("renv")
 renv::restore()
 ```
 
+On MacOS ARM, you will need [extra configuration](https://firas.io/posts/r_macos/) and patience to be able to build some of the packages.
+
 ### Adding new packages
+
 If you want to install a new R package, use the following command:
 
 ```R
@@ -93,3 +96,49 @@ To use the environment, use the following command:
 source renv/python/virtualenvs/renv-python-3.12/bin/activate
 quarto preview
 ```
+
+Or to render the slides:
+
+```bash
+source renv/python/virtualenvs/renv-python-3.12/bin/activate
+quarto render
+```
+
+## Pixi and Docker
+
+Environment creation support for Pixi on Windows and MacOS ARM is currently limited for R packages. Only Linux and Docker are supported for the full pipeline.
+
+### Linux
+
+To run the pipeline on Linux, use the following command:
+
+```bash
+pixi run pipeline
+```
+
+### Docker
+
+To run the pipeline with Docker, use the following command. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the usecase_data/ and scripts/ folders are mounted to the Docker container, so you can edit the scripts and access the data.
+
+```bash
+docker pull berombau/polygloty-docker:latest
+docker run -it -v $(pwd)/usecase_data:/app/usecase_data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+```
+
+### Extra: building the Docker image yourself
+
+To edit and build the Docker image yourself, use can use the following command.:
+
+```bash
+docker build -t polygloty-docker .
+docker run -it -v $(pwd)/usecase_data:/app/usecase_data -v $(pwd)/scripts:/app/scripts polygloty-docker pixi run pipeline
+```
+
+To publish it to Docker Hub, use the following command:
+
+```bash
+docker login
+docker buildx build --push --platform linux/amd64,linux/arm64 --tag berombau/polygloty-docker:latest .
+```
+
+More info on Pixi and Docker can be found [here](https://github.com/prefix-dev/pixi-docker).
