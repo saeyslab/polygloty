@@ -3,8 +3,6 @@ title: Workflows
 author: Robrecht Cannoodt, Data Intuitive
 ---
 
-Single-cell analysis has revolutionized our understanding of cellular heterogeneity and complex biological processes. However, this cutting-edge field often demands the use of multiple programming languages and frameworks, each with its strengths and specialized tools [@Heumos2023]. This polyglot approach, while powerful, introduces significant technical challenges in terms of interoperability, usability, and reproducibility.
-
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
 
 ## Productionization

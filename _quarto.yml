@@ -14,11 +14,11 @@ book:
   repo-actions: [edit, issue, source]
   chapters:
     - index.qmd
-    - book/intro.qmd
+    - book/introduction.qmd
     - book/usecase/index.qmd
-    - book/file_formats.qmd
-    - book/in_memory.qmd
-    - book/workflows/index.qmd
+    - book/in_memory_interoperability.qmd
+    - book/on_disk_interoperability.qmd
+    - book/workflow_frameworks/index.qmd
     - book/book_slides.qmd
     - book/references.qmd
 

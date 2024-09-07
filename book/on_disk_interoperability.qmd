@@ -1,15 +1,27 @@
 ---
-title: "WIP: In memory interoperability (Python side)"
+title: On-disk interoperability
 engine: knitr
 ---
 
+Data format based interoperability
 
-# anndataR
+1. h5ad / zarr / Apache Arrow
+2. Reading and writing these formats
 
-Calling python from R and vice versa
+## Setup
 
-1. rpy2 & reticulate
-2. How to do this in jupyter notebooks and rmarkdown scripts
+```{python}
+import anndata
+import numpy
+import scanpy
+```
+
+```{python}
+anndata.__version__
+```
+
+
+## anndataR
 
 ```{r}
 library(anndataR)
