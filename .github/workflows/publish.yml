@@ -26,13 +26,6 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Cache usecase_data
-        uses: actions/cache@v2
-        with:
-          path: |
-            book/usecase/data
-          key: usecase_data_${{ runner.os }}
         
       - name: Make sure data is available
         run: |
@@ -46,15 +39,18 @@ jobs:
       - name: Set up renv
         uses: r-lib/actions/setup-renv@v2
 
-      - name: Cache _freeze
+      - name: Cache certain directories to speed up build
         uses: actions/cache@v2
         with:
           path: |
-            _freeze
-          key: renv_${{ runner.os }}
+            book/usecase/data
+          key: quarto_cache_${{ github.ref_name }}
+          restore-keys: |
+            quarto_cache_main
       
-      - name: Render slides
+      - name: Render book
         run: |
+          Rescript -e "renv::restore()"
           source renv/python/virtualenvs/renv-python-3.12/bin/activate
           quarto render
 
