@@ -1,0 +1,12 @@
+/slides/
+/notebooks/
+/renv/
+/.pixi/
+/.quarto/
+/_freeze/
+/_book/
+/_site/
+/site_libs/
+*.html
+*.DS_Store
+/usecase_data/

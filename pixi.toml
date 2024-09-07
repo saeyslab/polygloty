@@ -1,0 +1,48 @@
+# See https://pixi.sh/latest/ on how to get started with Pixi to create your enviroment
+
+[project]
+name = "polygloty"
+version = "0.1.0"
+description = "Workshop code for Polyglot programming for single-cell analysis"
+authors = [
+    "Benjamin Rombaut <benjamin.rombaut@gmail.com>",
+    "Louise Deconinck <louise.deconinck@gmail.com>",
+    "Robrecht Cannoodt <robrecht@cannoodt.dev>",
+]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64", "linux-aarch64"]
+
+# Environments
+[environments]
+bash = { features = ["bash"] }
+scverse = { features = ["scverse"] }
+rverse = { features = ["rverse"] }
+
+# These are Conda dependencies and will be installed by Pixi
+[dependencies]
+hdf5 = ">=1.14.3,<2"
+
+[tasks]
+pipeline = { depends-on = ["load_data", "compute_pseudobulk", "analysis_de"] }
+
+[feature.scverse.dependencies]
+anndata = "0.10.9"
+pandas = "*"
+[feature.scverse.tasks]
+compute_pseudobulk = "python scripts/2_compute_pseudobulk.py"
+
+[feature.bash.dependencies]
+awscli = "*"
+[feature.bash.tasks]
+load_data = "bash scripts/1_load_data.sh"
+
+[feature.rverse]
+activation = {scripts = ["scripts/setup.sh"]} # Custom install script to also support ARM macOS
+tasks = { analysis_de = "Rscript --no-init-file scripts/3_analysis_de.R" } # avoid loading the .Rprofile file
+[feature.rverse.dependencies]
+r = ">=4.1,<5"
+r-devtools = ">=2.4.5,<3"
+r-biocmanager = ">=1.30.25,<2"
+r-dplyr = ">=1.1.4,<2"
+r-anndata = ">=0.7.5.4,<0.8"
+bioconductor-deseq2 = ">=1.32.0,<2"
