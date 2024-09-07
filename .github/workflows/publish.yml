@@ -43,8 +43,6 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            _freeze
-            .quarto
             book/usecase/data
           key: quarto_cache_${{ github.ref_name }}
           restore-keys: |
