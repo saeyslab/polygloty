@@ -201,9 +201,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#different-files" id="toc-different-files" class="nav-link active" data-scroll-target="#different-files"><span class="header-section-number">4.1</span> Different files</a></li>
+  <li><a href="#different-file-formats" id="toc-different-file-formats" class="nav-link active" data-scroll-target="#different-file-formats"><span class="header-section-number">4.1</span> Different file formats</a>
+  <ul class="collapse">
+  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes"><span class="header-section-number">4.1.1</span> Dataframes</a></li>
+  <li><a href="#n-dimensional-arrays" id="toc-n-dimensional-arrays" class="nav-link" data-scroll-target="#n-dimensional-arrays"><span class="header-section-number">4.1.2</span> n-dimensional arrays</a></li>
+  </ul></li>
   <li><a href="#different-on-disk-pipelines" id="toc-different-on-disk-pipelines" class="nav-link" data-scroll-target="#different-on-disk-pipelines"><span class="header-section-number">4.2</span> Different on-disk pipelines</a></li>
-  <li><a href="#notebook-pipelines" id="toc-notebook-pipelines" class="nav-link" data-scroll-target="#notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</a></li>
+  <li><a href="#notebook-pipelines" id="toc-notebook-pipelines" class="nav-link" data-scroll-target="#notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</a>
+  <ul class="collapse">
+  <li><a href="#execute-notebooks-via-the-cli" id="toc-execute-notebooks-via-the-cli" class="nav-link" data-scroll-target="#execute-notebooks-via-the-cli"><span class="header-section-number">4.3.1</span> Execute notebooks via the CLI</a></li>
+  </ul></li>
   <li><a href="#script-pipelines" id="toc-script-pipelines" class="nav-link" data-scroll-target="#script-pipelines"><span class="header-section-number">4.4</span> Script pipelines</a>
   <ul class="collapse">
   <li><a href="#calling-scripts-in-the-same-environment" id="toc-calling-scripts-in-the-same-environment" class="nav-link" data-scroll-target="#calling-scripts-in-the-same-environment"><span class="header-section-number">4.4.1</span> Calling scripts in the same environment</a></li>
@@ -238,24 +245,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The upside of this approach is that it is relatively simple as the scripts are mostly unchanged, only prepended with a reading operation and appended with writing operation. Each script can be written and tested independently in their suitable respective frameworks. This modular polyglotism of on-disk interoperability is one of the key strengths of workflow languages like Nextflow and Snakemake.</p>
 <p>The downside is that it can lead to increased storage requirements and I/O overhead which grows with the amount of scripts. As disk serialization and deserialization can be much slower than memory operations, this SerDe problem can become a problem for very large datasets.</p>
 <p>Debugging is only possible for individual scripts and the workflow in not as interactive and explorative as the in-memory approach.</p>
-<section id="different-files" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="different-files"><span class="header-section-number">4.1</span> Different files</h2>
-<p>Data format based interoperability</p>
-<ol type="1">
-<li>h5ad / zarr / Apache Arrow</li>
-<li>Reading and writing these formats</li>
-</ol>
-<p>TODO: comparison table</p>
+<section id="different-file-formats" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="different-file-formats"><span class="header-section-number">4.1</span> Different file formats</h2>
+<p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable. Older versions of the language could also have problems reading in serialized objects created by the latest language version.</p>
+<p>For a file format to be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
+<section id="dataframes" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">4.1.1</span> Dataframes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File Format</th>
+<th>Support in Python</th>
+<th>Support in R</th>
+<th>Text-Based</th>
+<th>Binary</th>
+<th>High-Performance</th>
+<th>Ease-of-Use</th>
+<th>Compression</th>
+<th>Suitable for Single-Cell</th>
+<th>Suitable for Spatial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>High</td>
+<td>No</td>
+<td>Limited</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>JSON</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Medium</td>
+<td>No</td>
+<td>Limited</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Parquet</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>High</td>
+<td>Yes</td>
+<td>Limited</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Feather</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>High</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>HDF5</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Limited</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="n-dimensional-arrays" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="n-dimensional-arrays"><span class="header-section-number">4.1.2</span> n-dimensional arrays</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File Format</th>
+<th>Support in Python</th>
+<th>Support in R</th>
+<th>Text-Based</th>
+<th>Binary</th>
+<th>High-Performance</th>
+<th>Ease-of-Use</th>
+<th>Compression</th>
+<th>Suitable for Single-Cell</th>
+<th>Suitable for Spatial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>h5ad</td>
+<td>Yes</td>
+<td>Limited</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Zarr</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>NumPy (npy)</td>
+<td>Yes</td>
+<td>Limited</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>High</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>NetCDF</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>TIFF</td>
+<td>Yes</td>
+<td>Limited</td>
+<td>No</td>
+<td>Yes</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="different-on-disk-pipelines" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="different-on-disk-pipelines"><span class="header-section-number">4.2</span> Different on-disk pipelines</h2>
 <p>You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.</p>
-<p>TODO: compare notebook and script pipelines</p>
+<p>Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.</p>
+<p>The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.</p>
+<p>Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.</p>
 </section>
 <section id="notebook-pipelines" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</h2>
-<p>TODO: talk about Quarto, nb and papermill</p>
+<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. Our <a href="./usecase/">Use-case chapter</a> is one example of this.</p>
+<p>For example, [Papermill]https://github.com/nteract/papermill) can execute Jupyter notebooks in sequence and pass variables between them. <a href="https://github.com/ploomber/ploomber">Ploomber</a> is another example.</p>
+<section id="execute-notebooks-via-the-cli" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">4.3.1</span> Execute notebooks via the CLI</h3>
+<p>Jupyter via <a href="https://nbconvert.readthedocs.io/en/latest/#">nbconvert</a>.:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> notebook <span class="at">--execute</span> my_notebook.ipynb <span class="at">--allow-errors</span> <span class="at">--output-dir</span> outputs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://rmarkdown.rstudio.com/">RMarkdown</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="script-pipelines" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="script-pipelines"><span class="header-section-number">4.4</span> Script pipelines</h2>
@@ -263,21 +461,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="calling-scripts-in-the-same-environment"><span class="header-section-number">4.4.1</span> Calling scripts in the same environment</h3>
 <p>TODO: test these snippets</p>
 <p>From Bash:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From R:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"bash scripts/1_load_data.sh"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_plot_results.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"bash scripts/1_load_data.sh"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_plot_results.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From Python:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"bash scripts/1_load_data.sh"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_plot_results.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"bash scripts/1_load_data.sh"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_plot_results.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="calling-scripts-in-different-environments" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="calling-scripts-in-different-environments"><span class="header-section-number">4.4.2</span> Calling scripts in different environments</h3>
@@ -285,14 +483,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can interleave your Bash script with environment activation functions e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires a <code>conda .yaml</code> file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
 <p>Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the <a href="https://pixi.sh/latest/">Pixi package managment tool</a> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
 <p>Run scripts in different environments with <code>pixi</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase_data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase_data:/app/usecase_data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase_data:/app/usecase_data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
