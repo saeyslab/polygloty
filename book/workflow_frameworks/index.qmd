@@ -476,106 +476,101 @@ In the following sections, we will explore the use of [Viash](https://viash.io).
 Use case components:
 
 
-#### Bash
+### Bash
 
-:::{.grid}
+Path: `src/load_data`
 
-:::{.g-col-6}
+:::{.panel-tabset}
 
-`src/load_data/config.vsh.yaml`:
+#### `config.vsh.yaml` {.unnumbered}
 
 ```{embed lang="yaml"}
 examples/viash_nextflow/src/load_data/config.vsh.yaml
 ```
 
-:::
-
-:::{.g-col-6}
-
-`src/load_data/script.sh`:
+#### `script.sh` {.unnumbered}
 
 ```{embed lang="bash"}
 examples/viash_nextflow/src/load_data/script.sh
 ```
 
-:::
+#### `test.sh` {.unnumbered}
+
+```{embed lang="bash"}
+examples/viash_nextflow/src/load_data/test.sh
+```
 
 :::
 
-#### Python
+### Python
 
-:::{.grid}
+Path: `src/subset_obs`
 
-:::{.g-col-6}
+:::{.panel-tabset}
 
-`src/subset_obs/config.vsh.yaml`:
+#### `config.vsh.yaml` {.unnumbered}
 
 ```{embed lang="yaml"}
 examples/viash_nextflow/src/subset_obs/config.vsh.yaml
 ```
 
-:::
-
-:::{.g-col-6}
-
-`src/subset_obs/script.py`:
+#### `script.py` {.unnumbered}
 
 ```{embed lang="python"}
 examples/viash_nextflow/src/subset_obs/script.py
 ```
 
-:::
+#### `test.py` {.unnumbered}
+
+```{embed lang="python"}
+examples/viash_nextflow/src/subset_obs/test.py
+```
 
 :::
 
-#### R
+### R
 
-:::{.grid}
+Path: `src/differential_expression`
 
-:::{.g-col-6}
+:::{.panel-tabset}
 
-`src/differential_expression/config.vsh.yaml`:
+#### `config.vsh.yaml` {.unnumbered}
 
 ```{embed lang="yaml"}
 examples/viash_nextflow/src/differential_expression/config.vsh.yaml
 ```
 
-:::
+#### `script.R` {.unnumbered}
 
-:::{.g-col-6}
-
-`src/differential_expression/script.R`:
 ```{embed lang="r"}
 examples/viash_nextflow/src/differential_expression/script.R
 ```
 
-:::
+#### `test.R` {.unnumbered}
+
+```{embed lang="r"}
+examples/viash_nextflow/src/differential_expression/test.R
+```
 
 :::
 
-#### Nextflow
+### Nextflow
 
-:::{.grid}
+Path: `src/workflow`
 
-:::{.g-col-6}
+:::{.panel-tabset}
 
-`src/workflow/config.vsh.yaml`:
+#### `config.vsh.yaml` {.unnumbered}
 
 ```{embed lang="yaml"}
 examples/viash_nextflow/src/workflow/config.vsh.yaml
 ```
 
-:::
-
-:::{.g-col-6}
-
-`src/workflow/main.nf`:
+#### `main.nf` {.unnumbered}
 
 ```{embed lang="groovy"}
 examples/viash_nextflow/src/workflow/main.nf
 ```
-
-:::
 
 :::
 
@@ -633,6 +628,8 @@ nextflow run \
     Succeeded   : 6
 
 The workflow will process the dataset, subset the data, compute pseudobulk samples, and perform differential expression analysis. The results will be saved in the `output` directory.
+
+### Workflow Output
 
 ```bash
 tree output
