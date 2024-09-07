@@ -21,9 +21,9 @@ Furthermore, work is not done after the initial port -- in order for the researc
 Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.
 
 
-## File-based Interoperability
+## Disk-based Interoperability
 
-Storing intermediate results in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.
+Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.
 
 ## Workflow Frameworks
 
