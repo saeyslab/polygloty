@@ -1,5 +1,5 @@
 ---
-title: In memory interoperability (from Python)
+title: In-memory interoperability
 engine: knitr
 ---
 
@@ -13,7 +13,7 @@ Read in the anndata object
 ```{python}
 import anndata as ad
 
-adata_path = "usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata_path = "usecase/data/sc_counts_reannotated_with_counts.h5ad"
 adata = ad.read_h5ad(adata_path)
 ```
 
@@ -54,7 +54,7 @@ We will perform the Compute DE step not in R, but in Python
 ```{python load_data}
 import anndata as ad
 
-pd_adata = ad.read_h5ad("usecase_data/pseudobulk.h5ad")
+pd_adata = ad.read_h5ad("usecase/data/pseudobulk.h5ad")
 ```
 
 Select small molecule and control:
@@ -153,6 +153,6 @@ Write to disk:
 with (robjects.default_converter + pandas2ri.converter).context():
     res_pd = robjects.conversion.get_conversion().rpy2py(res)
 
-    res_pd.to_csv("usecase_data/de_contrasts.csv")
+    res_pd.to_csv("usecase/data/de_contrasts.csv")
 ```
 

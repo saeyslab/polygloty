@@ -1,0 +1,90 @@
+---
+title: In memory interoperability (from R)
+engine: knitr
+---
+
+There are multiple ways to 
+
+In this notebook, we will showcase how to call Python code from R
+
+Make sure you have downloaded the data.
+
+Read in the anndata object
+```{r read_in}
+library(anndata)
+
+adata_path <- "notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata <- anndata::read_h5ad(adata_path)
+```
+
+```{r read_no_anndata}
+# library(anndataR)
+# do things?
+```
+
+
+# Usecase
+
+## 3. Subset data
+
+Subset to a single small molecule and control for computational efficiency:
+
+```{r select_sm_celltype}
+library(dplyr)
+
+sm_name2 <- "Belinostat"
+control_name <- "Dimethyl Sulfoxide"
+
+# subset obs
+adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), ]
+```
+
+## 4. Compute pseudobulk
+
+```{r import_pandas}
+library(reticulate)
+pd <- import("pandas")
+```
+
+Combine data in a single data frame and compute pseudobulk
+
+```{r compute_pseudobulk}
+
+combined <- pd$DataFrame(
+  adata$X,
+  index = adata$obs["plate_well_celltype_reannotated"],
+  columns = adata$var_names
+)
+# this is automatically converted to an r dataframe
+
+# combined = pd.DataFrame(
+#   adata.X.toarray(),
+#   index=adata.obs["plate_well_celltype_reannotated"],
+# )
+# combined.columns = adata.var_names
+# pb_X = combined.groupby(level=0).sum()
+```
+
+Construct obs for pseudobulk. Use 'plate_well_celltype_reannotated' as index and make sure to retain the columns 'sm_name', 'cell_type', and 'plate_name':
+
+```{python pb_obs}
+pb_obs = adata.obs[["sm_name", "cell_type", "plate_name", "well"]].copy()
+pb_obs.index = adata.obs["plate_well_celltype_reannotated"]
+pb_obs = pb_obs.drop_duplicates()
+```
+
+Create AnnData object:
+
+```{python pb_adata}
+pb_adata = ad.AnnData(
+  X=pb_X.loc[pb_obs.index].values,
+  obs=pb_obs,
+  var=adata.var,
+)
+```
+
+Store to disk:
+
+```{python store_pseudobulk}
+pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
+```
