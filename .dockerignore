@@ -10,3 +10,4 @@
 *.html
 *.DS_Store
 /usecase_data/
+/usecase/data/
