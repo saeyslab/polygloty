@@ -16,7 +16,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-
       - name: Set up specific version of Python
         uses: actions/setup-python@v5
         with:
@@ -28,13 +27,11 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # - name: Install AWS CLI
-      #   uses: unfor19/install-aws-cli-action@v1
       - name: Cache usecase_data
         uses: actions/cache@v2
         with:
           path: |
-            notebooks/usecase_data
+            book/usecase/data
           key: usecase_data_${{ runner.os }}
         
       - name: Make sure data is available
@@ -43,26 +40,7 @@ jobs:
             aws s3 cp \
             --no-sign-request \
             s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
-            notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad
-
-      # attempt with pixi:
-      
-      # - name: Install pixi
-      #   run: curl -fsSL https://pixi.sh/install.sh | bash
-      
-      # - name: Cache several folders
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       _freeze
-      #       .pixi
-      #     key: pixi_${{ runner.os }}
-      
-      # - name: Set up dependencies
-      #   run: pixi install -e dev
-
-      # - name: Render slides
-      #   run: pixi run render_slides
+            book/usecase/data/sc_counts_reannotated_with_counts.h5ad
 
       # attempt with renv
       - name: Set up renv

@@ -1,14 +1,13 @@
 ---
 title: "Use-case"
 engine: knitr
-bibliography: ../book/references.bib
 ---
 
 The provided dataset is a perturb-seq dataset that was generated as part of an OpenProblems competition on predicting how small molecules change gene expression in different cell types [@kaggle-op3]. The winners of the competition have since been added to the OpenProblems Perturbation Prediction benchmarking task [@openproblems-pp].
 
 As part of the competition, competitors received the differential gene expression (DGE) of genes in cell types treated with different small molecules, and had to predict the DGE of genes in cell types of which some small molecules were withheld. The task is illustrated in the figure below [@fig-dge].
 
-![DGE perturbation prediction task](../assets/perturbation_prediction.png){#fig-dge}
+![DGE perturbation prediction task](images/perturbation_prediction.png){#fig-dge}
 
 The dataset consists of single-cell RNA-seq data from 4 cell types treated with 144 small molecules in 3 replicates. The DGE matrix (which competitors received) was in the following steps:
 
@@ -25,11 +24,11 @@ The dataset has since been uploaded to SRA [@sra-op3], will be uploaded to GEO, 
 If you haven't already, you can download the dataset from S3 using the following command:
 
 ```{bash s3_sync}
-if [[ ! -f usecase_data/sc_counts_reannotated_with_counts.h5ad ]]; then
+if [[ ! -f data/sc_counts_reannotated_with_counts.h5ad ]]; then
   aws s3 cp \
     --no-sign-request \
     s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
-    usecase_data/sc_counts_reannotated_with_counts.h5ad
+    data/sc_counts_reannotated_with_counts.h5ad
 fi
 ```
 
@@ -40,7 +39,7 @@ The dataset is stored in an AnnData object, which can be loaded in Python as fol
 ```{python load_anndata}
 import anndata as ad
 
-adata = ad.read_h5ad("usecase_data/sc_counts_reannotated_with_counts.h5ad")
+adata = ad.read_h5ad("data/sc_counts_reannotated_with_counts.h5ad")
 
 adata
 ```
@@ -50,7 +49,7 @@ The same code can be run in R using the `anndata` package (not run):
 ```r
 library(anndata)
 
-adata <- read_h5ad("usecase_data/sc_counts_reannotated_with_counts.h5ad")
+adata <- read_h5ad("data/sc_counts_reannotated_with_counts.h5ad")
 
 adata
 ```
@@ -115,7 +114,7 @@ pb_adata = ad.AnnData(
 Store to disk:
 
 ```{python store_pseudobulk}
-pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
+pb_adata.write_h5ad("data/pseudobulk.h5ad")
 ```
 
 ## 5. Compute DE
@@ -124,7 +123,7 @@ pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
 library(anndata)
 library(dplyr, warn.conflicts = FALSE)
 
-pb_adata <- read_h5ad("usecase_data/pseudobulk.h5ad")
+pb_adata <- read_h5ad("data/pseudobulk.h5ad")
 ```
 
 Select small molecule and control:
@@ -167,6 +166,6 @@ res |>
 
 Write to disk:
 ```{r write_results}
-write.csv(res, "usecase_data/de_contrasts.csv")
+write.csv(res, "data/de_contrasts.csv")
 ```
 

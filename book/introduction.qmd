@@ -1,0 +1,30 @@
+---
+title: Introduction
+engine: knitr
+---
+
+Single-cell analysis has emerged as a transformative force in biology,
+providing unprecedented insights into cellular heterogeneity and complex biological processes. The rapid advancement in this field has led to a proliferation of specialized tools and methods [@Zappia2021], often developed in different programming languages and software ecosystems. While this diversity empowers researchers to leverage the best tools for each analysis step [@Heumos2023], it also presents a significant challenge: how to seamlessly integrate and execute analyses across these disparate languages and frameworks.
+
+The need to utilize tools from different programming ecosystems creates a "polyglot" landscape in single-cell analysis, where researchers must navigate the complexities of interoperability, data exchange, and workflow management. This fragmentation can hinder productivity, introduce errors, and impede reproducibility.
+
+Researchers can approach this challenge in various ways, each with its own trade-offs and considerations. In the next chapters, we'll explore different strategies for achieving interoperability in single-cell analysis, including:
+
+## Code porting
+
+Porting tools from one language to another can offer complete control and eliminate interoperability concerns. However, one should not underestimate the effort required to reimplement complex algorithms, and the risk of introducing errors.
+
+Furthermore, work is not done after the initial port -- in order for the researcher's work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don't consider reimplementation a viable option for most use-cases and will not discuss it further in this book.
+
+## In-memory Interoperability
+
+Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.
+
+
+## File-based Interoperability
+
+Storing intermediate results in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.
+
+## Workflow Frameworks
+
+Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.
