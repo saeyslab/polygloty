@@ -93,10 +93,3 @@ To use the environment, use the following command:
 source renv/python/virtualenvs/renv-python-3.12/bin/activate
 quarto preview
 ```
-
-Or to render the slides:
-
-```bash
-source renv/python/virtualenvs/renv-python-3.12/bin/activate
-quarto render
-```

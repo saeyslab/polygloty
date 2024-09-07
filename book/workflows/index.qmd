@@ -11,7 +11,7 @@ In the previous chapters, we've explored strategies for supporting data operabil
 
 Productionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment ([@fig-productionization]). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.
 
-![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](figures/productionization.svg){#fig-productionization}
+![An example of the productionization process for single-cell analysis workflows. **A)** The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. **B)** The production environment is streamlined, automated, and standardized, with reproducibility engines in place.](images/productionization.svg){#fig-productionization}
 
 ### But how to ensure that your workflow is production-ready? {.unnumbered}
 
@@ -254,7 +254,7 @@ By comparing the example code of the respective workflow frameworks, it also bec
 
 Building production-ready workflows for single-cell analysis involves integrating a variety of tools, technologies, and best practices. In order to meet the demands of large-scale data processing, reproducibility, and collaboration, a production-ready workflow should exhibit the following essential qualities ([@fig-qualities]):
 
-![Essential qualities of a production-ready workflow.](figures/qualities.svg){#fig-qualities}
+![Essential qualities of a production-ready workflow.](images/qualities.svg){#fig-qualities}
 
 * **Polyglot**: Seamlessly integrate tools and libraries from different programming languages, allowing you to leverage the strengths of each language for specific tasks. This facilitates the use of specialized tools and optimizes the analysis pipeline for performance and efficiency.
 * **Modular**: A well-structured workflow should be composed of modular and reusable components, promoting code maintainability and facilitating collaboration. Each module should have a clear purpose and well-defined inputs and outputs, enabling easy integration and replacement of individual steps within the pipeline.
@@ -268,7 +268,7 @@ Building production-ready workflows for single-cell analysis involves integratin
 
 The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies ([@fig-technologies]). These technologies provide the foundation for building scalable, reproducible, and maintainable workflows for single-cell analysis.
 
-![The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies.](figures/technologies.svg){#fig-technologies}
+![The essential qualities of a production-ready workflow are achieved through a combination of enabling technologies.](images/technologies.svg){#fig-technologies}
 
 
 ## Quality Assessment of Workflow Frameworks

@@ -1,6 +1,6 @@
 ---
 title: "WIP: In memory interoperability (Python side)"
-engine: jupyter
+engine: knitr
 ---
 
 

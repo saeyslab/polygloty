@@ -15,10 +15,10 @@ book:
   chapters:
     - index.qmd
     - book/intro.qmd
-    - notebooks/usecase.qmd
-    - notebooks/file_formats.qmd
-    - notebooks/in_memory.qmd
-    - notebooks/workflows/index.qmd
+    - book/usecase/index.qmd
+    - book/file_formats.qmd
+    - book/in_memory.qmd
+    - book/workflows/index.qmd
     - book/book_slides.qmd
     - book/references.qmd
 
