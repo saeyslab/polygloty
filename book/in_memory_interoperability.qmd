@@ -254,12 +254,6 @@ pb_obs <- adata$obs[c("sm_name", "cell_type", "plate_name", "well", "plate_well_
 pb_obs <- pb_obs[!duplicated(pb_obs), ]
 ```
 
-```{python pb_obs}
-pb_obs = adata.obs[["sm_name", "cell_type", "plate_name", "well"]].copy()
-pb_obs.index = adata.obs["plate_well_celltype_reannotated"]
-pb_obs = pb_obs.drop_duplicates()
-```
-
 Create AnnData object:
 
 ```{r pb_anndata}
