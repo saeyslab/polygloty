@@ -16,7 +16,7 @@ Read in the anndata object
 ```{r read_in}
 library(anndata)
 
-adata_path <- "notebooks/usecase/data/sc_counts_reannotated_with_counts.h5ad"
+adata_path <- "usecase/data/sc_counts_reannotated_with_counts.h5ad"
 adata <- anndata::read_h5ad(adata_path)
 ```
 

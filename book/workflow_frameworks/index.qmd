@@ -534,19 +534,19 @@ examples/viash_nextflow/src/subset_obs/script.py
 
 :::{.g-col-6}
 
-`src/compute_pseudobulk/config.vsh.yaml`:
+`src/differential_expression/config.vsh.yaml`:
 
 ```{embed lang="yaml"}
-examples/viash_nextflow/src/compute_pseudobulk/config.vsh.yaml
+examples/viash_nextflow/src/differential_expression/config.vsh.yaml
 ```
 
 :::
 
 :::{.g-col-6}
 
-`src/compute_pseudobulk/script.R`:
+`src/differential_expression/script.R`:
 ```{embed lang="r"}
-examples/viash_nextflow/src/compute_pseudobulk/script.R
+examples/viash_nextflow/src/differential_expression/script.R
 ```
 
 :::
