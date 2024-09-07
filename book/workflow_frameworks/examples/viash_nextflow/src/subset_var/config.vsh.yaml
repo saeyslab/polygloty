@@ -1,0 +1,58 @@
+name: subset_var
+description: Subset the variables of an AnnData object
+
+argument_groups:
+  - name: Inputs
+    arguments:
+      - type: file
+        name: --input
+        description: Path to the input h5ad file
+        example: /path/to/input.h5ad
+        required: true
+  - name: Subsetting arguments
+    arguments:
+      - type: string
+        name: --var_column
+        description: Name of the column to subset on
+        example: highly_variable
+        required: true
+      - type: string
+        name: --var_values
+        description: List of values to subset on. If column is a boolean, do not pass any values to this argument.
+        multiple: true
+        example: []
+      - type: boolean_true
+        name: --invert
+        description: Invert the subset
+  - name: Outputs
+    arguments:
+      - type: file
+        name: --output
+        description: Path to the output h5ad file
+        example: /path/to/output.h5ad
+        required: true
+        direction: output
+
+resources:
+  - type: python_script
+    path: script.py
+
+test_resources:
+  - type: python_script
+    path: test.py
+
+engines:
+  - type: docker
+    image: python:3.10
+    setup:
+      - type: python
+        pypi:
+          - anndata
+    test_setup:
+      - type: python
+        pypi:
+          - viashpy
+
+runners:
+  - type: executable
+  - type: nextflow
