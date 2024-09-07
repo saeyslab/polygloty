@@ -407,7 +407,7 @@ for (i in seq_len(nrow(meta))) {
 }
 ```
 
-### Quality Assesment Criteria
+### Quality Assessment Criteria
 
 The quality assessment was based on the following criteria:
 
@@ -470,6 +470,13 @@ ggplot(agg) +
 ```
 
 Raw scores and detailed explanations behind the reasoning of the resulting scores can be found in the [Workflow Quality Assessment Spreadsheet](https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI).
+
+### Quality assessment contributors
+
+* Jakub Majerčík
+* Michaela Müller 
+* Robrecht Cannoodt
+* Toni Verbeiren
 
 ## Conclusion
 
