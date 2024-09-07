@@ -1,0 +1,31 @@
+name: load_data
+description: Load data from an S3 bucket
+
+arguments:
+  - type: string
+    name: --url
+    description: URL to the data
+    example: s3://my-bucket/my-data.csv
+    required: true
+  - type: file
+    name: --output
+    description: Path to the output file
+    example: /path/to/output.csv
+    required: true
+    direction: output
+
+resources:
+  - type: bash_script
+    path: script.sh
+
+test_resources:
+  - type: bash_script
+    path: test.sh
+
+engines:
+  - type: docker
+    image: amazon/aws-cli
+
+runners:
+  - type: executable
+  - type: nextflow

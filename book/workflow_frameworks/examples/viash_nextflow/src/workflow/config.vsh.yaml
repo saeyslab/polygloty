@@ -1,0 +1,51 @@
+name: workflow
+description: |
+  A workflow to compute differential expression between two groups of cells in an AnnData object.
+
+argument_groups:
+  - name: Inputs
+    arguments:
+      - type: file
+        name: --input
+        description: Path to the input h5ad file
+        example: s3://my-bucket/my-data.h5ad
+        required: true
+  - name: Differential expression arguments
+    arguments:
+      - type: string
+        name: --contrast
+        description: |
+          Contrast to compute. Must be of length 3:
+
+          1. The name of the column to contrast on
+          2. The name of the first observation type
+          3. The name of the second observation type
+        example: ["cell_type", "batch", "sample"]
+        multiple: true
+        required: true
+      - type: string
+        name: --design_formula
+        description: Design formula for the differential expression model
+        example: ~ batch + cell_type
+  - name: Outputs
+    arguments:
+      - type: file
+        name: --output
+        description: Path to the output h5ad file
+        example: /path/to/output.h5ad
+        required: true
+        direction: output
+
+resources:
+  - type: nextflow_script
+    path: main.nf
+    entrypoint: wf
+
+dependencies:
+  - name: subset_obs
+  - name: subset_var
+  - name: compute_pseudobulk
+  - name: differential_expression
+
+runners:
+  - type: nextflow

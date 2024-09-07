@@ -11,27 +11,63 @@ The downside is that it can lead to increased storage requirements and I/O overh
 
 Debugging is only possible for individual scripts and the workflow in not as interactive and explorative as the in-memory approach.
 
-## Different files 
+## Different file formats
 
-Data format based interoperability
+It's important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the `.RDS` file format and Python has the `.pickle/.pkl` file format, but these are not interoperable. Older versions of the language could also have problems reading in serialized objects created by the latest language version.
 
-1. h5ad / zarr / Apache Arrow
-2. Reading and writing these formats
+For a file format to be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
 
-TODO: comparison table
+
+
+### Dataframes
+
+| File Format | Support in Python | Support in R | Text-Based | Binary | High-Performance | Ease-of-Use | Compression | Suitable for Single-Cell | Suitable for Spatial |
+|-------------|-------------------|--------------|------------|--------|------------------|-------------|-------------|--------------------------|----------------------|
+| CSV         | Yes               | Yes          | Yes        | No     | No               | High        | No          | Limited                   | No                   |
+| JSON        | Yes               | Yes          | Yes        | No     | No               | Medium      | No          | Limited                   | No                   |
+| Parquet     | Yes               | Yes          | No         | Yes    | Yes              | High        | Yes         | Limited                   | No                   |
+| Feather     | Yes               | Yes          | No         | Yes    | Yes              | High        | Yes         | Yes                       | No                   |
+| HDF5        | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Limited              |
+
+
+### n-dimensional arrays
+
+| File Format | Support in Python | Support in R | Text-Based | Binary | High-Performance | Ease-of-Use | Compression | Suitable for Single-Cell | Suitable for Spatial |
+|-------------|-------------------|--------------|------------|--------|------------------|-------------|-------------|--------------------------|----------------------|
+| h5ad        | Yes               | Limited      | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
+| Zarr        | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
+| NumPy (npy) | Yes               | Limited      | No         | Yes    | Yes              | High        | No          | Yes                       | No                   |
+| NetCDF      | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
+| TIFF        | Yes               | Limited      | No         | Yes    | Medium           | Medium      | Yes         | No                        | Yes                  |
+
+
 
 ## Different on-disk pipelines
 
 You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.
 
-TODO: compare notebook and script pipelines
+Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.
+
+The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.
+
+Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.
 
 ## Notebook pipelines
 
-TODO: talk about Quarto, nb and papermill
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. Our [Use-case chapter](./usecase/) is one example of this.
 
+For example, [Papermill]https://github.com/nteract/papermill) can execute Jupyter notebooks in sequence and pass variables between them. [Ploomber](https://github.com/ploomber/ploomber) is another example.
+
+### Execute notebooks via the CLI
+
+Jupyter via [nbconvert](https://nbconvert.readthedocs.io/en/latest/#).:
 ```bash
 jupyter nbconvert --to notebook --execute my_notebook.ipynb --allow-errors --output-dir outputs/
+```
+
+[RMarkdown](https://rmarkdown.rstudio.com/):
+```bash
+Rscript -e "rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"
 ```
 
 ## Script pipelines

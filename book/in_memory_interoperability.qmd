@@ -62,6 +62,10 @@ The `anndata2ri` package provides, apart from functionality to convert SingleCel
 
 TODO: how to subscript sparse matrix? Is it possible?
 
+```{r include=FALSE}
+library(SingleCellExperiment)
+```
+
 ```{python rpy2_sparse}
 import scipy as sp
 
