@@ -50,7 +50,7 @@ jobs:
       
       - name: Render book
         run: |
-          Rescript -e "renv::restore()"
+          Rscript -e "renv::restore()"
           source renv/python/virtualenvs/renv-python-3.12/bin/activate
           quarto render
 
