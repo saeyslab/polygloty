@@ -439,24 +439,6 @@
       ],
       "Hash": "6ed1f25b785d5dcb45df21f36592ec37"
     },
-    "anndataR": {
-      "Package": "anndataR",
-      "Version": "0.99.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "scverse",
-      "RemoteRepo": "anndataR",
-      "RemoteRef": "main",
-      "RemoteSha": "dbc6897492d129bc59bf8de51bdaafdf90bcd22a",
-      "Requirements": [
-        "Matrix",
-        "R",
-        "R6",
-        "methods"
-      ],
-      "Hash": "e91c915b3b011328e4b0037215a55d48"
-    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.0",

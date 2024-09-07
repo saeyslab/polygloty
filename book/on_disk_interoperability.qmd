@@ -3,38 +3,92 @@ title: On-disk interoperability
 engine: knitr
 ---
 
+On-disk interoperability is a strategy for achieving interoperability between tools written in different programming languages by storing intermediate results in standardized, language-agnostic file formats. This approach allows for sequential execution of scripts written in different languages, enabling researchers to leverage the best tools for each analysis step.
+
+The upside of this approach is that it is relatively simple as the scripts are mostly unchanged, only prepended with a reading operation and appended with writing operation. Each script can be written and tested independently in their suitable respective frameworks. This modular polyglotism of on-disk interoperability is one of the key strengths of workflow languages like Nextflow and Snakemake.
+
+The downside is that it can lead to increased storage requirements and I/O overhead which grows with the amount of scripts. As disk serialization and deserialization can be much slower than memory operations, this SerDe problem can become a problem for very large datasets.
+
+Debugging is only possible for individual scripts and the workflow in not as interactive and explorative as the in-memory approach.
+
+## Different files 
+
 Data format based interoperability
 
 1. h5ad / zarr / Apache Arrow
 2. Reading and writing these formats
 
-## Setup
+TODO: comparison table
 
-```{python}
-import anndata
-import numpy
-import scanpy
+## Different on-disk pipelines
+
+You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.
+
+TODO: compare notebook and script pipelines
+
+## Notebook pipelines
+
+TODO: talk about Quarto, nb and papermill
+
+```bash
+jupyter nbconvert --to notebook --execute my_notebook.ipynb --allow-errors --output-dir outputs/
 ```
 
-```{python}
-anndata.__version__
+## Script pipelines
+
+### Calling scripts in the same environment
+
+TODO: test these snippets
+
+From Bash:
+```bash
+#!/bin/bash
+
+bash scripts/1_load_data.sh
+python scripts/2_compute_pseudobulk.py
+Rscript scripts/3_plot_results.R
 ```
 
-
-## anndataR
-
-```{r}
-library(anndataR)
-
-h5ad_path <- system.file("extdata", "example.h5ad", package = "anndataR")
-adata <- read_h5ad(h5ad_path, to = "InMemoryAnnData")
-adata
+From R:
+```r
+system("bash scripts/1_load_data.sh")
+system("python scripts/2_compute_pseudobulk.py")
+system("Rscript scripts/3_plot_results.R")
 ```
-```{r}
-sce <- adata$to_SingleCellExperiment()
-sce
+
+From Python:
+```python
+import subprocess
+
+subprocess.run("bash scripts/1_load_data.sh", shell=True)
+subprocess.run("python scripts/2_compute_pseudobulk.py", shell=True)
+subprocess.run("Rscript scripts/3_plot_results.R", shell=True)
 ```
-```{r}
-obj <- adata$to_Seurat()
-obj
+
+### Calling scripts in different environments
+
+Sometimes you might want to run scripts in different environments, as they it's too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.
+
+You can interleave your Bash script with environment activation functions e.g. `conda activate {script_env}` commands. This requires a `conda .yaml` file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.
+
+Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the [Pixi package managment tool](https://pixi.sh/latest/) to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
+
+Run scripts in different environments with `pixi`:
+```bash
+pixi run -e bash scripts/1_load_data.sh
+pixi run -e scverse scripts/2_compute_pseudobulk.py
+pixi run -e rverse scripts/3_plot_results.R
+```
+
+With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.
+
+```bash
+pixi run pipeline
+```
+
+You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase_data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+
+```bash
+docker pull berombau/polygloty-docker:latest
+docker run -it -v $(pwd)/usecase_data:/app/usecase_data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```

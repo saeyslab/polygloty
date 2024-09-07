@@ -5,6 +5,8 @@
 /_site/
 /site_libs/
 *.html
+*.DS_Store
+/usecase_data/
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,r
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,r
