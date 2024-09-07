@@ -425,7 +425,7 @@ for (name in sort(unique(criteria$name))) {
 
   for (aspect in sort(unique(crit$aspect))) {
     asp <- crit[crit$aspect == aspect, , drop = FALSE]
-    cat(paste0("**", aspect, "**:\n\n"))
+    cat(paste0("**", aspect, "**\n\n"))
 
     for (item in asp$item) {
       cat(paste0(" * ", item, "\n"))
