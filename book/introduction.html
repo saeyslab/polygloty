@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; In memory interoperability (from Python) – Polyglot programming for single-cell analysis</title>
+<title>1&nbsp; Introduction – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,8 +50,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../book/workflows/index.html" rel="next">
-<link href="../book/file_formats.html" rel="prev">
+<link href="../book/usecase/index.html" rel="next">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/in_memory.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">In memory interoperability (from Python)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../book/introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -163,19 +149,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/file_formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">File formats</span></span></a>
+  <a href="../book/in_memory_interoperability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/in_memory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">In memory interoperability (from Python)</span></span></a>
+  <a href="../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflows/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflows</span></span></a>
   </div>
 </li>
@@ -201,16 +187,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#usecase" id="toc-usecase" class="nav-link active" data-scroll-target="#usecase"><span class="header-section-number">5</span> Usecase</a></li>
+  <li><a href="#code-porting" id="toc-code-porting" class="nav-link active" data-scroll-target="#code-porting"><span class="header-section-number">1.1</span> Code porting</a></li>
+  <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</a></li>
+  <li><a href="#file-based-interoperability" id="toc-file-based-interoperability" class="nav-link" data-scroll-target="#file-based-interoperability"><span class="header-section-number">1.3</span> File-based Interoperability</a></li>
+  <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">In memory interoperability (from Python)</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -227,138 +216,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we will showcase how to call R code from Python. We will make use of rpy2 and anndata2ri.</p>
-<p>Make sure you have downloaded the data.</p>
-<p>Read in the anndata object</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>adata_path <span class="op">=</span> <span class="st">"usecase/data/sc_counts_reannotated_with_counts.h5ad"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> ad.read_h5ad(adata_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can use rpy2 to run R code within a Python process. If you wish to convert numpy matrices, you need to use the right convertor.</p>
-<p>This is an example of how you import rpy2, and convert a matrix for use in R functions.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> adata.X <span class="co"># matrices are columnn major in R, and row-major in Python</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> counts[:<span class="dv">100</span>, :<span class="dv">1000</span>] <span class="co"># subset for speed of example</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>counts_dense <span class="op">=</span> counts.todense() <span class="co"># sparse matrices are not supported in rpy2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>/home/runner/work/polygloty/polygloty/renv/python/virtualenvs/renv-python-3.12/lib/python3.12/site-packages/rpy2/rinterface_lib/embedded.py:276: UserWarning: R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it nevertheless.
-  warnings.warn(msg)
-R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it nevertheless.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> default_converter</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>np_cv_rules <span class="op">=</span> default_converter <span class="op">+</span> numpy2ri.converter</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np_cv_rules.context() <span class="im">as</span> cv:</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"counts_matrix"</span>] <span class="op">=</span> counts_dense</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    dim <span class="op">=</span> robjects.r[<span class="st">"dim"</span>]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(dim(robjects.globalenv[<span class="st">"counts_matrix"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[ 100 1000]</code></pre>
-</div>
-</div>
-<section id="usecase" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Usecase</h1>
-<p>We will perform the Compute DE step not in R, but in Python</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pd_adata <span class="op">=</span> ad.read_h5ad(<span class="st">"usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Select small molecule and control:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="op">=</span> <span class="st">"Belinostat"</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="op">=</span> <span class="st">"Dimethyl Sulfoxide"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Create DESeq dataset:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.rinterface</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> importr(<span class="st">'base'</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(base._libPaths())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>utils <span class="op">=</span> importr(<span class="st">'utils'</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># utils.install_packages('DESeq2')</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">## base.source("../renv/activate.R")</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>DESeq2 <span class="op">=</span> importr(<span class="st">"DESeq2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> default_converter</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>DESeq2 <span class="op">=</span> importr(<span class="st">"DESeq2"</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>np_cv_rules <span class="op">=</span> default_converter <span class="op">+</span> numpy2ri.converter <span class="op">+</span> pandas2ri.converter</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np_cv_rules.context() <span class="im">as</span> cv:</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    counts_dense <span class="op">=</span> np.transpose(pd_adata.X.astype(np.int32))</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"count_data"</span>] <span class="op">=</span> counts_dense</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"obs_data"</span>] <span class="op">=</span> pd_adata.obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> Formula</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>design_formula <span class="op">=</span> Formula(<span class="st">'~ sm_name + plate_name'</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeqDataSetFromMatrix(countData <span class="op">=</span> robjects.globalenv[<span class="st">"count_data"</span>],</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        colData <span class="op">=</span> robjects.globalenv[<span class="st">"obs_data"</span>],</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        design <span class="op">=</span> design_formula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Run DESeq2:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeq(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Get results:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>contrastv <span class="op">=</span> robjects.StrVector([<span class="st">"sm_name"</span>, sm_name, control_name])</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> DESeq2.results(dds, contrast<span class="op">=</span>contrastv)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> importr(<span class="st">'base'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> base.as_data_frame(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Preview results:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dplyr <span class="op">=</span> importr(<span class="st">'dplyr'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>utils <span class="op">=</span> importr(<span class="st">'utils'</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> utils.head(dplyr.arrange(res, <span class="st">'padj'</span>), <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Write to disk:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> (robjects.default_converter <span class="op">+</span> pandas2ri.converter).context():</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    res_pd <span class="op">=</span> robjects.conversion.get_conversion().rpy2py(res)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    res_pd.to_csv(<span class="st">"usecase/data/de_contrasts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Single-cell analysis has emerged as a transformative force in biology, providing unprecedented insights into cellular heterogeneity and complex biological processes. The rapid advancement in this field has led to a proliferation of specialized tools and methods <span class="citation" data-cites="Zappia2021">(<a href="references.html#ref-Zappia2021" role="doc-biblioref">Zappia and Theis 2021</a>)</span>, often developed in different programming languages and software ecosystems. While this diversity empowers researchers to leverage the best tools for each analysis step <span class="citation" data-cites="Heumos2023">(<a href="references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>, it also presents a significant challenge: how to seamlessly integrate and execute analyses across these disparate languages and frameworks.</p>
+<p>The need to utilize tools from different programming ecosystems creates a “polyglot” landscape in single-cell analysis, where researchers must navigate the complexities of interoperability, data exchange, and workflow management. This fragmentation can hinder productivity, introduce errors, and impede reproducibility.</p>
+<p>Researchers can approach this challenge in various ways, each with its own trade-offs and considerations. In the next chapters, we’ll explore different strategies for achieving interoperability in single-cell analysis, including:</p>
+<section id="code-porting" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="code-porting"><span class="header-section-number">1.1</span> Code porting</h2>
+<p>Porting tools from one language to another can offer complete control and eliminate interoperability concerns. However, one should not underestimate the effort required to reimplement complex algorithms, and the risk of introducing errors.</p>
+<p>Furthermore, work is not done after the initial port – in order for the researcher’s work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don’t consider reimplementation a viable option for most use-cases and will not discuss it further in this book.</p>
+</section>
+<section id="in-memory-interoperability" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</h2>
+<p>Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.</p>
+</section>
+<section id="file-based-interoperability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="file-based-interoperability"><span class="header-section-number">1.3</span> File-based Interoperability</h2>
+<p>Storing intermediate results in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
+</section>
+<section id="workflow-frameworks" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</h2>
+<p>Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Heumos2023" class="csl-entry" role="listitem">
+Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
+</div>
+<div id="ref-Zappia2021" class="csl-entry" role="listitem">
+Zappia, Luke, and Fabian J. Theis. 2021. <span>“Over 1000 Tools Reveal Trends in the Single-Cell RNA-Seq Analysis Landscape.”</span> <em>Genome Biology</em> 22 (1). <a href="https://doi.org/10.1186/s13059-021-02519-4">https://doi.org/10.1186/s13059-021-02519-4</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -791,13 +677,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../book/file_formats.html" class="pagination-link" aria-label="File formats">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">File formats</span></span>
+      <a href="../index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../book/workflows/index.html" class="pagination-link" aria-label="Workflows">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflows</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../book/usecase/index.html" class="pagination-link" aria-label="Use-case">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -806,4 +692,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

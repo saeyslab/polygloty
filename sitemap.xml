@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://saeyslab.github.io/polygloty/index.html</loc>
-    <lastmod>2024-09-07T06:50:08.619Z</lastmod>
+    <lastmod>2024-09-07T11:15:38.571Z</lastmod>
   </url>
   <url>
-    <loc>https://saeyslab.github.io/polygloty/book/intro.html</loc>
-    <lastmod>2024-09-07T06:50:08.615Z</lastmod>
+    <loc>https://saeyslab.github.io/polygloty/book/introduction.html</loc>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/usecase/index.html</loc>
-    <lastmod>2024-09-07T06:50:08.619Z</lastmod>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
   <url>
-    <loc>https://saeyslab.github.io/polygloty/book/file_formats.html</loc>
-    <lastmod>2024-09-07T06:50:08.615Z</lastmod>
+    <loc>https://saeyslab.github.io/polygloty/book/in_memory_interoperability.html</loc>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
   <url>
-    <loc>https://saeyslab.github.io/polygloty/book/in_memory.html</loc>
-    <lastmod>2024-09-07T06:50:08.615Z</lastmod>
+    <loc>https://saeyslab.github.io/polygloty/book/on_disk_interoperability.html</loc>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
   <url>
-    <loc>https://saeyslab.github.io/polygloty/book/workflows/index.html</loc>
-    <lastmod>2024-09-07T06:50:08.619Z</lastmod>
+    <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/index.html</loc>
+    <lastmod>2024-09-07T11:15:38.571Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/book_slides.html</loc>
-    <lastmod>2024-09-07T06:50:08.615Z</lastmod>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/references.html</loc>
-    <lastmod>2024-09-07T06:50:08.615Z</lastmod>
+    <lastmod>2024-09-07T11:15:38.567Z</lastmod>
   </url>
 </urlset>
