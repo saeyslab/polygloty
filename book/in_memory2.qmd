@@ -3,6 +3,9 @@ title: In memory interoperability (from R)
 engine: knitr
 ---
 
+One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome.
+
+
 There are multiple ways to 
 
 In this notebook, we will showcase how to call Python code from R

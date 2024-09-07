@@ -3,11 +3,11 @@ on:
   push:
     branches: main
 
-name: Publish
+name: Test on mac arm
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     permissions:
       contents: write
@@ -44,30 +44,12 @@ jobs:
         with:
           path: |
             book/usecase/data
-          key: quarto_cache_${{ github.ref_name }}
+          key: quarto_cache_osx_${{ github.ref_name }}
           restore-keys: |
-            quarto_cache_main
+            quarto_cache_osx_main
       
       - name: Render book
         run: |
           Rscript -e "renv::restore()"
           source renv/python/virtualenvs/renv-python-3.12/bin/activate
           quarto render
-
-      - name: Deploy 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: _book
-          branch: gh-pages
-          force: false
-          clean-exclude: pr-preview/
-
-      - name: Deploy preview
-        if: github.event_name == 'pull_request'
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: _book
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: auto

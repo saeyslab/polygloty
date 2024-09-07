@@ -4,6 +4,6 @@ This book is a collection of notebooks and explanations for the workshop on **Po
 
 In order to use the best performing methods for each step of the single-cell analysis process, bioinformaticians need to use multiple ecosystems and programming languages. This is unfortunately not that straightforward. This workshop gives an overview of the different levels of interoperability, and how it is possible to integrate them in a single workflow.
 
-To get started, read the [Introduction](book/intro.qmd) chapter.
+To get started, read the [Introduction](book/introduction.qmd) chapter.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
