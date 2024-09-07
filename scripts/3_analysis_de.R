@@ -3,7 +3,7 @@ library(anndata)
 library(dplyr, warn.conflicts = FALSE)
 
 print("Reading data...")
-pb_adata <- read_h5ad("usecase_data/pseudobulk.h5ad")
+pb_adata <- read_h5ad("usecase/data/pseudobulk.h5ad")
 
 # Select small molecule and control:
 sm_name <- "Belinostat"
@@ -34,4 +34,4 @@ res |>
   head(10)
 
 # Write to disk:
-write.csv(res, "usecase_data/de_contrasts.csv")
+write.csv(res, "usecase/data/de_contrasts.csv")

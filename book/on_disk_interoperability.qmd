@@ -122,9 +122,9 @@ With the Pixi task runner, you can define these tasks in their respective enviro
 pixi run pipeline
 ```
 
-You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase_data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
-docker run -it -v $(pwd)/usecase_data:/app/usecase_data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```

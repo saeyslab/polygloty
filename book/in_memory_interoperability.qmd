@@ -203,7 +203,7 @@ with (robjects.default_converter + pandas2ri.converter).context():
 ```{r read_in}
 library(anndata)
 
-adata_path <- "notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata_path <- "notebooks/usecase/data/sc_counts_reannotated_with_counts.h5ad"
 adata <- anndata::read_h5ad(adata_path)
 ```
 
@@ -270,6 +270,6 @@ pb_adata <- anndata::AnnData(
 Store to disk:
 
 ```{r store_pseudobulk}
-write_h5ad(pb_adata, "notebooks/usecase_data/pseudobulk.h5ad")
+write_h5ad(pb_adata, "notebooks/usecase/data/pseudobulk.h5ad")
 
 ```

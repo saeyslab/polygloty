@@ -2,7 +2,7 @@
 import anndata as ad
 
 print("Load data")
-adata = ad.read_h5ad("usecase_data/sc_counts_reannotated_with_counts.h5ad")
+adata = ad.read_h5ad("usecase/data/sc_counts_reannotated_with_counts.h5ad")
 
 sm_name = "Belinostat"
 control_name = "Dimethyl Sulfoxide"
@@ -44,4 +44,4 @@ pb_adata = ad.AnnData(
 )
 
 print("Store to disk")
-pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
+pb_adata.write_h5ad("usecase/data/pseudobulk.h5ad")

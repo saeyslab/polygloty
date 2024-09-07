@@ -16,7 +16,7 @@ Read in the anndata object
 ```{r read_in}
 library(anndata)
 
-adata_path <- "notebooks/usecase_data/sc_counts_reannotated_with_counts.h5ad"
+adata_path <- "notebooks/usecase/data/sc_counts_reannotated_with_counts.h5ad"
 adata <- anndata::read_h5ad(adata_path)
 ```
 
@@ -89,5 +89,5 @@ pb_adata = ad.AnnData(
 Store to disk:
 
 ```{python store_pseudobulk}
-pb_adata.write_h5ad("usecase_data/pseudobulk.h5ad")
+pb_adata.write_h5ad("usecase/data/pseudobulk.h5ad")
 ```
