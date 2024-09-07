@@ -1,6 +1,6 @@
 ---
 title: Workflows
-author: Robrecht Cannoodt, Data Intuitive
+engine: knitr
 ---
 
 In the previous chapters, we've explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.
