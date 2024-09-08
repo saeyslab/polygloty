@@ -1,12 +1,62 @@
 ---
-title: In-memory interoperability
+title: Reticulate
 engine: knitr
 ---
 
-## Reticulate: basic functionality
 Reticulate is a foreign function interface in R to Python.
 
-### Interactive sessions
+# Reticulate: basic functionality
+
+Data types are automatically converted from Python to R and vice versa. A useful table of automatic conversions can be found [here](https://rstudio.github.io/reticulate/articles/calling_python.html#type-conversions). 
+
+
+You can easily import python modules, and call the functions in the following way:
+```{r}
+library(reticulate)
+
+bi <- reticulate::import_builtins()
+rd <- reticulate::import("random")
+
+example <- c(1,2,3)
+bi$max(example)
+rd$choice(example)
+bi$list(bi$reversed(example))
+```
+
+Numpy is also easily used:
+```{r}
+np <- reticulate::import("numpy")
+
+a <- np$asarray(tuple(list(1,2), list(3, 4)))
+b <- np$asarray(list(5,6))
+b <- np$reshape(b, shape = tuple(1L,2L))
+
+np$concatenate(tuple(a, b), axis=0L)
+```
+
+If you want more finegrained control over conversion, you can specify in the import statement that you do not want results of functions of that package to be converted to R data types.
+```{r}
+np <- reticulate::import("numpy", convert = FALSE)
+
+a <- np$asarray(tuple(list(1,2), list(3, 4)))
+b <- np$asarray(list(5,6))
+b <- np$reshape(b, shape = tuple(1L,2L))
+
+np$concatenate(tuple(a, b), axis=0L)
+```
+
+You can explicitly convert data types:
+```{r}
+result <- np$concatenate(tuple(a, b), axis=0L)
+
+py_to_r(result)
+
+result_r <- py_to_r(result)
+r_to_py(result_r)
+```
+
+
+## Interactive sessions
 One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
 
 Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.
@@ -21,12 +71,12 @@ Jupyter notebooks (and some other notebooks) make this possible from the Python 
 
 ```
 
-### Reticulate basics
+## Reticulate basics
 
 
-## Usecase
+# Usecase
 
-### Usecase: theoretical reticulate example
+## Usecase: theoretical reticulate example
 
 ```{r read_in}
 library(anndata)
@@ -105,4 +155,6 @@ write_h5ad(pb_adata, "../usecase/data/pseudobulk.h5ad")
 
 ```
 
-### Usecase: useful reticulate example
+## Usecase: useful reticulate example
+
+

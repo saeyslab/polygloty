@@ -8,6 +8,8 @@ Python and R are very different programming languages. Here are some pitfalls yo
 ## Column major vs row major
 Matrices are stored contiguously in-memory, and are adressed by a single memory addresses, instead of multiple indices along the axis. A translation needs to happen between this single adress and the indices along the axes, and how that translation happens depens on how the matrix is represented in-memory.
 
+The figure below illustrates the most common ways a matrix is stored in memory, column major and row major order.
+
 ![Different in-memory representations](images/inmemorymatrix.png){#fig-imm-matrix}
 
 In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well.
@@ -23,14 +25,23 @@ In R it is very common to use dots in symbols and variable names. This is invali
 
 When using rpy2, these dots are usually translated to underscores `_`. If this does not happen automatically, you can specify mappings for these symbols.
 
+```{python rpy2_mapping}
+from rpy2.robjects.packages import importr
+
+d = {'package.dependencies': 'package_dot_dependencies',
+     'package_dependencies': 'package_uscore_dependencies'}
+tools = importr('tools', robject_translations = d)
+```
+
 ## Integers and floating point numbers
-In R, unless you explicitly specify, any number is represented as a floating point number.
-Python can be more strict about using integers or floating point numbers.
+Unless you explicitely specify, any number is represented as a floating point number in R. By adding a `L` at the end of the number, you specify that it is an integer.
+
+Python can be more strict about using integers or floating point numbers than R.
 
 ```{r int_example}
 float_ex <- 12
 int_ex <- 12L
 
-cat(is.integer(float_ex))
-cat(is.integer(int_ex))
+is.integer(float_ex)
+is.integer(int_ex)
 ```
