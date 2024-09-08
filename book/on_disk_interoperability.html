@@ -310,7 +310,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note that there can be a difference in-memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
 <section id="non-exhaustive-list-of-file-formats" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="non-exhaustive-list-of-file-formats"><span class="header-section-number">6.1.1</span> Non-exhaustive list of file formats</h3>
-<p><a href="#tbl-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.</p>
+<p><a href="#tbl-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest for Python and R.</p>
+<ul>
+<li><strong>Fast compression</strong> is important for large datasets and most of these formats support it, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied to text-based formats like CSV and JSON, but standardized support within the file format leads to faster and higher compression performance.</li>
+<li><strong>Sparse matrix</strong> support is important for single-cell data, as it can also greatly reduce the storage requirements. If a part of the pipeline does not have this support and needs to make the matrix dense, the memory requirements will increase rapidly.</li>
+<li>Support for <strong>raster data</strong> like microscopy images is important for bioimaging and spatial omics datasets. For large datasets and whole-slide images, support for subsetting and <strong>lazy loading of chunks</strong> or tiles is also needed. This also allows for out-of-core processing of larger-than-memory datasets.</li>
+<li>Some file formats have built-in support for <strong>remote storage</strong> like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset.</li>
+</ul>
 <p>The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g.&nbsp;the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.</p>
 <div id="tbl-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -322,11 +328,12 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <thead>
 <tr class="header">
 <th>File Format</th>
-<th>Support in Python</th>
-<th>Support in R</th>
-<th>Compressed</th>
-<th>Supports sparse matrix</th>
-<th>Supports raster data</th>
+<th>Python</th>
+<th>R</th>
+<th>Sparse matrix</th>
+<th>Raster data</th>
+<th>Lazy chunk loading</th>
+<th>Remote storage</th>
 </tr>
 </thead>
 <tbody>
@@ -334,7 +341,8 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>RDS</td>
 <td>○○</td>
 <td>●●</td>
-<td>●●</td>
+<td>○○</td>
+<td>●○</td>
 <td>○○</td>
 <td>○○</td>
 </tr>
@@ -342,7 +350,8 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>Pickle</td>
 <td>●●</td>
 <td>○○</td>
-<td>●●</td>
+<td>○○</td>
+<td>●○</td>
 <td>○○</td>
 <td>○○</td>
 </tr>
@@ -350,6 +359,7 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>CSV</td>
 <td>●●</td>
 <td>●●</td>
+<td>○○</td>
 <td>○○</td>
 <td>○○</td>
 <td>○○</td>
@@ -361,20 +371,23 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>○○</td>
 <td>○○</td>
 <td>○○</td>
+<td>○○</td>
 </tr>
 <tr class="odd">
 <td>TIFF</td>
 <td>●●</td>
 <td>●●</td>
-<td>●●</td>
 <td>○○</td>
 <td>●●</td>
+<td>●●</td>
+<td>●○</td>
 </tr>
 <tr class="even">
 <td><a href="https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format">Numpy .npy</a></td>
 <td>●●</td>
+<td>○○</td>
+<td>○○</td>
 <td>●●</td>
-<td>●○</td>
 <td>○○</td>
 <td>○○</td>
 </tr>
@@ -382,9 +395,10 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td><a href="https://parquet.apache.org/">Parquet</a></td>
 <td>●●</td>
 <td>●●</td>
+<td>○○</td>
+<td>○○</td>
 <td>●●</td>
-<td>○○</td>
-<td>○○</td>
+<td>●●</td>
 </tr>
 <tr class="even">
 <td><a href="https://arrow.apache.org/docs/python/feather.html">Feather</a></td>
@@ -392,7 +406,8 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>●●</td>
 <td>●●</td>
 <td>○○</td>
-<td>○○</td>
+<td>●●</td>
+<td>●●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://github.com/lancedb/lance">Lance</a></td>
@@ -400,33 +415,38 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td>○○</td>
 <td>●●</td>
 <td>○○</td>
+<td>●●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.hdfgroup.org/">HDF5</a></td>
+<td>●●</td>
+<td>●●</td>
 <td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://zarr.readthedocs.io/en/stable/">Zarr</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
 </tr>
 <tr class="even">
 <td><a href="https://tiledb.io/">TileDB</a></td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
-<td>●○</td>
-<td>●○</td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.hdfgroup.org/">HDF5</a></td>
 <td>●●</td>
 <td>●●</td>
-<td>●●</td>
-<td>●○</td>
-<td>●●</td>
-</tr>
-<tr class="even">
-<td><a href="https://zarr.readthedocs.io/en/stable/">Zarr</a></td>
-<td>●●</td>
-<td>●●</td>
-<td>●●</td>
-<td>●○</td>
 <td>●●</td>
 </tr>
 <tr class="odd">
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -438,52 +458,77 @@ Table&nbsp;6.1: Overview of file formats for single cell.
 <td><a href="https://satijalab.org/seurat/">Seurat RDS</a></td>
 <td>○○</td>
 <td>●●</td>
+<td>○○</td>
+<td>●○</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td><a href="http://viv.gehlenborglab.org/#data-preparation">Indexed OME-TIFF</a></td>
+<td>●●</td>
 <td>●●</td>
 <td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://mojaveazure.github.io/seurat-disk/index.html">h5Seurat</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>●○</td>
+<td>●●</td>
 <td>●○</td>
 </tr>
 <tr class="odd">
-<td><a href="https://mojaveazure.github.io/seurat-disk/index.html">h5Seurat</a></td>
-<td>○○</td>
-<td>●●</td>
-<td>●●</td>
-<td>●●</td>
-<td>●○</td>
-</tr>
-<tr class="even">
 <td><a href="https://loompy.org/">Loom HDF5</a></td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
-<td>○○</td>
+<td>●○</td>
+<td>●○</td>
 </tr>
-<tr class="odd">
-<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData h5ad/Zarr</a></td>
-<td>●●</td>
+<tr class="even">
+<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData h5ad</a></td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
 <td>●○</td>
+<td>●●</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData Zarr</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>●●</td>
+<td>●●</td>
 </tr>
 <tr class="even">
 <td><a href="https://tiledb.com/open-source/life-sciences">TileDB-SOMA</a></td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
-<td>●●</td>
 <td>●○</td>
+<td>●●</td>
+<td>●●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://tiledb.com/open-source/life-sciences">TileDB-BioImaging</a></td>
 <td>●●</td>
 <td>●●</td>
-<td>●●</td>
 <td>●○</td>
+<td>●●</td>
+<td>●●</td>
 <td>●●</td>
 </tr>
 <tr class="even">
 <td><a href="https://spatialdata.scverse.org/en/stable/">SpatialData Zarr</a></td>
+<td>●●</td>
 <td>●●</td>
 <td>●●</td>
 <td>●●</td>
