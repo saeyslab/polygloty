@@ -252,9 +252,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#usecase" id="toc-usecase" class="nav-link" data-scroll-target="#usecase"><span class="header-section-number">3.4</span> Usecase</a>
   <ul class="collapse">
   <li><a href="#usecase-ran-in-python" id="toc-usecase-ran-in-python" class="nav-link" data-scroll-target="#usecase-ran-in-python"><span class="header-section-number">3.4.1</span> Usecase: ran in Python</a></li>
-  <li><a href="#usecase-ran-in-r" id="toc-usecase-ran-in-r" class="nav-link" data-scroll-target="#usecase-ran-in-r"><span class="header-section-number">3.4.2</span> Usecase: ran in R</a></li>
+  <li><a href="#usecase-theoretical-reticulate-example" id="toc-usecase-theoretical-reticulate-example" class="nav-link" data-scroll-target="#usecase-theoretical-reticulate-example"><span class="header-section-number">3.4.2</span> Usecase: theoretical reticulate example</a></li>
+  <li><a href="#usecase-useful-reticulate-example" id="toc-usecase-useful-reticulate-example" class="nav-link" data-scroll-target="#usecase-useful-reticulate-example"><span class="header-section-number">3.4.3</span> Usecase: useful reticulate example</a></li>
   </ul></li>
-  <li><a href="#compute-pseudobulk" id="toc-compute-pseudobulk" class="nav-link" data-scroll-target="#compute-pseudobulk"><span class="header-section-number">3.5</span> 4. Compute pseudobulk</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -280,7 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome. One language will act as the main language, and you will intereact with the other language using an FFI (foreign function interface).</p>
+<p>One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome.</p>
+<p>One language will act as the main language, and you will intereact with the other language using an FFI (foreign function interface).</p>
 <div id="fig-im-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-im-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -308,8 +309,7 @@ Figure&nbsp;3.2: Different in-memory representations
 </figcaption>
 </figure>
 </div>
-<p>In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well.</p>
-<p><strong>reticulate</strong>: There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices.</p>
+<p>In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well. There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices.</p>
 <p>If you notice something amiss with your matrices, check whether you need to transpose them or change the row/column major attribute.</p>
 </section>
 <section id="indexing-0-based-or-1-based" class="level3" data-number="3.1.2">
@@ -408,17 +408,17 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 8.00k/9.82M [00:00&lt;03:25, 50.1kB/s]
-  0%|          | 32.0k/9.82M [00:00&lt;01:36, 107kB/s] 
-  1%|          | 96.0k/9.82M [00:00&lt;00:43, 236kB/s]
-  2%|2         | 208k/9.82M [00:00&lt;00:24, 411kB/s] 
-  4%|4         | 424k/9.82M [00:00&lt;00:13, 736kB/s]
-  9%|8         | 872k/9.82M [00:01&lt;00:06, 1.41MB/s]
- 18%|#7        | 1.72M/9.82M [00:01&lt;00:03, 2.71MB/s]
- 35%|###5      | 3.46M/9.82M [00:01&lt;00:01, 5.28MB/s]
- 66%|######5   | 6.44M/9.82M [00:01&lt;00:00, 9.40MB/s]
- 83%|########2 | 8.12M/9.82M [00:01&lt;00:00, 11.1MB/s]
-100%|##########| 9.82M/9.82M [00:01&lt;00:00, 6.05MB/s]</code></pre>
+  0%|          | 8.00k/9.82M [00:00&lt;02:13, 77.3kB/s]
+  0%|          | 32.0k/9.82M [00:00&lt;01:02, 165kB/s] 
+  1%|          | 96.0k/9.82M [00:00&lt;00:27, 366kB/s]
+  2%|1         | 176k/9.82M [00:00&lt;00:19, 519kB/s] 
+  4%|3         | 376k/9.82M [00:00&lt;00:09, 1.01MB/s]
+  8%|7         | 768k/9.82M [00:00&lt;00:04, 1.92MB/s]
+ 16%|#5        | 1.52M/9.82M [00:00&lt;00:02, 3.72MB/s]
+ 31%|###1      | 3.07M/9.82M [00:00&lt;00:00, 7.27MB/s]
+ 57%|#####6    | 5.55M/9.82M [00:00&lt;00:00, 12.8MB/s]
+ 86%|########5 | 8.43M/9.82M [00:01&lt;00:00, 17.9MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 9.00MB/s]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
@@ -521,8 +521,8 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    res_pd.to_csv(<span class="st">"../usecase/data/de_contrasts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="usecase-ran-in-r" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="usecase-ran-in-r"><span class="header-section-number">3.4.2</span> Usecase: ran in R</h3>
+<section id="usecase-theoretical-reticulate-example" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="usecase-theoretical-reticulate-example"><span class="header-section-number">3.4.2</span> Usecase: theoretical reticulate example</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,39 +539,29 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># subset obs</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> adata[adata<span class="sc">$</span>obs<span class="sc">$</span>sm_name <span class="sc">%in%</span> <span class="fu">c</span>(control_name, sm_name), adata<span class="sc">$</span>var<span class="sc">$</span>highly_variable]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="compute-pseudobulk" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="compute-pseudobulk"><span class="header-section-number">3.5</span> 4. Compute pseudobulk</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(adata<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Combine data in a single data frame and compute pseudobulk</p>
+<p>Combine data in a single data frame and compute pseudobulk This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.</p>
+<p>We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.</p>
+<p>We will however showcase a useful application of reticulate.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  counts,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>],</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> adata<span class="sc">$</span>var_names</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># combined &lt;- py_env$img</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># del combined</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># py_gc &lt;- import("gc")</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># py_gc$collect()</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Construct obs for pseudobulk. Use ‘plate_well_celltype_reannotated’ as index and make sure to retain the columns ‘sm_name’, ‘cell_type’, and ‘plate_name’:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="fu">c</span>(<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>, <span class="st">"plate_well_celltype_reannotated"</span>)]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> pb_obs[<span class="sc">!</span><span class="fu">duplicated</span>(pb_obs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -581,7 +571,6 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pb_obs.index <span class="op">=</span> adata.obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> pb_obs.drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Create AnnData object:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> pb_X[pb_X<span class="sc">$</span>celltype <span class="sc">%in%</span> pb_obs<span class="sc">$</span>plate_well_celltype_reannotated, ]</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> select_X <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">"celltype"</span>)</span>
@@ -592,13 +581,16 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> adata<span class="sc">$</span>var</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Store to disk:</p>
 <!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_h5ad</span>(pb_adata, <span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="usecase-useful-reticulate-example" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="usecase-useful-reticulate-example"><span class="header-section-number">3.4.3</span> Usecase: useful reticulate example</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
