@@ -218,7 +218,7 @@ counts <- as.matrix(adata$X)
 
 Combine data in a single data frame and compute pseudobulk
 
-```{r compute_pseudobulk}
+```{r compute_pseudobulk, eval=FALSE}
 
 combined <- pd$DataFrame(
   counts,
@@ -237,14 +237,14 @@ pb_X <- group_by(cr, celltype) %>% summarise(across(where(is.numeric), sum))
 
 Construct obs for pseudobulk. Use 'plate_well_celltype_reannotated' as index and make sure to retain the columns 'sm_name', 'cell_type', and 'plate_name':
 
-```{r pb_obs}
+```{r pb_obs, eval=FALSE}
 pb_obs <- adata$obs[c("sm_name", "cell_type", "plate_name", "well", "plate_well_celltype_reannotated")]
 pb_obs <- pb_obs[!duplicated(pb_obs), ]
 ```
 
 Create AnnData object:
 
-```{r pb_anndata}
+```{r pb_anndata, eval=FALSE}
 select_X <- pb_X[pb_X$celltype %in% pb_obs$plate_well_celltype_reannotated, ]
 select_X <- select_X %>% select(-"celltype")
 
@@ -257,7 +257,8 @@ pb_adata <- anndata::AnnData(
 
 Store to disk:
 
-```{r store_pseudobulk}
+<!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
+```{r store_pseudobulk, eval=FALSE}
 write_h5ad(pb_adata, "usecase/data/pseudobulk.h5ad")
 
 ```
