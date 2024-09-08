@@ -16,8 +16,8 @@ book:
     - index.qmd
     - book/introduction.qmd
     - book/usecase/index.qmd
-    - book/in_memory_interoperability.qmd
-    - book/inmemory/on_disk_interoperability.qmd
+    - book/inmemory/in_memory_interoperability.qmd
+    - book/on_disk_interoperability.qmd
     - book/workflow_frameworks/index.qmd
     - book/book_slides.qmd
     - book/references.qmd
