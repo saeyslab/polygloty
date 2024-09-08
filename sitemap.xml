@@ -2,66 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://saeyslab.github.io/polygloty/index.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/introduction.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/usecase/index.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
-  </url>
-  <url>
-    <loc>https://saeyslab.github.io/polygloty/book/in_memory/index.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/in_memory/pitfalls.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/in_memory/rpy2.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/in_memory/reticulate.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/on_disk_interoperability.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/review.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/qualities.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/quality_assessment.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/viash_nextflow.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/best_practices.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/book_slides.html</loc>
-    <lastmod>2024-09-08T12:39:05.662Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.462Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/references.html</loc>
-    <lastmod>2024-09-08T12:39:05.666Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://saeyslab.github.io/polygloty/book/in_memory/index.html</loc>
+    <lastmod>2024-09-08T12:48:29.466Z</lastmod>
   </url>
   <url>
     <loc>https://saeyslab.github.io/polygloty/book/workflow_frameworks/index.html</loc>
-    <lastmod>2024-09-08T12:39:05.670Z</lastmod>
+    <lastmod>2024-09-08T12:48:29.470Z</lastmod>
   </url>
 </urlset>
