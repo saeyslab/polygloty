@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; In-memory interoperability – Polyglot programming for single-cell analysis</title>
+<title>3&nbsp; Pitfalls when using both Python and R – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -225,13 +259,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pitfalls-when-mixing-python-and-r" id="toc-pitfalls-when-mixing-python-and-r" class="nav-link active" data-scroll-target="#pitfalls-when-mixing-python-and-r"><span class="header-section-number">3.1</span> Pitfalls when mixing Python and R</a>
-  <ul class="collapse">
-  <li><a href="#column-major-vs-row-major" id="toc-column-major-vs-row-major" class="nav-link" data-scroll-target="#column-major-vs-row-major"><span class="header-section-number">3.1.1</span> Column major vs row major</a></li>
-  <li><a href="#indexing-0-based-or-1-based" id="toc-indexing-0-based-or-1-based" class="nav-link" data-scroll-target="#indexing-0-based-or-1-based"><span class="header-section-number">3.1.2</span> Indexing: 0-based or 1-based</a></li>
-  <li><a href="#dots-in-variable-names" id="toc-dots-in-variable-names" class="nav-link" data-scroll-target="#dots-in-variable-names"><span class="header-section-number">3.1.3</span> Dots in variable names</a></li>
-  <li><a href="#integers-and-floating-point-numbers" id="toc-integers-and-floating-point-numbers" class="nav-link" data-scroll-target="#integers-and-floating-point-numbers"><span class="header-section-number">3.1.4</span> Integers and floating point numbers</a></li>
-  </ul></li>
+  <li><a href="#column-major-vs-row-major" id="toc-column-major-vs-row-major" class="nav-link active" data-scroll-target="#column-major-vs-row-major"><span class="header-section-number">3.1</span> Column major vs row major</a></li>
+  <li><a href="#indexing-0-based-or-1-based" id="toc-indexing-0-based-or-1-based" class="nav-link" data-scroll-target="#indexing-0-based-or-1-based"><span class="header-section-number">3.2</span> Indexing: 0-based or 1-based</a></li>
+  <li><a href="#dots-in-variable-names" id="toc-dots-in-variable-names" class="nav-link" data-scroll-target="#dots-in-variable-names"><span class="header-section-number">3.3</span> Dots in variable names</a></li>
+  <li><a href="#integers-and-floating-point-numbers" id="toc-integers-and-floating-point-numbers" class="nav-link" data-scroll-target="#integers-and-floating-point-numbers"><span class="header-section-number">3.4</span> Integers and floating point numbers</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -240,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/pitfalls.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls when using both Python and R</span></h1>
 </div>
 
 
@@ -257,11 +288,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="pitfalls-when-mixing-python-and-r" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="pitfalls-when-mixing-python-and-r"><span class="header-section-number">3.1</span> Pitfalls when mixing Python and R</h2>
 <p>Python and R are very different programming languages. Here are some pitfalls you might encounter when mixing both languages.</p>
-<section id="column-major-vs-row-major" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="column-major-vs-row-major"><span class="header-section-number">3.1.1</span> Column major vs row major</h3>
+<section id="column-major-vs-row-major" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="column-major-vs-row-major"><span class="header-section-number">3.1</span> Column major vs row major</h2>
 <p>Matrices are stored contiguously in-memory, and are adressed by a single memory addresses, instead of multiple indices along the axis. A translation needs to happen between this single adress and the indices along the axes, and how that translation happens depens on how the matrix is represented in-memory.</p>
 <div id="fig-imm-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -276,20 +305,33 @@ Figure&nbsp;3.1: Different in-memory representations
 <p>In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well. There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices.</p>
 <p>If you notice something amiss with your matrices, check whether you need to transpose them or change the row/column major attribute.</p>
 </section>
-<section id="indexing-0-based-or-1-based" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="indexing-0-based-or-1-based"><span class="header-section-number">3.1.2</span> Indexing: 0-based or 1-based</h3>
+<section id="indexing-0-based-or-1-based" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="indexing-0-based-or-1-based"><span class="header-section-number">3.2</span> Indexing: 0-based or 1-based</h2>
 <p>Take care to remember that arrays and matrices in Python are indexed starting from 0 (as in, index 0 refers to the first element), while R uses 1-based indexing, where index 1 refers to the first element.</p>
 </section>
-<section id="dots-in-variable-names" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.1.3</span> Dots in variable names</h3>
-<p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls. When using rpy2, these dots are usually translated to underscores <code>_</code>. If this does not happen automatically, you can specify mappings for these symbols.</p>
+<section id="dots-in-variable-names" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.3</span> Dots in variable names</h2>
+<p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.</p>
+<p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this does not happen automatically, you can specify mappings for these symbols.</p>
 </section>
-<section id="integers-and-floating-point-numbers" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="integers-and-floating-point-numbers"><span class="header-section-number">3.1.4</span> Integers and floating point numbers</h3>
+<section id="integers-and-floating-point-numbers" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="integers-and-floating-point-numbers"><span class="header-section-number">3.4</span> Integers and floating point numbers</h2>
 <p>In R, unless you explicitly specify, any number is represented as a floating point number. Python can be more strict about using integers or floating point numbers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>float_ex <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>int_ex <span class="ot">&lt;-</span> <span class="dv">12</span>L</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">is.integer</span>(float_ex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">is.integer</span>(int_ex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TRUE</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
