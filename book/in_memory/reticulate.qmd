@@ -56,7 +56,7 @@ r_to_py(result_r)
 ```
 
 
-## Interactive sessions
+# Interactive sessions
 One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
 
 Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.
@@ -70,8 +70,6 @@ Jupyter notebooks (and some other notebooks) make this possible from the Python 
                         # the rest of the cell will be able to be ran as R code
 
 ```
-
-## Reticulate basics
 
 
 # Usecase
@@ -157,4 +155,31 @@ write_h5ad(pb_adata, "../usecase/data/pseudobulk.h5ad")
 
 ## Usecase: useful reticulate example
 
+You can also interact with anndata-based Python packages using reticulate and the R based `anndata` package. 
 
+Most interesting is that you can easily call scanpy functions on this anndata object.
+
+```{r scanpy_1}
+library(anndata)
+library(reticulate)
+sc <- import("scanpy")
+
+adata_path <- "../usecase/data/sc_counts_subset.h5ad"
+adata <- anndata::read_h5ad(adata_path)
+```
+
+We can preprocess the data:
+```{r scanpy_preprocess}
+sc$pp$filter_cells(adata, min_genes = 200)
+sc$pp$filter_genes(adata, min_cells = 3)
+```
+
+```{r scanpy_dimred}
+sc$pp$pca(adata)
+sc$pp$neighbors(adata)
+sc$tl$umap(adata)
+```
+
+```{r scanpy_plot}
+sc$pl$umap(adata)
+```
