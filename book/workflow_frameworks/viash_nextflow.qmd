@@ -1,0 +1,208 @@
+---
+title: "Viash + Nextflow: A use-case"
+engine: knitr
+---
+
+In this section, we will explore the use of [Viash](https://viash.io). Viash is a code generation tool that allows you to augment your scripts and Nextflow scripts with code generation.
+
+Use case components:
+
+
+## Bash
+
+Path: `src/load_data`
+
+:::{.panel-tabset}
+
+### `config.vsh.yaml` {.unnumbered}
+
+```{embed lang="yaml"}
+examples/viash_nextflow/src/load_data/config.vsh.yaml
+```
+
+### `script.sh` {.unnumbered}
+
+```{embed lang="bash"}
+examples/viash_nextflow/src/load_data/script.sh
+```
+
+### `test.sh` {.unnumbered}
+
+```{embed lang="bash"}
+examples/viash_nextflow/src/load_data/test.sh
+```
+
+:::
+
+## Python
+
+Path: `src/subset_obs`
+
+:::{.panel-tabset}
+
+### `config.vsh.yaml` {.unnumbered}
+
+```{embed lang="yaml"}
+examples/viash_nextflow/src/subset_obs/config.vsh.yaml
+```
+
+### `script.py` {.unnumbered}
+
+```{embed lang="python"}
+examples/viash_nextflow/src/subset_obs/script.py
+```
+
+### `test.py` {.unnumbered}
+
+```{embed lang="python"}
+examples/viash_nextflow/src/subset_obs/test.py
+```
+
+:::
+
+## R
+
+Path: `src/differential_expression`
+
+:::{.panel-tabset}
+
+### `config.vsh.yaml` {.unnumbered}
+
+```{embed lang="yaml"}
+examples/viash_nextflow/src/differential_expression/config.vsh.yaml
+```
+
+### `script.R` {.unnumbered}
+
+```{embed lang="r"}
+examples/viash_nextflow/src/differential_expression/script.R
+```
+
+### `test.R` {.unnumbered}
+
+```{embed lang="r"}
+examples/viash_nextflow/src/differential_expression/test.R
+```
+
+:::
+
+## Nextflow
+
+Path: `src/workflow`
+
+:::{.panel-tabset}
+
+### `config.vsh.yaml` {.unnumbered}
+
+```{embed lang="yaml"}
+examples/viash_nextflow/src/workflow/config.vsh.yaml
+```
+
+### `main.nf` {.unnumbered}
+
+```{embed lang="groovy"}
+examples/viash_nextflow/src/workflow/main.nf
+```
+
+:::
+
+## Running the workflow
+
+To run the workflow, you must first build the project:
+
+```bash
+viash ns build --parallel --setup cachedbuild
+```
+
+    Exporting load_data =executable=> target/executable/load_data
+    [notice] Building container 'polygloty_usecase/load_data:0.1.0' with Dockerfile
+    Exporting load_data =nextflow=> target/nextflow/load_data
+    Exporting compute_pseudobulk =executable=> target/executable/compute_pseudobulk
+    [notice] Building container 'polygloty_usecase/compute_pseudobulk:0.1.0' with Dockerfile
+    Exporting compute_pseudobulk =nextflow=> target/nextflow/compute_pseudobulk
+    Exporting subset_obs =executable=> target/executable/subset_obs
+    [notice] Building container 'polygloty_usecase/subset_obs:0.1.0' with Dockerfile
+    Exporting subset_obs =nextflow=> target/nextflow/subset_obs
+    Exporting subset_var =executable=> target/executable/subset_var
+    [notice] Building container 'polygloty_usecase/subset_var:0.1.0' with Dockerfile
+    Exporting subset_var =nextflow=> target/nextflow/subset_var
+    Exporting differential_expression =executable=> target/executable/differential_expression
+    [notice] Building container 'polygloty_usecase/differential_expression:0.1.0' with Dockerfile
+    Exporting differential_expression =nextflow=> target/nextflow/differential_expression
+    Exporting workflow =nextflow=> target/nextflow/workflow
+    All 11 configs built successfully
+
+Then, you can run the workflow:
+
+```bash
+nextflow run \
+  target/nextflow/workflow/main.nf \
+  -with-docker \
+  --id dataset \
+  --input s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
+  --contrast 'sm_name;Belinostat;Dimethyl Sulfoxide' \
+  --design_formula '~ sm_name + plate_name' \
+  --publish_dir output
+```
+
+    N E X T F L O W  ~  version 23.10.0
+    Launching `target/nextflow/workflow/main.nf` [condescending_engelbart] DSL2 - revision: f54b192abd
+    executor >  local (6)
+    [e2/da368b] process > workflow:wf:subset_sm_name:processWf:subset_sm_name_process (dataset)                   [100%] 1 of 1 ✔
+    [d5/fea947] process > workflow:wf:subset_cell_type:processWf:subset_cell_type_process (dataset)               [100%] 1 of 1 ✔
+    [23/a2b0a7] process > workflow:wf:subset_var:processWf:subset_var_process (dataset)                           [100%] 1 of 1 ✔
+    [55/a59f07] process > workflow:wf:compute_pseudobulk:processWf:compute_pseudobulk_process (dataset)           [100%] 1 of 1 ✔
+    [10/5c0650] process > workflow:wf:differential_expression:processWf:differential_expression_process (dataset) [100%] 1 of 1 ✔
+    [91/5f7431] process > workflow:publishStatesSimpleWf:publishStatesProc (dataset)                              [100%] 1 of 1 ✔
+    Completed at: 07-Sep-2024 21:33:16
+    Duration    : 8m 59s
+    CPU hours   : (a few seconds)
+    Succeeded   : 6
+
+The workflow will process the dataset, subset the data, compute pseudobulk samples, and perform differential expression analysis. The results will be saved in the `output` directory.
+
+## Workflow Output
+
+```bash
+tree output
+```
+
+    output/
+    ├── dataset.workflow.output.h5ad
+    └── dataset.workflow.state.yaml
+
+    1 directory, 2 files
+
+The resulting pseudobulk samples and differential expression analysis results are stored in the `dataset.workflow.output.h5ad` file.
+
+```python
+import anndata as ad
+
+adata = ad.read("output/dataset.workflow.output.h5ad")
+
+adata
+```
+
+    AnnData object with n_obs × n_vars = 96 × 2000
+        obs: 'sm_name', 'cell_type', 'plate_name', 'well'
+        var: 'highly_variable', 'means', 'dispersions', 'dispersions_norm'
+        varm: 'de_sm_name_belinostat_dimethyl_sulfoxide'
+
+```python
+adata.varm["de_sm_name_belinostat_dimethyl_sulfoxide"]
+```
+
+              baseMean  log2FoldChange     lfcSE      stat        pvalue          padj
+    A2M      12.320857       -0.696714  0.113490 -6.138993  8.304620e-10  2.699001e-09
+    A2M-AS1  31.563323       -0.652155  0.074559 -8.746780  2.195265e-18  1.065788e-17
+    A2MP1     1.712214       -0.844991  0.262029 -3.224806  1.260582e-03  2.551988e-03
+    AARD      0.125909        0.086614  1.234496  0.070161  9.440653e-01           NaN
+    ABCA1     2.003082       -0.154770  0.240886 -0.642504  5.205457e-01  6.193785e-01
+    ...            ...             ...       ...       ...           ...           ...
+    ZNF860    0.024027        0.214981  2.915260  0.073743  9.412147e-01           NaN
+    ZNF876P   0.568178       -0.703739  0.422580 -1.665340  9.584497e-02  1.486826e-01
+    ZNF891   28.045500        0.515844  0.066416  7.766889  8.043700e-15  3.338454e-14
+    ZNF92    46.860620        0.076892  0.048781  1.576261  1.149657e-01  1.743887e-01
+    ZNF99     0.000000             NaN       NaN       NaN           NaN           NaN
+
+    [2000 rows x 6 columns]

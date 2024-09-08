@@ -1,0 +1,209 @@
+---
+title: Quality Assessment of Workflow Frameworks
+engine: knitr
+---
+
+```{r tibble, echo=FALSE, eval=FALSE}
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(purrr)
+
+googlesheets4::gs4_auth(email = "robrecht@data-intuitive.com")
+wf_qc_sheet <- "https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI"
+wf_qc <- googlesheets4::read_sheet(wf_qc_sheet, sheet = "qc") |>
+  mutate_each(function(x) {
+    map_chr(x, function(y) {
+      if (is.null(y)) {
+        NA_character_
+      } else {
+        y
+      }
+    })
+  })
+
+wf_qc2 <- wf_qc
+
+# fill in NAs due to merged cells
+for (i in seq(2, nrow(wf_qc2), by = 1)) {
+  if (is.na(wf_qc2$name[[i]])) {
+    wf_qc2$name[[i]] <- wf_qc2$name[[i - 1]]
+  }
+  if (is.na(wf_qc$aspect[[i]])) {
+    wf_qc2$aspect[[i]] <- wf_qc2$aspect[[i - 1]]
+  }
+}
+
+# remove incomplete frameworks and unused questions
+wf_qc2 <- wf_qc2 |>
+  select(name, aspect, item, Nextflow, Snakemake, Galaxy, `Viash + Nextflow`, `Argo Workflows`) %>%
+  filter(!is.na(Nextflow)) %>%
+  filter(item != "The framework provides clear error messages and debugging tools.")
+
+# sanitize string
+string_to_colname <- function(x) {
+  x <- tolower(x)
+  x <- gsub(" ", "_", x)
+  x <- gsub("[^[:alnum:]_]", "", x)
+  x <- gsub("__", "_", x)
+  x
+}
+
+# process metadata
+meta <- wf_qc2 |>
+  filter(name == "Metadata") |>
+  select(-name, -aspect) |>
+  as.matrix() |>
+  t() |>
+  as.data.frame() %>%
+  rownames_to_column("project")
+colnames(meta) <- string_to_colname(unname(unlist(meta[1,])))
+meta <- meta[-1,]
+rownames(meta) <- NULL
+meta <- meta |>
+  rename(project = item) |>
+  mutate(id = string_to_colname(project))
+
+# process criteria
+criteria <- wf_qc2 |>
+  filter(name != "Metadata") |>
+  select(name, aspect, item)
+
+# process scores
+scores <- wf_qc2 |>
+  filter(name != "Metadata") |>
+  gather(key = "framework", value = "data", -item, -name, -aspect) %>%
+  mutate(
+    score = gsub("^([0-9\\.]*).*", "\\1", data) |> as.numeric(),
+    url = gsub(".*(http[^ ]*)$", "\\1", data) %>% ifelse(. == data, NA_character_, .),
+    explanation = gsub("^[0-9\\.]* ", "", data) %>% gsub("http[^ ]*$", "", .)
+  )
+
+agg <- scores |>
+  group_by(name, framework) |>
+  summarize(mean_score = mean(score), .groups = "drop")
+
+# write to file
+write.csv(meta, "notebooks/workflows/data/wf_metadata.csv", row.names = FALSE)
+write.csv(criteria, "notebooks/workflows/data/criteria.csv", row.names = FALSE)
+write.csv(agg, "notebooks/workflows/data/wf_aggregated_scores.csv", row.names = FALSE)
+```
+
+Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we're happy to share the preliminary results with you.
+
+The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section ([@fig-qualities]).
+
+## Included frameworks
+
+The following workflow frameworks were included in the assessment:
+
+```{r wf_metadata, echo=FALSE, results="asis"}
+meta <- read.csv("data/wf_metadata.csv")
+
+for (i in seq_len(nrow(meta))) {
+  project <- meta$project[[i]]
+  project_description <- meta$project_description[[i]]
+  project_website <- meta$project_website[[i]]
+  project_repository <- meta$project_repository[[i]]
+  documentation <- meta$documentation[[i]]
+  doi <- meta$doi[[i]]
+  community <- meta$community[[i]]
+  community_repository <- meta$community_repository[[i]]
+
+  strs <- c(
+    paste0("[", project, "](", project_website, "): ",
+    gsub("\\. *$", "", project_description), ".")
+  )
+
+  if (!is.na(project_repository)) {
+    strs <- c(strs, paste0("[{{< fa brands github >}}](", project_repository, ")"))
+  }
+
+  if (!is.na(documentation)) {
+    strs <- c(strs, paste0("[{{< fa circle-info >}}](", documentation, ")"))
+  }
+
+  if (!is.na(doi)) {
+    strs <- c(strs, paste0("[{{< fa book-open >}}](", doi, ")"))
+  }
+
+  if (!is.na(community)) {
+    strs <- c(strs, paste0("[{{< fa users >}}](", community, ")"))
+  }
+
+  cat(paste0(
+    "- ", paste(strs, collapse = " "), "\n"
+  ))
+}
+```
+
+## Quality Assessment Criteria
+
+The quality assessment was based on the following criteria:
+
+:::{.panel-tabset}
+
+```{r criteria, echo=FALSE, results="asis"}
+criteria <- read.csv("data/criteria.csv")
+
+unique_names <- unique(criteria$name)
+
+for (name in sort(unique(criteria$name))) {
+  crit <- criteria[criteria$name == name, , drop = FALSE]
+
+  cat(paste0("#### ", name, " {.unnumbered}\n\n"))
+
+  for (aspect in sort(unique(crit$aspect))) {
+    asp <- crit[crit$aspect == aspect, , drop = FALSE]
+    cat(paste0("**", aspect, "**\n\n"))
+
+    for (item in asp$item) {
+      cat(paste0(" * ", item, "\n"))
+    }
+
+    cat("\n\n")
+  }
+}
+```
+
+:::
+
+These criteria and subsequent scores will be further refined and validated as part of our ongoing research.
+
+## Quality Scores
+
+The aggregated quality scores for each framework are shown below. The scores are based on the evaluation of the essential qualities of a production-ready workflow.
+
+```{r plot_scores, echo=FALSE}
+#| fig-cap: Quality scores for different workflow frameworks. 
+#| fig-format: svg
+library(ggplot2)
+
+agg <- read.csv("data/wf_aggregated_scores.csv")
+agg$framework <- factor(agg$framework, levels = sort(unique(agg$framework), decreasing = TRUE))
+
+ggplot(agg) +
+  geom_point(aes(mean_score, framework, color = framework)) +
+  geom_segment(aes(x = 0, xend = mean_score, y = framework, yend = framework, color = framework), linewidth = 1) +
+  facet_wrap(~name, ncol = 2) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    legend.position = "none"
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  ) +
+  scale_color_brewer(palette = "Set1")
+```
+
+Raw scores and detailed explanations behind the reasoning of the resulting scores can be found in the [Workflow Quality Assessment Spreadsheet](https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI).
+
+## Quality assessment contributors
+
+* Jakub Majerčík
+* Michaela Müller 
+* Robrecht Cannoodt
+* Toni Verbeiren

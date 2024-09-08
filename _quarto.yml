@@ -18,7 +18,19 @@ book:
     - book/usecase/index.qmd
     - book/in_memory_interoperability.qmd
     - book/on_disk_interoperability.qmd
-    - book/workflow_frameworks/index.qmd
+    - text: Workflow frameworks
+      part: book/workflow_frameworks/index.qmd
+      chapters:
+        - text: A review
+          href: book/workflow_frameworks/review.qmd
+        - text: Essential qualities and technologies
+          href: book/workflow_frameworks/qualities.qmd
+        - text: Quality assessment
+          href: book/workflow_frameworks/quality_assessment.qmd
+        - text: Example workflow
+          href: book/workflow_frameworks/viash_nextflow.qmd
+        - text: Best practices
+          href: book/workflow_frameworks/best_practices.qmd
     - book/book_slides.qmd
     - book/references.qmd
 
