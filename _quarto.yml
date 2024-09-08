@@ -25,7 +25,6 @@ book:
           href: book/in_memory/rpy2.qmd
         - text: reticulate
           href: book/in_memory/reticulate.qmd
-    - book/in_memory/index.qmd
     - book/on_disk_interoperability.qmd
     - text: Workflow frameworks
       part: book/workflow_frameworks/index.qmd
