@@ -292,6 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="column-major-vs-row-major" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="column-major-vs-row-major"><span class="header-section-number">3.1</span> Column major vs row major</h2>
 <p>Matrices are stored contiguously in-memory, and are adressed by a single memory addresses, instead of multiple indices along the axis. A translation needs to happen between this single adress and the indices along the axes, and how that translation happens depens on how the matrix is represented in-memory.</p>
+<p>The figure below illustrates the most common ways a matrix is stored in memory, column major and row major order.</p>
 <div id="fig-imm-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-imm-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -313,21 +314,34 @@ Figure&nbsp;3.1: Different in-memory representations
 <h2 data-number="3.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.3</span> Dots in variable names</h2>
 <p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.</p>
 <p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this does not happen automatically, you can specify mappings for these symbols.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/runner/work/polygloty/polygloty/renv/python/virtualenvs/renv-python-3.12/lib/python3.12/site-packages/rpy2/rinterface_lib/embedded.py:276: UserWarning: R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it nevertheless.
+  warnings.warn(msg)
+R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it nevertheless.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'package.dependencies'</span>: <span class="st">'package_dot_dependencies'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'package_dependencies'</span>: <span class="st">'package_uscore_dependencies'</span>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> importr(<span class="st">'tools'</span>, robject_translations <span class="op">=</span> d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="integers-and-floating-point-numbers" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="integers-and-floating-point-numbers"><span class="header-section-number">3.4</span> Integers and floating point numbers</h2>
-<p>In R, unless you explicitly specify, any number is represented as a floating point number. Python can be more strict about using integers or floating point numbers.</p>
+<p>Unless you explicitely specify, any number is represented as a floating point number in R. By adding a <code>L</code> at the end of the number, you specify that it is an integer.</p>
+<p>Python can be more strict about using integers or floating point numbers than R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>float_ex <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>int_ex <span class="ot">&lt;-</span> <span class="dv">12</span>L</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">is.integer</span>(float_ex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>float_ex <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>int_ex <span class="ot">&lt;-</span> <span class="dv">12</span>L</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(float_ex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>FALSE</code></pre>
+<pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">is.integer</span>(int_ex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(int_ex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 

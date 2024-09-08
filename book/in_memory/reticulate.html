@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; In-memory interoperability – Polyglot programming for single-cell analysis</title>
+<title>5&nbsp; Reticulate – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -259,15 +259,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reticulate-basic-functionality" id="toc-reticulate-basic-functionality" class="nav-link active" data-scroll-target="#reticulate-basic-functionality"><span class="header-section-number">5.1</span> Reticulate: basic functionality</a>
+  <li><a href="#reticulate-basic-functionality" id="toc-reticulate-basic-functionality" class="nav-link active" data-scroll-target="#reticulate-basic-functionality"><span class="header-section-number">6</span> Reticulate: basic functionality</a>
   <ul class="collapse">
-  <li><a href="#interactive-sessions" id="toc-interactive-sessions" class="nav-link" data-scroll-target="#interactive-sessions"><span class="header-section-number">5.1.1</span> Interactive sessions</a></li>
-  <li><a href="#reticulate-basics" id="toc-reticulate-basics" class="nav-link" data-scroll-target="#reticulate-basics"><span class="header-section-number">5.1.2</span> Reticulate basics</a></li>
+  <li><a href="#interactive-sessions" id="toc-interactive-sessions" class="nav-link" data-scroll-target="#interactive-sessions"><span class="header-section-number">6.1</span> Interactive sessions</a></li>
+  <li><a href="#reticulate-basics" id="toc-reticulate-basics" class="nav-link" data-scroll-target="#reticulate-basics"><span class="header-section-number">6.2</span> Reticulate basics</a></li>
   </ul></li>
-  <li><a href="#usecase" id="toc-usecase" class="nav-link" data-scroll-target="#usecase"><span class="header-section-number">5.2</span> Usecase</a>
+  <li><a href="#usecase" id="toc-usecase" class="nav-link" data-scroll-target="#usecase"><span class="header-section-number">7</span> Usecase</a>
   <ul class="collapse">
-  <li><a href="#usecase-theoretical-reticulate-example" id="toc-usecase-theoretical-reticulate-example" class="nav-link" data-scroll-target="#usecase-theoretical-reticulate-example"><span class="header-section-number">5.2.1</span> Usecase: theoretical reticulate example</a></li>
-  <li><a href="#usecase-useful-reticulate-example" id="toc-usecase-useful-reticulate-example" class="nav-link" data-scroll-target="#usecase-useful-reticulate-example"><span class="header-section-number">5.2.2</span> Usecase: useful reticulate example</a></li>
+  <li><a href="#usecase-theoretical-reticulate-example" id="toc-usecase-theoretical-reticulate-example" class="nav-link" data-scroll-target="#usecase-theoretical-reticulate-example"><span class="header-section-number">7.1</span> Usecase: theoretical reticulate example</a></li>
+  <li><a href="#usecase-useful-reticulate-example" id="toc-usecase-useful-reticulate-example" class="nav-link" data-scroll-target="#usecase-useful-reticulate-example"><span class="header-section-number">7.2</span> Usecase: useful reticulate example</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/reticulate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reticulate</span></h1>
 </div>
 
 
@@ -294,39 +294,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="reticulate-basic-functionality" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="reticulate-basic-functionality"><span class="header-section-number">5.1</span> Reticulate: basic functionality</h2>
 <p>Reticulate is a foreign function interface in R to Python.</p>
-<section id="interactive-sessions" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="interactive-sessions"><span class="header-section-number">5.1.1</span> Interactive sessions</h3>
+<section id="reticulate-basic-functionality" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Reticulate: basic functionality</h1>
+<p>Data types are automatically converted from Python to R and vice versa. A useful table of automatic conversions can be found <a href="https://rstudio.github.io/reticulate/articles/calling_python.html#type-conversions">here</a>.</p>
+<p>You can easily import python modules, and call the functions in the following way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bi <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"random"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>bi<span class="sc">$</span><span class="fu">max</span>(example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rd<span class="sc">$</span><span class="fu">choice</span>(example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bi<span class="sc">$</span><span class="fu">list</span>(bi<span class="sc">$</span><span class="fu">reversed</span>(example))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 2 1</code></pre>
+</div>
+</div>
+<p>Numpy is also easily used:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"numpy"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">asarray</span>(<span class="fu">tuple</span>(<span class="fu">list</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="fu">list</span>(<span class="dv">3</span>, <span class="dv">4</span>)))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">asarray</span>(<span class="fu">list</span>(<span class="dv">5</span>,<span class="dv">6</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">reshape</span>(b, <span class="at">newshape =</span> <span class="fu">tuple</span>(<span class="dv">1</span>L,<span class="dv">2</span>L))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>np<span class="sc">$</span><span class="fu">concatenate</span>(<span class="fu">tuple</span>(a, b), <span class="at">axis=</span><span class="dv">0</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6</code></pre>
+</div>
+</div>
+<p>If you want more finegrained control over conversion, you can specify in the import statement that you do not want results of functions of that package to be converted to R data types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"numpy"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">asarray</span>(<span class="fu">tuple</span>(<span class="fu">list</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="fu">list</span>(<span class="dv">3</span>, <span class="dv">4</span>)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">asarray</span>(<span class="fu">list</span>(<span class="dv">5</span>,<span class="dv">6</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">reshape</span>(b, <span class="at">newshape =</span> <span class="fu">tuple</span>(<span class="dv">1</span>L,<span class="dv">2</span>L))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>np<span class="sc">$</span><span class="fu">concatenate</span>(<span class="fu">tuple</span>(a, b), <span class="at">axis=</span><span class="dv">0</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[1., 2.],
+       [3., 4.],
+       [5., 6.]])</code></pre>
+</div>
+</div>
+<p>You can explicitly convert data types:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> np<span class="sc">$</span><span class="fu">concatenate</span>(<span class="fu">tuple</span>(a, b), <span class="at">axis=</span><span class="dv">0</span>L)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">py_to_r</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>result_r <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(result)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">r_to_py</span>(result_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[1., 2.],
+       [3., 4.],
+       [5., 6.]])</code></pre>
+</div>
+</div>
+<section id="interactive-sessions" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="interactive-sessions"><span class="header-section-number">6.1</span> Interactive sessions</h2>
 <p>One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you’re exploring the data and want to try out some functions non-native to your language of choice.</p>
 <p>Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython  <span class="co"># line magic that loads the rpy2 ipython extension.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this extension allows the use of the following cell magic</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R <span class="op">-</span>i <span class="bu">input</span> <span class="op">-</span>o output  <span class="co"># this line allows to specify inputs (which will be converted to R objects) and outputs (which will be converted back to Python objects) </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this line is put at the start of a cell</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># the rest of the cell will be able to be ran as R code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython  <span class="co"># line magic that loads the rpy2 ipython extension.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this extension allows the use of the following cell magic</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R <span class="op">-</span>i <span class="bu">input</span> <span class="op">-</span>o output  <span class="co"># this line allows to specify inputs (which will be converted to R objects) and outputs (which will be converted back to Python objects) </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this line is put at the start of a cell</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># the rest of the cell will be able to be ran as R code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="reticulate-basics" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="reticulate-basics"><span class="header-section-number">5.1.2</span> Reticulate basics</h3>
+<section id="reticulate-basics" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="reticulate-basics"><span class="header-section-number">6.2</span> Reticulate basics</h2>
 </section>
 </section>
-<section id="usecase" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="usecase"><span class="header-section-number">5.2</span> Usecase</h2>
-<section id="usecase-theoretical-reticulate-example" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="usecase-theoretical-reticulate-example"><span class="header-section-number">5.2.1</span> Usecase: theoretical reticulate example</h3>
+<section id="usecase" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Usecase</h1>
+<section id="usecase-theoretical-reticulate-example" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="usecase-theoretical-reticulate-example"><span class="header-section-number">7.1</span> Usecase: theoretical reticulate example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>adata_path <span class="ot">&lt;-</span> <span class="st">"../usecase/data/sc_counts_subset.h5ad"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">read_h5ad</span>(adata_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>adata_path <span class="ot">&lt;-</span> <span class="st">"../usecase/data/sc_counts_subset.h5ad"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">read_h5ad</span>(adata_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Subset to a single small molecule and control for computational efficiency:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -341,61 +413,61 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="ot">&lt;-</span> <span class="st">"Belinostat"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="ot">&lt;-</span> <span class="st">"Dimethyl Sulfoxide"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subset obs</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> adata[adata<span class="sc">$</span>obs<span class="sc">$</span>sm_name <span class="sc">%in%</span> <span class="fu">c</span>(control_name, sm_name), adata<span class="sc">$</span>var<span class="sc">$</span>highly_variable]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="ot">&lt;-</span> <span class="st">"Belinostat"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="ot">&lt;-</span> <span class="st">"Dimethyl Sulfoxide"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subset obs</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> adata[adata<span class="sc">$</span>obs<span class="sc">$</span>sm_name <span class="sc">%in%</span> <span class="fu">c</span>(control_name, sm_name), adata<span class="sc">$</span>var<span class="sc">$</span>highly_variable]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(adata<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(adata<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Combine data in a single data frame and compute pseudobulk This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.</p>
 <p>We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.</p>
 <p>We will however showcase a useful application of reticulate.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  counts,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>],</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> adata<span class="sc">$</span>var_names</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  counts,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>],</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> adata<span class="sc">$</span>var_names</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="fu">c</span>(<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>, <span class="st">"plate_well_celltype_reannotated"</span>)]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> pb_obs[<span class="sc">!</span><span class="fu">duplicated</span>(pb_obs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="fu">c</span>(<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>, <span class="st">"plate_well_celltype_reannotated"</span>)]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> pb_obs[<span class="sc">!</span><span class="fu">duplicated</span>(pb_obs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> adata.obs[[<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>]].copy()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pb_obs.index <span class="op">=</span> adata.obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> pb_obs.drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> adata.obs[[<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>]].copy()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pb_obs.index <span class="op">=</span> adata.obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> pb_obs.drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> pb_X[pb_X<span class="sc">$</span>celltype <span class="sc">%in%</span> pb_obs<span class="sc">$</span>plate_well_celltype_reannotated, ]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> select_X <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">"celltype"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">AnnData</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> select_X,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs =</span> pb_obs,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> adata<span class="sc">$</span>var</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> pb_X[pb_X<span class="sc">$</span>celltype <span class="sc">%in%</span> pb_obs<span class="sc">$</span>plate_well_celltype_reannotated, ]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> select_X <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">"celltype"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">AnnData</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> select_X,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs =</span> pb_obs,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> adata<span class="sc">$</span>var</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_h5ad</span>(pb_adata, <span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_h5ad</span>(pb_adata, <span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="usecase-useful-reticulate-example" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="usecase-useful-reticulate-example"><span class="header-section-number">5.2.2</span> Usecase: useful reticulate example</h3>
+<section id="usecase-useful-reticulate-example" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="usecase-useful-reticulate-example"><span class="header-section-number">7.2</span> Usecase: useful reticulate example</h2>
 
 
 </section>
