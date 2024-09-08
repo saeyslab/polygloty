@@ -203,8 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#different-file-formats" id="toc-different-file-formats" class="nav-link active" data-scroll-target="#different-file-formats"><span class="header-section-number">4.1</span> Different file formats</a>
   <ul class="collapse">
-  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes"><span class="header-section-number">4.1.1</span> Dataframes</a></li>
-  <li><a href="#n-dimensional-arrays" id="toc-n-dimensional-arrays" class="nav-link" data-scroll-target="#n-dimensional-arrays"><span class="header-section-number">4.1.2</span> n-dimensional arrays</a></li>
+  <li><a href="#non-exhaustive-list-of-file-formats" id="toc-non-exhaustive-list-of-file-formats" class="nav-link" data-scroll-target="#non-exhaustive-list-of-file-formats"><span class="header-section-number">4.1.1</span> Non-exhaustive list of file formats</a></li>
   </ul></li>
   <li><a href="#different-on-disk-pipelines" id="toc-different-on-disk-pipelines" class="nav-link" data-scroll-target="#different-on-disk-pipelines"><span class="header-section-number">4.2</span> Different on-disk pipelines</a></li>
   <li><a href="#notebook-pipelines" id="toc-notebook-pipelines" class="nav-link" data-scroll-target="#notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</a>
@@ -247,193 +246,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Debugging is only possible for individual scripts and the workflow in not as interactive and explorative as the in-memory approach.</p>
 <section id="different-file-formats" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="different-file-formats"><span class="header-section-number">4.1</span> Different file formats</h2>
-<p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable. Older versions of the language could also have problems reading in serialized objects created by the latest language version.</p>
-<p>For a file format to be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
-<section id="dataframes" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">4.1.1</span> Dataframes</h3>
+<p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable.</p>
+<p>While the file formats themselves can be backwards compatible and you can read in old objects, it’s not necessarily the case newer versions of some package can read in files from older versions e.g.&nbsp;SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.</p>
+<p>For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
+<p>Note that there can be a difference in-memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
+<section id="non-exhaustive-list-of-file-formats" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="non-exhaustive-list-of-file-formats"><span class="header-section-number">4.1.1</span> Non-exhaustive list of file formats</h3>
+<p><a href="#tbl-file-formats" class="quarto-xref">Table&nbsp;<span>4.1</span></a> shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.</p>
+<p>The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g.&nbsp;the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.</p>
+<div id="tbl-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Overview of file formats for single cell.
+</figcaption>
+<div aria-describedby="tbl-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 5%">
-<col style="width: 11%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 16%">
-<col style="width: 13%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>File Format</th>
 <th>Support in Python</th>
 <th>Support in R</th>
-<th>Text-Based</th>
-<th>Binary</th>
-<th>High-Performance</th>
-<th>Ease-of-Use</th>
-<th>Compression</th>
-<th>Suitable for Single-Cell</th>
-<th>Suitable for Spatial</th>
+<th>Compressed</th>
+<th>Supports sparse matrix</th>
+<th>Supports raster data</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>RDS</td>
+<td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td>Pickle</td>
+<td>●●</td>
+<td>○○</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
 <td>CSV</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>High</td>
-<td>No</td>
-<td>Limited</td>
-<td>No</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+<td>○○</td>
 </tr>
 <tr class="even">
 <td>JSON</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Medium</td>
-<td>No</td>
-<td>Limited</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>Parquet</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>High</td>
-<td>Yes</td>
-<td>Limited</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Feather</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>High</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>HDF5</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Medium</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Limited</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="n-dimensional-arrays" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="n-dimensional-arrays"><span class="header-section-number">4.1.2</span> n-dimensional arrays</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 5%">
-<col style="width: 11%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 16%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>File Format</th>
-<th>Support in Python</th>
-<th>Support in R</th>
-<th>Text-Based</th>
-<th>Binary</th>
-<th>High-Performance</th>
-<th>Ease-of-Use</th>
-<th>Compression</th>
-<th>Suitable for Single-Cell</th>
-<th>Suitable for Spatial</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>h5ad</td>
-<td>Yes</td>
-<td>Limited</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Medium</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>Zarr</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Medium</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>NumPy (npy)</td>
-<td>Yes</td>
-<td>Limited</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>High</td>
-<td>No</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>NetCDF</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Medium</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+<td>○○</td>
 </tr>
 <tr class="odd">
 <td>TIFF</td>
-<td>Yes</td>
-<td>Limited</td>
-<td>No</td>
-<td>Yes</td>
-<td>Medium</td>
-<td>Medium</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format">Numpy .npy</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://parquet.apache.org/">Parquet</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td><a href="https://arrow.apache.org/docs/python/feather.html">Feather</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/lancedb/lance">Lance</a></td>
+<td>●●</td>
+<td>○○</td>
+<td>●●</td>
+<td>○○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td><a href="https://tiledb.io/">TileDB</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.hdfgroup.org/">HDF5</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://zarr.readthedocs.io/en/stable/">Zarr</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>●●</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://satijalab.org/seurat/">Seurat RDS</a></td>
+<td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://mojaveazure.github.io/seurat-disk/index.html">h5Seurat</a></td>
+<td>○○</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+</tr>
+<tr class="even">
+<td><a href="https://loompy.org/">Loom HDF5</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData h5ad/Zarr</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+</tr>
+<tr class="even">
+<td><a href="https://tiledb.com/open-source/life-sciences">TileDB-SOMA</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://tiledb.com/open-source/life-sciences">TileDB-BioImaging</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●○</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://spatialdata.scverse.org/en/stable/">SpatialData Zarr</a></td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
+<td>●●</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 </section>
 <section id="different-on-disk-pipelines" class="level2" data-number="4.2">
@@ -445,13 +448,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="notebook-pipelines" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</h2>
-<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. Our <a href="./usecase/">Use-case chapter</a> is one example of this.</p>
-<p>For example, [Papermill]https://github.com/nteract/papermill) can execute Jupyter notebooks in sequence and pass variables between them. <a href="https://github.com/ploomber/ploomber">Ploomber</a> is another example.</p>
+<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. Our <a href="./usecase/">Use-case chapter</a> is one example of this. The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>.</p>
+<p>It is possible to create whole pipelines out of multiple notebooks. For example, <a href="https://github.com/nteract/papermill">Papermill</a> can execute parameterized Jupyter notebooks in sequence and pass variables between them. <a href="https://nbdev.fast.ai/">nbdev</a> and <a href="https://github.com/ploomber/ploomber">Ploomber</a> are similar such frameworks.</p>
 <section id="execute-notebooks-via-the-cli" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">4.3.1</span> Execute notebooks via the CLI</h3>
-<p>Jupyter via <a href="https://nbconvert.readthedocs.io/en/latest/#">nbconvert</a>.:</p>
+<p>Jupyter notebook via <a href="https://nbconvert.readthedocs.io/en/latest/#">nbconvert</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> notebook <span class="at">--execute</span> my_notebook.ipynb <span class="at">--allow-errors</span> <span class="at">--output-dir</span> outputs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="https://rmarkdown.rstudio.com/">RMarkdown</a>:</p>
+<p><a href="https://rmarkdown.rstudio.com/">RMarkdown</a> notebook via Rscript:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
@@ -488,9 +491,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase_data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
+<p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase_data:/app/usecase_data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

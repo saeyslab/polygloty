@@ -319,7 +319,9 @@ Figure&nbsp;2.1: DGE perturbation prediction task
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> adata[</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  adata.obs[<span class="st">"sm_name"</span>].isin([sm_name, control_name]) <span class="op">&amp;</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  adata.obs[<span class="st">"cell_type"</span>].isin([cell_type]),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>].copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>].copy()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>adata.write_h5ad(<span class="st">"data/sc_counts_subset.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will also subset the genes to the top 2000 most variable genes.</p>
 <div class="cell">

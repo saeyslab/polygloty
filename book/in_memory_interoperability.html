@@ -207,6 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#usecase-ran-in-r" id="toc-usecase-ran-in-r" class="nav-link" data-scroll-target="#usecase-ran-in-r"><span class="header-section-number">3.3.1</span> Usecase: ran in R</a></li>
   </ul></li>
+  <li><a href="#compute-pseudobulk" id="toc-compute-pseudobulk" class="nav-link" data-scroll-target="#compute-pseudobulk"><span class="header-section-number">3.4</span> 4. Compute pseudobulk</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory_interoperability.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory_interoperability.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -317,17 +318,18 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 8.00k/9.82M [00:00&lt;02:10, 78.7kB/s]
+  0%|          | 8.00k/9.82M [00:00&lt;02:10, 79.0kB/s]
   0%|          | 32.0k/9.82M [00:00&lt;01:01, 167kB/s] 
   1%|          | 96.0k/9.82M [00:00&lt;00:27, 367kB/s]
-  2%|1         | 200k/9.82M [00:00&lt;00:16, 609kB/s] 
-  4%|4         | 408k/9.82M [00:00&lt;00:09, 1.10MB/s]
-  8%|8         | 840k/9.82M [00:00&lt;00:04, 2.11MB/s]
- 17%|#6        | 1.65M/9.82M [00:00&lt;00:02, 4.03MB/s]
- 32%|###2      | 3.17M/9.82M [00:00&lt;00:01, 6.88MB/s]
- 62%|######1   | 6.06M/9.82M [00:01&lt;00:00, 10.4MB/s]
- 92%|#########2| 9.05M/9.82M [00:01&lt;00:00, 15.0MB/s]
-100%|##########| 9.82M/9.82M [00:01&lt;00:00, 8.40MB/s]</code></pre>
+  2%|1         | 200k/9.82M [00:00&lt;00:16, 607kB/s] 
+  4%|4         | 408k/9.82M [00:00&lt;00:09, 1.09MB/s]
+  8%|8         | 840k/9.82M [00:00&lt;00:04, 2.10MB/s]
+ 17%|#6        | 1.66M/9.82M [00:00&lt;00:02, 4.04MB/s]
+ 26%|##5       | 2.54M/9.82M [00:00&lt;00:01, 5.02MB/s]
+ 56%|#####5    | 5.45M/9.82M [00:01&lt;00:00, 11.7MB/s]
+ 73%|#######2  | 7.16M/9.82M [00:01&lt;00:00, 13.1MB/s]
+ 91%|#########1| 8.98M/9.82M [00:01&lt;00:00, 14.4MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 8.26MB/s]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
@@ -337,6 +339,7 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 </section>
 <section id="reticulate-basic-functionality" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="reticulate-basic-functionality"><span class="header-section-number">3.2</span> Reticulate: basic functionality</h2>
+<p>Reticulate is a foreign function interface in R to Python.</p>
 </section>
 <section id="interactive-sessions" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="interactive-sessions"><span class="header-section-number">3.3</span> Interactive sessions</h2>
@@ -429,9 +432,65 @@ pd_adata = ad.read_h5ad("usecase/data/pseudobulk.h5ad")</code></pre>
 </div>
 <section id="usecase-ran-in-r" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="usecase-ran-in-r"><span class="header-section-number">3.3.1</span> Usecase: ran in R</h3>
-
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>adata_path <span class="ot">&lt;-</span> <span class="st">"usecase/data/sc_counts_subset.h5ad"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">read_h5ad</span>(adata_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+</section>
+<section id="compute-pseudobulk" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="compute-pseudobulk"><span class="header-section-number">3.4</span> 4. Compute pseudobulk</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(adata<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in asMethod(object): sparse-&gt;dense coercion: allocating vector of size
+5.2 GiB</code></pre>
+</div>
+</div>
+<p>Combine data in a single data frame and compute pseudobulk</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  counts,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>],</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> adata<span class="sc">$</span>var_names</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Construct obs for pseudobulk. Use ‘plate_well_celltype_reannotated’ as index and make sure to retain the columns ‘sm_name’, ‘cell_type’, and ‘plate_name’:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="fu">c</span>(<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>, <span class="st">"plate_well_celltype_reannotated"</span>)]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> pb_obs[<span class="sc">!</span><span class="fu">duplicated</span>(pb_obs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create AnnData object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> pb_X[pb_X<span class="sc">$</span>celltype <span class="sc">%in%</span> pb_obs<span class="sc">$</span>plate_well_celltype_reannotated, ]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> select_X <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">"celltype"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">AnnData</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> select_X,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs =</span> pb_obs,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> adata<span class="sc">$</span>var</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Store to disk:</p>
+<!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_h5ad</span>(pb_adata, <span class="st">"usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

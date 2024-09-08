@@ -189,7 +189,7 @@ div.csl-indent {
   <ul>
   <li><a href="#code-porting" id="toc-code-porting" class="nav-link active" data-scroll-target="#code-porting"><span class="header-section-number">1.1</span> Code porting</a></li>
   <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</a></li>
-  <li><a href="#file-based-interoperability" id="toc-file-based-interoperability" class="nav-link" data-scroll-target="#file-based-interoperability"><span class="header-section-number">1.3</span> File-based Interoperability</a></li>
+  <li><a href="#disk-based-interoperability" id="toc-disk-based-interoperability" class="nav-link" data-scroll-target="#disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based Interoperability</a></li>
   <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -228,9 +228,9 @@ div.csl-indent {
 <h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</h2>
 <p>Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.</p>
 </section>
-<section id="file-based-interoperability" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="file-based-interoperability"><span class="header-section-number">1.3</span> File-based Interoperability</h2>
-<p>Storing intermediate results in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
+<section id="disk-based-interoperability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based Interoperability</h2>
+<p>Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
 </section>
 <section id="workflow-frameworks" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</h2>
