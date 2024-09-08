@@ -15,7 +15,7 @@ Debugging is only possible for individual scripts and the workflow in not as int
 
 It's important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the `.RDS` file format and Python has the `.pickle/.pkl` file format, but these are not interoperable.
 
-While the file formats themselves can be backwards compatible and you can read in old objects, it's not necessarily the case the newer package versions can read in files from older versions e.g. SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have problems reading in serialized objects created by the latest language version.
+While the file formats themselves can be backwards compatible and you can read in old objects, it's not necessarily the case newer versions of some package can read in files from older versions e.g. SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.
 
 For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
 
@@ -23,32 +23,34 @@ Note that there can be a difference in-memory layouts and on-disk layouts of the
 
 ### Non-exhaustive list of file formats
 
-This list shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets.
+[@tbl-file-formats] shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.
 
 The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g. the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.
 
 | File Format | Support in Python | Support in R | Compressed | Supports sparse matrix | Supports raster data |
 |-------------|------------------|--------------|------------|------------------------|-----|
-| RDS         | ❌                | ✅           | ✅          | ❌                      | ❌ |
-| Pickle      | ✅                | ❌           | ✅          | ❌                      | ❌ |
-| CSV         | ✅                | ✅           | 🟠          | ❌                      | ❌ |
-| JSON        | ✅                | ✅           | 🟠          | ❌                      | ❌ |
-| TIFF        | ✅                | ✅           | ✅          | ❌                      | ✅ |
-| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ✅                | ✅           | 🟠          | ❌                      | ❌ |
-| [Parquet](https://parquet.apache.org/) | ✅ | ✅ | ✅ | ❌ | ❌ |
-| [Feather](https://arrow.apache.org/docs/python/feather.html) | ✅ | ✅ | ✅ | ❌ | ❌ |
-| [Lance](https://github.com/lancedb/lance) | ✅ | ❌ | ✅ | ❌ | ❌ |
-| [TileDB](https://tiledb.io/) | ✅ | ✅ | ✅ | 🟠 | 🟠 |
-| [HDF5](https://www.hdfgroup.org/) | ✅ | ✅ | ✅ | 🟠 | ✅ |
-| [Zarr](https://zarr.readthedocs.io/en/stable/) | ✅ | ✅ | ✅ | 🟠 | ✅ |
+| RDS         | ○○                | ●●           | ●●          | ○○                      | ○○ |
+| Pickle      | ●●                | ○○           | ●●          | ○○                      | ○○ |
+| CSV         | ●●                | ●●           | ○○          | ○○                      | ○○ |
+| JSON        | ●●                | ●●           | ○○          | ○○                      | ○○ |
+| TIFF        | ●●                | ●●           | ●●          | ○○                      | ●● |
+| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●●                | ●●           | ●○          | ○○                      | ○○ |
+| [Parquet](https://parquet.apache.org/) | ●● | ●● | ●● | ○○ | ○○ |
+| [Feather](https://arrow.apache.org/docs/python/feather.html) | ●● | ●● | ●● | ○○ | ○○ |
+| [Lance](https://github.com/lancedb/lance) | ●● | ○○ | ●● | ○○ | ○○ |
+| [TileDB](https://tiledb.io/) | ●● | ●● | ●● | ●○ | ●○ |
+| [HDF5](https://www.hdfgroup.org/) | ●● | ●● | ●● | ●○ | ●● |
+| [Zarr](https://zarr.readthedocs.io/en/stable/) | ●● | ●● | ●● | ●○ | ●● |
 ||
-| [Seurat RDS](https://satijalab.org/seurat/) | ❌ | ✅ | ✅ | ❌ | 🟠 |
-| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ❌ | ✅ | ✅ | ✅ | 🟠 |
-| [Loom HDF5](https://loompy.org/) | ✅ | ✅ | ✅ | ✅ | ❌ |
-| [AnnData h5ad/Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ✅ | ✅ | ✅ | ✅ | 🟠 |
-| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ✅ | ✅ | ✅ | ✅ | 🟠 |
-| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ✅ | ✅ | ✅ | 🟠 | ✅ |
-| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Seurat RDS](https://satijalab.org/seurat/) | ○○ | ●● | ●● | ○○ | ●○ |
+| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ○○ | ●● | ●● | ●● | ●○ |
+| [Loom HDF5](https://loompy.org/) | ●● | ●● | ●● | ●● | ○○ |
+| [AnnData h5ad/Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ●● | ●● | ●● | ●● | ●○ |
+| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●● | ●○ |
+| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●○ | ●● |
+| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ●● | ●● | ●● | ●● | ●● |
+
+: Overview of file formats for single cell. {#tbl-file-formats}
 
 ## Different on-disk pipelines
 
