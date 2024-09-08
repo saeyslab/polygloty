@@ -16,15 +16,15 @@ Porting tools from one language to another can offer complete control and elimin
 
 Furthermore, work is not done after the initial port -- in order for the researcher's work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don't consider reimplementation a viable option for most use-cases and will not discuss it further in this book.
 
-## In-memory Interoperability
+## In-memory interoperability
 
 Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.
 
 
-## Disk-based Interoperability
+## Disk-based interoperability
 
 Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.
 
-## Workflow Frameworks
+## Workflow frameworks
 
 Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.
