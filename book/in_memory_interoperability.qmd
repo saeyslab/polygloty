@@ -3,8 +3,8 @@ title: In-memory interoperability
 engine: knitr
 ---
 
-One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome.
-One language will act as the main language, and you will intereact with the other language using an FFI (foreign function interface).
+One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming environment, but it does require you to set up an environment in both languages, which can be cumbersome.
+One language will act as the main language, and you will interact with the other language using an FFI (foreign function interface).
 When evaluating R code within a Python program, we will make use of rpy2 to accomplish this. When evaluating Python code within an R program, we will make use of reticulate.
 
 ## Rpy2: basic functionality
