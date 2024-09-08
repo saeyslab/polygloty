@@ -13,34 +13,44 @@ Debugging is only possible for individual scripts and the workflow in not as int
 
 ## Different file formats
 
-It's important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the `.RDS` file format and Python has the `.pickle/.pkl` file format, but these are not interoperable. Older versions of the language could also have problems reading in serialized objects created by the latest language version.
+It's important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the `.RDS` file format and Python has the `.pickle/.pkl` file format, but these are not interoperable.
 
-For a file format to be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
+While the file formats themselves can be backwards compatible and you can read in old objects, it's not necessarily the case newer versions of some package can read in files from older versions e.g. SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.
 
+For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
 
+Note that there can be a difference in-memory layouts and on-disk layouts of the same object. [Apache Arrow](https://arrow.apache.org/docs/index.html) is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.
 
-### Dataframes
+### Non-exhaustive list of file formats
 
-| File Format | Support in Python | Support in R | Text-Based | Binary | High-Performance | Ease-of-Use | Compression | Suitable for Single-Cell | Suitable for Spatial |
-|-------------|-------------------|--------------|------------|--------|------------------|-------------|-------------|--------------------------|----------------------|
-| CSV         | Yes               | Yes          | Yes        | No     | No               | High        | No          | Limited                   | No                   |
-| JSON        | Yes               | Yes          | Yes        | No     | No               | Medium      | No          | Limited                   | No                   |
-| Parquet     | Yes               | Yes          | No         | Yes    | Yes              | High        | Yes         | Limited                   | No                   |
-| Feather     | Yes               | Yes          | No         | Yes    | Yes              | High        | Yes         | Yes                       | No                   |
-| HDF5        | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Limited              |
+[@tbl-file-formats] shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.
 
+The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g. the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.
 
-### n-dimensional arrays
+| File Format | Support in Python | Support in R | Compressed | Supports sparse matrix | Supports raster data |
+|-------------|------------------|--------------|------------|------------------------|-----|
+| RDS         | ○○                | ●●           | ●●          | ○○                      | ○○ |
+| Pickle      | ●●                | ○○           | ●●          | ○○                      | ○○ |
+| CSV         | ●●                | ●●           | ○○          | ○○                      | ○○ |
+| JSON        | ●●                | ●●           | ○○          | ○○                      | ○○ |
+| TIFF        | ●●                | ●●           | ●●          | ○○                      | ●● |
+| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●●                | ●●           | ●○          | ○○                      | ○○ |
+| [Parquet](https://parquet.apache.org/) | ●● | ●● | ●● | ○○ | ○○ |
+| [Feather](https://arrow.apache.org/docs/python/feather.html) | ●● | ●● | ●● | ○○ | ○○ |
+| [Lance](https://github.com/lancedb/lance) | ●● | ○○ | ●● | ○○ | ○○ |
+| [TileDB](https://tiledb.io/) | ●● | ●● | ●● | ●○ | ●○ |
+| [HDF5](https://www.hdfgroup.org/) | ●● | ●● | ●● | ●○ | ●● |
+| [Zarr](https://zarr.readthedocs.io/en/stable/) | ●● | ●● | ●● | ●○ | ●● |
+||
+| [Seurat RDS](https://satijalab.org/seurat/) | ○○ | ●● | ●● | ○○ | ●○ |
+| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ○○ | ●● | ●● | ●● | ●○ |
+| [Loom HDF5](https://loompy.org/) | ●● | ●● | ●● | ●● | ○○ |
+| [AnnData h5ad/Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ●● | ●● | ●● | ●● | ●○ |
+| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●● | ●○ |
+| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●○ | ●● |
+| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ●● | ●● | ●● | ●● | ●● |
 
-| File Format | Support in Python | Support in R | Text-Based | Binary | High-Performance | Ease-of-Use | Compression | Suitable for Single-Cell | Suitable for Spatial |
-|-------------|-------------------|--------------|------------|--------|------------------|-------------|-------------|--------------------------|----------------------|
-| h5ad        | Yes               | Limited      | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
-| Zarr        | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
-| NumPy (npy) | Yes               | Limited      | No         | Yes    | Yes              | High        | No          | Yes                       | No                   |
-| NetCDF      | Yes               | Yes          | No         | Yes    | Yes              | Medium      | Yes         | Yes                       | Yes                  |
-| TIFF        | Yes               | Limited      | No         | Yes    | Medium           | Medium      | Yes         | No                        | Yes                  |
-
-
+: Overview of file formats for single cell. {#tbl-file-formats}
 
 ## Different on-disk pipelines
 
@@ -54,18 +64,18 @@ Alternatively, there are frameworks that keep the notebooks and create a pipelin
 
 ## Notebook pipelines
 
-You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. Our [Use-case chapter](./usecase/) is one example of this.
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. Our [Use-case chapter](./usecase/) is one example of this. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
 
-For example, [Papermill]https://github.com/nteract/papermill) can execute Jupyter notebooks in sequence and pass variables between them. [Ploomber](https://github.com/ploomber/ploomber) is another example.
+It is possible to create whole pipelines out of multiple notebooks. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
 
 ### Execute notebooks via the CLI
 
-Jupyter via [nbconvert](https://nbconvert.readthedocs.io/en/latest/#).:
+Jupyter notebook via [nbconvert](https://nbconvert.readthedocs.io/en/latest/#):
 ```bash
 jupyter nbconvert --to notebook --execute my_notebook.ipynb --allow-errors --output-dir outputs/
 ```
 
-[RMarkdown](https://rmarkdown.rstudio.com/):
+[RMarkdown](https://rmarkdown.rstudio.com/) notebook via Rscript:
 ```bash
 Rscript -e "rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"
 ```
@@ -122,9 +132,9 @@ With the Pixi task runner, you can define these tasks in their respective enviro
 pixi run pipeline
 ```
 
-You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase_data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
-docker run -it -v $(pwd)/usecase_data:/app/usecase_data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```

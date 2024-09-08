@@ -6,6 +6,7 @@
 /site_libs/
 *.html
 *.DS_Store
+/usecase/data/
 /usecase_data/
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,r
