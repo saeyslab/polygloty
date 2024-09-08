@@ -4,6 +4,7 @@ engine: knitr
 ---
 
 One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome.
+
 One language will act as the main language, and you will intereact with the other language using an FFI (foreign function interface).
 
 ![A schematic overview](images/imm_overview.png){#fig-im-overview}
@@ -19,9 +20,7 @@ Matrices are stored contiguously in-memory, and are adressed by a single memory 
 ![Different in-memory representations](images/inmemorymatrix.png){#fig-imm-matrix}
 
 In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well.
-
-**reticulate**: There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices.
-The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices. 
+There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices. 
 
 If you notice something amiss with your matrices, check whether you need to transpose them or change the row/column major attribute.
 
@@ -227,7 +226,7 @@ with (robjects.default_converter + pandas2ri.converter).context():
     res_pd.to_csv("../usecase/data/de_contrasts.csv")
 ```
 
-### Usecase: ran in R
+### Usecase: theoretical reticulate example
 
 ```{r read_in}
 library(anndata)
@@ -248,8 +247,6 @@ control_name <- "Dimethyl Sulfoxide"
 adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), adata$var$highly_variable]
 ```
 
-## 4. Compute pseudobulk
-
 ```{r import_pandas}
 library(reticulate)
 pd <- import("pandas", convert = FALSE)
@@ -258,6 +255,11 @@ counts <- as.matrix(adata$X)
 ```
 
 Combine data in a single data frame and compute pseudobulk
+This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.
+
+We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.
+
+We will however showcase a useful application of reticulate.
 
 ```{r compute_pseudobulk, eval = FALSE}
 
@@ -266,14 +268,7 @@ combined <- pd$DataFrame(
   index = adata$obs["plate_well_celltype_reannotated"],
   columns = adata$var_names
 )
-
 cr <- py_to_r(combined)
-# combined <- py_env$img
-
-# del combined
-
-# py_gc <- import("gc")
-# py_gc$collect()
 
 # we lost the rownames
 rownames(cr) <- adata$obs_names
@@ -281,8 +276,6 @@ cr["celltype"] <- adata$obs["plate_well_celltype_reannotated"]
 
 pb_X <- group_by(cr, celltype) %>% summarise(across(where(is.numeric), sum))
 ```
-
-Construct obs for pseudobulk. Use 'plate_well_celltype_reannotated' as index and make sure to retain the columns 'sm_name', 'cell_type', and 'plate_name':
 
 ```{r pb_obs_r, eval = FALSE}
 pb_obs <- adata$obs[c("sm_name", "cell_type", "plate_name", "well", "plate_well_celltype_reannotated")]
@@ -295,8 +288,6 @@ pb_obs.index = adata.obs["plate_well_celltype_reannotated"]
 pb_obs = pb_obs.drop_duplicates()
 ```
 
-Create AnnData object:
-
 ```{r pb_anndata, eval = FALSE}
 select_X <- pb_X[pb_X$celltype %in% pb_obs$plate_well_celltype_reannotated, ]
 select_X <- select_X %>% select(-"celltype")
@@ -308,11 +299,10 @@ pb_adata <- anndata::AnnData(
 )
 ```
 
-Store to disk:
-
-
 <!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
 ```{r store_pseudobulk, eval=FALSE}
 write_h5ad(pb_adata, "../usecase/data/pseudobulk.h5ad")
 
 ```
+
+### Usecase: useful reticulate example
