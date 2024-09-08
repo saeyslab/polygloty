@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – Polyglot programming for single-cell analysis</title>
+<title>9&nbsp; Best Practices – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,47 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../book/usecase/index.html" rel="next">
-<link href="../index.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../book/book_slides.html" rel="next">
+<link href="../../book/workflow_frameworks/viash_nextflow.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,7 +81,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/best_practices.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best practices</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -116,7 +96,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Polyglot programming for single-cell analysis</a> 
+      <a href="../../">Polyglot programming for single-cell analysis</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/saeyslab/polygloty" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -131,37 +111,37 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../book/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/usecase/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/usecase/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow frameworks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -170,31 +150,31 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A review</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
   </div>
 </li>
@@ -202,13 +182,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/book_slides.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/book_slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -217,24 +197,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#code-porting" id="toc-code-porting" class="nav-link active" data-scroll-target="#code-porting"><span class="header-section-number">1.1</span> Code porting</a></li>
-  <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</a></li>
-  <li><a href="#disk-based-interoperability" id="toc-disk-based-interoperability" class="nav-link" data-scroll-target="#disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</a></li>
-  <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/best_practices.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best practices</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best Practices</span></h1>
 </div>
 
 
@@ -251,36 +222,20 @@ div.csl-indent {
 </header>
 
 
-<p>Single-cell analysis has emerged as a transformative force in biology, providing unprecedented insights into cellular heterogeneity and complex biological processes. The rapid advancement in this field has led to a proliferation of specialized tools and methods <span class="citation" data-cites="Zappia2021">(<a href="references.html#ref-Zappia2021" role="doc-biblioref">Zappia and Theis 2021</a>)</span>, often developed in different programming languages and software ecosystems. While this diversity empowers researchers to leverage the best tools for each analysis step <span class="citation" data-cites="Heumos2023">(<a href="references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>, it also presents a significant challenge: how to seamlessly integrate and execute analyses across these disparate languages and frameworks.</p>
-<p>The need to utilize tools from different programming ecosystems creates a “polyglot” landscape in single-cell analysis, where researchers must navigate the complexities of interoperability, data exchange, and workflow management. This fragmentation can hinder productivity, introduce errors, and impede reproducibility.</p>
-<p>Researchers can approach this challenge in various ways, each with its own trade-offs and considerations. In the next chapters, we’ll explore different strategies for achieving interoperability in single-cell analysis, including:</p>
-<section id="code-porting" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="code-porting"><span class="header-section-number">1.1</span> Code porting</h2>
-<p>Porting tools from one language to another can offer complete control and eliminate interoperability concerns. However, one should not underestimate the effort required to reimplement complex algorithms, and the risk of introducing errors.</p>
-<p>Furthermore, work is not done after the initial port – in order for the researcher’s work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don’t consider reimplementation a viable option for most use-cases and will not discuss it further in this book.</p>
-</section>
-<section id="in-memory-interoperability" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</h2>
-<p>Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.</p>
-</section>
-<section id="disk-based-interoperability" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</h2>
-<p>Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
-</section>
-<section id="workflow-frameworks" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</h2>
-<p>Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.</p>
+<p>To ensure that your workflow is production-ready, consider the following best practices:</p>
+<ul>
+<li><p><strong>Version control</strong>: Use a version control system like Git to track changes to your workflow code and configuration files. This allows you to collaborate with others, revert to previous versions, and maintain a history of your work.</p></li>
+<li><p><strong>Automated testing</strong>: Implement automated tests to validate the correctness of your workflow components and ensure that changes do not introduce regressions. This includes unit tests, integration tests, and end-to-end tests.</p></li>
+<li><p><strong>Continuous integration</strong>: Set up a continuous integration (CI) pipeline to automatically build, test, and deploy your workflow whenever changes are made to the codebase. This helps catch errors early and ensures that your workflow remains functional.</p></li>
+<li><p><strong>Documentation</strong>: Document your workflow code, configuration, and usage to make it easier for others to understand and use your workflow. Include information on how to run the workflow, what inputs are required, and what outputs are produced.</p></li>
+<li><p><strong>Containerization</strong>: Use containerization technologies like Docker to package your workflow and its dependencies into a self-contained unit. This ensures that your workflow runs consistently across different environments and platforms.</p></li>
+<li><p><strong>Resource management</strong>: Optimize the use of computational resources by parallelizing tasks, optimizing memory usage, and monitoring resource consumption. This helps improve the performance and scalability of your workflow.</p></li>
+<li><p><strong>Error handling</strong>: Implement robust error handling mechanisms to gracefully handle failures and exceptions during workflow execution. This includes logging errors, retrying failed tasks, and notifying users of issues.</p></li>
+<li><p><strong>Data provenance</strong>: Capture metadata about the inputs, outputs, and parameters of your workflow to enable reproducibility and traceability. This includes recording information about the data sources, processing steps, and results produced by the workflow.</p></li>
+<li><p><strong>Versioned releases</strong>: Create versioned releases of your workflow and accompanying <strong>container images</strong> to ensure that users can reproduce the exact results of a specific analysis. This involves tagging releases, documenting changes, and archiving previous versions.</p></li>
+</ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Heumos2023" class="csl-entry" role="listitem">
-Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
-</div>
-<div id="ref-Zappia2021" class="csl-entry" role="listitem">
-Zappia, Luke, and Fabian J. Theis. 2021. <span>“Over 1000 Tools Reveal Trends in the Single-Cell RNA-Seq Analysis Landscape.”</span> <em>Genome Biology</em> 22 (1). <a href="https://doi.org/10.1186/s13059-021-02519-4">https://doi.org/10.1186/s13059-021-02519-4</a>.
-</div>
-</div>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -712,13 +667,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="../../book/workflow_frameworks/viash_nextflow.html" class="pagination-link" aria-label="Example workflow">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example workflow</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../book/usecase/index.html" class="pagination-link" aria-label="Use-case">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/book_slides.html" class="pagination-link" aria-label="Slides">
+        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -727,4 +682,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/best_practices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/best_practices.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

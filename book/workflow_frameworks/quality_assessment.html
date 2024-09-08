@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – Polyglot programming for single-cell analysis</title>
+<title>7&nbsp; Quality Assessment of Workflow Frameworks – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,47 +20,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../book/usecase/index.html" rel="next">
-<link href="../index.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../book/workflow_frameworks/viash_nextflow.html" rel="next">
+<link href="../../book/workflow_frameworks/qualities.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,7 +83,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/quality_assessment.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality assessment</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -116,7 +98,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Polyglot programming for single-cell analysis</a> 
+      <a href="../../">Polyglot programming for single-cell analysis</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/saeyslab/polygloty" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -131,37 +113,37 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../book/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/usecase/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/usecase/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow frameworks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -170,31 +152,31 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A review</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
   </div>
 </li>
@@ -202,13 +184,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/book_slides.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/book_slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -222,19 +204,19 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#code-porting" id="toc-code-porting" class="nav-link active" data-scroll-target="#code-porting"><span class="header-section-number">1.1</span> Code porting</a></li>
-  <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</a></li>
-  <li><a href="#disk-based-interoperability" id="toc-disk-based-interoperability" class="nav-link" data-scroll-target="#disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</a></li>
-  <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</a></li>
+  <li><a href="#included-frameworks" id="toc-included-frameworks" class="nav-link active" data-scroll-target="#included-frameworks"><span class="header-section-number">7.1</span> Included frameworks</a></li>
+  <li><a href="#quality-assessment-criteria" id="toc-quality-assessment-criteria" class="nav-link" data-scroll-target="#quality-assessment-criteria"><span class="header-section-number">7.2</span> Quality Assessment Criteria</a></li>
+  <li><a href="#quality-scores" id="toc-quality-scores" class="nav-link" data-scroll-target="#quality-scores"><span class="header-section-number">7.3</span> Quality Scores</a></li>
+  <li><a href="#quality-assessment-contributors" id="toc-quality-assessment-contributors" class="nav-link" data-scroll-target="#quality-assessment-contributors"><span class="header-section-number">7.4</span> Quality assessment contributors</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/quality_assessment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/quality_assessment.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/quality_assessment.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality assessment</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality Assessment of Workflow Frameworks</span></h1>
 </div>
 
 
@@ -251,35 +233,138 @@ div.csl-indent {
 </header>
 
 
-<p>Single-cell analysis has emerged as a transformative force in biology, providing unprecedented insights into cellular heterogeneity and complex biological processes. The rapid advancement in this field has led to a proliferation of specialized tools and methods <span class="citation" data-cites="Zappia2021">(<a href="references.html#ref-Zappia2021" role="doc-biblioref">Zappia and Theis 2021</a>)</span>, often developed in different programming languages and software ecosystems. While this diversity empowers researchers to leverage the best tools for each analysis step <span class="citation" data-cites="Heumos2023">(<a href="references.html#ref-Heumos2023" role="doc-biblioref">Heumos et al. 2023</a>)</span>, it also presents a significant challenge: how to seamlessly integrate and execute analyses across these disparate languages and frameworks.</p>
-<p>The need to utilize tools from different programming ecosystems creates a “polyglot” landscape in single-cell analysis, where researchers must navigate the complexities of interoperability, data exchange, and workflow management. This fragmentation can hinder productivity, introduce errors, and impede reproducibility.</p>
-<p>Researchers can approach this challenge in various ways, each with its own trade-offs and considerations. In the next chapters, we’ll explore different strategies for achieving interoperability in single-cell analysis, including:</p>
-<section id="code-porting" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="code-porting"><span class="header-section-number">1.1</span> Code porting</h2>
-<p>Porting tools from one language to another can offer complete control and eliminate interoperability concerns. However, one should not underestimate the effort required to reimplement complex algorithms, and the risk of introducing errors.</p>
-<p>Furthermore, work is not done after the initial port – in order for the researcher’s work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don’t consider reimplementation a viable option for most use-cases and will not discuss it further in this book.</p>
+<p>Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we’re happy to share the preliminary results with you.</p>
+<p>The data is based on a review of the documentation and community resources for each framework. We evaluated the frameworks based on the list of essential qualities mentioned in the previous section (<a href="qualities.html#fig-qualities" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>).</p>
+<section id="included-frameworks" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="included-frameworks"><span class="header-section-number">7.1</span> Included frameworks</h2>
+<p>The following workflow frameworks were included in the assessment:</p>
+<ul>
+<li><a href="https://www.nextflow.io/">Nextflow</a>: A domain-specific language for creating scalable and reproducible data analysis pipelines. <a href="https://github.com/nextflow-io/nextflow"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://www.nextflow.io/docs/latest/index.html"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.1038/nbt.3820"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://nf-co.re/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://snakemake.github.io/">Snakemake</a>: A workflow management system that uses Python-based rules to define dependencies and execute tasks. <a href="https://github.com/snakemake/snakemake"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://snakemake.readthedocs.io/en/stable/"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.12688/f1000research.29032.2"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://snakemake-wrappers.readthedocs.io/en/stable/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://galaxyproject.org/">Galaxy</a>: A web-based platform for creating, running, and sharing data analysis workflows without the need for programming expertise. <a href="https://github.com/galaxyproject/galaxy"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://docs.galaxyproject.org/en/master/"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://doi.org/10.1093/nar/gkae410"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://galaxyproject.org/iuc/"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://viash.io/">Viash + Nextflow</a>: A combination of Viash, a tool for defining bioinformatics workflow components, and Nextflow for scalable and reproducible execution. <a href="https://github.com/viash-io/viash"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://viash.io/guide/%20https://www.nextflow.io/docs/latest/index.html"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a> <a href="https://joss.theoj.org/papers/10.21105/joss.06089"><i class="fa-solid fa-book-open" aria-label="book-open"></i></a> <a href="https://web.viash-hub.com/packages"><i class="fa-solid fa-users" aria-label="users"></i></a></li>
+<li><a href="https://argoproj.github.io/workflows/">Argo Workflows</a>: A Kubernetes-native workflow engine for orchestrating containerized tasks and automating complex workflows. <a href="https://github.com/argoproj/argo-workflows"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="https://argo-workflows.readthedocs.io"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i></a></li>
+</ul>
 </section>
-<section id="in-memory-interoperability" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</h2>
-<p>Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.</p>
+<section id="quality-assessment-criteria" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="quality-assessment-criteria"><span class="header-section-number">7.2</span> Quality Assessment Criteria</h2>
+<p>The quality assessment was based on the following criteria:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Community</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Maintainability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Modularity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Polyglot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Portability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Reproducibility</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Scalability</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Does a library of components exist?</strong></p>
+<ul>
+<li>A library of OSS components is available</li>
+<li>Community repository has frequent commits</li>
+<li>Community repository has &gt; 10 frequent non-employee commitors</li>
+<li>Are there repositories of OSS workflows available?</li>
+</ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><strong>How easy is it to update, modify, and troubleshoot workflows?</strong></p>
+<ul>
+<li>Workflows are well-structured and easy to understand.</li>
+<li>Framework supports documenting the interfaces of components and workflows</li>
+<li>Version control and collaboration features facilitate team-based development.</li>
+<li>Components can be unit tested</li>
+<li>Documentation specifies how to unit test components</li>
+</ul>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><strong>How effectively does the framework promote modular design and reusability?</strong></p>
+<ul>
+<li>Software can be easily encapsulated as a modular component.</li>
+<li>Components have well-defined inputs and outputs.</li>
+<li>Components can be shared and reused across different workflows.</li>
+<li>The framework supports dependency management</li>
+<li>The framework supports versioning of components.</li>
+</ul>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p><strong>Is it easy to switch between different programming / scripting language within one workflow?</strong></p>
+<ul>
+<li>Calling a script from another language is possible</li>
+<li>Components can be written in multiple languages and communicate via a file-based interface</li>
+<li>Components can be written in multiple languages and communicate via an in-memory data channel</li>
+</ul>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p><strong>Support for various compute platforms</strong></p>
+<ul>
+<li>Support for AWS Batch</li>
+<li>Support for Azure Batch</li>
+<li>Support for Google Cloud</li>
+<li>Support for Kubernetes</li>
+<li>Support for Local execution</li>
+<li>Support for PBS/Torque</li>
+<li>Support for SLURM</li>
+<li>Support for additional compute platforms</li>
+</ul>
+<p><strong>Support for various containerization technologies</strong></p>
+<ul>
+<li>Support for Apptainer</li>
+<li>Support for Docker</li>
+<li>Support for Podman</li>
+<li>Support for additional containerization technologies</li>
+</ul>
+<p><strong>Support for various storage solutions</strong></p>
+<ul>
+<li>AWS S3</li>
+<li>Azure Blob Storage / Files</li>
+<li>Google Storage</li>
+<li>HTTPS</li>
+<li>FTP</li>
+<li>Support for additional storage solutions</li>
+</ul>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p><strong>How effectively does the framework ensure reproducibility of results?</strong></p>
+<ul>
+<li>Individual components can list their software dependencies</li>
+<li>Per-component containerisation is supported</li>
+<li>Extending images with additional dependencies is supported</li>
+<li>Data provenance tracking is built-in or can be easily integrated.</li>
+<li>Framework promotes versioned releases of the workflow software and images to ensure reproducibility</li>
+</ul>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<p><strong>How well does the framework handle large and complex workflows?</strong></p>
+<ul>
+<li>The framework supports asynchronous and distributed execution.</li>
+<li>Resource management and optimization features are available.</li>
+<li>Performance monitoring and profiling tools are provided.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>These criteria and subsequent scores will be further refined and validated as part of our ongoing research.</p>
 </section>
-<section id="disk-based-interoperability" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</h2>
-<p>Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
+<section id="quality-scores" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="quality-scores"><span class="header-section-number">7.3</span> Quality Scores</h2>
+<p>The aggregated quality scores for each framework are shown below. The scores are based on the evaluation of the essential qualities of a production-ready workflow.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="quality_assessment_files/figure-html/plot_scores-1.svg" class="img-fluid figure-img" width="672"></p>
+<figcaption>Quality scores for different workflow frameworks.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Raw scores and detailed explanations behind the reasoning of the resulting scores can be found in the <a href="https://docs.google.com/spreadsheets/d/1OMsnm8bIWc_Hp5neBOj7hWURT7ZL-L6qSbr0oAzmvSI">Workflow Quality Assessment Spreadsheet</a>.</p>
 </section>
-<section id="workflow-frameworks" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</h2>
-<p>Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.</p>
+<section id="quality-assessment-contributors" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="quality-assessment-contributors"><span class="header-section-number">7.4</span> Quality assessment contributors</h2>
+<ul>
+<li>Jakub Majerčík</li>
+<li>Michaela Müller</li>
+<li>Robrecht Cannoodt</li>
+<li>Toni Verbeiren</li>
+</ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Heumos2023" class="csl-entry" role="listitem">
-Heumos, Lukas, Anna C. Schaar, Christopher Lance, Anastasia Litinetskaya, Felix Drost, Luke Zappia, Malte D. Lücken, et al. 2023. <span>“Best Practices for Single-Cell Analysis Across Modalities.”</span> <em>Nature Reviews Genetics</em> 24 (8): 550–72. <a href="https://doi.org/10.1038/s41576-023-00586-w">https://doi.org/10.1038/s41576-023-00586-w</a>.
-</div>
-<div id="ref-Zappia2021" class="csl-entry" role="listitem">
-Zappia, Luke, and Fabian J. Theis. 2021. <span>“Over 1000 Tools Reveal Trends in the Single-Cell RNA-Seq Analysis Landscape.”</span> <em>Genome Biology</em> 22 (1). <a href="https://doi.org/10.1186/s13059-021-02519-4">https://doi.org/10.1186/s13059-021-02519-4</a>.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -712,13 +797,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="../../book/workflow_frameworks/qualities.html" class="pagination-link" aria-label="Essential qualities and technologies">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../book/usecase/index.html" class="pagination-link" aria-label="Use-case">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/workflow_frameworks/viash_nextflow.html" class="pagination-link" aria-label="Example workflow">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example workflow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -727,4 +812,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/quality_assessment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/quality_assessment.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
