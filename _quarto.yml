@@ -16,7 +16,7 @@ book:
     - index.qmd
     - book/introduction.qmd
     - book/usecase/index.qmd
-    - book/inmemory/in_memory_interoperability.qmd
+    - book/in_memory/index.qmd
     - book/on_disk_interoperability.qmd
     - text: Workflow frameworks
       part: book/workflow_frameworks/index.qmd
