@@ -16,7 +16,7 @@ Read in the anndata object
 ```{r read_in}
 library(anndata)
 
-adata_path <- "usecase/data/sc_counts_reannotated_with_counts.h5ad"
+adata_path <- "usecase/data/sc_counts_subset.h5ad"
 adata <- anndata::read_h5ad(adata_path)
 ```
 
@@ -28,19 +28,6 @@ adata <- anndata::read_h5ad(adata_path)
 
 # Usecase
 
-## 3. Subset data
-
-Subset to a single small molecule and control for computational efficiency:
-
-```{r select_sm_celltype}
-library(dplyr)
-
-sm_name2 <- "Belinostat"
-control_name <- "Dimethyl Sulfoxide"
-
-# subset obs
-adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), ]
-```
 
 ## 4. Compute pseudobulk
 

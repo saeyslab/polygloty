@@ -67,6 +67,8 @@ adata = adata[
   adata.obs["sm_name"].isin([sm_name, control_name]) &
   adata.obs["cell_type"].isin([cell_type]),
 ].copy()
+
+adata.write_h5ad("data/sc_counts_subset.h5ad")
 ```
 
 We will also subset the genes to the top 2000 most variable genes.

@@ -203,20 +203,8 @@ with (robjects.default_converter + pandas2ri.converter).context():
 ```{r read_in}
 library(anndata)
 
-adata_path <- "usecase/data/sc_counts_reannotated_with_counts.h5ad"
+adata_path <- "usecase/data/sc_counts_subset.h5ad"
 adata <- anndata::read_h5ad(adata_path)
-```
-
-Subset to a single small molecule and control for computational efficiency:
-
-```{r select_sm_celltype}
-library(dplyr)
-
-sm_name <- "Belinostat"
-control_name <- "Dimethyl Sulfoxide"
-
-# subset obs
-adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), adata$var$highly_variable]
 ```
 
 ## 4. Compute pseudobulk
