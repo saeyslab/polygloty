@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; On-disk interoperability – Polyglot programming for single-cell analysis</title>
+<title>7&nbsp; On-disk interoperability – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../book/workflow_frameworks/index.html" rel="next">
-<link href="../book/in_memory/index.html" rel="prev">
+<link href="../book/in_memory/reticulate.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/on_disk_interoperability.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/on_disk_interoperability.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,22 +161,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Use-case</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workflow frameworks</span></a>
+            <a href="../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">In-memory interoperability</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -184,32 +172,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../book/in_memory/pitfalls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/in_memory/rpy2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">rpy2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/in_memory/reticulate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/in_memory/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">In-memory interoperability</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow frameworks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A review</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A review</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,19 +265,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#different-file-formats" id="toc-different-file-formats" class="nav-link active" data-scroll-target="#different-file-formats"><span class="header-section-number">4.1</span> Different file formats</a>
+  <li><a href="#different-file-formats" id="toc-different-file-formats" class="nav-link active" data-scroll-target="#different-file-formats"><span class="header-section-number">7.1</span> Different file formats</a>
   <ul class="collapse">
-  <li><a href="#non-exhaustive-list-of-file-formats" id="toc-non-exhaustive-list-of-file-formats" class="nav-link" data-scroll-target="#non-exhaustive-list-of-file-formats"><span class="header-section-number">4.1.1</span> Non-exhaustive list of file formats</a></li>
+  <li><a href="#non-exhaustive-list-of-file-formats" id="toc-non-exhaustive-list-of-file-formats" class="nav-link" data-scroll-target="#non-exhaustive-list-of-file-formats"><span class="header-section-number">7.1.1</span> Non-exhaustive list of file formats</a></li>
   </ul></li>
-  <li><a href="#different-on-disk-pipelines" id="toc-different-on-disk-pipelines" class="nav-link" data-scroll-target="#different-on-disk-pipelines"><span class="header-section-number">4.2</span> Different on-disk pipelines</a></li>
-  <li><a href="#notebook-pipelines" id="toc-notebook-pipelines" class="nav-link" data-scroll-target="#notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</a>
+  <li><a href="#different-on-disk-pipelines" id="toc-different-on-disk-pipelines" class="nav-link" data-scroll-target="#different-on-disk-pipelines"><span class="header-section-number">7.2</span> Different on-disk pipelines</a></li>
+  <li><a href="#notebook-pipelines" id="toc-notebook-pipelines" class="nav-link" data-scroll-target="#notebook-pipelines"><span class="header-section-number">7.3</span> Notebook pipelines</a>
   <ul class="collapse">
-  <li><a href="#execute-notebooks-via-the-cli" id="toc-execute-notebooks-via-the-cli" class="nav-link" data-scroll-target="#execute-notebooks-via-the-cli"><span class="header-section-number">4.3.1</span> Execute notebooks via the CLI</a></li>
+  <li><a href="#execute-notebooks-via-the-cli" id="toc-execute-notebooks-via-the-cli" class="nav-link" data-scroll-target="#execute-notebooks-via-the-cli"><span class="header-section-number">7.3.1</span> Execute notebooks via the CLI</a></li>
   </ul></li>
-  <li><a href="#script-pipelines" id="toc-script-pipelines" class="nav-link" data-scroll-target="#script-pipelines"><span class="header-section-number">4.4</span> Script pipelines</a>
+  <li><a href="#script-pipelines" id="toc-script-pipelines" class="nav-link" data-scroll-target="#script-pipelines"><span class="header-section-number">7.4</span> Script pipelines</a>
   <ul class="collapse">
-  <li><a href="#calling-scripts-in-the-same-environment" id="toc-calling-scripts-in-the-same-environment" class="nav-link" data-scroll-target="#calling-scripts-in-the-same-environment"><span class="header-section-number">4.4.1</span> Calling scripts in the same environment</a></li>
-  <li><a href="#calling-scripts-in-different-environments" id="toc-calling-scripts-in-different-environments" class="nav-link" data-scroll-target="#calling-scripts-in-different-environments"><span class="header-section-number">4.4.2</span> Calling scripts in different environments</a></li>
+  <li><a href="#calling-scripts-in-the-same-environment" id="toc-calling-scripts-in-the-same-environment" class="nav-link" data-scroll-target="#calling-scripts-in-the-same-environment"><span class="header-section-number">7.4.1</span> Calling scripts in the same environment</a></li>
+  <li><a href="#calling-scripts-in-different-environments" id="toc-calling-scripts-in-different-environments" class="nav-link" data-scroll-target="#calling-scripts-in-different-environments"><span class="header-section-number">7.4.2</span> Calling scripts in different environments</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/on_disk_interoperability.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/on_disk_interoperability.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -258,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></h1>
 </div>
 
 
@@ -279,20 +308,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The upside of this approach is that it is relatively simple as the scripts are mostly unchanged, only prepended with a reading operation and appended with writing operation. Each script can be written and tested independently in their suitable respective frameworks. This modular polyglotism of on-disk interoperability is one of the key strengths of workflow languages like Nextflow and Snakemake.</p>
 <p>The downside is that it can lead to increased storage requirements and I/O overhead which grows with the amount of scripts. As disk serialization and deserialization can be much slower than memory operations, this SerDe problem can become a problem for very large datasets.</p>
 <p>Debugging is only possible for individual scripts and the workflow in not as interactive and explorative as the in-memory approach.</p>
-<section id="different-file-formats" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="different-file-formats"><span class="header-section-number">4.1</span> Different file formats</h2>
+<section id="different-file-formats" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="different-file-formats"><span class="header-section-number">7.1</span> Different file formats</h2>
 <p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable.</p>
 <p>While the file formats themselves can be backwards compatible and you can read in old objects, it’s not necessarily the case newer versions of some package can read in files from older versions e.g.&nbsp;SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.</p>
 <p>For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
 <p>Note that there can be a difference in-memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
-<section id="non-exhaustive-list-of-file-formats" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="non-exhaustive-list-of-file-formats"><span class="header-section-number">4.1.1</span> Non-exhaustive list of file formats</h3>
-<p><a href="#tbl-file-formats" class="quarto-xref">Table&nbsp;<span>4.1</span></a> shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.</p>
+<section id="non-exhaustive-list-of-file-formats" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="non-exhaustive-list-of-file-formats"><span class="header-section-number">7.1.1</span> Non-exhaustive list of file formats</h3>
+<p><a href="#tbl-file-formats" class="quarto-xref">Table&nbsp;<span>7.1</span></a> shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.</p>
 <p>The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g.&nbsp;the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.</p>
 <div id="tbl-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4.1: Overview of file formats for single cell.
+Table&nbsp;7.1: Overview of file formats for single cell.
 </figcaption>
 <div aria-describedby="tbl-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -474,29 +503,29 @@ Table&nbsp;4.1: Overview of file formats for single cell.
 </div>
 </section>
 </section>
-<section id="different-on-disk-pipelines" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="different-on-disk-pipelines"><span class="header-section-number">4.2</span> Different on-disk pipelines</h2>
+<section id="different-on-disk-pipelines" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="different-on-disk-pipelines"><span class="header-section-number">7.2</span> Different on-disk pipelines</h2>
 <p>You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.</p>
 <p>Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.</p>
 <p>The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.</p>
 <p>Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.</p>
 </section>
-<section id="notebook-pipelines" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">4.3</span> Notebook pipelines</h2>
+<section id="notebook-pipelines" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">7.3</span> Notebook pipelines</h2>
 <p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. Our <a href="./usecase/">Use-case chapter</a> is one example of this. The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>.</p>
 <p>It is possible to create whole pipelines out of multiple notebooks. For example, <a href="https://github.com/nteract/papermill">Papermill</a> can execute parameterized Jupyter notebooks in sequence and pass variables between them. <a href="https://nbdev.fast.ai/">nbdev</a> and <a href="https://github.com/ploomber/ploomber">Ploomber</a> are similar such frameworks.</p>
-<section id="execute-notebooks-via-the-cli" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">4.3.1</span> Execute notebooks via the CLI</h3>
+<section id="execute-notebooks-via-the-cli" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">7.3.1</span> Execute notebooks via the CLI</h3>
 <p>Jupyter notebook via <a href="https://nbconvert.readthedocs.io/en/latest/#">nbconvert</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> notebook <span class="at">--execute</span> my_notebook.ipynb <span class="at">--allow-errors</span> <span class="at">--output-dir</span> outputs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://rmarkdown.rstudio.com/">RMarkdown</a> notebook via Rscript:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="script-pipelines" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="script-pipelines"><span class="header-section-number">4.4</span> Script pipelines</h2>
-<section id="calling-scripts-in-the-same-environment" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="calling-scripts-in-the-same-environment"><span class="header-section-number">4.4.1</span> Calling scripts in the same environment</h3>
+<section id="script-pipelines" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="script-pipelines"><span class="header-section-number">7.4</span> Script pipelines</h2>
+<section id="calling-scripts-in-the-same-environment" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="calling-scripts-in-the-same-environment"><span class="header-section-number">7.4.1</span> Calling scripts in the same environment</h3>
 <p>TODO: test these snippets</p>
 <p>From Bash:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -515,8 +544,8 @@ Table&nbsp;4.1: Overview of file formats for single cell.
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_plot_results.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="calling-scripts-in-different-environments" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="calling-scripts-in-different-environments"><span class="header-section-number">4.4.2</span> Calling scripts in different environments</h3>
+<section id="calling-scripts-in-different-environments" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="calling-scripts-in-different-environments"><span class="header-section-number">7.4.2</span> Calling scripts in different environments</h3>
 <p>Sometimes you might want to run scripts in different environments, as they it’s too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.</p>
 <p>You can interleave your Bash script with environment activation functions e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires a <code>conda .yaml</code> file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
 <p>Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the <a href="https://pixi.sh/latest/">Pixi package managment tool</a> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
@@ -964,8 +993,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../book/in_memory/index.html" class="pagination-link" aria-label="In-memory interoperability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></span>
+      <a href="../book/in_memory/reticulate.html" class="pagination-link" aria-label="reticulate">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

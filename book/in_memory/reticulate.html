@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Production-ready Workflows – Polyglot programming for single-cell analysis</title>
+<title>5&nbsp; In-memory interoperability – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../book/workflow_frameworks/review.html" rel="next">
-<link href="../../book/on_disk_interoperability.html" rel="prev">
+<link href="../../book/on_disk_interoperability.html" rel="next">
+<link href="../../book/in_memory/rpy2.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/reticulate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../book/in_memory/reticulate.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/in_memory/reticulate.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></span></a>
   </div>
 </li>
@@ -170,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow frameworks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -231,17 +265,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#productionization-of-single-cell-analysis-workflows" id="toc-productionization-of-single-cell-analysis-workflows" class="nav-link active" data-scroll-target="#productionization-of-single-cell-analysis-workflows">Productionization of Single-Cell Analysis Workflows</a></li>
-  <li><a href="#but-how-to-ensure-that-your-workflow-is-production-ready" id="toc-but-how-to-ensure-that-your-workflow-is-production-ready" class="nav-link" data-scroll-target="#but-how-to-ensure-that-your-workflow-is-production-ready">But how to ensure that your workflow is production-ready?</a></li>
+  <li><a href="#reticulate-basic-functionality" id="toc-reticulate-basic-functionality" class="nav-link active" data-scroll-target="#reticulate-basic-functionality"><span class="header-section-number">5.1</span> Reticulate: basic functionality</a>
+  <ul class="collapse">
+  <li><a href="#interactive-sessions" id="toc-interactive-sessions" class="nav-link" data-scroll-target="#interactive-sessions"><span class="header-section-number">5.1.1</span> Interactive sessions</a></li>
+  <li><a href="#reticulate-basics" id="toc-reticulate-basics" class="nav-link" data-scroll-target="#reticulate-basics"><span class="header-section-number">5.1.2</span> Reticulate basics</a></li>
+  </ul></li>
+  <li><a href="#usecase" id="toc-usecase" class="nav-link" data-scroll-target="#usecase"><span class="header-section-number">5.2</span> Usecase</a>
+  <ul class="collapse">
+  <li><a href="#usecase-theoretical-reticulate-example" id="toc-usecase-theoretical-reticulate-example" class="nav-link" data-scroll-target="#usecase-theoretical-reticulate-example"><span class="header-section-number">5.2.1</span> Usecase: theoretical reticulate example</a></li>
+  <li><a href="#usecase-useful-reticulate-example" id="toc-usecase-useful-reticulate-example" class="nav-link" data-scroll-target="#usecase-useful-reticulate-example"><span class="header-section-number">5.2.2</span> Usecase: useful reticulate example</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/reticulate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Production-ready Workflows</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></h1>
 </div>
 
 
@@ -258,31 +300,111 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.</p>
-<section id="productionization-of-single-cell-analysis-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="productionization-of-single-cell-analysis-workflows">Productionization of Single-Cell Analysis Workflows</h2>
-<p>Productionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment (<a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>1</span></a>). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
-<div id="fig-productionization" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/productionization.svg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: An example of the productionization process for single-cell analysis workflows. <strong>A)</strong> The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. <strong>B)</strong> The production environment is streamlined, automated, and standardized, with reproducibility engines in place.
-</figcaption>
-</figure>
+<section id="reticulate-basic-functionality" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="reticulate-basic-functionality"><span class="header-section-number">5.1</span> Reticulate: basic functionality</h2>
+<p>Reticulate is a foreign function interface in R to Python.</p>
+<section id="interactive-sessions" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="interactive-sessions"><span class="header-section-number">5.1.1</span> Interactive sessions</h3>
+<p>One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you’re exploring the data and want to try out some functions non-native to your language of choice.</p>
+<p>Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython  <span class="co"># line magic that loads the rpy2 ipython extension.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this extension allows the use of the following cell magic</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R <span class="op">-</span>i <span class="bu">input</span> <span class="op">-</span>o output  <span class="co"># this line allows to specify inputs (which will be converted to R objects) and outputs (which will be converted back to Python objects) </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this line is put at the start of a cell</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># the rest of the cell will be able to be ran as R code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="but-how-to-ensure-that-your-workflow-is-production-ready" class="level2">
-<h2 class="anchored" data-anchor-id="but-how-to-ensure-that-your-workflow-is-production-ready">But how to ensure that your workflow is production-ready?</h2>
-<p>In this chapter, we will explore:</p>
-<ul>
-<li><strong>Key qualities</strong> of workflows built to stand the test of time</li>
-<li>Which <strong>technologies and workflow frameworks</strong> contribute to these qualities</li>
-<li><strong>Best practices</strong> to keep in mind during development</li>
-</ul>
+<section id="reticulate-basics" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="reticulate-basics"><span class="header-section-number">5.1.2</span> Reticulate basics</h3>
+</section>
+</section>
+<section id="usecase" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="usecase"><span class="header-section-number">5.2</span> Usecase</h2>
+<section id="usecase-theoretical-reticulate-example" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="usecase-theoretical-reticulate-example"><span class="header-section-number">5.2.1</span> Usecase: theoretical reticulate example</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>adata_path <span class="ot">&lt;-</span> <span class="st">"../usecase/data/sc_counts_subset.h5ad"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">read_h5ad</span>(adata_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Subset to a single small molecule and control for computational efficiency:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="ot">&lt;-</span> <span class="st">"Belinostat"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="ot">&lt;-</span> <span class="st">"Dimethyl Sulfoxide"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subset obs</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>adata <span class="ot">&lt;-</span> adata[adata<span class="sc">$</span>obs<span class="sc">$</span>sm_name <span class="sc">%in%</span> <span class="fu">c</span>(control_name, sm_name), adata<span class="sc">$</span>var<span class="sc">$</span>highly_variable]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(adata<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Combine data in a single data frame and compute pseudobulk This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.</p>
+<p>We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.</p>
+<p>We will however showcase a useful application of reticulate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  counts,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">index =</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> adata<span class="sc">$</span>var_names</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>cr <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(combined)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we lost the rownames</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cr) <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs_names</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>cr[<span class="st">"celltype"</span>] <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>pb_X <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cr, celltype) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> adata<span class="sc">$</span>obs[<span class="fu">c</span>(<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>, <span class="st">"plate_well_celltype_reannotated"</span>)]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="ot">&lt;-</span> pb_obs[<span class="sc">!</span><span class="fu">duplicated</span>(pb_obs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> adata.obs[[<span class="st">"sm_name"</span>, <span class="st">"cell_type"</span>, <span class="st">"plate_name"</span>, <span class="st">"well"</span>]].copy()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pb_obs.index <span class="op">=</span> adata.obs[<span class="st">"plate_well_celltype_reannotated"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> pb_obs.drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> pb_X[pb_X<span class="sc">$</span>celltype <span class="sc">%in%</span> pb_obs<span class="sc">$</span>plate_well_celltype_reannotated, ]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>select_X <span class="ot">&lt;-</span> select_X <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">"celltype"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="ot">&lt;-</span> anndata<span class="sc">::</span><span class="fu">AnnData</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> select_X,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs =</span> pb_obs,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> adata<span class="sc">$</span>var</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_h5ad</span>(pb_adata, <span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="usecase-useful-reticulate-example" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="usecase-useful-reticulate-example"><span class="header-section-number">5.2.2</span> Usecase: useful reticulate example</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -715,13 +837,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../book/on_disk_interoperability.html" class="pagination-link" aria-label="On-disk interoperability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span>
+      <a href="../../book/in_memory/rpy2.html" class="pagination-link" aria-label="rpy2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">rpy2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../book/workflow_frameworks/review.html" class="pagination-link" aria-label="A review">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A review</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/on_disk_interoperability.html" class="pagination-link" aria-label="On-disk interoperability">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -730,4 +852,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/reticulate.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

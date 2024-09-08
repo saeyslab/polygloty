@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Production-ready Workflows – Polyglot programming for single-cell analysis</title>
+<title>3&nbsp; In-memory interoperability – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../book/workflow_frameworks/review.html" rel="next">
-<link href="../../book/on_disk_interoperability.html" rel="prev">
+<link href="../../book/in_memory/rpy2.html" rel="next">
+<link href="../../book/in_memory/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/pitfalls.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../book/in_memory/pitfalls.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/in_memory/pitfalls.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls</span></span></a>
   </div>
 </li>
@@ -170,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow frameworks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -231,17 +231,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#productionization-of-single-cell-analysis-workflows" id="toc-productionization-of-single-cell-analysis-workflows" class="nav-link active" data-scroll-target="#productionization-of-single-cell-analysis-workflows">Productionization of Single-Cell Analysis Workflows</a></li>
-  <li><a href="#but-how-to-ensure-that-your-workflow-is-production-ready" id="toc-but-how-to-ensure-that-your-workflow-is-production-ready" class="nav-link" data-scroll-target="#but-how-to-ensure-that-your-workflow-is-production-ready">But how to ensure that your workflow is production-ready?</a></li>
+  <li><a href="#pitfalls-when-mixing-python-and-r" id="toc-pitfalls-when-mixing-python-and-r" class="nav-link active" data-scroll-target="#pitfalls-when-mixing-python-and-r"><span class="header-section-number">3.1</span> Pitfalls when mixing Python and R</a>
+  <ul class="collapse">
+  <li><a href="#column-major-vs-row-major" id="toc-column-major-vs-row-major" class="nav-link" data-scroll-target="#column-major-vs-row-major"><span class="header-section-number">3.1.1</span> Column major vs row major</a></li>
+  <li><a href="#indexing-0-based-or-1-based" id="toc-indexing-0-based-or-1-based" class="nav-link" data-scroll-target="#indexing-0-based-or-1-based"><span class="header-section-number">3.1.2</span> Indexing: 0-based or 1-based</a></li>
+  <li><a href="#dots-in-variable-names" id="toc-dots-in-variable-names" class="nav-link" data-scroll-target="#dots-in-variable-names"><span class="header-section-number">3.1.3</span> Dots in variable names</a></li>
+  <li><a href="#integers-and-floating-point-numbers" id="toc-integers-and-floating-point-numbers" class="nav-link" data-scroll-target="#integers-and-floating-point-numbers"><span class="header-section-number">3.1.4</span> Integers and floating point numbers</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/in_memory/index.html">In-memory interoperability</a></li><li class="breadcrumb-item"><a href="../../book/in_memory/pitfalls.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pitfalls</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Production-ready Workflows</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-memory interoperability</span></h1>
 </div>
 
 
@@ -258,31 +263,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In the previous chapters, we’ve explored strategies for supporting data operability across programming language. Now, we turn our attention to how to effectively integrate these tools and languages into a cohesive and scalable analysis workflow.</p>
-<section id="productionization-of-single-cell-analysis-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="productionization-of-single-cell-analysis-workflows">Productionization of Single-Cell Analysis Workflows</h2>
-<p>Productionization is the process of transforming research-oriented analysis pipelines into robust, scalable, and maintainable workflows that can be reliably executed in a production environment (<a href="#fig-productionization" class="quarto-xref">Figure&nbsp;<span>1</span></a>). This transition is essential for ensuring the reproducibility of results, facilitating collaboration among researchers, and enabling the efficient processing of large and complex single-cell datasets.</p>
-<div id="fig-productionization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="pitfalls-when-mixing-python-and-r" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="pitfalls-when-mixing-python-and-r"><span class="header-section-number">3.1</span> Pitfalls when mixing Python and R</h2>
+<p>Python and R are very different programming languages. Here are some pitfalls you might encounter when mixing both languages.</p>
+<section id="column-major-vs-row-major" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="column-major-vs-row-major"><span class="header-section-number">3.1.1</span> Column major vs row major</h3>
+<p>Matrices are stored contiguously in-memory, and are adressed by a single memory addresses, instead of multiple indices along the axis. A translation needs to happen between this single adress and the indices along the axes, and how that translation happens depens on how the matrix is represented in-memory.</p>
+<div id="fig-imm-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/productionization.svg" class="img-fluid figure-img">
+<div aria-describedby="fig-imm-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/inmemorymatrix.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productionization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: An example of the productionization process for single-cell analysis workflows. <strong>A)</strong> The research environment is characterized by scattered data, manual steps, and ad-hoc analysis pipelines. <strong>B)</strong> The production environment is streamlined, automated, and standardized, with reproducibility engines in place.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imm-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Different in-memory representations
 </figcaption>
 </figure>
 </div>
+<p>In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well. There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices.</p>
+<p>If you notice something amiss with your matrices, check whether you need to transpose them or change the row/column major attribute.</p>
 </section>
-<section id="but-how-to-ensure-that-your-workflow-is-production-ready" class="level2">
-<h2 class="anchored" data-anchor-id="but-how-to-ensure-that-your-workflow-is-production-ready">But how to ensure that your workflow is production-ready?</h2>
-<p>In this chapter, we will explore:</p>
-<ul>
-<li><strong>Key qualities</strong> of workflows built to stand the test of time</li>
-<li>Which <strong>technologies and workflow frameworks</strong> contribute to these qualities</li>
-<li><strong>Best practices</strong> to keep in mind during development</li>
-</ul>
+<section id="indexing-0-based-or-1-based" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="indexing-0-based-or-1-based"><span class="header-section-number">3.1.2</span> Indexing: 0-based or 1-based</h3>
+<p>Take care to remember that arrays and matrices in Python are indexed starting from 0 (as in, index 0 refers to the first element), while R uses 1-based indexing, where index 1 refers to the first element.</p>
+</section>
+<section id="dots-in-variable-names" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.1.3</span> Dots in variable names</h3>
+<p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls. When using rpy2, these dots are usually translated to underscores <code>_</code>. If this does not happen automatically, you can specify mappings for these symbols.</p>
+</section>
+<section id="integers-and-floating-point-numbers" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="integers-and-floating-point-numbers"><span class="header-section-number">3.1.4</span> Integers and floating point numbers</h3>
+<p>In R, unless you explicitly specify, any number is represented as a floating point number. Python can be more strict about using integers or floating point numbers.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -715,13 +728,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../book/on_disk_interoperability.html" class="pagination-link" aria-label="On-disk interoperability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span>
+      <a href="../../book/in_memory/index.html" class="pagination-link" aria-label="In-memory interoperability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">In-memory interoperability</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../book/workflow_frameworks/review.html" class="pagination-link" aria-label="A review">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A review</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/in_memory/rpy2.html" class="pagination-link" aria-label="rpy2">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">rpy2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -730,4 +743,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/in_memory/pitfalls.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
