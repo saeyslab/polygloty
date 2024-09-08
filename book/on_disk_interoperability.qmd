@@ -19,6 +19,8 @@ While the file formats themselves can be backwards compatible and you can read i
 
 For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
 
+Note that there can be a difference in-memory layouts and on-disk layouts of the same object. [Apache Arrow](https://arrow.apache.org/docs/index.html) is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.
+
 ### Non-exhaustive list of file formats
 
 This list shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets.
@@ -38,12 +40,15 @@ The lower section of the table shows some specialized file standards that are bu
 | [Lance](https://github.com/lancedb/lance) | ✅ | ❌ | ✅ | ❌ | ❌ |
 | [TileDB](https://tiledb.io/) | ✅ | ✅ | ✅ | 🟠 | 🟠 |
 | [HDF5](https://www.hdfgroup.org/) | ✅ | ✅ | ✅ | 🟠 | ✅ |
-| [Zarr](https://zarr.readthedocs.io/en/stable/) | ✅ | ✅ | ✅ | 🟠 | ✅
+| [Zarr](https://zarr.readthedocs.io/en/stable/) | ✅ | ✅ | ✅ | 🟠 | ✅ |
 ||
-| [TileDB-SOMA](https://tiledb.io/) | ✅ | ✅ | ✅ | ✅ | 🟠|
-| [TileDB-BioImaging](https://tiledb.io/) | ✅ | ✅ | ✅ | 🟠 | ✅|
-| [AnnData h5ad/zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ✅ | ✅ | ✅ | ✅ | 🟠|
-| [SpatialData zarr](https://spatialdata.scverse.org/en/stable/) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Seurat RDS](https://satijalab.org/seurat/) | ❌ | ✅ | ✅ | ❌ | 🟠 |
+| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ❌ | ✅ | ✅ | ✅ | 🟠 |
+| [Loom HDF5](https://loompy.org/) | ✅ | ✅ | ✅ | ✅ | ❌ |
+| [AnnData h5ad/Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ✅ | ✅ | ✅ | ✅ | 🟠 |
+| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ✅ | ✅ | ✅ | ✅ | 🟠 |
+| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ✅ | ✅ | ✅ | 🟠 | ✅ |
+| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ## Different on-disk pipelines
 
