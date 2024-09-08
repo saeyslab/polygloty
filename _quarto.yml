@@ -4,9 +4,41 @@ project:
 book:
   title: "Polyglot programming for single-cell analysis"
   author:
-    - "Louise Deconinck"
-    - "Benjamin Rombaut"
-    - "Robrecht Cannoodt"
+    - name: Benjamin Rombaut
+      orcid: 0000-0002-4022-715X
+      affiliations:
+        - name: Saeys lab
+          city: Ghent
+          country: Belgium
+          url: https://saeyslab.sites.vib.be
+        - name: VIB Center for Inflammation Research
+          city: Ghent
+          country: Belgium
+        - department: Department of Applied Mathematics, Computer Science, and Statistics
+          name: Ghent University
+          city: Ghent
+          country: Belgium
+    - name: Louise Deconinck
+      orcid: 0000-0001-8100-6823
+      affiliations:
+        - name: Saeys lab
+          city: Ghent
+          country: Belgium
+          url: https://saeyslab.sites.vib.be
+        - name: VIB Center for Inflammation Research
+          city: Ghent
+          country: Belgium
+        - department: Department of Applied Mathematics, Computer Science, and Statistics
+          name: Ghent University
+          city: Ghent
+          country: Belgium
+    - name: Robrecht Cannoodt
+      orcid: 0000-0003-3641-729X
+      affiliations:
+        - name: Data Intuitive
+          city: Lebbeke
+          country: Belgium
+          url: https://data-intuitive.com
   date: "9/12/2024"
   cover-image: assets/cover.svg
   site-url: https://saeyslab.github.io/polygloty

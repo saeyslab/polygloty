@@ -23,32 +23,39 @@ Note that there can be a difference in-memory layouts and on-disk layouts of the
 
 ### Non-exhaustive list of file formats
 
-[@tbl-file-formats] shows some of the features of file formats of interest. Fast compression is important for large datasets, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied, but standardized support within the file format leads to faster and higher compression performance. Sparse matrix support is important for single-cell data, as it can also greatly reduce the storage requirements. Support for raster data like microscopy images is important for bioimaging and spatial omics datasets. There are many more features that can be important for specific use-cases, like the support for lazy and remote data loading in Zarr and TileDB.
+[@tbl-file-formats] shows some of the features of file formats of interest for Python and R.
+
+- **Fast compression** is important for large datasets and most of these formats support it, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied to text-based formats like CSV and JSON, but standardized support within the file format leads to faster and higher compression performance.
+- **Sparse matrix** support is important for single-cell data, as it can also greatly reduce the storage requirements. If a part of the pipeline does not have this support and needs to make the matrix dense, the memory requirements will increase rapidly. 
+- Support for **raster data** like microscopy images is important for bioimaging and spatial omics datasets. For large datasets and whole-slide images, support for subsetting and **lazy loading of chunks** or tiles is also needed. This also allows for out-of-core processing of larger-than-memory datasets.
+- Some file formats have built-in support for **remote storage** like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset.
 
 The lower section of the table shows some specialized file standards that are built on top of the more general file formats e.g. the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data.
 
-| File Format | Support in Python | Support in R | Compressed | Supports sparse matrix | Supports raster data |
-|-------------|------------------|--------------|------------|------------------------|-----|
-| RDS         | ○○                | ●●           | ●●          | ○○                      | ○○ |
-| Pickle      | ●●                | ○○           | ●●          | ○○                      | ○○ |
-| CSV         | ●●                | ●●           | ○○          | ○○                      | ○○ |
-| JSON        | ●●                | ●●           | ○○          | ○○                      | ○○ |
-| TIFF        | ●●                | ●●           | ●●          | ○○                      | ●● |
-| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●●                | ●●           | ●○          | ○○                      | ○○ |
-| [Parquet](https://parquet.apache.org/) | ●● | ●● | ●● | ○○ | ○○ |
-| [Feather](https://arrow.apache.org/docs/python/feather.html) | ●● | ●● | ●● | ○○ | ○○ |
-| [Lance](https://github.com/lancedb/lance) | ●● | ○○ | ●● | ○○ | ○○ |
-| [TileDB](https://tiledb.io/) | ●● | ●● | ●● | ●○ | ●○ |
-| [HDF5](https://www.hdfgroup.org/) | ●● | ●● | ●● | ●○ | ●● |
-| [Zarr](https://zarr.readthedocs.io/en/stable/) | ●● | ●● | ●● | ●○ | ●● |
+| File Format | Python | R | Sparse matrix | Raster data | Lazy chunk loading | Remote storage |
+|-------------|--------|---|---------------|-------------|--------------------|----------------|
+| RDS         | ○○     | ●●|    ○○       | ●○          | ○○                      | ○○ |
+| Pickle      | ●●     | ○○|    ○○       | ●○          | ○○                      | ○○ |
+| CSV         | ●●     | ●●|    ○○       | ○○          | ○○                      | ○○ |
+| JSON        | ●●     | ●●|    ○○       | ○○          | ○○                      | ○○ |
+| TIFF        | ●●     | ●●|    ○○       | ●●          | ●●                      | ●○ |
+| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●●                | ○○ |  ○○    | ●●          | ○○                      | ○○ |
+| [Parquet](https://parquet.apache.org/) | ●● | ●● | ○○ | ○○ | ●● | ●● |
+| [Feather](https://arrow.apache.org/docs/python/feather.html) | ●● | ●● | ●● | ○○ | ●● | ●● |
+| [Lance](https://github.com/lancedb/lance) | ●● | ○○ | ●● | ○○ | ●● | ●●
+| [HDF5](https://www.hdfgroup.org/) | ●● | ●● | ○○ | ●● | ●● | ●○ |
+| [Zarr](https://zarr.readthedocs.io/en/stable/) | ●● | ●● | ○○ | ●● | ●● | ●● |
+| [TileDB](https://tiledb.io/) | ●● | ●● | ●● | ●● | ●● | ●● |
 ||
-| [Seurat RDS](https://satijalab.org/seurat/) | ○○ | ●● | ●● | ○○ | ●○ |
-| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ○○ | ●● | ●● | ●● | ●○ |
-| [Loom HDF5](https://loompy.org/) | ●● | ●● | ●● | ●● | ○○ |
-| [AnnData h5ad/Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ●● | ●● | ●● | ●● | ●○ |
-| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●● | ●○ |
-| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●○ | ●● |
-| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ●● | ●● | ●● | ●● | ●● |
+| [Seurat RDS](https://satijalab.org/seurat/) | ○○ | ●● | ○○ | ●○ | ○○ | ○○
+| [Indexed OME-TIFF](http://viv.gehlenborglab.org/#data-preparation) | ●● | ●● | ○○ | ●● | ●● | ●● |
+| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ●● | ●● | ○○ | ●○ | ●● | ●○ |
+| [Loom HDF5](https://loompy.org/) | ●● | ●● | ●● | ●● | ●○ | ●○ |
+| [AnnData h5ad](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ●● | ●● | ●● | ●○ | ●● | ●○ |
+| [AnnData Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ●● | ●● | ●● | ●○ | ●● | ●● |
+| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●● | ●○ | ●● | ●● |
+| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ●● | ●● | ●○ | ●● | ●● | ●● |
+| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ●● | ●● | ●● | ●● | ●● | ●● |
 
 : Overview of file formats for single cell. {#tbl-file-formats}
 
