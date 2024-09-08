@@ -188,9 +188,9 @@ div.csl-indent {
    
   <ul>
   <li><a href="#code-porting" id="toc-code-porting" class="nav-link active" data-scroll-target="#code-porting"><span class="header-section-number">1.1</span> Code porting</a></li>
-  <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</a></li>
-  <li><a href="#disk-based-interoperability" id="toc-disk-based-interoperability" class="nav-link" data-scroll-target="#disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based Interoperability</a></li>
-  <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</a></li>
+  <li><a href="#in-memory-interoperability" id="toc-in-memory-interoperability" class="nav-link" data-scroll-target="#in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</a></li>
+  <li><a href="#disk-based-interoperability" id="toc-disk-based-interoperability" class="nav-link" data-scroll-target="#disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</a></li>
+  <li><a href="#workflow-frameworks" id="toc-workflow-frameworks" class="nav-link" data-scroll-target="#workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -225,15 +225,15 @@ div.csl-indent {
 <p>Furthermore, work is not done after the initial port – in order for the researcher’s work to be useful to others, the ported code must be maintained and kept up-to-date with the original implementation. For this reason, we don’t consider reimplementation a viable option for most use-cases and will not discuss it further in this book.</p>
 </section>
 <section id="in-memory-interoperability" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory Interoperability</h2>
+<h2 data-number="1.2" class="anchored" data-anchor-id="in-memory-interoperability"><span class="header-section-number">1.2</span> In-memory interoperability</h2>
 <p>Tools like rpy2 and reticulate allow for direct communication between languages within a single analysis session. This approach provides flexibility and avoids intermediate file I/O, but can introduce complexity in managing dependencies and environments.</p>
 </section>
 <section id="disk-based-interoperability" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based Interoperability</h2>
+<h2 data-number="1.3" class="anchored" data-anchor-id="disk-based-interoperability"><span class="header-section-number">1.3</span> Disk-based interoperability</h2>
 <p>Storing intermediate results to disk in standardized, language-agnostic file formats (e.g., HDF5, Parquet) allows for sequential execution of scripts written in different languages. This approach is relatively simple but can lead to increased storage requirements and I/O overhead.</p>
 </section>
 <section id="workflow-frameworks" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow Frameworks</h2>
+<h2 data-number="1.4" class="anchored" data-anchor-id="workflow-frameworks"><span class="header-section-number">1.4</span> Workflow frameworks</h2>
 <p>Workflow management systems (e.g., Nextflow, Snakemake) provide a structured approach to orchestrate complex, multi-language pipelines, enhancing reproducibility and automation. However, they may require a learning curve and additional configuration.</p>
 
 

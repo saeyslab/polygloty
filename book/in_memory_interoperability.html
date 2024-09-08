@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming enivronment, but it does require you to set up an environment in both languages, which can be cumbersome. One language will act as the main language, and you will intereact with the other language using an FFI (foreign function interface). When evaluating R code within a Python program, we will make use of rpy2 to accomplish this. When evaluating Python code within an R program, we will make use of reticulate.</p>
+<p>One aproach to interoperability is to work on in-memory representations of one object, and convert these in memory between different programming languages. This does not require you to write out your datasets and read them in in the different programming environment, but it does require you to set up an environment in both languages, which can be cumbersome. One language will act as the main language, and you will interact with the other language using an FFI (foreign function interface). When evaluating R code within a Python program, we will make use of rpy2 to accomplish this. When evaluating Python code within an R program, we will make use of reticulate.</p>
 <section id="rpy2-basic-functionality" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="rpy2-basic-functionality"><span class="header-section-number">3.1</span> Rpy2: basic functionality</h2>
 <p>Rpy2 is a foreign function interface to R. It can be used in the following way:</p>
@@ -318,18 +318,17 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 8.00k/9.82M [00:00&lt;02:10, 79.0kB/s]
+  0%|          | 8.00k/9.82M [00:00&lt;02:10, 78.8kB/s]
   0%|          | 32.0k/9.82M [00:00&lt;01:01, 167kB/s] 
   1%|          | 96.0k/9.82M [00:00&lt;00:27, 367kB/s]
-  2%|1         | 200k/9.82M [00:00&lt;00:16, 607kB/s] 
+  2%|1         | 200k/9.82M [00:00&lt;00:16, 609kB/s] 
   4%|4         | 408k/9.82M [00:00&lt;00:09, 1.09MB/s]
   8%|8         | 840k/9.82M [00:00&lt;00:04, 2.10MB/s]
  17%|#6        | 1.66M/9.82M [00:00&lt;00:02, 4.04MB/s]
- 26%|##5       | 2.54M/9.82M [00:00&lt;00:01, 5.02MB/s]
- 56%|#####5    | 5.45M/9.82M [00:01&lt;00:00, 11.7MB/s]
- 73%|#######2  | 7.16M/9.82M [00:01&lt;00:00, 13.1MB/s]
- 91%|#########1| 8.98M/9.82M [00:01&lt;00:00, 14.4MB/s]
-100%|##########| 9.82M/9.82M [00:01&lt;00:00, 8.26MB/s]</code></pre>
+ 34%|###3      | 3.33M/9.82M [00:00&lt;00:00, 7.88MB/s]
+ 53%|#####3    | 5.21M/9.82M [00:00&lt;00:00, 10.4MB/s]
+ 83%|########3 | 8.16M/9.82M [00:01&lt;00:00, 15.4MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 8.71MB/s]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
