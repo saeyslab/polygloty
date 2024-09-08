@@ -1,0 +1,36 @@
+---
+title: Pitfalls when using both Python and R
+engine: knitr
+---
+
+Python and R are very different programming languages. Here are some pitfalls you might encounter when mixing both languages.
+
+## Column major vs row major
+Matrices are stored contiguously in-memory, and are adressed by a single memory addresses, instead of multiple indices along the axis. A translation needs to happen between this single adress and the indices along the axes, and how that translation happens depens on how the matrix is represented in-memory.
+
+![Different in-memory representations](images/inmemorymatrix.png){#fig-imm-matrix}
+
+In R, every dense matrix is represented in column major order. In Python, the standard is row major, but you can specify column major order as well.
+There is usually no issue when converting R matrices to Python matrices: reticulate will take care to present these as column major Python matrices. The reverse is not true: all dense (even row major) Python matrices are presented to R as column major matrices. 
+
+If you notice something amiss with your matrices, check whether you need to transpose them or change the row/column major attribute.
+
+## Indexing: 0-based or 1-based
+Take care to remember that arrays and matrices in Python are indexed starting from 0 (as in, index 0 refers to the first element), while R uses 1-based indexing, where index 1 refers to the first element.
+
+## Dots in variable names
+In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.
+
+When using rpy2, these dots are usually translated to underscores `_`. If this does not happen automatically, you can specify mappings for these symbols.
+
+## Integers and floating point numbers
+In R, unless you explicitly specify, any number is represented as a floating point number.
+Python can be more strict about using integers or floating point numbers.
+
+```{r int_example}
+float_ex <- 12
+int_ex <- 12L
+
+cat(is.integer(float_ex))
+cat(is.integer(int_ex))
+```

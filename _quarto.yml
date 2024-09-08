@@ -16,7 +16,15 @@ book:
     - index.qmd
     - book/introduction.qmd
     - book/usecase/index.qmd
-    - book/in_memory/index.qmd
+    - text: "In-memory interoperability"
+      part: book/in_memory/index.qmd
+      chapters:
+        - text: Pitfalls
+          href: book/in_memory/pitfalls.qmd
+        - text: rpy2
+          href: book/in_memory/rpy2.qmd
+        - text: reticulate
+          href: book/in_memory/reticulate.qmd
     - book/on_disk_interoperability.qmd
     - text: Workflow frameworks
       part: book/workflow_frameworks/index.qmd

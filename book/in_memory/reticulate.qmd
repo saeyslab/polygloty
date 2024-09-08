@@ -1,0 +1,108 @@
+---
+title: In-memory interoperability
+engine: knitr
+---
+
+## Reticulate: basic functionality
+Reticulate is a foreign function interface in R to Python.
+
+### Interactive sessions
+One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
+
+Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.
+
+```{python show_magic, eval=FALSE}
+%load_ext rpy2.ipython  # line magic that loads the rpy2 ipython extension.
+                        # this extension allows the use of the following cell magic
+
+%%R -i input -o output  # this line allows to specify inputs (which will be converted to R objects) and outputs (which will be converted back to Python objects) 
+                        # this line is put at the start of a cell
+                        # the rest of the cell will be able to be ran as R code
+
+```
+
+### Reticulate basics
+
+
+## Usecase
+
+### Usecase: theoretical reticulate example
+
+```{r read_in}
+library(anndata)
+
+adata_path <- "../usecase/data/sc_counts_subset.h5ad"
+adata <- anndata::read_h5ad(adata_path)
+```
+
+Subset to a single small molecule and control for computational efficiency:
+
+```{r select_sm_celltype}
+library(dplyr)
+
+sm_name <- "Belinostat"
+control_name <- "Dimethyl Sulfoxide"
+
+# subset obs
+adata <- adata[adata$obs$sm_name %in% c(control_name, sm_name), adata$var$highly_variable]
+```
+
+```{r import_pandas}
+library(reticulate)
+pd <- import("pandas", convert = FALSE)
+
+counts <- as.matrix(adata$X)
+```
+
+Combine data in a single data frame and compute pseudobulk
+This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.
+
+We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.
+
+We will however showcase a useful application of reticulate.
+
+```{r compute_pseudobulk, eval = FALSE}
+
+combined <- pd$DataFrame(
+  counts,
+  index = adata$obs["plate_well_celltype_reannotated"],
+  columns = adata$var_names
+)
+cr <- py_to_r(combined)
+
+# we lost the rownames
+rownames(cr) <- adata$obs_names
+cr["celltype"] <- adata$obs["plate_well_celltype_reannotated"]
+
+pb_X <- group_by(cr, celltype) %>% summarise(across(where(is.numeric), sum))
+```
+
+```{r pb_obs_r, eval = FALSE}
+pb_obs <- adata$obs[c("sm_name", "cell_type", "plate_name", "well", "plate_well_celltype_reannotated")]
+pb_obs <- pb_obs[!duplicated(pb_obs), ]
+```
+
+```{python pb_obs_py, eval = FALSE}
+pb_obs = adata.obs[["sm_name", "cell_type", "plate_name", "well"]].copy()
+pb_obs.index = adata.obs["plate_well_celltype_reannotated"]
+pb_obs = pb_obs.drop_duplicates()
+```
+
+```{r pb_anndata, eval = FALSE}
+select_X <- pb_X[pb_X$celltype %in% pb_obs$plate_well_celltype_reannotated, ]
+select_X <- select_X %>% select(-"celltype")
+
+pb_adata <- anndata::AnnData(
+  X = select_X,
+  obs = pb_obs,
+  var = adata$var
+)
+```
+
+<!-- note: don't remove the `eval=FALSE` for this one, as not to overwrite the usecase data -->
+```{r store_pseudobulk, eval=FALSE}
+write_h5ad(pb_adata, "../usecase/data/pseudobulk.h5ad")
+
+```
+
+### Usecase: useful reticulate example
