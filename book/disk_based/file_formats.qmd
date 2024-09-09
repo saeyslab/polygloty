@@ -9,7 +9,7 @@ While the file formats themselves can be backwards compatible and you can read i
 
 For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.
 
-Note that there can be a difference in-memory layouts and on-disk layouts of the same object. [Apache Arrow](https://arrow.apache.org/docs/index.html) is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.
+Note that there can be a difference in memory layouts and on-disk layouts of the same object. [Apache Arrow](https://arrow.apache.org/docs/index.html) is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.
 
 ## General file formats
 
@@ -48,7 +48,7 @@ Note that while a format can support a feature in theory, it does not mean it's 
 | [Seurat RDS](https://satijalab.org/seurat/) | ○ | ● | ○ | ●○ | ○ | ○○
 | [Indexed OME-TIFF](http://viv.gehlenborglab.org/#data-preparation) | ● | ● | ○ | ●● | ● | ●● |
 | [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ● | ● | ○ | ●○ | ● | ●○ |
-| [Loom HDF5](https://loompy.org/) | ● | ● | ● | ●● | ● | ●○ |
+| [Loom HDF5](https://loompy.org/) | ● | ● | ● | ○○ | ● | ●○ |
 | [AnnData h5ad](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ●○ | ● | ●○ |
 | [AnnData Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ●○ | ● | ●● |
 | [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ● | ● | ● | ○○ | ● | ●● |
