@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Best Practices – Polyglot programming for single-cell analysis</title>
+<title>6&nbsp; Interoperable file formats – Polyglot programming for single-cell analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../book/book_slides.html" rel="next">
-<link href="../../book/workflow_frameworks/viash_nextflow.html" rel="prev">
+<link href="../../book/disk_based/disk_based_pipelines.html" rel="next">
+<link href="../../book/disk_based/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/best_practices.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best practices</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/disk_based/index.html">Disk-based interoperability</a></li><li class="breadcrumb-item"><a href="../../book/disk_based/file_formats.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interoperable file formats</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../book/disk_based/file_formats.html" class="sidebar-item-text sidebar-link">
+  <a href="../../book/disk_based/file_formats.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interoperable file formats</span></span></a>
   </div>
 </li>
@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
   </div>
 </li>
@@ -237,15 +237,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#general-file-formats" id="toc-general-file-formats" class="nav-link active" data-scroll-target="#general-file-formats"><span class="header-section-number">6.1</span> General file formats</a></li>
+  <li><a href="#specialized-file-formats" id="toc-specialized-file-formats" class="nav-link" data-scroll-target="#specialized-file-formats"><span class="header-section-number">6.2</span> Specialized file formats</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/disk_based/file_formats.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/disk_based/file_formats.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/index.html">Workflow frameworks</a></li><li class="breadcrumb-item"><a href="../../book/workflow_frameworks/best_practices.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best practices</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../book/disk_based/index.html">Disk-based interoperability</a></li><li class="breadcrumb-item"><a href="../../book/disk_based/file_formats.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interoperable file formats</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best Practices</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interoperable file formats</span></h1>
 </div>
 
 
@@ -262,20 +269,264 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>To ensure that your workflow is production-ready, consider the following best practices:</p>
+<p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable.</p>
+<p>While the file formats themselves can be backwards compatible and you can read in old objects, it’s not necessarily the case newer versions of some package can read in files from older versions e.g.&nbsp;SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.</p>
+<p>For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
+<p>Note that there can be a difference in-memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
+<section id="general-file-formats" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="general-file-formats"><span class="header-section-number">6.1</span> General file formats</h2>
+<p><a href="#tbl-general-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest for Python and R.</p>
 <ul>
-<li><p><strong>Version control</strong>: Use a version control system like Git to track changes to your workflow code and configuration files. This allows you to collaborate with others, revert to previous versions, and maintain a history of your work.</p></li>
-<li><p><strong>Automated testing</strong>: Implement automated tests to validate the correctness of your workflow components and ensure that changes do not introduce regressions. This includes unit tests, integration tests, and end-to-end tests.</p></li>
-<li><p><strong>Continuous integration</strong>: Set up a continuous integration (CI) pipeline to automatically build, test, and deploy your workflow whenever changes are made to the codebase. This helps catch errors early and ensures that your workflow remains functional.</p></li>
-<li><p><strong>Documentation</strong>: Document your workflow code, configuration, and usage to make it easier for others to understand and use your workflow. Include information on how to run the workflow, what inputs are required, and what outputs are produced.</p></li>
-<li><p><strong>Containerization</strong>: Use containerization technologies like Docker to package your workflow and its dependencies into a self-contained unit. This ensures that your workflow runs consistently across different environments and platforms.</p></li>
-<li><p><strong>Resource management</strong>: Optimize the use of computational resources by parallelizing tasks, optimizing memory usage, and monitoring resource consumption. This helps improve the performance and scalability of your workflow.</p></li>
-<li><p><strong>Error handling</strong>: Implement robust error handling mechanisms to gracefully handle failures and exceptions during workflow execution. This includes logging errors, retrying failed tasks, and notifying users of issues.</p></li>
-<li><p><strong>Data provenance</strong>: Capture metadata about the inputs, outputs, and parameters of your workflow to enable reproducibility and traceability. This includes recording information about the data sources, processing steps, and results produced by the workflow.</p></li>
-<li><p><strong>Versioned releases</strong>: Create versioned releases of your workflow and accompanying <strong>container images</strong> to ensure that users can reproduce the exact results of a specific analysis. This involves tagging releases, documenting changes, and archiving previous versions.</p></li>
+<li><strong>Fast compression</strong> is important for large datasets and most of these formats support it, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied to text-based formats like CSV and JSON, but standardized support within the file format leads to faster and higher compression performance.</li>
+<li><strong>Sparse matrix</strong> support is important for single-cell data, as it can also greatly reduce the storage requirements. If a part of the pipeline does not have this support and needs to make the matrix dense, the memory requirements will increase rapidly.</li>
+<li>Support for <strong>large images</strong> like microscopy images is important for bioimaging and spatial omics datasets. Some formats support small images or transcript coordinates, but do not support large whole-slide images or multiscale and labeled multidimensional images. This is indicated with ●○.</li>
+<li>For large datasets and whole-slide images, support for subsetting and <strong>lazy loading of chunks</strong> or tiles is also needed. This also allows for out-of-core and parallel processing of larger-than-memory datasets.</li>
+<li>Some file formats have built-in support for <strong>remote storage</strong> like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset. Some formats can be accessed remotely, but only for public data (SpatialData) or with additional setup (HDF5). This is indicated with ●○. Mounting a remote folder via SFTP or <a href="https://rclone.org">rclone</a> and downloading the data on demand only works for exploded file formats like Zarr.</li>
 </ul>
+<div id="tbl-general-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-general-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Overview of general file formats of use for single cell.
+</figcaption>
+<div aria-describedby="tbl-general-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File Format</th>
+<th>Python</th>
+<th>R</th>
+<th>Sparse matrix</th>
+<th>Large images</th>
+<th>Lazy chunk loading</th>
+<th>Remote storage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RDS</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>●○</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td>Pickle</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>●○</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td>CSV</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>○○</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td>JSON</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>○○</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td>TIFF</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●●</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+<tr class="even">
+<td><a href="https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format">Numpy .npy</a></td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>●●</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://parquet.apache.org/">Parquet</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>○○</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://arrow.apache.org/docs/python/feather.html">Feather</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○○</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/lancedb/lance">Lance</a></td>
+<td>●</td>
+<td>○</td>
+<td>●</td>
+<td>○○</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.hdfgroup.org/">HDF5</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●●</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://zarr.readthedocs.io/en/stable/">Zarr</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●●</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://tiledb.io/">TileDB</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●●</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="specialized-file-formats" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="specialized-file-formats"><span class="header-section-number">6.2</span> Specialized file formats</h2>
+<p><a href="#tbl-specialized-file-formats" class="quarto-xref">Table&nbsp;<span>6.2</span></a> shows some specialized file standards that are built on top of the more general file formats. One example is the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data. Note that while a format can support a feature in theory, it does not mean it’s available in practice. For example, the TileDB implementations do not yet support large spatial omics datasets like SpatialData does. SpatialData does not yet fully support reading and writing with a remote private S3 dataset.</p>
+<div id="tbl-specialized-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-specialized-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Overview of specialized file formats of use for single cell.
+</figcaption>
+<div aria-describedby="tbl-specialized-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File Format</th>
+<th>Python</th>
+<th>R</th>
+<th>Sparse matrix</th>
+<th>Large images</th>
+<th>Lazy chunk loading</th>
+<th>Remote storage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://satijalab.org/seurat/">Seurat RDS</a></td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>●○</td>
+<td>○</td>
+<td>○○</td>
+</tr>
+<tr class="even">
+<td><a href="http://viv.gehlenborglab.org/#data-preparation">Indexed OME-TIFF</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●●</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="odd">
+<td><a href="https://mojaveazure.github.io/seurat-disk/index.html">h5Seurat</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●○</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+<tr class="even">
+<td><a href="https://loompy.org/">Loom HDF5</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●●</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+<tr class="odd">
+<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData h5ad</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●○</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+<tr class="even">
+<td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData Zarr</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●○</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="odd">
+<td><a href="https://tiledb.com/open-source/life-sciences">TileDB-SOMA</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○○</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="even">
+<td><a href="https://tiledb.com/open-source/life-sciences">TileDB-BioImaging</a></td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●●</td>
+<td>●</td>
+<td>●●</td>
+</tr>
+<tr class="odd">
+<td><a href="https://spatialdata.scverse.org/en/stable/">SpatialData Zarr</a></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●●</td>
+<td>●</td>
+<td>●○</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -707,13 +958,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../book/workflow_frameworks/viash_nextflow.html" class="pagination-link" aria-label="Example workflow">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example workflow</span></span>
+      <a href="../../book/disk_based/index.html" class="pagination-link" aria-label="Disk-based interoperability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Disk-based interoperability</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../book/book_slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/disk_based/disk_based_pipelines.html" class="pagination-link" aria-label="Disk-based pipelines">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Disk-based pipelines</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -722,4 +973,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/workflow_frameworks/best_practices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/workflow_frameworks/best_practices.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/disk_based/file_formats.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/disk_based/file_formats.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

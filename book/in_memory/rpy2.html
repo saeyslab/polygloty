@@ -190,16 +190,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../book/on_disk_interoperability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">On-disk interoperability</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workflow frameworks</span></a>
+            <a href="../../book/disk_based/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disk-based interoperability</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -207,32 +201,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../book/disk_based/file_formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interoperable file formats</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../book/disk_based/disk_based_pipelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Disk-based pipelines</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../book/workflow_frameworks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow frameworks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../book/workflow_frameworks/review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A review</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A review</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/workflow_frameworks/qualities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Essential qualities and technologies</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/workflow_frameworks/quality_assessment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quality assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/workflow_frameworks/viash_nextflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/workflow_frameworks/best_practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Best practices</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,19 +386,16 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 8.00k/9.82M [00:00&lt;03:22, 50.9kB/s]
-  0%|          | 32.0k/9.82M [00:00&lt;01:34, 109kB/s] 
-  1%|          | 96.0k/9.82M [00:00&lt;00:42, 240kB/s]
-  2%|2         | 208k/9.82M [00:00&lt;00:24, 418kB/s] 
-  4%|4         | 424k/9.82M [00:00&lt;00:13, 748kB/s]
-  9%|8         | 872k/9.82M [00:00&lt;00:06, 1.43MB/s]
- 18%|#7        | 1.72M/9.82M [00:01&lt;00:03, 2.75MB/s]
- 35%|###5      | 3.46M/9.82M [00:01&lt;00:01, 5.37MB/s]
- 62%|######1   | 6.07M/9.82M [00:01&lt;00:00, 8.27MB/s]
- 78%|#######7  | 7.64M/9.82M [00:01&lt;00:00, 9.33MB/s]
- 94%|#########3| 9.20M/9.82M [00:01&lt;00:00, 8.75MB/s]
- 99%|#########9| 9.77M/9.82M [00:02&lt;00:00, 7.25MB/s]
-100%|##########| 9.82M/9.82M [00:02&lt;00:00, 5.05MB/s]</code></pre>
+  0%|          | 32.0k/9.82M [00:00&lt;01:02, 165kB/s]
+  1%|          | 96.0k/9.82M [00:00&lt;00:27, 366kB/s]
+  2%|1         | 200k/9.82M [00:00&lt;00:16, 620kB/s] 
+  4%|3         | 400k/9.82M [00:00&lt;00:08, 1.10MB/s]
+  8%|8         | 808k/9.82M [00:00&lt;00:04, 2.09MB/s]
+ 16%|#6        | 1.59M/9.82M [00:00&lt;00:02, 4.03MB/s]
+ 32%|###2      | 3.17M/9.82M [00:00&lt;00:00, 7.87MB/s]
+ 44%|####4     | 4.35M/9.82M [00:00&lt;00:00, 8.67MB/s]
+ 71%|#######1  | 6.99M/9.82M [00:01&lt;00:00, 13.9MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 9.36MB/s]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
