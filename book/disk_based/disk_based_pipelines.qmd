@@ -1,0 +1,89 @@
+---
+title: Disk-based pipelines
+engine: knitr
+---
+
+You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.
+
+Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.
+
+The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.
+
+Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.
+
+## Notebook pipelines
+
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. Our [Use-case chapter](./usecase/) is one example of this. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
+
+It is possible to create whole pipelines out of multiple notebooks. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
+
+### Execute notebooks via the CLI
+
+Jupyter notebook via [nbconvert](https://nbconvert.readthedocs.io/en/latest/#):
+```bash
+jupyter nbconvert --to notebook --execute my_notebook.ipynb --allow-errors --output-dir outputs/
+```
+
+[RMarkdown](https://rmarkdown.rstudio.com/) notebook via Rscript:
+```bash
+Rscript -e "rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"
+```
+
+## Script pipelines
+
+### Calling scripts in the same environment
+
+TODO: test these snippets
+
+From Bash:
+```bash
+#!/bin/bash
+
+bash scripts/1_load_data.sh
+python scripts/2_compute_pseudobulk.py
+Rscript scripts/3_plot_results.R
+```
+
+From R:
+```r
+system("bash scripts/1_load_data.sh")
+system("python scripts/2_compute_pseudobulk.py")
+system("Rscript scripts/3_plot_results.R")
+```
+
+From Python:
+```python
+import subprocess
+
+subprocess.run("bash scripts/1_load_data.sh", shell=True)
+subprocess.run("python scripts/2_compute_pseudobulk.py", shell=True)
+subprocess.run("Rscript scripts/3_plot_results.R", shell=True)
+```
+
+### Calling scripts in different environments
+
+Sometimes you might want to run scripts in different environments, as they it's too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.
+
+You can interleave your Bash script with environment activation functions e.g. `conda activate {script_env}` commands. This requires a `conda .yaml` file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.
+
+Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the [Pixi package managment tool](https://pixi.sh/latest/) to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
+
+Run scripts in different environments with `pixi`:
+```bash
+pixi run -e bash scripts/1_load_data.sh
+pixi run -e scverse scripts/2_compute_pseudobulk.py
+pixi run -e rverse scripts/3_plot_results.R
+```
+
+With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.
+
+```bash
+pixi run pipeline
+```
+
+You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+
+```bash
+docker pull berombau/polygloty-docker:latest
+docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+```
