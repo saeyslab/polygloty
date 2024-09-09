@@ -64,7 +64,6 @@ book:
           href: book/disk_based/file_formats.qmd
         - text: Disk-based pipelines
           href: book/disk_based/disk_based_pipelines.qmd
-    - book/on_disk_interoperability.qmd
     - text: Workflow frameworks
       part: book/workflow_frameworks/index.qmd
       chapters:
