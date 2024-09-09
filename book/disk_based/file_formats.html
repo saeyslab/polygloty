@@ -272,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <p>It’s important to differentiate between language specific file formats and language agnostic file formats. For example, most languages can serialize objects to disk. R has the <code>.RDS</code> file format and Python has the <code>.pickle/.pkl</code> file format, but these are not interoperable.</p>
 <p>While the file formats themselves can be backwards compatible and you can read in old objects, it’s not necessarily the case newer versions of some package can read in files from older versions e.g.&nbsp;SeuratObject versions. Another possible problem is that when working with older versions of Python or R you can have errors reading in serialized objects created by the latest language version.</p>
 <p>For a file format to solve these issues and be language agnostic, it should have a mature standard describing how the data is stored on disk. This standard should be implemented in multiple languages, documented and tested for compatibility. Some file formats have a reference implementation in C, which can be used to create bindings for other languages. Most also have a status page that list the implementations and which version or how much of the standard they support.</p>
-<p>Note that there can be a difference in-memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
+<p>Note that there can be a difference in memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
 <section id="general-file-formats" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="general-file-formats"><span class="header-section-number">6.1</span> General file formats</h2>
 <p><a href="#tbl-general-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest for Python and R.</p>
@@ -470,7 +470,7 @@ Table&nbsp;6.2: Overview of specialized file formats of use for single cell.
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>●●</td>
+<td>○○</td>
 <td>●</td>
 <td>●○</td>
 </tr>
