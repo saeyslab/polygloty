@@ -13,7 +13,7 @@ Alternatively, there are frameworks that keep the notebooks and create a pipelin
 
 ## Notebook pipelines
 
-You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. Our [Use-case chapter](./usecase/) is one example of this. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. **Our [Use-case chapter](./usecase/) is one example of this.** The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
 
 It is possible to create whole pipelines out of multiple notebooks. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
 
@@ -31,24 +31,21 @@ Rscript -e "rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"
 
 ## Script pipelines
 
-### Calling scripts in the same environment
-
-TODO: test these snippets
-
 From Bash:
 ```bash
 #!/bin/bash
 
 bash scripts/1_load_data.sh
 python scripts/2_compute_pseudobulk.py
-Rscript scripts/3_plot_results.R
+Rscript scripts/3_analysis_de.R
 ```
 
 From R:
 ```r
 system("bash scripts/1_load_data.sh")
 system("python scripts/2_compute_pseudobulk.py")
-system("Rscript scripts/3_plot_results.R")
+# Alternatively you can run R code here instead of calling an R script
+system("Rscript scripts/3_analysis_de.R")
 ```
 
 From Python:
@@ -56,23 +53,24 @@ From Python:
 import subprocess
 
 subprocess.run("bash scripts/1_load_data.sh", shell=True)
+# Alternatively you can run Python code here instead of calling a Python script
 subprocess.run("python scripts/2_compute_pseudobulk.py", shell=True)
-subprocess.run("Rscript scripts/3_plot_results.R", shell=True)
+subprocess.run("Rscript scripts/3_analysis_de.R", shell=True)
 ```
 
-### Calling scripts in different environments
+## Pipelines with different environments
 
 Sometimes you might want to run scripts in different environments, as they it's too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.
 
-You can interleave your Bash script with environment activation functions e.g. `conda activate {script_env}` commands. This requires a `conda .yaml` file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.
+You can **interleave your Bash script with environment activation functions** e.g. `conda activate {script_env}` commands. This requires e.g. a `conda .yaml` file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.
 
-Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the [Pixi package managment tool](https://pixi.sh/latest/) to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
+An simple, but very new approach is to use the **[Pixi package managment tool](https://pixi.sh/latest/)** to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
 
 Run scripts in different environments with `pixi`:
 ```bash
 pixi run -e bash scripts/1_load_data.sh
 pixi run -e scverse scripts/2_compute_pseudobulk.py
-pixi run -e rverse scripts/3_plot_results.R
+pixi run -e rverse scripts/3_analysis_de.R
 ```
 
 With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.
@@ -87,3 +85,7 @@ You can create a Docker image with all the `pixi` environments and run the pipel
 docker pull berombau/polygloty-docker:latest
 docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```
+
+Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqara Wave Containers](https://seqera.io/containers/) can make this quick and easy.
+
+When your project grows more bespoke you can use a **[workflow frameworks](./workflow_frameworks)** like Nextflow or Snakemake to manage the environments and dependencies for you.
