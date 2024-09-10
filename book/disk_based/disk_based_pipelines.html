@@ -307,59 +307,161 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.</p>
-<p>Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.</p>
-<p>The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.</p>
-<p>Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.</p>
+<p>Disk-based pipelines are a way to run a sequence of scripts in different languages by communicating only via files on disk. This is useful when you have to use different languages for different parts of the analysis and don’t want the hassle of managing an <a href="../in_memory/">in-memory interoperability</a> setup. Either you keep the notebook format of the exploratory analysis or you convert the code snippets to scripts.</p>
 <section id="notebook-pipelines" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">7.1</span> Notebook pipelines</h2>
-<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. <strong>Our <a href="./usecase/">Use-case chapter</a> is one example of this.</strong> The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>.</p>
-<p>It is possible to create whole pipelines out of multiple notebooks. For example, <a href="https://github.com/nteract/papermill">Papermill</a> can execute parameterized Jupyter notebooks in sequence and pass variables between them. <a href="https://nbdev.fast.ai/">nbdev</a> and <a href="https://github.com/ploomber/ploomber">Ploomber</a> are similar such frameworks.</p>
+<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. <strong>Our <a href="./usecase/">Use-case chapter</a> is one example of this.</strong>. The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>. You don’t need <a href="../in_memory">in-memory interoperability</a>, but it</p>
+<p>There are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy. For example, <a href="https://github.com/nteract/papermill">Papermill</a> can execute parameterized Jupyter notebooks in sequence and pass variables between them. <a href="https://nbdev.fast.ai/">nbdev</a> and <a href="https://github.com/ploomber/ploomber">Ploomber</a> are similar such frameworks.</p>
 <section id="execute-notebooks-via-the-cli" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">7.1.1</span> Execute notebooks via the CLI</h3>
+<p>You can execute notebooks via the command line as a job, so you don’t have to wait for them to finish. This is useful when running experiments, as the output is saved in the notebook together with plots, available to inspect them at a later time.</p>
 <p>Jupyter notebook via <a href="https://nbconvert.readthedocs.io/en/latest/#">nbconvert</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> notebook <span class="at">--execute</span> my_notebook.ipynb <span class="at">--allow-errors</span> <span class="at">--output-dir</span> outputs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="https://rmarkdown.rstudio.com/">RMarkdown</a> notebook via Rscript:</p>
+<p>Similar functionality exists for <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> notebooks via Rscript:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="script-pipelines" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="script-pipelines"><span class="header-section-number">7.2</span> Script pipelines</h2>
+<p>The scripts in a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.</p>
+<p>These scripts have the same functionality as the code in the <a href="../usecase/">use-case example notebook</a>:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>1_load_data.sh</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>2_compute_pseudobulk.py</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><code>3_analysis_de.R</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">if [[ ! -f book/usecase/data/sc_counts_reannotated_with_counts.h5ad ]]; then</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  aws s3 cp \</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    --no-sign-request \</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    book/usecase/data/sc_counts_reannotated_with_counts.h5ad</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb4"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a># The dataset is stored <span class="kw">in</span> an AnnData object<span class="op">,</span> which can be loaded <span class="kw">in</span> Python <span class="kw">as</span> follows<span class="op">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> anndata <span class="kw">as</span> ad</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">"Load data"</span><span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> ad<span class="op">.</span><span class="fu">read_h5ad</span><span class="op">(</span><span class="st">"usecase/data/sc_counts_reannotated_with_counts.h5ad"</span><span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sm_name <span class="op">=</span> <span class="st">"Belinostat"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>control_name <span class="op">=</span> <span class="st">"Dimethyl Sulfoxide"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>cell_type <span class="op">=</span> <span class="st">"T cells"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> adata<span class="op">[</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  adata<span class="op">.</span>obs<span class="op">[</span><span class="st">"sm_name"</span><span class="op">].</span><span class="fu">isin</span><span class="op">([</span>sm_name<span class="op">,</span> control_name<span class="op">])</span> <span class="op">&amp;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  adata<span class="op">.</span>obs<span class="op">[</span><span class="st">"cell_type"</span><span class="op">].</span><span class="fu">isin</span><span class="op">([</span>cell_type<span class="op">]),</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">].</span><span class="fu">copy</span><span class="op">()</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a># We will also subset the genes to the top <span class="dv">2000</span> most variable genes<span class="op">.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> adata<span class="op">[:,</span> adata<span class="op">.</span><span class="kw">var</span><span class="op">[</span><span class="st">"highly_variable"</span><span class="op">]].</span><span class="fu">copy</span><span class="op">()</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">"Compute pseudobulk"</span><span class="op">)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a># Combine data <span class="kw">in</span> a single data frame and compute pseudobulk</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> pandas <span class="kw">as</span> pd</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd<span class="op">.</span><span class="fu">DataFrame</span><span class="op">(</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  adata<span class="op">.</span>X<span class="op">.</span><span class="fu">toarray</span><span class="op">(),</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  index<span class="op">=</span>adata<span class="op">.</span>obs<span class="op">[</span><span class="st">"plate_well_celltype_reannotated"</span><span class="op">],</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>combined<span class="op">.</span>columns <span class="op">=</span> adata<span class="op">.</span>var_names</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>pb_X <span class="op">=</span> combined<span class="op">.</span><span class="fu">groupby</span><span class="op">(</span>level<span class="op">=</span><span class="dv">0</span><span class="op">).</span><span class="fu">sum</span><span class="op">()</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">"Construct obs for pseudobulk"</span><span class="op">)</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a># Use <span class="st">'plate_well_celltype_reannotated'</span> <span class="kw">as</span> index and make sure to retain the columns <span class="st">'sm_name'</span><span class="op">,</span> <span class="st">'cell_type'</span><span class="op">,</span> and <span class="st">'plate_name'</span><span class="op">:</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> adata<span class="op">.</span>obs<span class="op">[[</span><span class="st">"sm_name"</span><span class="op">,</span> <span class="st">"cell_type"</span><span class="op">,</span> <span class="st">"plate_name"</span><span class="op">,</span> <span class="st">"well"</span><span class="op">]].</span><span class="fu">copy</span><span class="op">()</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>pb_obs<span class="op">.</span>index <span class="op">=</span> adata<span class="op">.</span>obs<span class="op">[</span><span class="st">"plate_well_celltype_reannotated"</span><span class="op">]</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>pb_obs <span class="op">=</span> pb_obs<span class="op">.</span><span class="fu">drop_duplicates</span><span class="op">()</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">"Create AnnData object"</span><span class="op">)</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="op">=</span> ad<span class="op">.</span><span class="fu">AnnData</span><span class="op">(</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  X<span class="op">=</span>pb_X<span class="op">.</span>loc<span class="op">[</span>pb_obs<span class="op">.</span>index<span class="op">].</span>values<span class="op">,</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  obs<span class="op">=</span>pb_obs<span class="op">,</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span><span class="op">=</span>adata<span class="op">.</span><span class="kw">var</span><span class="op">,</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">"Store to disk"</span><span class="op">)</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>pb_adata<span class="op">.</span><span class="fu">write_h5ad</span><span class="op">(</span><span class="st">"usecase/data/pseudobulk.h5ad"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">print("Loading libraries...")</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(anndata)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr, warn.conflicts = FALSE)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">print("Reading data...")</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">pb_adata &lt;- read_h5ad("usecase/data/pseudobulk.h5ad")</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select small molecule and control:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">sm_name &lt;- "Belinostat"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">control_name &lt;- "Dimethyl Sulfoxide"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">print("Create DESeq dataset")</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># transform counts matrix</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">count_data &lt;- t(pb_adata$X)</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">storage.mode(count_data) &lt;- "integer"</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataset</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">dds &lt;- DESeq2::DESeqDataSetFromMatrix(</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="at">  countData = count_data,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">  colData = pb_adata$obs,</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">  design = ~ sm_name + plate_name,</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">)</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">print("Run DESeq2")</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="at">dds &lt;- DESeq2::DESeq(dds)</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Get results:</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="at">res &lt;- DESeq2::results(dds, contrast=c("sm_name", sm_name, control_name)) |&gt;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="at">  as.data.frame()</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview results:</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="at">res |&gt;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="at">  arrange(padj) |&gt;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="at">  head(10)</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Write to disk:</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="at">write.csv(res, "usecase/data/de_contrasts.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>You can use a shell script or your language of preference to run the pipeline in a sequential manner. This usually requires all the dependencies to be installed in one large environment.</p>
 <p>From Bash:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From R:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"bash scripts/1_load_data.sh"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run R code here instead of calling an R script</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_analysis_de.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"bash scripts/1_load_data.sh"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run R code here instead of calling an R script</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_analysis_de.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From Python:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"bash scripts/1_load_data.sh"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run Python code here instead of calling a Python script</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_analysis_de.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"bash scripts/1_load_data.sh"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run Python code here instead of calling a Python script</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_analysis_de.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="pipelines-with-different-environments" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="pipelines-with-different-environments"><span class="header-section-number">7.3</span> Pipelines with different environments</h2>
-<p>Sometimes you might want to run scripts in different environments, as they it’s too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.</p>
-<p>You can <strong>interleave your Bash script with environment activation functions</strong> e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires e.g.&nbsp;a <code>conda .yaml</code> file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
-<p>An simple, but very new approach is to use the <strong><a href="https://pixi.sh/latest/">Pixi package managment tool</a></strong> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
+<p>Sometimes you might want to run scripts in different environments, as it’s too much hassle to install all dependencies in one environment. Other reasons can be that you want to reuse existing container images or you want keep parts of the pipeline separate and maintainable.</p>
+<p>You can <strong>interleave your Bash script with environment activation functions</strong> e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires e.g.&nbsp;a <code>conda .yaml</code> file for each script environment in order to be reproducible. This can grow unwieldy as Conda environment sometimes need to be adapted for the platform and availability of accelerators like GPU’s. Another important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
+<p>A simple and elegant, but very new solution is to use the <strong><a href="https://pixi.sh/latest/">Pixi package managment tool</a></strong> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
 <p>Run scripts in different environments with <code>pixi</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another approach is to use <strong>multi-package containers</strong>. Tools like <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> and <a href="https://seqera.io/containers/">Seqara Wave Containers</a> can make this quick and easy.</p>
-<p>When your project grows more bespoke you can use a <strong><a href="./workflow_frameworks">workflow frameworks</a></strong> like Nextflow or Snakemake to manage the environments and dependencies for you.</p>
+<p>When your project grows more bespoke you can use a <strong><a href="../workflow_frameworks">workflow frameworks</a></strong> like Nextflow or Snakemake to manage the environments and dependencies for you.</p>
 
 
 </section>

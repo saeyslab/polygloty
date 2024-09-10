@@ -275,13 +275,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Note that there can be a difference in memory layouts and on-disk layouts of the same object. <a href="https://arrow.apache.org/docs/index.html">Apache Arrow</a> is a memory layout standard important for in-memory interoperability. It can be save to disk as a Feather file, but also as a Parquet file.</p>
 <section id="general-file-formats" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="general-file-formats"><span class="header-section-number">6.1</span> General file formats</h2>
-<p><a href="#tbl-general-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest for Python and R.</p>
+<p><a href="#tbl-general-file-formats" class="quarto-xref">Table&nbsp;<span>6.1</span></a> shows some of the features of file formats of interest for Python and R and weather they they lack support (○), support it partially (◐) or have full support (●).</p>
 <ul>
 <li><strong>Fast compression</strong> is important for large datasets and most of these formats support it, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied to text-based formats like CSV and JSON, but standardized support within the file format leads to faster and higher compression performance.</li>
 <li><strong>Sparse matrix</strong> support is important for single-cell data, as it can also greatly reduce the storage requirements. If a part of the pipeline does not have this support and needs to make the matrix dense, the memory requirements will increase rapidly.</li>
-<li>Support for <strong>large images</strong> like microscopy images is important for bioimaging and spatial omics datasets. Some formats support small images or transcript coordinates, but do not support large whole-slide images or multiscale and labeled multidimensional images. This is indicated with ●○.</li>
+<li>Support for <strong>large images</strong> like microscopy images is important for bioimaging and spatial omics datasets. Some formats support small images or transcript coordinates, but do not support large whole-slide images or multiscale and labeled multidimensional images. This is indicated with ◐.</li>
 <li>For large datasets and whole-slide images, support for subsetting and <strong>lazy loading of chunks</strong> or tiles is also needed. This also allows for out-of-core and parallel processing of larger-than-memory datasets.</li>
-<li>Some file formats have built-in support for <strong>remote storage</strong> like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset. Some formats can be accessed remotely, but only for public data (SpatialData) or with additional setup (HDF5). This is indicated with ●○. Mounting a remote folder via SFTP or <a href="https://rclone.org">rclone</a> and downloading the data on demand only works for exploded file formats like Zarr or by supporting byte range requests.</li>
+<li>Some file formats have built-in support for <strong>remote storage</strong> like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset. Some formats can be accessed remotely, but only for public data (SpatialData) or with additional setup (HDF5). This is indicated with ◐. Mounting a remote folder via SFTP or <a href="https://rclone.org">rclone</a> and downloading the data on demand only works for exploded file formats like Zarr or by supporting byte range requests.</li>
 </ul>
 <div id="tbl-general-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -307,108 +307,108 @@ Table&nbsp;6.1: Overview of general file formats of use for single cell.
 <td>○</td>
 <td>●</td>
 <td>○</td>
-<td>●○</td>
+<td>◐</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
 </tr>
 <tr class="even">
 <td>Pickle</td>
 <td>●</td>
 <td>○</td>
 <td>○</td>
-<td>●○</td>
+<td>◐</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
 </tr>
 <tr class="odd">
 <td>CSV</td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>○○</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
+<td>○</td>
 </tr>
 <tr class="even">
 <td>JSON</td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>○○</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
+<td>○</td>
 </tr>
 <tr class="odd">
 <td>TIFF</td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●●</td>
+<td>◐</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 </tr>
 <tr class="even">
-<td><a href="https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format">Numpy .npy</a></td>
+<td><a href="https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format">.npy</a></td>
 <td>●</td>
 <td>○</td>
 <td>○</td>
-<td>●●</td>
+<td>●</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
 </tr>
 <tr class="odd">
 <td><a href="https://parquet.apache.org/">Parquet</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
 </tr>
 <tr class="even">
 <td><a href="https://arrow.apache.org/docs/python/feather.html">Feather</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>○○</td>
+<td>○</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://github.com/lancedb/lance">Lance</a></td>
 <td>●</td>
 <td>○</td>
 <td>●</td>
-<td>○○</td>
+<td>○</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
 </tr>
 <tr class="even">
 <td><a href="https://www.hdfgroup.org/">HDF5</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●●</td>
 <td>●</td>
-<td>●○</td>
+<td>●</td>
+<td>◐</td>
 </tr>
 <tr class="odd">
 <td><a href="https://zarr.readthedocs.io/en/stable/">Zarr</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●●</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
+<td>●</td>
 </tr>
 <tr class="even">
 <td><a href="https://tiledb.io/">TileDB</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>●●</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
+<td>●</td>
 </tr>
 </tbody>
 </table>
@@ -443,81 +443,81 @@ Table&nbsp;6.2: Overview of specialized file formats of use for single cell.
 <td>○</td>
 <td>●</td>
 <td>○</td>
-<td>●○</td>
+<td>◐</td>
 <td>○</td>
-<td>○○</td>
+<td>○</td>
 </tr>
 <tr class="even">
 <td><a href="http://viv.gehlenborglab.org/#data-preparation">Indexed OME-TIFF</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●●</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
+<td>●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://mojaveazure.github.io/seurat-disk/index.html">h5Seurat</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●○</td>
+<td>◐</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 </tr>
 <tr class="even">
 <td><a href="https://loompy.org/">Loom HDF5</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>○○</td>
+<td>○</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 </tr>
 <tr class="odd">
 <td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData h5ad</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 </tr>
 <tr class="even">
 <td><a href="https://anndata.readthedocs.io/en/latest/anndata.zarr.html">AnnData Zarr</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>●○</td>
+<td>◐</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://tiledb.com/open-source/life-sciences">TileDB-SOMA</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>○○</td>
+<td>○</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
 </tr>
 <tr class="even">
 <td><a href="https://tiledb.com/open-source/life-sciences">TileDB-BioImaging</a></td>
 <td>●</td>
 <td>●</td>
 <td>○</td>
-<td>●●</td>
 <td>●</td>
-<td>●●</td>
+<td>●</td>
+<td>●</td>
 </tr>
 <tr class="odd">
 <td><a href="https://spatialdata.scverse.org/en/stable/">SpatialData Zarr</a></td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>●●</td>
 <td>●</td>
-<td>●○</td>
+<td>●</td>
+<td>◐</td>
 </tr>
 </tbody>
 </table>
