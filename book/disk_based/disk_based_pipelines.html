@@ -280,11 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#execute-notebooks-via-the-cli" id="toc-execute-notebooks-via-the-cli" class="nav-link" data-scroll-target="#execute-notebooks-via-the-cli"><span class="header-section-number">7.1.1</span> Execute notebooks via the CLI</a></li>
   </ul></li>
-  <li><a href="#script-pipelines" id="toc-script-pipelines" class="nav-link" data-scroll-target="#script-pipelines"><span class="header-section-number">7.2</span> Script pipelines</a>
-  <ul class="collapse">
-  <li><a href="#calling-scripts-in-the-same-environment" id="toc-calling-scripts-in-the-same-environment" class="nav-link" data-scroll-target="#calling-scripts-in-the-same-environment"><span class="header-section-number">7.2.1</span> Calling scripts in the same environment</a></li>
-  <li><a href="#calling-scripts-in-different-environments" id="toc-calling-scripts-in-different-environments" class="nav-link" data-scroll-target="#calling-scripts-in-different-environments"><span class="header-section-number">7.2.2</span> Calling scripts in different environments</a></li>
-  </ul></li>
+  <li><a href="#script-pipelines" id="toc-script-pipelines" class="nav-link" data-scroll-target="#script-pipelines"><span class="header-section-number">7.2</span> Script pipelines</a></li>
+  <li><a href="#pipelines-with-different-environments" id="toc-pipelines-with-different-environments" class="nav-link" data-scroll-target="#pipelines-with-different-environments"><span class="header-section-number">7.3</span> Pipelines with different environments</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/saeyslab/polygloty/edit/main/book/disk_based/disk_based_pipelines.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/saeyslab/polygloty/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/saeyslab/polygloty/blob/main/book/disk_based/disk_based_pipelines.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -316,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.</p>
 <section id="notebook-pipelines" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="notebook-pipelines"><span class="header-section-number">7.1</span> Notebook pipelines</h2>
-<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. Our <a href="./usecase/">Use-case chapter</a> is one example of this. The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>.</p>
+<p>You can use <a href="https://quarto.org/">Quarto</a> to run code snippets in different languages in the same <code>.qmd</code> notebook. <strong>Our <a href="./usecase/">Use-case chapter</a> is one example of this.</strong> The polyglot powers of Quarto for <a href="https://quarto.org/docs/computations/execution-options.html">executing code blocks</a> come from tools such as <a href="https://yihui.org/knitr/">knitr</a> or <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">Jupyter kernels</a>.</p>
 <p>It is possible to create whole pipelines out of multiple notebooks. For example, <a href="https://github.com/nteract/papermill">Papermill</a> can execute parameterized Jupyter notebooks in sequence and pass variables between them. <a href="https://nbdev.fast.ai/">nbdev</a> and <a href="https://github.com/ploomber/ploomber">Ploomber</a> are similar such frameworks.</p>
 <section id="execute-notebooks-via-the-cli" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="execute-notebooks-via-the-cli"><span class="header-section-number">7.1.1</span> Execute notebooks via the CLI</h3>
@@ -328,43 +325,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="script-pipelines" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="script-pipelines"><span class="header-section-number">7.2</span> Script pipelines</h2>
-<section id="calling-scripts-in-the-same-environment" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="calling-scripts-in-the-same-environment"><span class="header-section-number">7.2.1</span> Calling scripts in the same environment</h3>
-<p>TODO: test these snippets</p>
 <p>From Bash:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From R:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"bash scripts/1_load_data.sh"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_plot_results.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run R code here instead of calling an R script</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"Rscript scripts/3_analysis_de.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From Python:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"bash scripts/1_load_data.sh"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_plot_results.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively you can run Python code here instead of calling a Python script</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"python scripts/2_compute_pseudobulk.py"</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>subprocess.run(<span class="st">"Rscript scripts/3_analysis_de.R"</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="calling-scripts-in-different-environments" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="calling-scripts-in-different-environments"><span class="header-section-number">7.2.2</span> Calling scripts in different environments</h3>
+<section id="pipelines-with-different-environments" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="pipelines-with-different-environments"><span class="header-section-number">7.3</span> Pipelines with different environments</h2>
 <p>Sometimes you might want to run scripts in different environments, as they it’s too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.</p>
-<p>You can interleave your Bash script with environment activation functions e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires a <code>conda .yaml</code> file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
-<p>Alternatively, you can use a workflow manager like Nextflow or Snakemake to manage the environments and dependencies for you. A interesting, but very new approach is to use the <a href="https://pixi.sh/latest/">Pixi package managment tool</a> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
+<p>You can <strong>interleave your Bash script with environment activation functions</strong> e.g.&nbsp;<code>conda activate {script_env}</code> commands. This requires e.g.&nbsp;a <code>conda .yaml</code> file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.</p>
+<p>An simple, but very new approach is to use the <strong><a href="https://pixi.sh/latest/">Pixi package managment tool</a></strong> to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a <code>scverse</code> environment with only Python, a <code>rverse</code> environment with only R and even an <code>all</code> environment with both by adding the respective features (if such an environment is resolvable at least).</p>
 <p>Run scripts in different environments with <code>pixi</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_plot_results.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another approach is to use <strong>multi-package containers</strong>. Tools like <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> and <a href="https://seqera.io/containers/">Seqara Wave Containers</a> can make this quick and easy.</p>
+<p>When your project grows more bespoke you can use a <strong><a href="./workflow_frameworks">workflow frameworks</a></strong> like Nextflow or Snakemake to manage the environments and dependencies for you.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
