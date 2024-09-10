@@ -1,0 +1,14 @@
+| File Format | Python | R | Sparse matrix | Large images | Lazy chunk loading | Remote storage |
+|-------------|--------|---|---------------|-------------|--------------------|----------------|
+| RDS         | ○     | ●|    ○       | ◐          | ○                      | ○ |
+| Pickle      | ●     | ○|    ○       | ◐          | ○                      | ○ |
+| CSV         | ●     | ●|    ○       | ○          | ○                      | ○ |
+| JSON        | ●     | ●|    ○       | ○          | ○                      | ○ |
+| TIFF        | ●     | ●|    ○       | ◐          | ●                      | ◐ |
+| [.npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●                | ○ |  ○    | ●          | ○                      | ○ |
+| [Parquet](https://parquet.apache.org/) | ● | ● | ○ | ○ | ● | ● |
+| [Feather](https://arrow.apache.org/docs/python/feather.html) | ● | ● | ● | ○ | ● | ● |
+| [Lance](https://github.com/lancedb/lance) | ● | ○ | ● | ○ | ● | ●
+| [HDF5](https://www.hdfgroup.org/) | ● | ● | ○ | ● | ● | ◐ |
+| [Zarr](https://zarr.readthedocs.io/en/stable/) | ● | ● | ○ | ● | ● | ● |
+| [TileDB](https://tiledb.io/) | ● | ● | ● | ● | ● | ● |
