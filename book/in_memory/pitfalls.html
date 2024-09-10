@@ -326,11 +326,21 @@ Figure&nbsp;3.1: Different in-memory representations
 <section id="indexing-0-based-or-1-based" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="indexing-0-based-or-1-based"><span class="header-section-number">3.2</span> Indexing: 0-based or 1-based</h2>
 <p>Take care to remember that arrays and matrices in Python are indexed starting from 0 (as in, index 0 refers to the first element), while R uses 1-based indexing, where index 1 refers to the first element.</p>
+<div id="fig-indexing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-indexing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/indexing.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-indexing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: 0-based vs 1-based indexing
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="dots-in-variable-names" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.3</span> Dots in variable names</h2>
 <p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.</p>
-<p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this does not happen automatically, you can specify mappings for these symbols.</p>
+<p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this automatic translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -347,7 +357,7 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <section id="integers-and-floating-point-numbers" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="integers-and-floating-point-numbers"><span class="header-section-number">3.4</span> Integers and floating point numbers</h2>
 <p>Unless you explicitely specify, any number is represented as a floating point number in R. By adding a <code>L</code> at the end of the number, you specify that it is an integer.</p>
-<p>Python can be more strict about using integers or floating point numbers than R.</p>
+<p>Python is usually more strict about using integers or floating point numbers than R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>float_ex <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>int_ex <span class="ot">&lt;-</span> <span class="dv">12</span>L</span>
@@ -359,6 +369,24 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(int_ex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>This can often lead to errors when using <code>reticulate</code>! If you’re calling a Python function and provide it with just a number in R, it probably won’t be recognised as an integer, leading to weird errors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bi <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bi<span class="sc">$</span><span class="fu">list</span>(bi<span class="sc">$</span><span class="fu">range</span>(<span class="dv">0</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>'float' object cannot be interpreted as an integer</code></pre>
+</div>
+</div>
+<p>As you can see, you get errors: <code>TypeError: 'float' object cannot be interpreted as an integer</code>.</p>
+<p>This is easily fixed by specifiying integers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bi<span class="sc">$</span><span class="fu">list</span>(bi<span class="sc">$</span><span class="fu">range</span>(<span class="dv">0</span>L, <span class="dv">5</span>L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 2 3 4</code></pre>
 </div>
 </div>
 
