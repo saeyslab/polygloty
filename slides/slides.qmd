@@ -22,8 +22,9 @@ exectute:
     echo: true
 ---
 
-Todo: refer to sc best practices
-Todo: paper Lior Pachter differences R & Python
+# test
+
+{{< include ../book/in_memory/pitfalls.qmd#rpy2_mapping echo=true >}}
 
 # Introduction
 
