@@ -50,7 +50,7 @@ is.integer(int_ex)
 
 This can often lead to errors when using `reticulate`! If you're calling a Python function and provide it with just a number in R, it probably won't be recognised as an integer, leading to weird errors:
 
-```{r float_integer_error error=true}
+```{r float_integer_error, error=true}
 library(reticulate)
 bi <- reticulate::import_builtins()
 
