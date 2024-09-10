@@ -418,7 +418,7 @@ Table&nbsp;6.1: Overview of general file formats of use for single cell.
 </section>
 <section id="specialized-file-formats" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="specialized-file-formats"><span class="header-section-number">6.2</span> Specialized file formats</h2>
-<p><a href="#tbl-specialized-file-formats" class="quarto-xref">Table&nbsp;<span>6.2</span></a> shows some specialized file standards that are built on top of the more general file formats. One example is the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data. Note that while a format can support a feature in theory, it does not mean it’s available in practice. For example, the TileDB implementations do not yet support large spatial omics datasets like SpatialData does. SpatialData does not yet fully support reading and writing with a remote private S3 dataset.</p>
+<p><a href="#tbl-specialized-file-formats" class="quarto-xref">Table&nbsp;<span>6.2</span></a> shows some specialized file standards that are built on top of the more general file formats. One example is the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data. Note that while a format can support a feature in theory, it does not mean it’s available in practice. For example, the TileDB implementations do not yet fully support large spatial omics datasets in a standardized way like SpatialData does. SpatialData does not yet fully support reading and writing using a remote private S3 dataset.</p>
 <div id="tbl-specialized-file-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-specialized-file-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -497,7 +497,7 @@ Table&nbsp;6.2: Overview of specialized file formats of use for single cell.
 <td>●</td>
 <td>●</td>
 <td>●</td>
-<td>○</td>
+<td>◐</td>
 <td>●</td>
 <td>●</td>
 </tr>
@@ -505,7 +505,7 @@ Table&nbsp;6.2: Overview of specialized file formats of use for single cell.
 <td><a href="https://tiledb.com/open-source/life-sciences">TileDB-BioImaging</a></td>
 <td>●</td>
 <td>●</td>
-<td>○</td>
+<td>◐</td>
 <td>●</td>
 <td>●</td>
 <td>●</td>

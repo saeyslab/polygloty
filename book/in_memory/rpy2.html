@@ -386,16 +386,17 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 32.0k/9.82M [00:00&lt;01:01, 167kB/s]
-  1%|          | 96.0k/9.82M [00:00&lt;00:28, 359kB/s]
-  2%|2         | 216k/9.82M [00:00&lt;00:14, 677kB/s] 
-  4%|4         | 448k/9.82M [00:00&lt;00:07, 1.26MB/s]
-  9%|9         | 912k/9.82M [00:00&lt;00:03, 2.41MB/s]
- 18%|#7        | 1.76M/9.82M [00:00&lt;00:01, 4.54MB/s]
- 36%|###6      | 3.54M/9.82M [00:00&lt;00:00, 8.96MB/s]
- 66%|######6   | 6.51M/9.82M [00:00&lt;00:00, 15.8MB/s]
- 97%|#########6| 9.50M/9.82M [00:01&lt;00:00, 20.5MB/s]
-100%|##########| 9.82M/9.82M [00:01&lt;00:00, 10.1MB/s]</code></pre>
+  0%|          | 8.00k/9.82M [00:00&lt;02:22, 72.4kB/s]
+  0%|          | 32.0k/9.82M [00:00&lt;01:07, 153kB/s] 
+  1%|          | 96.0k/9.82M [00:00&lt;00:30, 336kB/s]
+  2%|1         | 192k/9.82M [00:00&lt;00:19, 530kB/s] 
+  4%|3         | 400k/9.82M [00:00&lt;00:10, 985kB/s]
+  8%|8         | 832k/9.82M [00:00&lt;00:04, 1.91MB/s]
+ 17%|#6        | 1.63M/9.82M [00:00&lt;00:02, 3.65MB/s]
+ 33%|###3      | 3.28M/9.82M [00:00&lt;00:00, 7.11MB/s]
+ 64%|######3   | 6.27M/9.82M [00:01&lt;00:00, 13.1MB/s]
+ 82%|########1 | 8.02M/9.82M [00:01&lt;00:00, 14.4MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 8.43MB/s]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
