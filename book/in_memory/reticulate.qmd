@@ -73,6 +73,42 @@ Jupyter notebooks (and some other notebooks) make this possible from the Python 
 
 
 # Usecase
+We will not showcase the usefulness of reticulate by using the DE analysis: it would involve loading in `pandas` to create a Python dataframe, adding rownames and columnnames and then grouping them, but that is easier to do just in R.
+
+A more interesting thing you can do using `reticulate` is interacting with anndata-based Python packages, such as `scanpy`! 
+
+```{r scanpy_1}
+library(anndata)
+library(reticulate)
+sc <- import("scanpy")
+
+adata_path <- "../usecase/data/sc_counts_subset.h5ad"
+adata <- anndata::read_h5ad(adata_path)
+```
+
+```{r mpl}
+mpl <- import('matplotlib')
+mpl$use('TkAgg')
+```
+
+We can preprocess the data:
+```{r scanpy_preprocess}
+sc$pp$filter_cells(adata, min_genes = 200)
+sc$pp$filter_genes(adata, min_cells = 3)
+```
+
+```{r scanpy_dimred}
+sc$pp$pca(adata)
+sc$pp$neighbors(adata)
+sc$tl$umap(adata)
+
+adata
+```
+
+```{r scanpy_plot}
+sc$pl$umap(adata)
+```
+
 
 ## Usecase: theoretical reticulate example
 
@@ -103,6 +139,7 @@ counts <- as.matrix(adata$X)
 ```
 
 Combine data in a single data frame and compute pseudobulk
+
 This is a literal translation of the Python code. It is however absolute madness to construct a pandas dataframe in R instead of using just an R dataframe. We basically just needed a matrix with rownames and columnames.
 
 We provide the rest of the code as a theoretical example, but please reflect if you want to try something similar.
@@ -155,31 +192,3 @@ write_h5ad(pb_adata, "../usecase/data/pseudobulk.h5ad")
 
 ## Usecase: useful reticulate example
 
-You can also interact with anndata-based Python packages using reticulate and the R based `anndata` package. 
-
-Most interesting is that you can easily call scanpy functions on this anndata object.
-
-```{r scanpy_1}
-library(anndata)
-library(reticulate)
-sc <- import("scanpy")
-
-adata_path <- "../usecase/data/sc_counts_subset.h5ad"
-adata <- anndata::read_h5ad(adata_path)
-```
-
-We can preprocess the data:
-```{r scanpy_preprocess}
-sc$pp$filter_cells(adata, min_genes = 200)
-sc$pp$filter_genes(adata, min_cells = 3)
-```
-
-```{r scanpy_dimred}
-sc$pp$pca(adata)
-sc$pp$neighbors(adata)
-sc$tl$umap(adata)
-```
-
-```{r scanpy_plot}
-sc$pl$umap(adata)
-```
