@@ -86,11 +86,6 @@ adata_path <- "../usecase/data/sc_counts_subset.h5ad"
 adata <- anndata::read_h5ad(adata_path)
 ```
 
-```{r mpl}
-mpl <- import('matplotlib')
-mpl$use('TkAgg')
-```
-
 We can preprocess the data:
 ```{r scanpy_preprocess}
 sc$pp$filter_cells(adata, min_genes = 200)
