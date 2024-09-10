@@ -35,19 +35,19 @@ These scripts have the same functionality as the code in the [use-case example n
 
 # `1_load_data.sh`
 
-```{embed lang="yaml"}
+```{embed lang="bash"}
 scripts/1_load_data.sh
 ```
 
 # `2_compute_pseudobulk.py`
 
-```{embed lang="groovy"}
+```{embed lang="python"}
 scripts/2_compute_pseudobulk.py
 ```
 
 # `3_analysis_de.R`
 
-```{embed lang="yaml"}
+```{embed lang="r"}
 scripts/3_analysis_de.R
 ```
 

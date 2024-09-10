@@ -27,7 +27,7 @@ Note that there can be a difference in memory layouts and on-disk layouts of the
 ## Specialized file formats
 
 [@tbl-specialized-file-formats] shows some specialized file standards that are built on top of the more general file formats. One example is the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data. 
-Note that while a format can support a feature in theory, it does not mean it's available in practice. For example, the TileDB implementations do not yet support large spatial omics datasets like SpatialData does. SpatialData does not yet fully support reading and writing with a remote private S3 dataset. 
+Note that while a format can support a feature in theory, it does not mean it's available in practice. For example, the TileDB implementations do not yet fully support large spatial omics datasets in a standardized way like SpatialData does. SpatialData does not yet fully support reading and writing using a remote private S3 dataset. 
 
 {{< include _specialized_file_formats.qmd >}}
 : Overview of specialized file formats of use for single cell. {#tbl-specialized-file-formats}
