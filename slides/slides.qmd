@@ -32,10 +32,23 @@ Todo: paper Lior Pachter differences R & Python
 
 We will be focusing on R & Python
 
+## Summary
+
+**Interoperability** between languages allows analysts to take advantage of the strengths of different ecosystems
+
+**On-disk** interoperability uses standard file formats to transfer data and is typically more reliable
+
+**In-memory** interoperability transfers data directly between parallel sessions and is convenient for interactive analysis
+
+While interoperability is currently possible developers continue to improve the experience
+
+[Single-cell best practices: Interoperability](https://www.sc-best-practices.org/introduction/interoperability.html)
+
 # How do you interact with a package in another language?
 
-1. File format based interoperability
-2. In-memory interoperability
+1. In-memory interoperability
+2. Disk-based interoperability
+
 
 # How do you make your package useable for developers in other languages?
 
@@ -57,11 +70,10 @@ Consider the cons:
 - How will you ensure parity?
 
 ## Best practices
+
 1. Work with the standards
 2. Work with matrices, arrays and dataframes
 3. Provide vignettes on interoperability
-
-# File format based interoperability
 
 # In-memory interoperability
 Calling Python in an R environment and vice versa.
@@ -72,7 +84,7 @@ rpy2 and reticulate
 
 ## Overview
 
-advantages & disadvantaes
+advantages & disadvantages
 
 rpy2
 1. overview
@@ -134,6 +146,15 @@ example
 
 ## reticulate
 
+# Disk-based interoperability
+
+## General single cell file formats of interest for Python and R
+
+{{< include ../book/disk_based/_general_file_formats.qmd >}}
+
+## Specialized single cell file formats of interest for Python and R
+
+{{< include ../book/disk_based/_specialized_file_formats.qmd >}}
 
 # Workflows
 
