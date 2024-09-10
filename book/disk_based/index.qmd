@@ -1,0 +1,10 @@
+---
+title: Disk-based interoperability
+engine: knitr
+---
+
+Disk-based interoperability is a strategy for achieving interoperability between tools written in different programming languages by storing intermediate results in standardized, language-agnostic file formats. This approach allows for sequential execution of scripts written in different languages, enabling researchers to leverage the best tools for each analysis step.
+
+The upside of this approach is that it is relatively simple as the scripts are mostly unchanged, only prepended with a reading operation and appended with writing operation. Each script can be written and tested independently in their suitable respective frameworks. This modular polyglotism of disk-based interoperability is one of the key strengths of workflow languages like Nextflow and Snakemake.
+
+The downside is that it can lead to increased storage requirements and I/O overhead which grows with the amount of scripts. As disk serialization and deserialization can be much slower than memory operations, this SerDe problem can become a problem for very large datasets. Debugging is only possible for individual scripts and the workflow is not as interactive and explorative as the in-memory approach.

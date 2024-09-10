@@ -57,7 +57,13 @@ book:
           href: book/in_memory/rpy2.qmd
         - text: reticulate
           href: book/in_memory/reticulate.qmd
-    - book/on_disk_interoperability.qmd
+    - text: "Disk-based interoperability"
+      part: book/disk_based/index.qmd
+      chapters:
+        - text: Interoperable file formats
+          href: book/disk_based/file_formats.qmd
+        - text: Disk-based pipelines
+          href: book/disk_based/disk_based_pipelines.qmd
     - text: Workflow frameworks
       part: book/workflow_frameworks/index.qmd
       chapters:
