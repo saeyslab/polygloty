@@ -1,6 +1,6 @@
-if [[ ! -f usecase/data/sc_counts_reannotated_with_counts.h5ad ]]; then
+if [[ ! -f book/usecase/data/sc_counts_reannotated_with_counts.h5ad ]]; then
   aws s3 cp \
     --no-sign-request \
     s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad \
-    usecase/data/sc_counts_reannotated_with_counts.h5ad
+    book/usecase/data/sc_counts_reannotated_with_counts.h5ad
 fi

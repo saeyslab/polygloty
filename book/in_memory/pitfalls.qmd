@@ -20,10 +20,12 @@ If you notice something amiss with your matrices, check whether you need to tran
 ## Indexing: 0-based or 1-based
 Take care to remember that arrays and matrices in Python are indexed starting from 0 (as in, index 0 refers to the first element), while R uses 1-based indexing, where index 1 refers to the first element.
 
+![0-based vs 1-based indexing](images/indexing.png){#fig-indexing}
+
 ## Dots in variable names
 In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.
 
-When using rpy2, these dots are usually translated to underscores `_`. If this does not happen automatically, you can specify mappings for these symbols.
+When using rpy2, these dots are usually translated to underscores `_`. If this automatic translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.
 
 ```{python rpy2_mapping}
 from rpy2.robjects.packages import importr
@@ -36,7 +38,7 @@ tools = importr('tools', robject_translations = d)
 ## Integers and floating point numbers
 Unless you explicitely specify, any number is represented as a floating point number in R. By adding a `L` at the end of the number, you specify that it is an integer.
 
-Python can be more strict about using integers or floating point numbers than R.
+Python is usually more strict about using integers or floating point numbers than R.
 
 ```{r int_example}
 float_ex <- 12
@@ -45,3 +47,22 @@ int_ex <- 12L
 is.integer(float_ex)
 is.integer(int_ex)
 ```
+
+This can often lead to errors when using `reticulate`! If you're calling a Python function and provide it with just a number in R, it probably won't be recognised as an integer, leading to weird errors:
+
+```{r float_integer_error}
+library(reticulate)
+bi <- reticulate::import_builtins()
+
+bi$list(bi$range(0, 5))
+```
+
+As you can see, you get errors: `TypeError: 'float' object cannot be interpreted as an integer`.
+
+This is easily fixed by specifiying integers:
+
+```{r float_integer_right}
+bi$list(bi$range(0L, 5L))
+```
+
+
