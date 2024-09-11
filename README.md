@@ -4,7 +4,9 @@ This book is a collection of notebooks and explanations for the workshop on **Po
 
 ## Installation
 
-For the best polyglot experience on Linux, we recommend using [Pixi](https://pixi.sh/latest/) to manage your development environment. Environment creation support for Pixi on Windows and MacOS ARM is currently limited for R packages. Installation of the R dependencies in Pixi is more difficult, because Pixi does not support [post-link scripts](https://github.com/prefix-dev/pixi/issues/1573) and the bioconda channel for bioconductor packages does not yet support [osx-arm64](https://github.com/bioconda/bioconda-recipes/issues/33333).
+For the best polyglot experience on most platforms, we recommend [renv](https://rstudio.github.io/renv/articles/renv.html) to manage the R and Python dependencies, see below for instructions.
+
+Alternatively for Linux, you can use [Pixi](https://pixi.sh/latest/) to manage your development environment. Environment creation support for Pixi on Windows and MacOS ARM is currently limited for R packages. Installation of the R dependencies in Pixi is more difficult, because Pixi does not support [post-link scripts](https://github.com/prefix-dev/pixi/issues/1573) and the bioconda channel for bioconductor packages does not yet support [osx-arm64](https://github.com/bioconda/bioconda-recipes/issues/33333).
 
 In a clean Linux shell without any active Python (`deactivate`) or Conda environments (`conda deactivate`), you can install all dependencies with the following command:
 
@@ -12,7 +14,7 @@ In a clean Linux shell without any active Python (`deactivate`) or Conda environ
 pixi install -a
 ```
 
-For MacOS ARM and Windows, we recommend using Docker. For R users, we recommend `renv` to manage the R and Python dependencies.
+For MacOS ARM and Windows, we recommend using Docker.
 
 ## Linux
 
@@ -86,14 +88,14 @@ quarto render
 
 ### Building the Docker image yourself
 
-To edit and build the Docker image yourself, use can use the following command.:
+To edit and build the Docker image yourself, use can use the following command.
 
 ```bash
 docker build -t polygloty-docker .
 docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book polygloty-docker pixi run pipeline
 ```
 
-To publish it to Docker Hub, use the following command:
+To publish it to Docker Hub, use the following command. It's a multi-architecture image that supports both ARM and AMD64, so make sure to assign enough memory (~32 GB) and disk resources (~100 GB) to Docker to build it.
 
 ```bash
 docker login
