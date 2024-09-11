@@ -179,13 +179,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/in_memory/rpy2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">rpy2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rpy2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../book/in_memory/reticulate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">reticulate</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reticulate</span></span></a>
   </div>
 </li>
       </ul>
@@ -340,7 +340,7 @@ Figure&nbsp;3.2: 0-based vs 1-based indexing
 <section id="dots-in-variable-names" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dots-in-variable-names"><span class="header-section-number">3.3</span> Dots in variable names</h2>
 <p>In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.</p>
-<p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this automatic translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.</p>
+<p>When using rpy2, these dots are usually translated to underscores <code>_</code>. If this translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -371,7 +371,7 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>This can often lead to errors when using <code>reticulate</code>! If you’re calling a Python function and provide it with just a number in R, it probably won’t be recognised as an integer, leading to weird errors:</p>
+<p>This can often lead to errors when using <code>reticulate</code>! If you’re calling a Python function and provide it with just a number in R, it probably won’t be recognised as an integer, leading to errors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bi <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
@@ -828,8 +828,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../book/in_memory/rpy2.html" class="pagination-link" aria-label="rpy2">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">rpy2</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../book/in_memory/rpy2.html" class="pagination-link" aria-label="Rpy2">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rpy2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
