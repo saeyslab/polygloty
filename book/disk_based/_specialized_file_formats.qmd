@@ -1,0 +1,11 @@
+| File Format | Python | R | Sparse matrix | Large images | Lazy chunk loading | Remote storage |
+|-------------|--------|---|---------------|-------------|--------------------|----------------|
+| [Seurat RDS](https://satijalab.org/seurat/) | ○ | ● | ○ | ◐ | ○ | ○
+| [Indexed OME-TIFF](http://viv.gehlenborglab.org/#data-preparation) | ● | ● | ○ | ● | ● | ● |
+| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ● | ● | ○ | ◐ | ● | ◐ |
+| [Loom HDF5](https://loompy.org/) | ● | ● | ● | ○ | ● | ◐ |
+| [AnnData h5ad](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ◐ | ● | ◐ |
+| [AnnData Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ◐ | ● | ● |
+| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ● | ● | ● | ◐ | ● | ● |
+| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ● | ● | ◐ | ● | ● | ● |
+| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ● | ● | ● | ● | ● | ◐ |

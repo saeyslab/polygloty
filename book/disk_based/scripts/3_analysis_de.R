@@ -1,15 +1,15 @@
-print("Loading libraries...")
+cat("Loading libraries...\n")
 library(anndata)
 library(dplyr, warn.conflicts = FALSE)
 
-print("Reading data...")
+cat("Reading data...\n")
 pb_adata <- read_h5ad("usecase/data/pseudobulk.h5ad")
 
 # Select small molecule and control:
 sm_name <- "Belinostat"
 control_name <- "Dimethyl Sulfoxide"
 
-print("Create DESeq dataset")
+cat("Create DESeq dataset\n")
 # transform counts matrix
 count_data <- t(pb_adata$X)
 storage.mode(count_data) <- "integer"
@@ -21,7 +21,7 @@ dds <- DESeq2::DESeqDataSetFromMatrix(
   design = ~ sm_name + plate_name,
 )
 
-print("Run DESeq2")
+cat("Run DESeq2\n")
 dds <- DESeq2::DESeq(dds)
 
 # Get results:

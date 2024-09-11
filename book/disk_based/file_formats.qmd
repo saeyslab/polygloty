@@ -13,46 +13,21 @@ Note that there can be a difference in memory layouts and on-disk layouts of the
 
 ## General file formats
 
-[@tbl-general-file-formats] shows some of the features of file formats of interest for Python and R.
+[@tbl-general-file-formats] shows some of the features of file formats of interest for Python and R and weather they they lack support (○), support it partially (◐) or have full support (●).
 
 - **Fast compression** is important for large datasets and most of these formats support it, as it can reduce the storage requirements. Standard compressions techniques like zip can always be applied to text-based formats like CSV and JSON, but standardized support within the file format leads to faster and higher compression performance.
 - **Sparse matrix** support is important for single-cell data, as it can also greatly reduce the storage requirements. If a part of the pipeline does not have this support and needs to make the matrix dense, the memory requirements will increase rapidly. 
-- Support for **large images** like microscopy images is important for bioimaging and spatial omics datasets. Some formats support small images or transcript coordinates, but do not support large whole-slide images or multiscale and labeled multidimensional images. This is indicated with ●○.
+- Support for **large images** like microscopy images is important for bioimaging and spatial omics datasets. Some formats support small images or transcript coordinates, but do not support large whole-slide images or multiscale and labeled multidimensional images. This is indicated with ◐.
 - For large datasets and whole-slide images, support for subsetting and **lazy loading of chunks** or tiles is also needed. This also allows for out-of-core and parallel processing of larger-than-memory datasets.
-- Some file formats have built-in support for **remote storage** like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset. Some formats can be accessed remotely, but only for public data (SpatialData) or with additional setup (HDF5). This is indicated with ●○. Mounting a remote folder via SFTP or [rclone](https://rclone.org) and downloading the data on demand only works for exploded file formats like Zarr or by supporting byte range requests.
+- Some file formats have built-in support for **remote storage** like a web server or S3. This can be important for large datasets that do not fit on a local disk or for distributed computing. This can also be used to share data between collaborators without having to download the whole dataset. Some formats can be accessed remotely, but only for public data (SpatialData) or with additional setup (HDF5). This is indicated with ◐. Mounting a remote folder via SFTP or [rclone](https://rclone.org) and downloading the data on demand only works for exploded file formats like Zarr or by supporting byte range requests.
 
-| File Format | Python | R | Sparse matrix | Large images | Lazy chunk loading | Remote storage |
-|-------------|--------|---|---------------|-------------|--------------------|----------------|
-| RDS         | ○     | ●|    ○       | ●○          | ○                      | ○○ |
-| Pickle      | ●     | ○|    ○       | ●○          | ○                      | ○○ |
-| CSV         | ●     | ●|    ○       | ○○          | ○                      | ○○ |
-| JSON        | ●     | ●|    ○       | ○○          | ○                      | ○○ |
-| TIFF        | ●     | ●|    ○       | ●●          | ●                      | ●○ |
-| [Numpy .npy](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html#module-numpy.lib.format) | ●                | ○ |  ○    | ●●          | ○                      | ○○ |
-| [Parquet](https://parquet.apache.org/) | ● | ● | ○ | ○○ | ● | ●● |
-| [Feather](https://arrow.apache.org/docs/python/feather.html) | ● | ● | ● | ○○ | ● | ●● |
-| [Lance](https://github.com/lancedb/lance) | ● | ○ | ● | ○○ | ● | ●●
-| [HDF5](https://www.hdfgroup.org/) | ● | ● | ○ | ●● | ● | ●○ |
-| [Zarr](https://zarr.readthedocs.io/en/stable/) | ● | ● | ○ | ●● | ● | ●● |
-| [TileDB](https://tiledb.io/) | ● | ● | ● | ●● | ● | ●● |
-
+{{< include _general_file_formats.qmd >}}
 : Overview of general file formats of use for single cell. {#tbl-general-file-formats}
 
 ## Specialized file formats
 
 [@tbl-specialized-file-formats] shows some specialized file standards that are built on top of the more general file formats. One example is the standardized way AnnData serializes a sparse matrix within Zarr to support large single cell data. 
-Note that while a format can support a feature in theory, it does not mean it's available in practice. For example, the TileDB implementations do not yet support large spatial omics datasets like SpatialData does. SpatialData does not yet fully support reading and writing with a remote private S3 dataset. 
+Note that while a format can support a feature in theory, it does not mean it's available in practice. For example, the TileDB implementations do not yet fully support large spatial omics datasets in a standardized way like SpatialData does. SpatialData does not yet fully support reading and writing using a remote private S3 dataset. 
 
-| File Format | Python | R | Sparse matrix | Large images | Lazy chunk loading | Remote storage |
-|-------------|--------|---|---------------|-------------|--------------------|----------------|
-| [Seurat RDS](https://satijalab.org/seurat/) | ○ | ● | ○ | ●○ | ○ | ○○
-| [Indexed OME-TIFF](http://viv.gehlenborglab.org/#data-preparation) | ● | ● | ○ | ●● | ● | ●● |
-| [h5Seurat](https://mojaveazure.github.io/seurat-disk/index.html) | ● | ● | ○ | ●○ | ● | ●○ |
-| [Loom HDF5](https://loompy.org/) | ● | ● | ● | ○○ | ● | ●○ |
-| [AnnData h5ad](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ●○ | ● | ●○ |
-| [AnnData Zarr](https://anndata.readthedocs.io/en/latest/anndata.zarr.html) | ● | ● | ● | ●○ | ● | ●● |
-| [TileDB-SOMA](https://tiledb.com/open-source/life-sciences) | ● | ● | ● | ○○ | ● | ●● |
-| [TileDB-BioImaging](https://tiledb.com/open-source/life-sciences) | ● | ● | ○ | ●● | ● | ●● |
-| [SpatialData Zarr](https://spatialdata.scverse.org/en/stable/) | ● | ● | ● | ●● | ● | ●○ |
-
+{{< include _specialized_file_formats.qmd >}}
 : Overview of specialized file formats of use for single cell. {#tbl-specialized-file-formats}

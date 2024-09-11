@@ -3,33 +3,57 @@ title: Disk-based pipelines
 engine: knitr
 ---
 
-You can use a shell script to run the pipeline in a sequential manner. This requires all the dependencies to be installed in one large environment.
-
-Usually you start in a notebook with an exploratory analysis, then move to a script for reproducibility and finally to a pipeline for scalability.
-
-The scripts in such a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.
-
-Alternatively, there are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy.
+Disk-based pipelines are a way to run a sequence of scripts in different languages by communicating only via files on disk. This is useful when you have to use different languages for different parts of the analysis and don't want the hassle of managing an [in-memory interoperability](../in_memory/) setup. Either you keep the notebook format of the exploratory analysis or you convert the code snippets to scripts.
 
 ## Notebook pipelines
 
-You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. **Our [Use-case chapter](./usecase/) is one example of this.** The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. **Our [Use-case chapter](./usecase/) is one example of this.**. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html). You don't need [in-memory interoperability](../in_memory), but it
 
-It is possible to create whole pipelines out of multiple notebooks. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
+There are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
 
 ### Execute notebooks via the CLI
+
+You can execute notebooks via the command line as a job, so you don't have to wait for them to finish. This is useful when running experiments, as the output is saved in the notebook together with plots, available to inspect them at a later time. 
 
 Jupyter notebook via [nbconvert](https://nbconvert.readthedocs.io/en/latest/#):
 ```bash
 jupyter nbconvert --to notebook --execute my_notebook.ipynb --allow-errors --output-dir outputs/
 ```
 
-[RMarkdown](https://rmarkdown.rstudio.com/) notebook via Rscript:
+Similar functionality exists for [RMarkdown](https://rmarkdown.rstudio.com/) notebooks via Rscript:
 ```bash
 Rscript -e "rmarkdown::render('my_notebook.Rmd',params=list(args = myarg))"
 ```
 
 ## Script pipelines
+
+The scripts in a script pipeline are a collection of the code snippets from the notebooks and can be written in different languages and executed in sequence.
+
+These scripts have the same functionality as the code in the [use-case example notebook](../usecase/):
+
+:::{.panel-tabset}
+
+# `1_load_data.sh`
+
+```{embed lang="bash"}
+scripts/1_load_data.sh
+```
+
+# `2_compute_pseudobulk.py`
+
+```{embed lang="python"}
+scripts/2_compute_pseudobulk.py
+```
+
+# `3_analysis_de.R`
+
+```{embed lang="r"}
+scripts/3_analysis_de.R
+```
+
+:::
+
+You can use a shell script or your language of preference to run the pipeline in a sequential manner. This usually requires all the dependencies to be installed in one large environment.
 
 From Bash:
 ```bash
@@ -60,11 +84,11 @@ subprocess.run("Rscript scripts/3_analysis_de.R", shell=True)
 
 ## Pipelines with different environments
 
-Sometimes you might want to run scripts in different environments, as they it's too much hassle to install all dependencies in one environment, you want to reuse existing ones or you want keep them separate and maintainable.
+Sometimes you might want to run scripts in different environments, as it's too much hassle to install all dependencies in one environment. Other reasons can be that you want to reuse existing container images or you want keep parts of the pipeline separate and maintainable.
 
-You can **interleave your Bash script with environment activation functions** e.g. `conda activate {script_env}` commands. This requires e.g. a `conda .yaml` file for each script environment in order to be reproducible. An important consideration is that packages that impact the on-disk data format should be the same version across environments.
+You can **interleave your Bash script with environment activation functions** e.g. `conda activate {script_env}` commands. This requires e.g. a `conda .yaml` file for each script environment in order to be reproducible. This can grow unwieldy as Conda environment sometimes need to be adapted for the platform and availability of accelerators like GPU's. Another important consideration is that packages that impact the on-disk data format should be the same version across environments.
 
-An simple, but very new approach is to use the **[Pixi package managment tool](https://pixi.sh/latest/)** to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
+A simple and elegant, but very new solution is to use the **[Pixi package managment tool](https://pixi.sh/latest/)** to manage the environments and tasks for you. The environments can be composed from multiple features containing dependencies, so you can have a `scverse` environment with only Python, a `rverse` environment with only R and even an `all` environment with both by adding the respective features (if such an environment is resolvable at least).
 
 Run scripts in different environments with `pixi`:
 ```bash
@@ -73,19 +97,105 @@ pixi run -e scverse scripts/2_compute_pseudobulk.py
 pixi run -e rverse scripts/3_analysis_de.R
 ```
 
-With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.
+With the [Pixi task runner](https://pixi.sh/latest/features/advanced_tasks/), you can define these tasks in their respective environments and make them called in sequence by an overarching task. The specific lines of the `pixi.toml` file that allow for this are:
+```bash
+...
+[feature.bash.tasks]
+load_data = "bash book/disk_based/scripts/1_load_data.sh"
+...
+[feature.scverse.tasks]
+compute_pseudobulk = "python book/disk_based/scripts/2_compute_pseudobulk.py"
+...
+[feature.rverse.tasks]
+analysis_de = "Rscript --no-init-file book/disk_based/scripts/3_analysis_de.R"
+...
+[tasks]
+pipeline = { depends-on = ["load_data", "compute_pseudobulk", "analysis_de"] }
+```
 
+Now you can run this multi-environment pipeline with a single command and it will always run the tasks in their respective and up-to-date environment:
 ```bash
 pixi run pipeline
 ```
+::: {.callout-note title="Output" collapse="true"}
+```bash
+Pixi task (load_data in bash): bash scripts/1_load_data.sh
+download: s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad to book/usecase/data/sc_counts_reannotated_with_counts.h5ad
 
-You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+Pixi task (compute_pseudobulk in scverse): python scripts/2_compute_pseudobulk.py
+Load data
+Compute pseudobulk
+/app/scripts/2_compute_pseudobulk.py:29: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  pb_X = combined.groupby(level=0).sum()
+Construct obs for pseudobulk
+Create AnnData object
+Store to disk
+
+Pixi task (analysis_de in rverse): Rscript --no-init-file scripts/3_analysis_de.R
+Loading libraries...
+Reading data...
+Create DESeq dataset
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+Run DESeq2
+estimating size factors
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+estimating dispersions
+gene-wise dispersion estimates
+mean-dispersion relationship
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+final dispersion estimates
+fitting model and testing
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+          baseMean log2FoldChange      lfcSE      stat        pvalue
+BEX5      59.24944       2.187350 0.05660399  38.64304  0.000000e+00
+HIST1H1D 301.38741       1.356543 0.03092962  43.85901  0.000000e+00
+STMN1    234.72112       2.224633 0.04104002  54.20642  0.000000e+00
+PCSK1N    64.91604       1.899149 0.05480612  34.65214 4.147855e-263
+GZMM     141.39238      -1.309959 0.03806665 -34.41224 1.654371e-259
+MARCKSL1  95.82726       1.423057 0.04311798  33.00380 7.163953e-239
+H1FX     376.28247       1.054890 0.03221858  32.74168 3.988563e-235
+HIST1H1B  30.81805       4.317984 0.14074738  30.67896 1.086254e-206
+FXYD7     61.11526       2.331406 0.07725771  30.17700 4.746707e-200
+ING2      79.68893       1.218777 0.04336609  28.10437 8.663682e-174
+                  padj
+BEX5      0.000000e+00
+HIST1H1D  0.000000e+00
+STMN1     0.000000e+00
+PCSK1N   1.631144e-260
+GZMM     5.204651e-257
+MARCKSL1 1.878150e-236
+H1FX     8.962871e-233
+HIST1H1B 2.135848e-204
+FXYD7    8.296189e-198
+ING2     1.362797e-171
+```
+:::
+
+You can also still run the tasks individually when debugging a step and change behavior using environment variables.
+
+## Containerized pipelines
+
+Containers are a great way to manage the environments for your pipeline and make them reproducible on different platforms, given that you make accessible and store the container images for a long time.
+
+You can create a Docker image with all the `pixi` environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
 docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```
 
-Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqara Wave Containers](https://seqera.io/containers/) can make this quick and easy.
+Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqera Containers](https://seqera.io/containers/) can make this quick and easy, by allowing for custom combinations of packages.
 
-When your project grows more bespoke you can use a **[workflow frameworks](./workflow_frameworks)** like Nextflow or Snakemake to manage the environments and dependencies for you.
+You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow frameworks](../workflow_frameworks)** like Nextflow or Snakemake to manage the pipeline for you.
