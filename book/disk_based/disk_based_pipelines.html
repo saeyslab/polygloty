@@ -483,67 +483,66 @@ Output
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">load_data</span> in bash<span class="kw">)</span><span class="bu">:</span> bash scripts/1_load_data.sh</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">download:</span> s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad to book/usecase/data/sc_counts_reannotated_with_counts.h5ad</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">compute_pseudobulk</span> in scverse<span class="kw">)</span><span class="bu">:</span> python scripts/2_compute_pseudobulk.py</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Load</span> data</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Compute</span> pseudobulk</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/app/scripts/2_compute_pseudobulk.py:29:</span> FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pb_X</span> = combined.groupby<span class="er">(</span><span class="va">level</span><span class="op">=</span>0<span class="kw">)</span><span class="fu">.sum()</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Construct</span> obs for pseudobulk</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> AnnData object</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Store</span> to disk</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">analysis_de</span> in rverse<span class="kw">)</span><span class="bu">:</span> Rscript <span class="at">--no-init-file</span> scripts/3_analysis_de.R</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> libraries...</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Reading</span> data...</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> DESeq dataset</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Run</span> DESeq2</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> size factors</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> dispersions</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="ex">gene-wise</span> dispersion estimates</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="ex">mean-dispersion</span> relationship</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="ex">final</span> dispersion estimates</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="ex">fitting</span> model and testing</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>          <span class="ex">baseMean</span> log2FoldChange      lfcSE      stat        pvalue</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      59.24944       2.187350 0.05660399  38.64304  0.000000e+00</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span> 301.38741       1.356543 0.03092962  43.85901  0.000000e+00</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>    234.72112       2.224633 0.04104002  54.20642  0.000000e+00</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>    64.91604       1.899149 0.05480612  34.65214 4.147855e-263</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     141.39238      <span class="at">-1.309959</span> 0.03806665 <span class="at">-34.41224</span> 1.654371e-259</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span>  95.82726       1.423057 0.04311798  33.00380 7.163953e-239</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     376.28247       1.054890 0.03221858  32.74168 3.988563e-235</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span>  30.81805       4.317984 0.14074738  30.67896 1.086254e-206</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>     61.11526       2.331406 0.07725771  30.17700 4.746707e-200</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>      79.68893       1.218777 0.04336609  28.10437 8.663682e-174</span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">padj</span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      0.000000e+00</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span>  0.000000e+00</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>     0.000000e+00</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>   1.631144e-260</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     5.204651e-257</span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span> 1.878150e-236</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     8.962871e-233</span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span> 2.135848e-204</span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>    8.296189e-198</span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>     1.362797e-171</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">load_data</span> in bash<span class="kw">)</span><span class="bu">:</span> bash book/disk_based/scripts/1_load_data.sh</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">compute_pseudobulk</span> in scverse<span class="kw">)</span><span class="bu">:</span> python book/disk_based/scripts/2_compute_pseudobulk.py</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Load</span> data</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Compute</span> pseudobulk</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/app/book/disk_based/scripts/2_compute_pseudobulk.py:29:</span> FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pb_X</span> = combined.groupby<span class="er">(</span><span class="va">level</span><span class="op">=</span>0<span class="kw">)</span><span class="fu">.sum()</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Construct</span> obs for pseudobulk</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> AnnData object</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Store</span> to disk</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">analysis_de</span> in rverse<span class="kw">)</span><span class="bu">:</span> Rscript <span class="at">--no-init-file</span> book/disk_based/scripts/3_analysis_de.R</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> libraries...</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Reading</span> data...</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> DESeq dataset</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="ex">Run</span> DESeq2</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> size factors</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> dispersions</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ex">gene-wise</span> dispersion estimates</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="ex">mean-dispersion</span> relationship</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ex">final</span> dispersion estimates</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="ex">fitting</span> model and testing</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>          <span class="ex">baseMean</span> log2FoldChange      lfcSE      stat        pvalue</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      59.24944       2.187350 0.05660399  38.64304  0.000000e+00</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span> 301.38741       1.356543 0.03092962  43.85901  0.000000e+00</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>    234.72112       2.224633 0.04104002  54.20642  0.000000e+00</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>    64.91604       1.899149 0.05480612  34.65214 4.147855e-263</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     141.39238      <span class="at">-1.309959</span> 0.03806665 <span class="at">-34.41224</span> 1.654371e-259</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span>  95.82726       1.423057 0.04311798  33.00380 7.163953e-239</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     376.28247       1.054890 0.03221858  32.74168 3.988563e-235</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span>  30.81805       4.317984 0.14074738  30.67896 1.086254e-206</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>     61.11526       2.331406 0.07725771  30.17700 4.746707e-200</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>      79.68893       1.218777 0.04336609  28.10437 8.663682e-174</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">padj</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      0.000000e+00</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span>  0.000000e+00</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>     0.000000e+00</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>   1.631144e-260</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     5.204651e-257</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span> 1.878150e-236</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     8.962871e-233</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span> 2.135848e-204</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>    8.296189e-198</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>     1.362797e-171</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -552,11 +551,11 @@ Output
 <section id="containerized-pipelines" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="containerized-pipelines"><span class="header-section-number">7.4</span> Containerized pipelines</h2>
 <p>Containers are a great way to manage the environments for your pipeline and make them reproducible on different platforms, given that you make accessible and store the container images for a long time.</p>
-<p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
+<p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/</code> and <code>book/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase:/app/usecase <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/book:/app/book berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another approach is to use <strong>multi-package containers</strong>. Tools like <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> and <a href="https://seqera.io/containers/">Seqera Containers</a> can make this quick and easy, by allowing for custom combinations of packages.</p>
-<p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow frameworks</a></strong> like Nextflow or Snakemake to manage the pipeline for you.</p>
+<p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow framework</a></strong> like Nextflow or Snakemake to manage the pipeline for you.</p>
 
 
 </section>
