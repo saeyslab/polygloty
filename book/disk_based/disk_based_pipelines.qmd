@@ -97,19 +97,40 @@ pixi run -e scverse scripts/2_compute_pseudobulk.py
 pixi run -e rverse scripts/3_analysis_de.R
 ```
 
-With the Pixi task runner, you can define these tasks in their respective environments, make them dependant on each other and run them in a single command.
+With the [Pixi task runner](https://pixi.sh/latest/features/advanced_tasks/), you can define these tasks in their respective environments and make them called in sequence by an overarching task. The specific lines of the `pixi.toml` file that allow for this are:
+```bash
+...
+[feature.bash.tasks]
+load_data = "bash book/disk_based/scripts/1_load_data.sh"
+...
+[feature.scverse.tasks]
+compute_pseudobulk = "python book/disk_based/scripts/2_compute_pseudobulk.py"
+...
+[feature.rverse.tasks]
+analysis_de = "Rscript --no-init-file book/disk_based/scripts/3_analysis_de.R"
+...
+[tasks]
+pipeline = { depends-on = ["load_data", "compute_pseudobulk", "analysis_de"] }
+```
 
+Now you can run this multi-environment pipeline with a single command and it will always run the tasks in their respective and up-to-date environment:
 ```bash
 pixi run pipeline
 ```
 
-You can create a Docker image with all the `pixi` environments and run the pipeline in one containerized environment. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+You can also still run the tasks individually when debugging a step and change behavior using environment variables.
+
+## Containerized pipelines
+
+Containers are a great way to manage the environments for your pipeline and make them reproducible on different platforms, given that you make accessible and store the container images for a long time.
+
+You can create a Docker image with all the `pixi` environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
 docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```
 
-Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqara Wave Containers](https://seqera.io/containers/) can make this quick and easy.
+Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqera Containers](https://seqera.io/containers/) can make this quick and easy, by allowing for custom combinations of packages.
 
-When your project grows more bespoke you can use a **[workflow frameworks](../workflow_frameworks)** like Nextflow or Snakemake to manage the environments and dependencies for you.
+You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow frameworks](../workflow_frameworks)** like Nextflow or Snakemake to manage the pipeline for you.

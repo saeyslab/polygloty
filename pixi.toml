@@ -29,16 +29,16 @@ pipeline = { depends-on = ["load_data", "compute_pseudobulk", "analysis_de"] }
 anndata = "0.10.9"
 pandas = "*"
 [feature.scverse.tasks]
-compute_pseudobulk = "python scripts/2_compute_pseudobulk.py"
+compute_pseudobulk = "python book/disk_based/scripts/2_compute_pseudobulk.py"
 
 [feature.bash.dependencies]
 awscli = "*"
 [feature.bash.tasks]
-load_data = "bash scripts/1_load_data.sh"
+load_data = "bash book/disk_based/scripts/1_load_data.sh"
 
 [feature.rverse]
 activation = {scripts = ["book/disk_based/scripts/setup.sh"]} # Custom install script to also support ARM macOS
-tasks = { analysis_de = "Rscript --no-init-file scripts/3_analysis_de.R" } # avoid loading the .Rprofile file
+tasks = { analysis_de = "Rscript --no-init-file book/disk_based/scripts/3_analysis_de.R" } # avoid loading the .Rprofile file
 [feature.rverse.dependencies]
 r = ">=4.1,<5"
 r-devtools = ">=2.4.5,<3"
