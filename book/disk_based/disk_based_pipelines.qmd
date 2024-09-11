@@ -117,6 +117,71 @@ Now you can run this multi-environment pipeline with a single command and it wil
 ```bash
 pixi run pipeline
 ```
+::: {.callout-note title="Output" collapse="true"}
+```bash
+Pixi task (load_data in bash): bash scripts/1_load_data.sh
+download: s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad to book/usecase/data/sc_counts_reannotated_with_counts.h5ad
+
+Pixi task (compute_pseudobulk in scverse): python scripts/2_compute_pseudobulk.py
+Load data
+Compute pseudobulk
+/app/scripts/2_compute_pseudobulk.py:29: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  pb_X = combined.groupby(level=0).sum()
+Construct obs for pseudobulk
+Create AnnData object
+Store to disk
+
+Pixi task (analysis_de in rverse): Rscript --no-init-file scripts/3_analysis_de.R
+Loading libraries...
+Reading data...
+Create DESeq dataset
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+Run DESeq2
+estimating size factors
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+estimating dispersions
+gene-wise dispersion estimates
+mean-dispersion relationship
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+final dispersion estimates
+fitting model and testing
+  Note: levels of factors in the design contain characters other than
+  letters, numbers, '_' and '.'. It is recommended (but not required) to use
+  only letters, numbers, and delimiters '_' or '.', as these are safe characters
+  for column names in R. [This is a message, not a warning or an error]
+          baseMean log2FoldChange      lfcSE      stat        pvalue
+BEX5      59.24944       2.187350 0.05660399  38.64304  0.000000e+00
+HIST1H1D 301.38741       1.356543 0.03092962  43.85901  0.000000e+00
+STMN1    234.72112       2.224633 0.04104002  54.20642  0.000000e+00
+PCSK1N    64.91604       1.899149 0.05480612  34.65214 4.147855e-263
+GZMM     141.39238      -1.309959 0.03806665 -34.41224 1.654371e-259
+MARCKSL1  95.82726       1.423057 0.04311798  33.00380 7.163953e-239
+H1FX     376.28247       1.054890 0.03221858  32.74168 3.988563e-235
+HIST1H1B  30.81805       4.317984 0.14074738  30.67896 1.086254e-206
+FXYD7     61.11526       2.331406 0.07725771  30.17700 4.746707e-200
+ING2      79.68893       1.218777 0.04336609  28.10437 8.663682e-174
+                  padj
+BEX5      0.000000e+00
+HIST1H1D  0.000000e+00
+STMN1     0.000000e+00
+PCSK1N   1.631144e-260
+GZMM     5.204651e-257
+MARCKSL1 1.878150e-236
+H1FX     8.962871e-233
+HIST1H1B 2.135848e-204
+FXYD7    8.296189e-198
+ING2     1.362797e-171
+```
+:::
 
 You can also still run the tasks individually when debugging a step and change behavior using environment variables.
 
