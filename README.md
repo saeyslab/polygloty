@@ -28,7 +28,7 @@ To run the pipeline with Docker, use the following command. The image is ~5GB an
 
 ```bash
 docker pull berombau/polygloty-docker:latest
-docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/book/disk_based/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
 ```
 
 ## renv
@@ -90,7 +90,7 @@ To edit and build the Docker image yourself, use can use the following command.:
 
 ```bash
 docker build -t polygloty-docker .
-docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts polygloty-docker pixi run pipeline
+docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/book/disk_based/scripts:/app/scripts polygloty-docker pixi run pipeline
 ```
 
 To publish it to Docker Hub, use the following command:
