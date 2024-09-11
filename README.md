@@ -24,11 +24,11 @@ pixi run pipeline
 
 ## Docker
 
-To run the pipeline with Docker, use the following command. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the usecase/data/ and scripts/ folders are mounted to the Docker container, so you can edit the scripts and access the data.
+To run the pipeline with Docker, use the following command. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the usecase/ and book/ folders are mounted to the Docker container, so you can edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
-docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/book/disk_based/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book berombau/polygloty-docker:latest pixi run pipeline
 ```
 
 ## renv
@@ -90,7 +90,7 @@ To edit and build the Docker image yourself, use can use the following command.:
 
 ```bash
 docker build -t polygloty-docker .
-docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/book/disk_based/scripts:/app/scripts polygloty-docker pixi run pipeline
+docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book polygloty-docker pixi run pipeline
 ```
 
 To publish it to Docker Hub, use the following command:
