@@ -330,11 +330,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>1_load_data.sh</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>2_compute_pseudobulk.py</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><code>3_analysis_de.R</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-f</span> book/usecase/data/sc_counts_reannotated_with_counts.h5ad <span class="kw">]];</span> <span class="cf">then</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-f</span> usecase/data/sc_counts_reannotated_with_counts.h5ad <span class="kw">]];</span> <span class="cf">then</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">aws</span> s3 cp <span class="dt">\</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--no-sign-request</span> <span class="dt">\</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad <span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    book/usecase/data/sc_counts_reannotated_with_counts.h5ad</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    usecase/data/sc_counts_reannotated_with_counts.h5ad</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -387,18 +387,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>pb_adata.write_h5ad(<span class="st">"usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Loading libraries..."</span>)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loading libraries...</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anndata)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Reading data..."</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Reading data...</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pb_adata <span class="ot">&lt;-</span> <span class="fu">read_h5ad</span>(<span class="st">"usecase/data/pseudobulk.h5ad"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select small molecule and control:</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>sm_name <span class="ot">&lt;-</span> <span class="st">"Belinostat"</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>control_name <span class="ot">&lt;-</span> <span class="st">"Dimethyl Sulfoxide"</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Create DESeq dataset"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Create DESeq dataset</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># transform counts matrix</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>count_data <span class="ot">&lt;-</span> <span class="fu">t</span>(pb_adata<span class="sc">$</span>X)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">storage.mode</span>(count_data) <span class="ot">&lt;-</span> <span class="st">"integer"</span></span>
@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">design =</span> <span class="sc">~</span> sm_name <span class="sc">+</span> plate_name,</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Run DESeq2"</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Run DESeq2</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(dds)</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Get results:</span></span>
@@ -471,14 +471,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">pipeline</span> = { depends-on = [<span class="st">"load_data"</span>, <span class="st">"compute_pseudobulk"</span>, <span class="st">"analysis_de"</span>] }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now you can run this multi-environment pipeline with a single command and it will always run the tasks in their respective and up-to-date environment:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Output">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">load_data</span> in bash<span class="kw">)</span><span class="bu">:</span> bash scripts/1_load_data.sh</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">download:</span> s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad to book/usecase/data/sc_counts_reannotated_with_counts.h5ad</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">compute_pseudobulk</span> in scverse<span class="kw">)</span><span class="bu">:</span> python scripts/2_compute_pseudobulk.py</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Load</span> data</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Compute</span> pseudobulk</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/app/scripts/2_compute_pseudobulk.py:29:</span> FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pb_X</span> = combined.groupby<span class="er">(</span><span class="va">level</span><span class="op">=</span>0<span class="kw">)</span><span class="fu">.sum()</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Construct</span> obs for pseudobulk</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> AnnData object</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Store</span> to disk</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Pixi</span> task <span class="er">(</span><span class="ex">analysis_de</span> in rverse<span class="kw">)</span><span class="bu">:</span> Rscript <span class="at">--no-init-file</span> scripts/3_analysis_de.R</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> libraries...</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Reading</span> data...</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> DESeq dataset</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Run</span> DESeq2</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> size factors</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ex">estimating</span> dispersions</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="ex">gene-wise</span> dispersion estimates</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="ex">mean-dispersion</span> relationship</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="ex">final</span> dispersion estimates</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="ex">fitting</span> model and testing</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Note:</span> levels of factors in the design contain characters other than</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  <span class="ex">letters,</span> numbers, <span class="st">'_'</span> and <span class="st">'.'</span>. It is recommended <span class="er">(</span><span class="ex">but</span> not required<span class="kw">)</span> <span class="ex">to</span> use</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="ex">only</span> letters, numbers, and delimiters <span class="st">'_'</span> or <span class="st">'.'</span>, as these are safe characters</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> column <span class="ex">names</span> in R. [This is a message, not a warning or an error]</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>          <span class="ex">baseMean</span> log2FoldChange      lfcSE      stat        pvalue</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      59.24944       2.187350 0.05660399  38.64304  0.000000e+00</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span> 301.38741       1.356543 0.03092962  43.85901  0.000000e+00</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>    234.72112       2.224633 0.04104002  54.20642  0.000000e+00</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>    64.91604       1.899149 0.05480612  34.65214 4.147855e-263</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     141.39238      <span class="at">-1.309959</span> 0.03806665 <span class="at">-34.41224</span> 1.654371e-259</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span>  95.82726       1.423057 0.04311798  33.00380 7.163953e-239</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     376.28247       1.054890 0.03221858  32.74168 3.988563e-235</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span>  30.81805       4.317984 0.14074738  30.67896 1.086254e-206</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>     61.11526       2.331406 0.07725771  30.17700 4.746707e-200</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>      79.68893       1.218777 0.04336609  28.10437 8.663682e-174</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">padj</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ex">BEX5</span>      0.000000e+00</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1D</span>  0.000000e+00</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ex">STMN1</span>     0.000000e+00</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ex">PCSK1N</span>   1.631144e-260</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ex">GZMM</span>     5.204651e-257</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ex">MARCKSL1</span> 1.878150e-236</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ex">H1FX</span>     8.962871e-233</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="ex">HIST1H1B</span> 2.135848e-204</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="ex">FXYD7</span>    8.296189e-198</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="ex">ING2</span>     1.362797e-171</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 <p>You can also still run the tasks individually when debugging a step and change behavior using environment variables.</p>
 </section>
 <section id="containerized-pipelines" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="containerized-pipelines"><span class="header-section-number">7.4</span> Containerized pipelines</h2>
 <p>Containers are a great way to manage the environments for your pipeline and make them reproducible on different platforms, given that you make accessible and store the container images for a long time.</p>
 <p>You can create a Docker image with all the <code>pixi</code> environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the <code>usecase/data/</code> and <code>scripts/</code> folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase/data:/app/usecase/data <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another approach is to use <strong>multi-package containers</strong>. Tools like <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> and <a href="https://seqera.io/containers/">Seqera Containers</a> can make this quick and easy, by allowing for custom combinations of packages.</p>
 <p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow frameworks</a></strong> like Nextflow or Snakemake to manage the pipeline for you.</p>
 
