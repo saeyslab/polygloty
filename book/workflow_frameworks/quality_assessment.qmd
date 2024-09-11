@@ -36,7 +36,10 @@ for (i in seq(2, nrow(wf_qc2), by = 1)) {
 
 # remove incomplete frameworks and unused questions
 wf_qc2 <- wf_qc2 |>
-  select(name, aspect, item, Nextflow, Snakemake, Galaxy, `Viash + Nextflow`, `Argo Workflows`) %>%
+  select(
+    name, aspect, item,
+    Nextflow, Snakemake, Galaxy, `Cromwell + WDL`,
+    `Toil + WDL`, `Argo Workflows`, `Viash + Nextflow`) %>%
   filter(!is.na(Nextflow)) %>%
   filter(item != "The framework provides clear error messages and debugging tools.")
 
@@ -84,9 +87,9 @@ agg <- scores |>
   summarize(mean_score = mean(score), .groups = "drop")
 
 # write to file
-write.csv(meta, "notebooks/workflows/data/wf_metadata.csv", row.names = FALSE)
-write.csv(criteria, "notebooks/workflows/data/criteria.csv", row.names = FALSE)
-write.csv(agg, "notebooks/workflows/data/wf_aggregated_scores.csv", row.names = FALSE)
+write.csv(meta, "book/workflow_frameworks/data/wf_metadata.csv", row.names = FALSE)
+write.csv(criteria, "book/workflow_frameworks/data/criteria.csv", row.names = FALSE)
+write.csv(agg, "book/workflow_frameworks/data/wf_aggregated_scores.csv", row.names = FALSE)
 ```
 
 Given the abovementioned limitations, we decided to conduct our own quality assessment of workflow frameworks. This assessment is still largely in the works, but we're happy to share the preliminary results with you.

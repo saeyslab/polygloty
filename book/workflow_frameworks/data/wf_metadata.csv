@@ -3,6 +3,14 @@
 "Snakemake","J/M","https://snakemake.github.io/","A workflow management system that uses Python-based rules to define dependencies and execute tasks.","https://github.com/snakemake/snakemake","https://snakemake.readthedocs.io/en/stable/","https://doi.org/10.12688/f1000research.29032.2","https://snakemake-wrappers.readthedocs.io/en/stable/","https://github.com/snakemake-workflows
 https://github.com/snakemake/snakemake-wrappers","snakemake"
 "Galaxy","R","https://galaxyproject.org/","A web-based platform for creating, running, and sharing data analysis workflows without the need for programming expertise.","https://github.com/galaxyproject/galaxy","https://docs.galaxyproject.org/en/master/","https://doi.org/10.1093/nar/gkae410","https://galaxyproject.org/iuc/","https://github.com/galaxyproject/tools-iuc","galaxy"
+"Cromwell + WDL","J","https://cromwell.readthedocs.io/","An execution engine (Cromwell) that uses a workflow description language (WDL) for defining and running scientific workflows, particularly in genomics and bioinformatics.","https://github.com/broadinstitute/cromwell","https://cromwell.readthedocs.io/","https://doi.org/10.7490/f1000research.1114634.1
+https://doi.org/10.4230/OASIcs.SLATE.2014.77","https://broadinstitute.github.io/warp/
+https://biowdl.github.io/tasks/v0.1/index.html","https://github.com/broadinstitute/warp
+https://github.com/biowdl/tasks","cromwell_wdl"
+"Toil + WDL","J","http://toil.ucsc-cgl.org/","A workflow engine (Toil) that leverages WDL to define and execute scientific workflows with a focus on scalability and fault tolerance.","https://github.com/DataBiosphere/toil","https://toil.readthedocs.io/en/latest/","http://doi.org/10.1038/nbt.3772
+https://doi.org/10.1145/3486897","https://broadinstitute.github.io/warp/
+https://biowdl.github.io/tasks/v0.1/index.html","https://github.com/broadinstitute/warp
+https://github.com/biowdl/tasks","toil_wdl"
+"Argo Workflows","T","https://argoproj.github.io/workflows/","A Kubernetes-native workflow engine for orchestrating containerized tasks and automating complex workflows.","https://github.com/argoproj/argo-workflows","https://argo-workflows.readthedocs.io",NA,NA,NA,"argo_workflows"
 "Viash + Nextflow","R","https://viash.io/","A combination of Viash, a tool for defining bioinformatics workflow components, and Nextflow for scalable and reproducible execution.","https://github.com/viash-io/viash","https://viash.io/guide/
 https://www.nextflow.io/docs/latest/index.html","https://joss.theoj.org/papers/10.21105/joss.06089","https://web.viash-hub.com/packages","https://github.com/viash-hub","viash_nextflow"
-"Argo Workflows","T","https://argoproj.github.io/workflows/","A Kubernetes-native workflow engine for orchestrating containerized tasks and automating complex workflows.","https://github.com/argoproj/argo-workflows","https://argo-workflows.readthedocs.io",NA,NA,NA,"argo_workflows"

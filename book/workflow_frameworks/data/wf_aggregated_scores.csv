@@ -1,36 +1,50 @@
 "name","framework","mean_score"
 "Community","Argo Workflows",0.125
+"Community","Cromwell + WDL",NA
 "Community","Galaxy",0.75
 "Community","Nextflow",1
 "Community","Snakemake",0.75
+"Community","Toil + WDL",0.5
 "Community","Viash + Nextflow",0.75
 "Maintainability","Argo Workflows",0.5
+"Maintainability","Cromwell + WDL",0.7
 "Maintainability","Galaxy",0.6
 "Maintainability","Nextflow",0.5
 "Maintainability","Snakemake",0.7
+"Maintainability","Toil + WDL",0.6
 "Maintainability","Viash + Nextflow",1
 "Modularity","Argo Workflows",0.8
+"Modularity","Cromwell + WDL",0.7
 "Modularity","Galaxy",0.9
 "Modularity","Nextflow",0.5
 "Modularity","Snakemake",1
+"Modularity","Toil + WDL",0.4
 "Modularity","Viash + Nextflow",1
 "Polyglot","Argo Workflows",0.666666666666667
+"Polyglot","Cromwell + WDL",0.333333333333333
 "Polyglot","Galaxy",0.333333333333333
 "Polyglot","Nextflow",0.666666666666667
 "Polyglot","Snakemake",0.666666666666667
+"Polyglot","Toil + WDL",0.333333333333333
 "Polyglot","Viash + Nextflow",0.666666666666667
 "Portability","Argo Workflows",0.5
+"Portability","Cromwell + WDL",0.611111111111111
 "Portability","Galaxy",0.666666666666667
 "Portability","Nextflow",0.944444444444444
 "Portability","Snakemake",0.888888888888889
+"Portability","Toil + WDL",0.472222222222222
 "Portability","Viash + Nextflow",0.944444444444444
 "Reproducibility","Argo Workflows",0.7
+"Reproducibility","Cromwell + WDL",0.3
 "Reproducibility","Galaxy",0.8
 "Reproducibility","Nextflow",0.5
 "Reproducibility","Snakemake",0.7
+"Reproducibility","Toil + WDL",0.3
 "Reproducibility","Viash + Nextflow",0.8
 "Scalability","Argo Workflows",0.5
+"Scalability","Cromwell + WDL",0.833333333333333
 "Scalability","Galaxy",0.333333333333333
 "Scalability","Nextflow",0.833333333333333
 "Scalability","Snakemake",0.833333333333333
+"Scalability","Toil + WDL",0.666666666666667
 "Scalability","Viash + Nextflow",0.833333333333333
