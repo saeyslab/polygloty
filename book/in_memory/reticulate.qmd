@@ -55,27 +55,11 @@ result_r <- py_to_r(result)
 r_to_py(result_r)
 ```
 
-
-# Interactive sessions
-One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
-
-Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.
-
-```{python show_magic, eval=FALSE}
-%load_ext rpy2.ipython  # line magic that loads the rpy2 ipython extension.
-                        # this extension allows the use of the following cell magic
-
-%%R -i input -o output  # this line allows to specify inputs 
-                        # (which will be converted to R objects) and outputs 
-                        # (which will be converted back to Python objects) 
-                        # this line is put at the start of a cell
-                        # the rest of the cell will be run as R code
-
-```
-
+# Interactivity
+You can easily include Python chunks in Rmarkdown notebooks using the Python engine in `knitr`.
 
 # Usecase
-We will not showcase the usefulness of reticulate by using the DE analysis: it would involve loading in `pandas` to create a Python dataframe, adding rownames and columnnames and then grouping them, but that is easier to do just in R.
+We will not showcase the usefulness of reticulate by using the DE analysis: it would involve loading in `pandas` to create a Python dataframe, adding rownames and columnnames and then grouping them, but that is easier to do natively in R.
 
 A more interesting thing you can do using `reticulate` is interacting with anndata-based Python packages, such as `scanpy`! 
 
@@ -104,7 +88,7 @@ adata
 
 We can't easily show the result of the plot in this Quarto notebook, but we can save it and show it:
 
-```{r scanpy_plot}
+```{r scanpy_plot, warning=TRUE}
 path <- "umap.png"
 sc$pl$umap(adata, color="leiden_res1", save=path)
 ```

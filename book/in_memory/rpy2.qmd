@@ -86,6 +86,23 @@ with anndata2ri.converter.context():
     ad2 = anndata2ri.rpy2py(sce)
 ```
 
+## Interactive sessions
+One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you're exploring the data and want to try out some functions non-native to your language of choice.
+
+Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.
+
+```{python show_magic, eval=FALSE}
+%load_ext rpy2.ipython  # line magic that loads the rpy2 ipython extension.
+                        # this extension allows the use of the following cell magic
+
+%%R -i input -o output  # this line allows to specify inputs 
+                        # (which will be converted to R objects) and outputs 
+                        # (which will be converted back to Python objects) 
+                        # this line is put at the start of a cell
+                        # the rest of the cell will be run as R code
+
+```
+
 ## Usecase: ran in Python
 
 We will perform the Compute DE step not in R, but in Python
