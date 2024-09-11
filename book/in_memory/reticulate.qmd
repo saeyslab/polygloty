@@ -88,7 +88,7 @@ adata
 
 We can't easily show the result of the plot in this Quarto notebook, but we can save it and show it:
 
-```{r scanpy_plot, warning=TRUE}
+```{r scanpy_plot, warning=TRUE, output=TRUE}
 path <- "umap.png"
 sc$pl$umap(adata, color="leiden_res1", save=path)
 ```

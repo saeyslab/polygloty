@@ -9,5 +9,5 @@ One language will act as the main language, and you will intereact with the othe
 
 ![A schematic overview](images/imm_overview.png){#fig-im-overview}
 
-When evaluating R code within a Python program, we will make use of rpy2 to accomplish this. When evaluating Python code within an R program, we will make use of reticulate.
+When evaluating R code within a Python program, we will make use of `Rpy2` to accomplish this. When evaluating Python code within an R program, we will make use of `Reticulate`.
 

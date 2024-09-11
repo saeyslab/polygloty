@@ -53,9 +53,9 @@ book:
       chapters:
         - text: Pitfalls
           href: book/in_memory/pitfalls.qmd
-        - text: rpy2
+        - text: Rpy2
           href: book/in_memory/rpy2.qmd
-        - text: reticulate
+        - text: Reticulate
           href: book/in_memory/reticulate.qmd
     - text: "Disk-based interoperability"
       part: book/disk_based/index.qmd
