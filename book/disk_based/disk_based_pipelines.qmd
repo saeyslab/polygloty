@@ -119,19 +119,18 @@ pixi run pipeline
 ```
 ::: {.callout-note title="Output" collapse="true"}
 ```bash
-Pixi task (load_data in bash): bash scripts/1_load_data.sh
-download: s3://openproblems-bio/public/neurips-2023-competition/sc_counts_reannotated_with_counts.h5ad to book/usecase/data/sc_counts_reannotated_with_counts.h5ad
+Pixi task (load_data in bash): bash book/disk_based/scripts/1_load_data.sh
 
-Pixi task (compute_pseudobulk in scverse): python scripts/2_compute_pseudobulk.py
+Pixi task (compute_pseudobulk in scverse): python book/disk_based/scripts/2_compute_pseudobulk.py
 Load data
 Compute pseudobulk
-/app/scripts/2_compute_pseudobulk.py:29: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+/app/book/disk_based/scripts/2_compute_pseudobulk.py:29: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   pb_X = combined.groupby(level=0).sum()
 Construct obs for pseudobulk
 Create AnnData object
 Store to disk
 
-Pixi task (analysis_de in rverse): Rscript --no-init-file scripts/3_analysis_de.R
+Pixi task (analysis_de in rverse): Rscript --no-init-file book/disk_based/scripts/3_analysis_de.R
 Loading libraries...
 Reading data...
 Create DESeq dataset
@@ -189,13 +188,13 @@ You can also still run the tasks individually when debugging a step and change b
 
 Containers are a great way to manage the environments for your pipeline and make them reproducible on different platforms, given that you make accessible and store the container images for a long time.
 
-You can create a Docker image with all the `pixi` environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/data/` and `scripts/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
+You can create a Docker image with all the `pixi` environments and run the pipeline in multiple environments with a single container. The image is ~5GB and the pipeline can require a lot of working memory ~20GB, so make sure to increase the RAM allocated to Docker in your settings. Note that the `usecase/` and `book/` folders are mounted to the Docker container, so you can interactively edit the scripts and access the data.
 
 ```bash
 docker pull berombau/polygloty-docker:latest
-docker run -it -v $(pwd)/usecase/data:/app/usecase/data -v $(pwd)/scripts:/app/scripts berombau/polygloty-docker:latest pixi run pipeline
+docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book berombau/polygloty-docker:latest pixi run pipeline
 ```
 
 Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqera Containers](https://seqera.io/containers/) can make this quick and easy, by allowing for custom combinations of packages.
 
-You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow frameworks](../workflow_frameworks)** like Nextflow or Snakemake to manage the pipeline for you.
+You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow framework](../workflow_frameworks)** like Nextflow or Snakemake to manage the pipeline for you.
