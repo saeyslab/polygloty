@@ -93,4 +93,4 @@ path <- "umap.png"
 sc$pl$umap(adata, color="leiden_res1", save=path)
 ```
 
-![UMAP plot of the adata object](../../figuresumapumap.png){#fig-umap.png})
+![UMAP plot of the adata object](../../figuresumapumap.png){#fig-umap.png}
