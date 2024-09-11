@@ -25,7 +25,7 @@ Take care to remember that arrays and matrices in Python are indexed starting fr
 ## Dots in variable names
 In R it is very common to use dots in symbols and variable names. This is invalid in Python: dots are used for function calls.
 
-When using rpy2, these dots are usually translated to underscores `_`. If this automatic translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.
+When using rpy2, these dots are usually translated to underscores `_`. If this translation can result in errors, this does not happen automatically. In this case, you can specify mappings for these symbols.
 
 ```{python rpy2_mapping}
 from rpy2.robjects.packages import importr
@@ -48,7 +48,7 @@ is.integer(float_ex)
 is.integer(int_ex)
 ```
 
-This can often lead to errors when using `reticulate`! If you're calling a Python function and provide it with just a number in R, it probably won't be recognised as an integer, leading to weird errors:
+This can often lead to errors when using `reticulate`! If you're calling a Python function and provide it with just a number in R, it probably won't be recognised as an integer, leading to errors:
 
 ```{r float_integer_error, error=TRUE}
 library(reticulate)

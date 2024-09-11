@@ -22,10 +22,6 @@ exectute:
     echo: true
 ---
 
-# test
-
-{{< include ../book/in_memory/pitfalls.qmd#rpy2_mapping echo=true >}}
-
 # Introduction
 
 1. How do you interact with a package in another language?
@@ -56,96 +52,186 @@ While interoperability is currently possible developers continue to improve the 
 1. Package-based interoperability
 2. Best practices
 
-## Package-based interoperability
+# Package-based interoperability
 or: the question of reimplementation.
 
-Consider the pros:
-- Discoverability
-- Can your package be useful in other domains?
-- Very user friendly
+- Consider the pros:
 
-Consider the cons:
-- Think twice: is it worth it?
-- It's a lot of work
-- How will you keep it up to date?
-- How will you ensure parity?
+  1. Discoverability
+  2. Can your package be useful in other domains?
+  3. Very user friendly
 
-## Best practices
+- Consider the cons:
 
+  1. Think twice: is it worth it?
+  2. **It's a lot of work**
+  3. How will you keep it up to date?
+  4. How will you ensure parity?
+
+# Package-based interoperability
+
+Please learn both R & Python
+
+# Best practices
 1. Work with the standards
 2. Work with matrices, arrays and dataframes
 3. Provide vignettes on interoperability
 
 # In-memory interoperability
-Calling Python in an R environment and vice versa.
-- No need to write out datasets.
-- Best suited to calling functions
+![](../book/in_memory/images/imm_overview.png)
 
-rpy2 and reticulate
+# Overview
 
-## Overview
+1. Advantages & disadvantages
+2. Pitfalls when using Python & R
+2. Rpy2
+3. Reticulate
 
-advantages & disadvantages
-
-rpy2
-1. overview
-2. usage
-3. pitfalls
-
-reticulate:
-1. overview
-2. usage
-3. pitfalls
-
-## in-memory interoperability advantages
+# in-memory interoperability advantages
 - no need to write & read results
 - useful when you need a limited amount of functions in another language
 
-## in-memory interoperability drawbacks
-- no access to classes
-- you need to extract necessary matrices & arrays for the method
-- ensure that the method accepts this
-- you need to be familiar with using & managing both environments
+# in-memory interoperability drawbacks
+- not always access to all classes
 - data duplication
 - you need to manage the environments
 
-## rpy2
-Accessing R from Python
+# Pitfalls when using Python and R
+**Column major vs row major matrices**
+In R: every dense matrix is stored as column major
 
-Example: code block
+![](../book/in_memory/images/inmemorymatrix.png)
 
-`rpy2.rinterface`, the low-level interface
-`rpy2.robjects`, the high-level interface
+# Pitfalls when using Python and R
+**Indexing**
 
-Example for calling R functions
+![](../book/in_memory/images/indexing.png)
 
-Example for conversion of arrays
+# Pitfalls when using Python and R
+**dots and underscores**
 
-## rpy2
-Conversion:
-numpy & pandas
+- mapping in rpy2
 
-Example: code block
+```python
+from rpy2.robjects.packages import importr
 
-sparse matrices: anndata2ri
+d = {'package.dependencies': 'package_dot_dependencies',
+     'package_dependencies': 'package_uscore_dependencies'}
+tools = importr('tools', robject_translations = d)
+```
 
-## rpy2
+# Pitfalls when using Python and R
+**Integers**
 
-Jupyter(like) notebooks:
-make use of the Magic command interface
+```r 
+library(reticulate)
+bi <- reticulate::import_builtins()
 
-`%load_ext rmagic`
-`%R -i input -o output`
+bi$list(bi$range(0, 5))
+# TypeError: 'float' object cannot be interpreted as an integer
+```
 
-example
+```r 
+library(reticulate)
+bi <- reticulate::import_builtins()
 
-## rpy2
+bi$list(bi$range(0L, 5L))
+# [1] 0 1 2 3 4
+```
 
-1. let your method be run with matrices and arrays as input
-2. anndata2ri
-?
+# Rpy2: basics
+- Accessing R from Python
+  - `rpy2.rinterface`, the low-level interface
+  - `rpy2.robjects`, the high-level interface
 
-## reticulate
+```python
+import rpy2
+import rpy2.robjects as robjects
+
+vector = robjects.IntVector([1,2,3])
+rsum = robjects.r['sum']
+
+rsum(vector)
+```
+
+# Rpy2: basics
+
+```python
+str_vector = robjects.StrVector(['abc', 'def', 'ghi'])
+flt_vector = robjects.FloatVector([0.3, 0.8, 0.7])
+int_vector = robjects.IntVector([1, 2, 3])
+mtx = robjects.r.matrix(robjects.IntVector(range(10)), nrow=5)
+```
+
+# Rpy2: numpy
+
+```python
+import numpy as np
+
+from rpy2.robjects import numpy2ri
+from rpy2.robjects import default_converter
+
+rd_m = np.random.random((10, 7))
+
+with (default_converter + numpy2ri.converter).context():
+    mtx2 = robjects.r.matrix(rd_m, nrow = 10)
+```
+
+# Rpy2: pandas
+```python
+import pandas as pd
+
+from rpy2.robjects import pandas2ri
+
+pd_df = pd.DataFrame({'int_values': [1,2,3],
+                      'str_values': ['abc', 'def', 'ghi']})
+
+with (default_converter + pandas2ri.converter).context():
+    pd_df_r = robjects.DataFrame(pd_df)
+```
+
+# Rpy2: sparse matrices
+
+```python
+import scipy as sp
+
+from anndata2ri import scipy2ri
+
+sparse_matrix = sp.sparse.csc_matrix(rd_m)
+
+with (default_converter + scipy2ri.converter).context():
+    sp_r = scipy2ri.py2rpy(sparse_matrix)
+```
+
+# Rpy2: anndata
+
+```python
+import anndata as ad
+import scanpy.datasets as scd
+
+import anndata2ri
+
+adata_paul = scd.paul15()
+
+with anndata2ri.converter.context():
+    sce = anndata2ri.py2rpy(adata_paul)
+    ad2 = anndata2ri.rpy2py(sce)
+```
+
+# Rpy2: interactivity
+
+```python
+%load_ext rpy2.ipython  # line magic that loads the rpy2 ipython extension.
+                        # this extension allows the use of the following cell magic
+
+%%R -i input -o output  # this line allows to specify inputs 
+                        # (which will be converted to R objects) and outputs 
+                        # (which will be converted back to Python objects) 
+                        # this line is put at the start of a cell
+                        # the rest of the cell will be run as R code
+```
+
+# Reticulate
 
 # Disk-based interoperability
 
