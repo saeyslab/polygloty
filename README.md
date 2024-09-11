@@ -9,7 +9,7 @@ For the best polyglot experience on Linux, we recommend using [Pixi](https://pix
 In a clean Linux shell without any active Python (`deactivate`) or Conda environments (`conda deactivate`), you can install all dependencies with the following command:
 
 ```bash
-pixi install
+pixi install -a
 ```
 
 For MacOS ARM and Windows, we recommend using Docker. For R users, we recommend `renv` to manage the R and Python dependencies.
