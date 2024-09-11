@@ -379,122 +379,32 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <p>We will showcase how to use anndata2ri to convert an anndata object to a SingleCellExperiment object and vice versa as well:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scanpy.datasets <span class="im">as</span> scd</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata2ri</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>adata_paul <span class="op">=</span> scd.paul15()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scanpy.datasets <span class="im">as</span> scd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Matplotlib is building the font cache; this may take a moment.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata2ri</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>adata_paul <span class="op">=</span> scd.paul15()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   0%|          | 0.00/9.82M [00:00&lt;?, ?B/s]
-  0%|          | 8.00k/9.82M [00:00&lt;02:25, 70.7kB/s]
-  0%|          | 32.0k/9.82M [00:00&lt;01:09, 148kB/s] 
-  0%|          | 40.0k/9.82M [00:00&lt;01:33, 110kB/s]
-  1%|1         | 136k/9.82M [00:00&lt;00:26, 387kB/s] 
-  2%|1         | 176k/9.82M [00:00&lt;00:27, 369kB/s]
-  2%|2         | 224k/9.82M [00:00&lt;00:26, 381kB/s]
-  3%|2         | 280k/9.82M [00:00&lt;00:24, 411kB/s]
-  3%|3         | 328k/9.82M [00:00&lt;00:24, 409kB/s]
-  4%|3         | 376k/9.82M [00:01&lt;00:24, 408kB/s]
-  4%|4         | 432k/9.82M [00:01&lt;00:23, 428kB/s]
-  5%|4         | 488k/9.82M [00:01&lt;00:22, 442kB/s]
-  5%|5         | 552k/9.82M [00:01&lt;00:20, 471kB/s]
-  6%|6         | 608k/9.82M [00:01&lt;00:20, 472kB/s]
-  7%|6         | 664k/9.82M [00:01&lt;00:20, 472kB/s]
-  7%|7         | 720k/9.82M [00:01&lt;00:20, 472kB/s]
-  8%|7         | 784k/9.82M [00:01&lt;00:19, 493kB/s]
-  8%|8         | 848k/9.82M [00:02&lt;00:18, 506kB/s]
-  9%|8         | 904k/9.82M [00:02&lt;00:18, 497kB/s]
- 10%|9         | 968k/9.82M [00:02&lt;00:18, 510kB/s]
- 10%|#         | 1.00M/9.82M [00:02&lt;00:18, 499kB/s]
- 11%|#         | 1.06M/9.82M [00:02&lt;00:17, 511kB/s]
- 11%|#1        | 1.12M/9.82M [00:02&lt;00:17, 520kB/s]
- 12%|#2        | 1.19M/9.82M [00:02&lt;00:17, 526kB/s]
- 13%|#2        | 1.25M/9.82M [00:02&lt;00:16, 530kB/s]
- 13%|#3        | 1.30M/9.82M [00:03&lt;00:17, 513kB/s]
- 14%|#3        | 1.37M/9.82M [00:03&lt;00:17, 521kB/s]
- 15%|#4        | 1.43M/9.82M [00:03&lt;00:16, 527kB/s]
- 15%|#5        | 1.49M/9.82M [00:03&lt;00:16, 530kB/s]
- 16%|#5        | 1.55M/9.82M [00:03&lt;00:16, 533kB/s]
- 16%|#6        | 1.62M/9.82M [00:03&lt;00:16, 535kB/s]
- 17%|#7        | 1.67M/9.82M [00:03&lt;00:16, 516kB/s]
- 18%|#7        | 1.73M/9.82M [00:03&lt;00:16, 523kB/s]
- 18%|#8        | 1.80M/9.82M [00:04&lt;00:15, 529kB/s]
- 19%|#8        | 1.86M/9.82M [00:04&lt;00:15, 532kB/s]
- 20%|#9        | 1.92M/9.82M [00:04&lt;00:15, 535kB/s]
- 20%|##        | 1.98M/9.82M [00:04&lt;00:15, 536kB/s]
- 21%|##        | 2.05M/9.82M [00:04&lt;00:15, 537kB/s]
- 22%|##1       | 2.12M/9.82M [00:04&lt;00:14, 557kB/s]
- 22%|##2       | 2.18M/9.82M [00:04&lt;00:14, 550kB/s]
- 23%|##2       | 2.25M/9.82M [00:04&lt;00:13, 567kB/s]
- 24%|##3       | 2.31M/9.82M [00:04&lt;00:14, 559kB/s]
- 24%|##4       | 2.38M/9.82M [00:05&lt;00:13, 573kB/s]
- 25%|##4       | 2.45M/9.82M [00:05&lt;00:13, 584kB/s]
- 26%|##5       | 2.52M/9.82M [00:05&lt;00:12, 591kB/s]
- 26%|##6       | 2.59M/9.82M [00:05&lt;00:12, 596kB/s]
- 27%|##7       | 2.66M/9.82M [00:05&lt;00:12, 580kB/s]
- 28%|##7       | 2.73M/9.82M [00:05&lt;00:12, 588kB/s]
- 29%|##8       | 2.80M/9.82M [00:05&lt;00:11, 614kB/s]
- 29%|##9       | 2.88M/9.82M [00:05&lt;00:11, 613kB/s]
- 30%|##9       | 2.95M/9.82M [00:06&lt;00:11, 611kB/s]
- 31%|###       | 3.02M/9.82M [00:06&lt;00:11, 627kB/s]
- 32%|###1      | 3.09M/9.82M [00:06&lt;00:11, 625kB/s]
- 32%|###2      | 3.17M/9.82M [00:06&lt;00:10, 640kB/s]
- 33%|###3      | 3.25M/9.82M [00:06&lt;00:10, 651kB/s]
- 34%|###3      | 3.32M/9.82M [00:06&lt;00:10, 638kB/s]
- 35%|###4      | 3.41M/9.82M [00:06&lt;00:10, 665kB/s]
- 35%|###5      | 3.48M/9.82M [00:06&lt;00:09, 672kB/s]
- 36%|###6      | 3.56M/9.82M [00:07&lt;00:09, 672kB/s]
- 37%|###7      | 3.64M/9.82M [00:07&lt;00:09, 671kB/s]
- 38%|###7      | 3.73M/9.82M [00:07&lt;00:09, 693kB/s]
- 39%|###8      | 3.81M/9.82M [00:07&lt;00:08, 710kB/s]
- 40%|###9      | 3.91M/9.82M [00:07&lt;00:08, 737kB/s]
- 41%|####      | 3.99M/9.82M [00:07&lt;00:08, 739kB/s]
- 42%|####1     | 4.09M/9.82M [00:07&lt;00:07, 763kB/s]
- 43%|####2     | 4.19M/9.82M [00:07&lt;00:07, 797kB/s]
- 44%|####3     | 4.28M/9.82M [00:08&lt;00:07, 802kB/s]
- 45%|####4     | 4.39M/9.82M [00:08&lt;00:06, 845kB/s]
- 46%|####5     | 4.51M/9.82M [00:08&lt;00:06, 894kB/s]
- 47%|####6     | 4.61M/9.82M [00:08&lt;00:06, 891kB/s]
- 48%|####8     | 4.73M/9.82M [00:08&lt;00:05, 947kB/s]
- 49%|####9     | 4.86M/9.82M [00:08&lt;00:05, 987kB/s]
- 51%|#####     | 4.98M/9.82M [00:08&lt;00:04, 1.01MB/s]
- 52%|#####2    | 5.12M/9.82M [00:08&lt;00:04, 1.05MB/s]
- 53%|#####3    | 5.25M/9.82M [00:08&lt;00:04, 1.08MB/s]
- 55%|#####4    | 5.40M/9.82M [00:09&lt;00:04, 1.14MB/s]
- 56%|#####6    | 5.54M/9.82M [00:09&lt;00:03, 1.17MB/s]
- 58%|#####7    | 5.70M/9.82M [00:09&lt;00:03, 1.22MB/s]
- 60%|#####9    | 5.86M/9.82M [00:09&lt;00:03, 1.28MB/s]
- 61%|######1   | 6.02M/9.82M [00:09&lt;00:03, 1.32MB/s]
- 63%|######3   | 6.19M/9.82M [00:09&lt;00:03, 1.11MB/s]
- 66%|######6   | 6.48M/9.82M [00:09&lt;00:02, 1.49MB/s]
- 67%|######7   | 6.61M/9.82M [00:10&lt;00:02, 1.38MB/s]
- 69%|######8   | 6.74M/9.82M [00:10&lt;00:02, 1.30MB/s]
- 70%|#######   | 6.88M/9.82M [00:10&lt;00:02, 1.26MB/s]
- 72%|#######1  | 7.02M/9.82M [00:10&lt;00:02, 1.27MB/s]
- 73%|#######2  | 7.16M/9.82M [00:10&lt;00:02, 1.25MB/s]
- 74%|#######4  | 7.31M/9.82M [00:10&lt;00:02, 1.26MB/s]
- 76%|#######6  | 7.47M/9.82M [00:10&lt;00:01, 1.29MB/s]
- 78%|#######7  | 7.62M/9.82M [00:10&lt;00:01, 1.31MB/s]
- 79%|#######9  | 7.78M/9.82M [00:11&lt;00:01, 1.32MB/s]
- 81%|########  | 7.94M/9.82M [00:11&lt;00:01, 1.33MB/s]
- 82%|########2 | 8.10M/9.82M [00:11&lt;00:01, 1.36MB/s]
- 84%|########4 | 8.26M/9.82M [00:11&lt;00:01, 1.35MB/s]
- 86%|########5 | 8.43M/9.82M [00:11&lt;00:01, 1.39MB/s]
- 88%|########7 | 8.59M/9.82M [00:11&lt;00:00, 1.40MB/s]
- 89%|########9 | 8.77M/9.82M [00:11&lt;00:00, 1.43MB/s]
- 91%|######### | 8.93M/9.82M [00:11&lt;00:00, 1.42MB/s]
- 93%|#########2| 9.10M/9.82M [00:11&lt;00:00, 1.44MB/s]
- 94%|#########4| 9.27M/9.82M [00:12&lt;00:00, 1.46MB/s]
- 96%|#########6| 9.44M/9.82M [00:12&lt;00:00, 1.44MB/s]
- 98%|#########7| 9.62M/9.82M [00:12&lt;00:00, 1.48MB/s]
-100%|#########9| 9.79M/9.82M [00:12&lt;00:00, 1.48MB/s]
-100%|##########| 9.82M/9.82M [00:12&lt;00:00, 825kB/s] </code></pre>
+  0%|          | 16.0k/9.82M [00:00&lt;01:04, 160kB/s]
+  0%|          | 32.0k/9.82M [00:00&lt;01:04, 160kB/s]
+  1%|          | 96.0k/9.82M [00:00&lt;00:27, 374kB/s]
+  2%|1         | 192k/9.82M [00:00&lt;00:16, 596kB/s] 
+  4%|3         | 400k/9.82M [00:00&lt;00:08, 1.11MB/s]
+  8%|8         | 816k/9.82M [00:00&lt;00:04, 2.11MB/s]
+ 16%|#6        | 1.62M/9.82M [00:00&lt;00:02, 4.10MB/s]
+ 33%|###3      | 3.25M/9.82M [00:00&lt;00:00, 7.97MB/s]
+ 63%|######3   | 6.23M/9.82M [00:00&lt;00:00, 14.8MB/s]
+ 94%|#########3| 9.22M/9.82M [00:01&lt;00:00, 19.3MB/s]
+100%|##########| 9.82M/9.82M [00:01&lt;00:00, 9.71MB/s]</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    sce <span class="op">=</span> anndata2ri.py2rpy(adata_paul)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    ad2 <span class="op">=</span> anndata2ri.rpy2py(sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> anndata2ri.converter.context():</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    sce <span class="op">=</span> anndata2ri.py2rpy(adata_paul)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ad2 <span class="op">=</span> anndata2ri.rpy2py(sce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="interactive-sessions" class="level2" data-number="4.2">
@@ -502,87 +412,87 @@ R was initialized outside of rpy2 (R_NilValue != NULL). Trying to use it neverth
 <p>One of the most useful ways to take advantage of in-memory interoperability is to use it in interactive sessions, where you’re exploring the data and want to try out some functions non-native to your language of choice.</p>
 <p>Jupyter notebooks (and some other notebooks) make this possible from the Python side: using IPython line and cell magic and rpy2, you can easily run an R jupyter cell in your notebooks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython  <span class="co"># line magic that loads the rpy2 ipython extension.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this extension allows the use of the following cell magic</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R <span class="op">-</span>i <span class="bu">input</span> <span class="op">-</span>o output  <span class="co"># this line allows to specify inputs </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># (which will be converted to R objects) and outputs </span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># (which will be converted back to Python objects) </span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this line is put at the start of a cell</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># the rest of the cell will be run as R code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython  <span class="co"># line magic that loads the rpy2 ipython extension.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this extension allows the use of the following cell magic</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R <span class="op">-</span>i <span class="bu">input</span> <span class="op">-</span>o output  <span class="co"># this line allows to specify inputs </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># (which will be converted to R objects) and outputs </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># (which will be converted back to Python objects) </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># this line is put at the start of a cell</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># the rest of the cell will be run as R code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="usecase-ran-in-python" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="usecase-ran-in-python"><span class="header-section-number">4.3</span> Usecase: ran in Python</h2>
 <p>We will perform the Compute DE step not in R, but in Python The pseudobulked data is read in:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pd_adata <span class="op">=</span> ad.read_h5ad(<span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anndata <span class="im">as</span> ad</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pd_adata <span class="op">=</span> ad.read_h5ad(<span class="st">"../usecase/data/pseudobulk.h5ad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Select small molecule and control:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="op">=</span> <span class="st">"Belinostat"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="op">=</span> <span class="st">"Dimethyl Sulfoxide"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sm_name <span class="op">=</span> <span class="st">"Belinostat"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>control_name <span class="op">=</span> <span class="st">"Dimethyl Sulfoxide"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Creating a DESeq dataset: This requires a bit more effort: we need to import the DESeq2 package, and combine the default, numpy2ri and pandas2ri converter to convert the count matrix and the obs dataframe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> default_converter</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>DESeq2 <span class="op">=</span> importr(<span class="st">"DESeq2"</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>np_cv_rules <span class="op">=</span> default_converter <span class="op">+</span> numpy2ri.converter <span class="op">+</span> pandas2ri.converter</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np_cv_rules.context() <span class="im">as</span> cv:</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    counts_dense <span class="op">=</span> np.transpose(pd_adata.X.astype(np.int32))</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"count_data"</span>] <span class="op">=</span> counts_dense</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"obs_data"</span>] <span class="op">=</span> pd_adata.obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> default_converter</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>DESeq2 <span class="op">=</span> importr(<span class="st">"DESeq2"</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>np_cv_rules <span class="op">=</span> default_converter <span class="op">+</span> numpy2ri.converter <span class="op">+</span> pandas2ri.converter</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np_cv_rules.context() <span class="im">as</span> cv:</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    counts_dense <span class="op">=</span> np.transpose(pd_adata.X.astype(np.int32))</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"count_data"</span>] <span class="op">=</span> counts_dense</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    robjects.globalenv[<span class="st">"obs_data"</span>] <span class="op">=</span> pd_adata.obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also specify R formulas!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> Formula</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>design_formula <span class="op">=</span> Formula(<span class="st">'~ sm_name + plate_name'</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeqDataSetFromMatrix(countData <span class="op">=</span> robjects.globalenv[<span class="st">"count_data"</span>],</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        colData <span class="op">=</span> robjects.globalenv[<span class="st">"obs_data"</span>],</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        design <span class="op">=</span> design_formula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> Formula</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>design_formula <span class="op">=</span> Formula(<span class="st">'~ sm_name + plate_name'</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeqDataSetFromMatrix(countData <span class="op">=</span> robjects.globalenv[<span class="st">"count_data"</span>],</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        colData <span class="op">=</span> robjects.globalenv[<span class="st">"obs_data"</span>],</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        design <span class="op">=</span> design_formula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run DESeq2:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeq(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dds <span class="op">=</span> DESeq2.DESeq(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get results:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>contrastv <span class="op">=</span> robjects.StrVector([<span class="st">"sm_name"</span>, sm_name, control_name])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> DESeq2.results(dds, contrast<span class="op">=</span>contrastv)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> importr(<span class="st">'base'</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> base.as_data_frame(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>contrastv <span class="op">=</span> robjects.StrVector([<span class="st">"sm_name"</span>, sm_name, control_name])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> DESeq2.results(dds, contrast<span class="op">=</span>contrastv)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> importr(<span class="st">'base'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> base.as_data_frame(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Preview results:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dplyr <span class="op">=</span> importr(<span class="st">'dplyr'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>utils <span class="op">=</span> importr(<span class="st">'utils'</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> utils.head(dplyr.arrange(res, <span class="st">'padj'</span>), <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dplyr <span class="op">=</span> importr(<span class="st">'dplyr'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>utils <span class="op">=</span> importr(<span class="st">'utils'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> utils.head(dplyr.arrange(res, <span class="st">'padj'</span>), <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Write to disk: this again requires the pandas2ri converter to convert the results to a pandas dataframe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> (robjects.default_converter <span class="op">+</span> pandas2ri.converter).context():</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    res_pd <span class="op">=</span> robjects.conversion.get_conversion().rpy2py(res)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    res_pd.to_csv(<span class="st">"../usecase/data/de_contrasts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> (robjects.default_converter <span class="op">+</span> pandas2ri.converter).context():</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    res_pd <span class="op">=</span> robjects.conversion.get_conversion().rpy2py(res)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    res_pd.to_csv(<span class="st">"../usecase/data/de_contrasts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
