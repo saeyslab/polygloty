@@ -22,6 +22,10 @@ execute:
     echo: true
 ---
 
+![](images/scverse2025.jpg)
+
+---
+
 # Introduction
 
 1. How do you interact with a package in another language?
