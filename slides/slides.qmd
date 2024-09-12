@@ -24,7 +24,6 @@ execute:
 
 ![](images/scverse2025.jpg)
 
----
 
 # Introduction
 
@@ -375,8 +374,6 @@ adata
 #     obsp: 'connectivities', 'distances'
 ```
 
----
-
 # Disk-based interoperability
 
 Disk-based interoperability is a strategy for achieving interoperability between tools written in different programming languages by **storing intermediate results in standardized, language-agnostic file formats**.
@@ -473,9 +470,9 @@ docker pull berombau/polygloty-docker:latest
 docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book berombau/polygloty-docker:latest pixi run pipeline
 ```
 
-Another approach is to use multi-package containers to create custom combinations of packages.
-- [Multi-Package BioContainers](https://midnighter.github.io/mulled/)
-- [Seqera Containers](https://seqera.io/containers/)
+- Another approach is to use multi-package containers to create custom combinations of packages.
+  - [Multi-Package BioContainers](https://midnighter.github.io/mulled/)
+  - [Seqera Containers](https://seqera.io/containers/)
 
 
 # Workflows
@@ -484,4 +481,3 @@ You can go a long way with a folder of notebooks or scripts and the right tools.
 
 See https://saeyslab.github.io/polygloty/book/workflow_frameworks/
 
-# Takeaways
