@@ -29,7 +29,7 @@ execute:
 
 We will be focusing on R & Python
 
-## Summary
+# Summary
 
 **Interoperability** between languages allows analysts to take advantage of the strengths of different ecosystems
 
@@ -342,13 +342,13 @@ adata
 
 Disk-based interoperability is a strategy for achieving interoperability between tools written in different programming languages by **storing intermediate results in standardized, language-agnostic file formats**.
 
-Upside:
-- Simple, just add reading and witing lines
-- Modular scripts
+- Upside:
+  - Simple, just add reading and witing lines
+  - Modular scripts
 
-Downside:
-- increased disk usage
-- less direct interaction, debugging...
+- Downside:
+  - increased disk usage
+  - less direct interaction, debugging...
 
 # Important features of interoperable file formats
 

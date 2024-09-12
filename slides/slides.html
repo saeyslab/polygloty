@@ -1262,7 +1262,6 @@ Robrecht Cannoodt
 
   <p class="date">2024-09-12</p>
 </section>
-<section>
 <section id="introduction" class="title-slide slide level1 center">
 <h1>Introduction</h1>
 <ol type="1">
@@ -1271,14 +1270,16 @@ Robrecht Cannoodt
 </ol>
 <p>We will be focusing on R &amp; Python</p>
 </section>
-<section id="summary" class="slide level2">
-<h2>Summary</h2>
+
+<section id="summary" class="title-slide slide level1 center">
+<h1>Summary</h1>
 <p><strong>Interoperability</strong> between languages allows analysts to take advantage of the strengths of different ecosystems</p>
 <p><strong>On-disk</strong> interoperability uses standard file formats to transfer data and is typically more reliable</p>
 <p><strong>In-memory</strong> interoperability transfers data directly between parallel sessions and is convenient for interactive analysis</p>
 <p>While interoperability is currently possible developers continue to improve the experience</p>
 <p><a href="https://www.sc-best-practices.org/introduction/interoperability.html">Single-cell best practices: Interoperability</a></p>
-</section></section>
+</section>
+
 <section id="how-do-you-interact-with-a-package-in-another-language" class="title-slide slide level1 center">
 <h1>How do you interact with a package in another language?</h1>
 <ol type="1">
@@ -1410,7 +1411,7 @@ Robrecht Cannoodt
 <li><code>rpy2.robjects</code>, the high-level interface</li>
 </ul></li>
 </ul>
-<div id="ea68de58" class="cell" data-execution_count="1">
+<div id="d6998f0a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href></a><span class="im">import</span> rpy2</span>
 <span id="cb4-2"><a href></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
 <span id="cb4-3"><a href></a></span>
@@ -1437,7 +1438,7 @@ Robrecht Cannoodt
 
 <section id="rpy2-basics-1" class="title-slide slide level1 center">
 <h1>Rpy2: basics</h1>
-<div id="5572dd32" class="cell" data-execution_count="2">
+<div id="f6fb7846" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href></a>str_vector <span class="op">=</span> robjects.StrVector([<span class="st">&#39;abc&#39;</span>, <span class="st">&#39;def&#39;</span>, <span class="st">&#39;ghi&#39;</span>])</span>
 <span id="cb5-2"><a href></a>flt_vector <span class="op">=</span> robjects.FloatVector([<span class="fl">0.3</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>])</span>
 <span id="cb5-3"><a href></a>int_vector <span class="op">=</span> robjects.IntVector([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
@@ -1457,7 +1458,7 @@ Robrecht Cannoodt
 
 <section id="rpy2-numpy" class="title-slide slide level1 center">
 <h1>Rpy2: numpy</h1>
-<div id="5a5d076d" class="cell" data-execution_count="3">
+<div id="84dfd14d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href></a></span>
 <span id="cb7-3"><a href></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
@@ -1469,18 +1470,18 @@ Robrecht Cannoodt
 <span id="cb7-9"><a href></a>    mtx <span class="op">=</span> robjects.r.matrix(rd_m, nrow <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb7-10"><a href></a>    <span class="bu">print</span>(mtx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.69525594 0.29780005 0.41267065 0.25871805]
- [0.88313251 0.79471121 0.5369112  0.24752835]
- [0.68812232 0.24265455 0.51419239 0.80029227]
- [0.43218943 0.37441082 0.05505875 0.23599726]
- [0.58236939 0.34859652 0.14651556 0.24370712]]</code></pre>
+<pre><code>[[0.73294749 0.55953375 0.69944132 0.52744075]
+ [0.09756794 0.39535684 0.80669803 0.10540606]
+ [0.35662206 0.70148737 0.12002733 0.28026677]
+ [0.19947608 0.84421019 0.82702188 0.82531633]
+ [0.56938249 0.04640811 0.34178679 0.3285883 ]]</code></pre>
 </div>
 </div>
 </section>
 
 <section id="rpy2-pandas" class="title-slide slide level1 center">
 <h1>Rpy2: pandas</h1>
-<div id="477fe152" class="cell" data-execution_count="4">
+<div id="f47e193f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href></a></span>
 <span id="cb9-3"><a href></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
@@ -1503,7 +1504,7 @@ Robrecht Cannoodt
 
 <section id="rpy2-sparse-matrices" class="title-slide slide level1 center">
 <h1>Rpy2: sparse matrices</h1>
-<div id="7513f866" class="cell" data-execution_count="5">
+<div id="fd0cc8dd" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
 <span id="cb11-2"><a href></a></span>
 <span id="cb11-3"><a href></a><span class="im">from</span> anndata2ri <span class="im">import</span> scipy2ri</span>
@@ -1515,12 +1516,12 @@ Robrecht Cannoodt
 <span id="cb11-9"><a href></a>    <span class="bu">print</span>(sp_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5 x 4 sparse Matrix of class &quot;dgCMatrix&quot;
-                                             
-[1,] 0.6952559 0.2978000 0.41267065 0.2587180
-[2,] 0.8831325 0.7947112 0.53691120 0.2475283
-[3,] 0.6881223 0.2426546 0.51419239 0.8002923
-[4,] 0.4321894 0.3744108 0.05505875 0.2359973
-[5,] 0.5823694 0.3485965 0.14651556 0.2437071
+                                              
+[1,] 0.73294749 0.55953375 0.6994413 0.5274408
+[2,] 0.09756794 0.39535684 0.8066980 0.1054061
+[3,] 0.35662206 0.70148737 0.1200273 0.2802668
+[4,] 0.19947608 0.84421019 0.8270219 0.8253163
+[5,] 0.56938249 0.04640811 0.3417868 0.3285883
 </code></pre>
 </div>
 </div>
@@ -1641,10 +1642,33 @@ Robrecht Cannoodt
 <span id="cb20-14"><a href></a><span class="co">#     obsp: &#39;connectivities&#39;, &#39;distances&#39;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
-<section>
 <section id="disk-based-interoperability" class="title-slide slide level1 center">
 <h1>Disk-based interoperability</h1>
+<p>Disk-based interoperability is a strategy for achieving interoperability between tools written in different programming languages by <strong>storing intermediate results in standardized, language-agnostic file formats</strong>.</p>
+<ul>
+<li>Upside:
+<ul>
+<li>Simple, just add reading and witing lines</li>
+<li>Modular scripts</li>
+</ul></li>
+<li>Downside:
+<ul>
+<li>increased disk usage</li>
+<li>less direct interaction, debugging…</li>
+</ul></li>
+</ul>
+</section>
 
+<section>
+<section id="important-features-of-interoperable-file-formats" class="title-slide slide level1 center">
+<h1>Important features of interoperable file formats</h1>
+<ul>
+<li>Compression</li>
+<li>Sparse matrix support</li>
+<li>Large images</li>
+<li>Lazy chunk loading</li>
+<li>Remote storage</li>
+</ul>
 </section>
 <section id="general-single-cell-file-formats-of-interest-for-python-and-r" class="slide level2">
 <h2>General single cell file formats of interest for Python and R</h2>
@@ -1871,9 +1895,69 @@ Robrecht Cannoodt
 </tbody>
 </table>
 </section></section>
+<section>
+<section id="disk-based-pipelines" class="title-slide slide level1 center">
+<h1>Disk-based pipelines</h1>
+<p>Script pipeline:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href></a><span class="co">#!/bin/bash</span></span>
+<span id="cb21-2"><a href></a></span>
+<span id="cb21-3"><a href></a><span class="fu">bash</span> scripts/1_load_data.sh</span>
+<span id="cb21-4"><a href></a><span class="ex">python</span> scripts/2_compute_pseudobulk.py</span>
+<span id="cb21-5"><a href></a><span class="ex">Rscript</span> scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notebook pipeline:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href></a><span class="co"># Every step can be a new notebook execution with inspectable output</span></span>
+<span id="cb22-2"><a href></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> notebook <span class="at">--execute</span> my_notebook.ipynb <span class="at">--allow-errors</span> <span class="at">--output-dir</span> outputs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="just-stay-in-your-language-and-call-scripts" class="slide level2">
+<h2>Just stay in your language and call scripts</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href></a><span class="im">import</span> subprocess</span>
+<span id="cb23-2"><a href></a></span>
+<span id="cb23-3"><a href></a>subprocess.run(<span class="st">&quot;bash scripts/1_load_data.sh&quot;</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-4"><a href></a><span class="co"># Alternatively you can run Python code here instead of calling a Python script</span></span>
+<span id="cb23-5"><a href></a>subprocess.run(<span class="st">&quot;python scripts/2_compute_pseudobulk.py&quot;</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-6"><a href></a>subprocess.run(<span class="st">&quot;Rscript scripts/3_analysis_de.R&quot;</span>, shell<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="pipelines-with-different-environments" class="title-slide slide level1 center">
+<h1>Pipelines with different environments</h1>
+<ol type="1">
+<li>interleave with environment (de)activation functions</li>
+<li>use rvenv</li>
+<li>use Pixi</li>
+</ol>
+</section>
+<section id="pixi-to-manage-different-environments" class="slide level2">
+<h2>Pixi to manage different environments</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href></a><span class="ex">pixi</span> run <span class="at">-e</span> bash scripts/1_load_data.sh</span>
+<span id="cb24-2"><a href></a><span class="ex">pixi</span> run <span class="at">-e</span> scverse scripts/2_compute_pseudobulk.py</span>
+<span id="cb24-3"><a href></a><span class="ex">pixi</span> run <span class="at">-e</span> rverse scripts/3_analysis_de.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="define-tasks-in-pixi" class="slide level2">
+<h2>Define tasks in Pixi</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href></a><span class="ex">...</span></span>
+<span id="cb25-2"><a href></a><span class="ex">[feature.bash.tasks]</span></span>
+<span id="cb25-3"><a href></a><span class="ex">load_data</span> = <span class="st">&quot;bash book/disk_based/scripts/1_load_data.sh&quot;</span></span>
+<span id="cb25-4"><a href></a><span class="ex">...</span></span>
+<span id="cb25-5"><a href></a><span class="ex">[feature.scverse.tasks]</span></span>
+<span id="cb25-6"><a href></a><span class="ex">compute_pseudobulk</span> = <span class="st">&quot;python book/disk_based/scripts/2_compute_pseudobulk.py&quot;</span></span>
+<span id="cb25-7"><a href></a><span class="ex">...</span></span>
+<span id="cb25-8"><a href></a><span class="ex">[feature.rverse.tasks]</span></span>
+<span id="cb25-9"><a href></a><span class="ex">analysis_de</span> = <span class="st">&quot;Rscript --no-init-file book/disk_based/scripts/3_analysis_de.R&quot;</span></span>
+<span id="cb25-10"><a href></a><span class="ex">...</span></span>
+<span id="cb25-11"><a href></a><span class="ex">[tasks]</span></span>
+<span id="cb25-12"><a href></a><span class="ex">pipeline</span> = { depends-on = [<span class="st">&quot;load_data&quot;</span>, <span class="st">&quot;compute_pseudobulk&quot;</span>, <span class="st">&quot;analysis_de&quot;</span>] }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href></a><span class="ex">pixi</span> run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="also-possible-to-use-containers" class="slide level2">
+<h2>Also possible to use containers</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
+<span id="cb27-2"><a href></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase:/app/usecase <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/book:/app/book berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another approach is to use multi-package containers to create custom combinations of packages. - <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> - <a href="https://seqera.io/containers/">Seqera Containers</a></p>
+</section></section>
 <section id="workflows" class="title-slide slide level1 center">
 <h1>Workflows</h1>
-
+<p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow framework</a></strong> like Viash, Nextflow or Snakemake to manage the pipeline for you.</p>
+<p>See https://saeyslab.github.io/polygloty/book/workflow_frameworks/</p>
 </section>
 
 <section id="takeaways" class="title-slide slide level1 center">
