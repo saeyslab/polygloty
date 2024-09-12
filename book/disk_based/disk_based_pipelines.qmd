@@ -197,4 +197,4 @@ docker run -it -v $(pwd)/usecase:/app/usecase -v $(pwd)/book:/app/book berombau/
 
 Another approach is to use **multi-package containers**. Tools like [Multi-Package BioContainers](https://midnighter.github.io/mulled/) and [Seqera Containers](https://seqera.io/containers/) can make this quick and easy, by allowing for custom combinations of packages.
 
-You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow framework](../workflow_frameworks)** like Nextflow or Snakemake to manage the pipeline for you.
+You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a **[workflow framework](../workflow_frameworks)** like Viash, Nextflow or Snakemake to manage the pipeline for you.
