@@ -555,7 +555,7 @@ Output
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull berombau/polygloty-docker:latest</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/usecase:/app/usecase <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>/book:/app/book berombau/polygloty-docker:latest pixi run pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another approach is to use <strong>multi-package containers</strong>. Tools like <a href="https://midnighter.github.io/mulled/">Multi-Package BioContainers</a> and <a href="https://seqera.io/containers/">Seqera Containers</a> can make this quick and easy, by allowing for custom combinations of packages.</p>
-<p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow framework</a></strong> like Nextflow or Snakemake to manage the pipeline for you.</p>
+<p>You can go a long way with a folder of notebooks or scripts and the right tools. But as your project grows more bespoke, it can be worth the effort to use a <strong><a href="../workflow_frameworks">workflow framework</a></strong> like Viash, Nextflow or Snakemake to manage the pipeline for you.</p>
 
 
 </section>
