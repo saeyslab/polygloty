@@ -26,8 +26,6 @@ engine: knitr
 
 Even more interesting is the accompanying GitHub repository ([GoekeLab/bioinformatics-workflows](https://github.com/GoekeLab/bioinformatics-workflows)), which contains a **Proof of Concept (PoC) RNA-seq workflow** implemented in the different workflow frameworks. These implementations were contributed and reviewed by the **developers of the respective frameworks** themselves!
 
-![Wow! ;)](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDZ0bmhuNmx1c3Y4dmUzNDUwZTdrM3dwdHk3MXVjcXVtZnlrYzQ2cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J87jeioCWcipG/giphy.webp){}
-
 Looking at these implementations, at first glance, one would think that the differences between the frameworks are minimal, and that the choice of framework is mostly a matter of personal preference.
 
 ## Comparing PoC Workflows to Community-Made Modules
