@@ -7,7 +7,7 @@ Disk-based pipelines are a way to run a sequence of scripts in different languag
 
 ## Notebook pipelines
 
-You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. **Our [Use-case chapter](./usecase/) is one example of this.**. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html). You don't need [in-memory interoperability](../in_memory), but it
+You can use [Quarto](https://quarto.org/) to run code snippets in different languages in the same `.qmd` notebook. **Our [Use-case chapter](./usecase/) is one example of this.**. The polyglot powers of Quarto for [executing code blocks](https://quarto.org/docs/computations/execution-options.html) come from tools such as [knitr](https://yihui.org/knitr/) or [Jupyter kernels](https://docs.jupyter.org/en/latest/projects/kernels.html).
 
 There are frameworks that keep the notebooks and create a pipeline with it. The upside is that you can avoid converting the code snippets in the notebooks to scripts. The downside is that you have to use a specific framework and the notebooks can become very large and unwieldy. For example, [Papermill](https://github.com/nteract/papermill) can execute parameterized Jupyter notebooks in sequence and pass variables between them. [nbdev](https://nbdev.fast.ai/) and [Ploomber](https://github.com/ploomber/ploomber) are similar such frameworks.
 
